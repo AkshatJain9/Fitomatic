@@ -35,7 +35,7 @@
         android:layout_marginEnd="16dp"
         android:contentDescription="ProfilePic"
         android:onClick="viewProfile"
-        android:src="@drawable/ic_person"
+        android:src="@drawable/ic_baseline_person_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

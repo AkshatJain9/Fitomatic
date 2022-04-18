@@ -1,15 +1,10 @@
 package com.ajsmdllz.fitomatic;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 
 public class LoginSuccess extends AppCompatActivity {
 
@@ -20,7 +15,7 @@ public class LoginSuccess extends AppCompatActivity {
     }
 
     public void viewProfile(View v) {
-        Intent intent = new Intent(this, userProfile.class);
+        Intent intent = new Intent(this, UserProfile.class);
         startActivity(intent);
     }
 

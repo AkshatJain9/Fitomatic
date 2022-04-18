@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitomatic" >
         <activity
-            android:name=".userProfile"
+            android:name=".UserProfile"
             android:exported="false" />
         <activity
             android:name=".LoginSuccess"
