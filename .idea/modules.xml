@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fitomatic.iml" filepath="$PROJECT_DIR$/.idea/modules/Fitomatic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Fitomatic.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Fitomatic.app.iml" />
     </modules>
   </component>
 </project>
