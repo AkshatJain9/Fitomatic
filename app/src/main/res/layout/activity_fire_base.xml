@@ -53,10 +53,10 @@
         android:id="@+id/regbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:onClick="RegisterUser"
         android:text="Register"
         app:layout_constraintTop_toBottomOf="@+id/passregc"
-        tools:layout_editor_absoluteX="142dp" />
+        tools:layout_editor_absoluteX="144dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

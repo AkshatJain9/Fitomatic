@@ -23,4 +23,9 @@ public class LoginSuccess extends AppCompatActivity {
         Intent intent = new Intent(this, userProfile.class);
         startActivity(intent);
     }
+
+    public void logout(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

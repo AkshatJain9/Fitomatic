@@ -10,11 +10,12 @@
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_fire_base.xml" value="0.25" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_login_success.xml" value="0.25" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_main.xml" value="0.2869446962828649" />
+        <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_user_profile.xml" value="0.2869446962828649" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3009833262077811" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
