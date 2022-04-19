@@ -49,4 +49,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilePic" />
 
+    <SearchView
+        android:id="@+id/searchBar"
+        android:layout_width="276dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

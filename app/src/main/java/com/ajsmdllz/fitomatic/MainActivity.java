@@ -2,7 +2,10 @@ package com.ajsmdllz.fitomatic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null) {
+            startActivity(new Intent(MainActivity.this, LoginSuccess.class));
+        }
+    }
 
     public void fbinit(View v) {
         Intent intent = new Intent(this, Registration.class);
@@ -58,16 +64,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginUser(View v) {
-
-//        String email = findViewById(R.id.email).toString();
-//        String password = findViewById(R.id.pass).toString();
-        mAuth.signInWithEmailAndPassword("testsign0@gmail.com", "ajsmdllz2100#").addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+        EditText email = findViewById(R.id.email);
+        EditText password = findViewById(R.id.pass);
+        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if(task.isSuccessful()) {
                     startActivity(new Intent(MainActivity.this, LoginSuccess.class));
                 } else {
-                    System.out.println(task.getResult());
+                    Log.w("EmailPassword", "signInWithEmail:failure", task.getException());
+                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Failed to register: "+task.getException().getMessage()+"!", Toast.LENGTH_SHORT).show();
+                    Log.e("Firebase", "Failed to register", task.getException());
                 }
             }
         });
