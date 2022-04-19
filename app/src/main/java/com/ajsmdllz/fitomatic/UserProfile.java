@@ -5,10 +5,14 @@ import android.view.View;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class UserProfile extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+public class UserProfile extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+
         // Creating a test User to display their info
         User testUser = new User("Bob", "password", 42, "Male");
         testUser.setUserName("Jeff");
@@ -17,7 +21,7 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         TextView tvProfileTitle = findViewById(R.id.profiletitle);
-        tvProfileTitle.setText("Name: "+testUser.getUserName() + ", Age: "+testUser.getUserAge());
+        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
     }
 
     // Testing how we might edit our profile
