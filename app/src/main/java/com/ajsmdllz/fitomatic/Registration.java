@@ -38,7 +38,7 @@ public class Registration extends AppCompatActivity {
           EditText email = findViewById(R.id.emailreg);
           EditText pass = findViewById(R.id.passreg);
           EditText passConfirm = findViewById(R.id.passregc);
-          if (pass.getText().equals(passConfirm.getText())) {
+          if (pass.getText().toString().equals(passConfirm.getText().toString())) {
               createAccount(email.getText().toString(), pass.getText().toString());
           } else {
               Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
