@@ -17,15 +17,21 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_fire_base);
 
     }
@@ -48,23 +54,20 @@ public class Registration extends AppCompatActivity {
     private void createAccount(String email, String password) {
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("EmailPassword", "createUserWithEmail:success");
-                            Toast.makeText(Registration.this, "Authentication SUCCESS.",
-                                    Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("EmailPassword", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Registration.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            Toast.makeText(Registration.this, "Failed to register: "+task.getException().getMessage()+"!", Toast.LENGTH_SHORT).show();
-                            Log.e("Firebase", "Failed to register", task.getException());
-                        }
+                .addOnCompleteListener(Registration.this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("EmailPassword", "createUserWithEmail:success");
+                        Toast.makeText(Registration.this, "Authentication SUCCESS.",
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("EmailPassword", "createUserWithEmail:failure", task.getException());
+                        Toast.makeText(Registration.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Failed to register: "+task.getException()+"!", Toast.LENGTH_SHORT).show();
+                        Log.e("Firebase", "Failed to register", task.getException());
                     }
                 });
         // [END create_user_with_email]
