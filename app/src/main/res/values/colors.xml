@@ -6,5 +6,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#F5F5F5</color>
+    <color name="purple">#1D1D35</color>
+    <color name="purple_tint">#3B3B68</color>
+    <color name="green">#00A76B</color>
+
 </resources>
