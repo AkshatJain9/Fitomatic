@@ -97,7 +97,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/secondary_button"
-        android:onClick="fbinit"
+        android:onClick="toRegistration"
         android:text="Create an Account"
         android:textColor="@color/purple"
         android:textSize="10sp"

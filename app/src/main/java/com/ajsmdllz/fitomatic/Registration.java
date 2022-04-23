@@ -33,7 +33,6 @@ public class Registration extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_fire_base);
-
     }
 
     public void backButton(View v) {
@@ -41,36 +40,40 @@ public class Registration extends AppCompatActivity {
     }
 
     public void RegisterUser(View v) {
-          EditText email = findViewById(R.id.emailreg);
-          EditText pass = findViewById(R.id.passreg);
-          EditText passConfirm = findViewById(R.id.passregc);
-          if (pass.getText().toString().equals(passConfirm.getText().toString())) {
-              createAccount(email.getText().toString(), pass.getText().toString());
-          } else {
-              Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-          }
+        EditText email = findViewById(R.id.emailreg);
+        EditText pass = findViewById(R.id.passreg);
+        EditText passConfirm = findViewById(R.id.passregc);
+        if (email.getText().toString().length() == 0) {
+            Toast.makeText(this, "Please enter an email!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (pass.getText().toString().length() == 0) {
+            Toast.makeText(this, "Please enter a password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (passConfirm.getText().toString().length() == 0) {
+            Toast.makeText(this, "Please confirm your password!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (pass.getText().toString().equals(passConfirm.getText().toString())) {
+            createAccount(email.getText().toString(), pass.getText().toString());
+        }
+        Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
     }
 
     private void createAccount(String email, String password) {
-        // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(Registration.this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("EmailPassword", "createUserWithEmail:success");
                         Toast.makeText(Registration.this, "Authentication SUCCESS.",
                                 Toast.LENGTH_SHORT).show();
-                        finish();
+//                        finish(); // Go to page where you fill in information
                     } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("EmailPassword", "createUserWithEmail:failure", task.getException());
                         Toast.makeText(Registration.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
                         Toast.makeText(Registration.this, "Failed to register: "+task.getException()+"!", Toast.LENGTH_SHORT).show();
-                        Log.e("Firebase", "Failed to register", task.getException());
                     }
                 });
-        // [END create_user_with_email]
     }
 
 }
