@@ -18,7 +18,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -26,11 +25,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/action_button"
         android:onClick="RegisterUser"
-        android:text="Register"
+        android:text="Create Account"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +44,9 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/secondary_button"
         android:onClick="backButton"
-        android:text="Back"
+        android:text="I Already have an Account"
         android:textColor="@color/purple"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Enter Password"
+        android:hint="Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -93,7 +93,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -102,9 +101,23 @@
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background_shape" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/background_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/logo_backed"  
+        android:layout_height="0dp"
+        android:layout_width="0dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
