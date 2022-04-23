@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -39,9 +41,10 @@ public class LoginSuccess extends AppCompatActivity {
         ArrayList<User> feedArrayList = new ArrayList<>();
 
         // Adding test Users to display on feed
-        User testUser1 = new User("Barry", 35, "Male");
+        // NOTE: Need to figure out a way to nicely display info of Users
+        User testUser1 = new User("Barry", 35, "Male", "My bio 1");
         feedArrayList.add(testUser1);
-        User testUser2 = new User("Claire", 26, "Female");
+        User testUser2 = new User("Claire", 26, "Female", "My bio 2");
         feedArrayList.add(testUser2);
         feedArrayList.add(testUser2);
         feedArrayList.add(testUser2);
@@ -63,10 +66,23 @@ public class LoginSuccess extends AppCompatActivity {
         feed.setAdapter(adapter);
         // End of Feed Code
 
-    }
+        // Home Button (sends user to home/main page)
+        ImageButton homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginSuccess.this, LoginSuccess.class));
+            }
+        });
 
-    public void viewProfile(View v) {
-        Intent intent = new Intent(this, UserProfile.class);
-        startActivity(intent);
+        // Profile Button (sends user to their profile page)
+        ImageButton profileButton = findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginSuccess.this, UserProfile.class));
+            }
+        });
+
     }
 }

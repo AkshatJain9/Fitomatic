@@ -57,8 +57,9 @@ public class Registration extends AppCompatActivity {
         }
         if (pass.getText().toString().equals(passConfirm.getText().toString())) {
             createAccount(email.getText().toString(), pass.getText().toString());
+        } else {
+            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
     }
 
     private void createAccount(String email, String password) {
@@ -66,8 +67,9 @@ public class Registration extends AppCompatActivity {
                 .addOnCompleteListener(Registration.this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(Registration.this, "Authentication SUCCESS.",
-                                Toast.LENGTH_SHORT).show();
-//                        finish(); // Go to page where you fill in information
+                        Toast.LENGTH_SHORT).show();
+//                      finish(); // Go to page where you fill in information
+                        startActivity(new Intent(Registration.this, ProfileCreation.class));
                     } else {
                         Toast.makeText(Registration.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
