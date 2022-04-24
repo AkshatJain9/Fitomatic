@@ -28,24 +28,23 @@ public class UserProfile extends AppCompatActivity {
         tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
 
         // Home Button (simply sends user back to home/main page)
-//        ImageButton homeButton = findViewById(R.id.homeButton);
-//        homeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(UserProfile.this, LoginSuccess.class));
-//            }
-//        });
-//
-//        // Profile Button (sends user to their profile page)
-//        ImageButton profileButton = findViewById(R.id.profileButton);
-//        profileButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(UserProfile.this, UserProfile.class));
-//            }
-//        });
-//        TextView tvProfileTitle = findViewById(R.id.profiletitle);
-//        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
+        ImageButton homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserProfile.this, LoginSuccess.class));
+            }
+        });
+
+        // Profile Button (sends user to their profile page)
+        ImageButton profileButton = findViewById(R.id.profileButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserProfile.this, UserProfile.class));
+            }
+        });
+        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
     }
 
     // Testing how we might edit our profile
