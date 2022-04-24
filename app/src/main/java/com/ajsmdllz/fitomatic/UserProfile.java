@@ -15,6 +15,11 @@ public class UserProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
+
+        // Creating a test User to display their info
+//        User testUser = new User("Bob", "password", 42, "Male");
+//        testUser.setUserName("Jeff");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
@@ -39,6 +44,7 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(new Intent(UserProfile.this, UserProfile.class));
             }
         });
+        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
     }
 
     // Testing how we might edit our profile

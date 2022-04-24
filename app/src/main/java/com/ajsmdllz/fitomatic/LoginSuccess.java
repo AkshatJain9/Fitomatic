@@ -42,25 +42,25 @@ public class LoginSuccess extends AppCompatActivity {
 
         // Adding test Users to display on feed
         // NOTE: Need to figure out a way to nicely display info of Users
-        User testUser1 = new User("Barry", 35, "Male", "My bio 1");
-        feedArrayList.add(testUser1);
-        User testUser2 = new User("Claire", 26, "Female", "My bio 2");
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
+//        User testUser1 = new User("Barry", "Bob", 18, "M");
+//        feedArrayList.add(testUser1);
+//        User testUser2 = new User("Claire", "Claire", 18, "F");
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
 
         ArrayAdapter<User> adapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, feedArrayList);
         feed.setAdapter(adapter);

@@ -3,21 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2985" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2985" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2985" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2985" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield_action.xml" value="0.2015" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_fire_base.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_login_success.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_profile_creation.xml" value="0.1884498480243161" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable-anydpi/ic_person.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.2585" />
-        <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/secondary_button.xml" value="0.207" />
-        <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable/textfield_action.xml" value="0.1535" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_fire_base.xml" value="0.25" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_login_success.xml" value="0.25" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_main.xml" value="0.2869446962828649" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/layout/activity_user_profile.xml" value="0.2869446962828649" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.207" />
-        <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.207" />
       </map>
     </option>
   </component>

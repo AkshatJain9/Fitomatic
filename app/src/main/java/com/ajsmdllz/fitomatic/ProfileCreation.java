@@ -28,7 +28,7 @@ public class ProfileCreation extends AppCompatActivity {
                 } else {
                     // Creates new User
                     // NOTE: Does not do anything yet (needs to store info in firebase)
-                    User user = new User(name.getText().toString(), 0, "Gender", bio.getText().toString());
+//                    User user = new User(name.getText().toString(), 0, "Gender", bio.getText().toString());
                     startActivity(new Intent(ProfileCreation.this, LoginSuccess.class));
                 }
             }
