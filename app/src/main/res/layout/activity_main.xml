@@ -35,7 +35,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -69,7 +69,7 @@
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 
     <Button
@@ -97,7 +97,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="60dp"
         android:background="@drawable/secondary_button"
-        android:onClick="fbinit"
+        android:onClick="toRegistration"
         android:text="Create an Account"
         android:textColor="@color/purple"
         android:textSize="10sp"
