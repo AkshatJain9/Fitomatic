@@ -2,29 +2,55 @@ package com.ajsmdllz.fitomatic;
 
 public class User {
     private String name;
-    private String password;
+//    private String userName;
+    private String email;
     private int age;
     private String gender;
 
-    public User(String name, String password, int age, String gender){
+    public User(String name, String email, int age, String gender){
         this.name = name;
-        this.password = password;
+        this.email = email;
         this.age = age;
         this.gender = gender;
     }
 
-    // Need more setters and getters here
+    public User(String email) {
+        this.email = email;
+        this.name = "";
+        this.age = 0;
+        this.gender = "";
+    }
 
-    public String getUserName() {
+    public String getName() {
         return name;
     }
 
-    public void setUserName(String newName) {
-        this.name = newName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getUserAge() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getAge() {
         return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }

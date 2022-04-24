@@ -14,14 +14,14 @@ public class UserProfile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Creating a test User to display their info
-        User testUser = new User("Bob", "password", 42, "Male");
-        testUser.setUserName("Jeff");
+//        User testUser = new User("Bob", "password", 42, "Male");
+//        testUser.setUserName("Jeff");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        TextView tvProfileTitle = findViewById(R.id.profiletitle);
-        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
+//        TextView tvProfileTitle = findViewById(R.id.profiletitle);
+//        tvProfileTitle.setText("Email: "+mAuth.getCurrentUser().getEmail());
     }
 
     // Testing how we might edit our profile
