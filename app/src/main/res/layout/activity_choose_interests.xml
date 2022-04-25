@@ -67,184 +67,207 @@
                     android:id="@+id/chip1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/running" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/walking" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/weightLifting" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/rowing" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/yoga" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/soccer" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/hiking" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/gymnastics" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/aFL" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/tennis" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/rugby" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/surfing" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/golf" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/bowling" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/karate" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/bouldering" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/rockClimbing" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/cycling" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/mountainBiking" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/swimming" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/cricket" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/judo" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
+                    android:checkable="true"
                     android:text="@string/taiQuanDao" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
