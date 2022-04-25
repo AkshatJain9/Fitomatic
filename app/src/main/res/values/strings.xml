@@ -5,4 +5,29 @@
     <string name="title_activity_user_profile">userProfile</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <!--> All the activities </-->
+    <string name="running">Running</string>
+    <string name="walking">Walking</string>
+    <string name="weightLifting">Weight Lifting</string>
+    <string name="rowing">rowing</string>
+    <string name="yoga">Yoga</string>
+    <string name="soccer">Soccer</string>
+    <string name="hiking">Hiking</string>
+    <string name="gymnastics">Gymnastics</string>
+    <string name="aFL">AFL</string>
+    <string name="tennis">Tennis</string>
+    <string name="rugby">Rugby</string>
+    <string name="surfing">Surfing</string>
+    <string name="golf">Golf</string>
+    <string name="bowling">Bowling</string>
+    <string name="karate">karate</string>
+    <string name="bouldering">Bouldering</string>
+    <string name="rockClimbing">Rock Climbing</string>
+    <string name="cycling">Cycling</string>
+    <string name="mountainBiking">Mountain Biking</string>
+    <string name="swimming">Swimming</string>
+    <string name="cricket">Cricket</string>
+    <string name="judo">Judo</string>
+    <string name="taiQuanDao">Tai Quan Dao</string>
 </resources>
