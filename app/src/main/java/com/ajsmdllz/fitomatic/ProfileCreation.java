@@ -17,7 +17,7 @@ public class ProfileCreation extends AppCompatActivity {
         setContentView(R.layout.activity_profile_creation);
 
         Button createProfile = findViewById(R.id.createProfile);
-        EditText name = findViewById(R.id.name);
+        EditText name = findViewById(R.id.firstName);
         EditText bio = findViewById(R.id.bio);
 
         createProfile.setOnClickListener(new View.OnClickListener() {

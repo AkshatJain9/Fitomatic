@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginUser(View v) {
-        EditText email = findViewById(R.id.name);
+        EditText email = findViewById(R.id.firstName);
         EditText password = findViewById(R.id.pass);
         if (email.getText().toString().length() == 0) {
             Toast.makeText(MainActivity.this, "Please enter an email!", Toast.LENGTH_SHORT).show();
