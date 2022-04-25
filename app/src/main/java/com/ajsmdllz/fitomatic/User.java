@@ -28,7 +28,15 @@ public class User {
 
 
     public User(String email) {
+        this.firstname = "";
+        this.lastname = "";
+        this.userName = "";
         this.email = email;
+        this.bio = "";
+        this.age = 0;
+        this.gender = "";
+        this.interests = new ArrayList<>();
+        this.posts = new ArrayList<>();
     }
 
     public String getFirstname() {

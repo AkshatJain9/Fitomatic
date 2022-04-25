@@ -10,15 +10,17 @@ public class Post {
     private String image;
     private String description;
     private ArrayList<Activities> activities;
+    private int likes;
 
 
-    public Post(User author, String title, String location, String image, String description, ArrayList<Activities> activities) {
+    public Post(User author, String title, String location, String image, String description, ArrayList<Activities> activities, int likes) {
         this.author = author;
         this.title = title;
         this.location = location;
         this.image = image;
         this.description = description;
         this.activities = activities;
+        this.likes = 0;
     }
 
     public User getAuthor() {
@@ -68,4 +70,6 @@ public class Post {
     public void setActivities(ArrayList<Activities> activities) {
         this.activities = activities;
     }
+
+
 }

@@ -42,6 +42,10 @@ public class Registration extends AppCompatActivity {
     }
 
     public void RegisterUser(View v) {
+        // FOR TESTING PURPOSES
+//        Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
+//        startActivity(toProfileCreation);
+
         EditText email = findViewById(R.id.emailreg);
         EditText pass = findViewById(R.id.passreg);
         EditText passConfirm = findViewById(R.id.passregc);
@@ -67,6 +71,9 @@ public class Registration extends AppCompatActivity {
                 DocumentSnapshot fullDoc = task.getResult();
                 if (!fullDoc.exists()) {
                     createAccount(email.getText().toString(), pass.getText().toString());
+                    Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
+                    toProfileCreation.putExtra("email", email.getText().toString());
+                    startActivity(toProfileCreation);
                 } else {
                     Toast.makeText(Registration.this, "Account with this email already exists!", Toast.LENGTH_SHORT).show();
                 }
