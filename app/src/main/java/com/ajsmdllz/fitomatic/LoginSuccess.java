@@ -42,25 +42,25 @@ public class LoginSuccess extends AppCompatActivity {
 
         // Adding test Users to display on feed
         // NOTE: Need to figure out a way to nicely display info of Users
-//        User testUser1 = new User("Barry", "Bob", 18, "M");
-//        feedArrayList.add(testUser1);
-//        User testUser2 = new User("Claire", "Claire", 18, "F");
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
+        User testUser1 = new User("integer@gmail.com");
+        feedArrayList.add(testUser1);
+        User testUser2 = new User("Claire@gmail.com");
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
+        feedArrayList.add(testUser2);
 
         ArrayAdapter<User> adapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, feedArrayList);
         feed.setAdapter(adapter);
@@ -81,6 +81,15 @@ public class LoginSuccess extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginSuccess.this, UserProfile.class));
+            }
+        });
+
+        // Create Post Button (sends user to post creation page)
+        ImageButton createPostButton = findViewById(R.id.createPostButton);
+        createPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginSuccess.this, PostCreation.class));
             }
         });
 
