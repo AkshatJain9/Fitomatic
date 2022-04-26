@@ -67,10 +67,6 @@ public class Registration extends AppCompatActivity {
                 DocumentSnapshot fullDoc = task.getResult();
                 if (!fullDoc.exists()) {
                     createAccount(email.getText().toString(), pass.getText().toString());
-                    Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                    Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
-                    toProfileCreation.putExtra("email", email.getText().toString());
-                    startActivity(toProfileCreation);
                 } else {
                     Toast.makeText(Registration.this, "Account with this email already exists!", Toast.LENGTH_SHORT).show();
                 }
@@ -79,8 +75,6 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(Registration.this, "Something went wrong (Please let AJ know if you somehow get this error)", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     private void createAccount(String email, String password) {
@@ -89,6 +83,11 @@ public class Registration extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         User user = new User(email);
                         db.collection("users").document(email).set(user);
+
+                        Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                        Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
+                        toProfileCreation.putExtra("email", email.toString());
+                        startActivity(toProfileCreation);
 
                         Toast.makeText(Registration.this, "Authentication SUCCESS.",
                                 Toast.LENGTH_SHORT).show();
