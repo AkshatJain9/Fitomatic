@@ -36,6 +36,7 @@ public class ProfileCreation extends AppCompatActivity {
         EditText bio = findViewById(R.id.bio);
         RadioGroup genders = findViewById(R.id.radioGroup);
         int selected = genders.getCheckedRadioButtonId();
+
         if (selected == - 1) {
             Toast.makeText(ProfileCreation.this, "Please enter your Gender!", Toast.LENGTH_SHORT).show();
             return;
