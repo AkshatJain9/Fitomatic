@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProfileCreation extends AppCompatActivity {
@@ -19,6 +21,8 @@ public class ProfileCreation extends AppCompatActivity {
         Button createProfile = findViewById(R.id.createProfile);
         EditText name = findViewById(R.id.firstName);
         EditText bio = findViewById(R.id.bio);
+        SeekBar seek = findViewById(R.id.seekBar);
+        TextView age = (TextView) findViewById(R.id.textView2);
 
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +37,26 @@ public class ProfileCreation extends AppCompatActivity {
                 }
             }
         });
+
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                System.out.println(i);
+                age.setText("Age "+i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
     }
 }
