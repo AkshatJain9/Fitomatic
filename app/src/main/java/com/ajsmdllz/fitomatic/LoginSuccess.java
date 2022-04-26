@@ -18,6 +18,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -38,31 +39,32 @@ public class LoginSuccess extends AppCompatActivity {
 
         // Feed
         ListView feed = findViewById(R.id.feed);
-        ArrayList<User> feedArrayList = new ArrayList<>();
+        ArrayList<FirebaseUser> feedArrayList = new ArrayList<>();
+        feedArrayList.add(mAuth.getCurrentUser());
 
         // Adding test Users to display on feed
         // NOTE: Need to figure out a way to nicely display info of Users
-        User testUser1 = new User("integer@gmail.com");
-        feedArrayList.add(testUser1);
-        User testUser2 = new User("Claire@gmail.com");
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
-        feedArrayList.add(testUser2);
+//        User testUser1 = new User("integer@gmail.com");
+//        feedArrayList.add(testUser1);
+//        User testUser2 = new User("Claire@gmail.com");
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
+//        feedArrayList.add(testUser2);
 
-        ArrayAdapter<User> adapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, feedArrayList);
+        ArrayAdapter<FirebaseUser> adapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, feedArrayList);
         feed.setAdapter(adapter);
         // End of Feed Code
 
