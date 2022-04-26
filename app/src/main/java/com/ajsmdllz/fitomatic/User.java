@@ -5,19 +5,17 @@ import java.util.ArrayList;
 public class User {
     private String firstname;
     private String lastname;
-    private String userName;
     private String email;
     private String bio;
     private int age;
     private String gender;
-    private ArrayList<Activities> interests;
+    private ArrayList<String> interests;
     private ArrayList<Post> posts;
 
 
-    public User(String firstname, String lastname, String userName, String email, String bio, int age, String gender, ArrayList<Activities> interests, ArrayList<Post> posts) {
+    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts) {
         this.firstname = firstname;
         this.lastname = lastname;
-        this.userName = userName;
         this.email = email;
         this.bio = bio;
         this.age = age;
@@ -28,15 +26,7 @@ public class User {
 
 
     public User(String email) {
-        this.firstname = "";
-        this.lastname = "";
-        this.userName = "";
         this.email = email;
-        this.bio = "";
-        this.age = 0;
-        this.gender = "";
-        this.interests = new ArrayList<>();
-        this.posts = new ArrayList<>();
     }
 
     public String getFirstname() {
@@ -53,14 +43,6 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {
@@ -87,11 +69,11 @@ public class User {
         this.gender = gender;
     }
 
-    public ArrayList<Activities> getInterests() {
+    public ArrayList<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(ArrayList<Activities> interests) {
+    public void setInterests(ArrayList<String> interests) {
         this.interests = interests;
     }
 
