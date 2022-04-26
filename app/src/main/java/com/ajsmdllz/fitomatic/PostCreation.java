@@ -9,12 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class PostCreation extends AppCompatActivity {
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_creation);
+        db = FirebaseFirestore.getInstance();
 
         Button createPost = findViewById(R.id.createPost);
         EditText title = findViewById(R.id.createTitle);

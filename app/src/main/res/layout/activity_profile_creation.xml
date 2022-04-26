@@ -16,6 +16,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/logo_foreground_backing"
         android:backgroundTint="@color/purple"
+        android:onClick="uploadProfilePic"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"

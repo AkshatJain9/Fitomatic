@@ -1,9 +1,11 @@
 package com.ajsmdllz.fitomatic;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,16 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 public class ProfileCreation extends AppCompatActivity {
     FirebaseFirestore db;
     String email;
+//    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_creation);
         db = FirebaseFirestore.getInstance();
+//        storageReference = storageReference.getRoot()
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
@@ -85,6 +90,22 @@ public class ProfileCreation extends AppCompatActivity {
             Toast.makeText(ProfileCreation.this, "Your Profile has been Created!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ProfileCreation.this, LoginSuccess.class));
 
+        }
+
+    }
+
+    public void uploadProfilePic(View v) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri mImageUri = data.getData();
         }
 
     }
