@@ -42,10 +42,6 @@ public class Registration extends AppCompatActivity {
     }
 
     public void RegisterUser(View v) {
-        // FOR TESTING PURPOSES
-//        Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
-//        startActivity(toProfileCreation);
-
         EditText email = findViewById(R.id.emailreg);
         EditText pass = findViewById(R.id.passreg);
         EditText passConfirm = findViewById(R.id.passregc);
@@ -71,6 +67,7 @@ public class Registration extends AppCompatActivity {
                 DocumentSnapshot fullDoc = task.getResult();
                 if (!fullDoc.exists()) {
                     createAccount(email.getText().toString(), pass.getText().toString());
+                    Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                     Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
                     toProfileCreation.putExtra("email", email.getText().toString());
                     startActivity(toProfileCreation);
@@ -79,7 +76,7 @@ public class Registration extends AppCompatActivity {
                 }
 
             } else {
-                Toast.makeText(Registration.this, "Somehting went wrong (Please let AJ know if you somehow get this error)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registration.this, "Something went wrong (Please let AJ know if you somehow get this error)", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -88,20 +85,17 @@ public class Registration extends AppCompatActivity {
 
     private void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(Registration.this, task -> {
+                .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         User user = new User(email);
                         db.collection("users").document(email).set(user);
 
                         Toast.makeText(Registration.this, "Authentication SUCCESS.",
                                 Toast.LENGTH_SHORT).show();
-//                       finish(); // Go to page where you fill in information
                     } else {
                         Toast.makeText(Registration.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
-                        Toast.makeText(Registration.this, "Failed to register: "+task.getException()+"!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-
 }
