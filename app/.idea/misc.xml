@@ -3,14 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/background_gradient.xml" value="0.5475" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/background_shape.xml" value="0.5475" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/chip_colour.xml" value="0.2575" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/nav_bar_backgorund.xml" value="0.5475" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/secondary_button.xml" value="0.5475" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield.xml" value="0.5475" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_choose_interests.xml" value="0.33" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_fire_base.xml" value="0.46693840579710144" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_login_success.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_main.xml" value="0.3808876811594203" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_post_creation.xml" value="0.46693840579710144" />
-        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_profile_creation.xml" value="0.33" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_profile_creation.xml" value="0.5" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_user_profile.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/app_bar_main.xml" value="0.4370471014492754" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/chip_colour.xml" value="0.2695035460992908" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/content_main.xml" value="0.4370471014492754" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_gallery.xml" value="0.4370471014492754" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_slideshow.xml" value="0.4370471014492754" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/nav_header_main.xml" value="0.4370471014492754" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/nav_menu_background.xml" value="0.1" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/activity_main_drawer.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/bottom_nav_bar.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/main_activity2.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/nav_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2645" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/action_button.xml" value="0.2645" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/background_gradient.xml" value="0.2645" />
