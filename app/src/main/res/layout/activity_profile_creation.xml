@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/ageBar"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlCompat" />
 
@@ -112,6 +112,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/action_button"
+        android:onClick="createAccount"
         android:text="Create Profile"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/backToInterests"
@@ -174,20 +175,20 @@
     </RadioGroup>
 
     <SeekBar
-        android:id="@+id/seekBar"
-        android:thumbTint="@color/green"
+        android:id="@+id/ageBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:max="100"
-        android:progress="1"
+        android:progress="12"
+        android:thumbTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/ageView"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/ageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
