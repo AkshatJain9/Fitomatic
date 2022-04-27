@@ -45,7 +45,8 @@ public class LoginSuccess extends AppCompatActivity {
         tvSearchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                SimpleTokenizer tokens = new SimpleTokenizer(query);
+                Toast.makeText(getApplicationContext(), tokens.getOutputTokens(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 

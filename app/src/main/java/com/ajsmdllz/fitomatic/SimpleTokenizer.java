@@ -3,14 +3,25 @@ package com.ajsmdllz.fitomatic;
 import java.util.Scanner;
 
 public class SimpleTokenizer extends Tokenizer {
-    private String text;        // save text -> reduces in size after tokenizing
-    private Token currentToken; // save token extracted
+    private String text;              // save text -> reduces in size after tokenizing
+    private Token currentToken;       // save token extracted
+    private String outputTokens = ""; // outputted tokens
 
     public SimpleTokenizer(String input) {
         this.text = input.trim();
         next();
     }
 
+    public String getOutputTokens() {
+        // Print all the tokens.
+        while (this.hasNext()) {
+            this.outputTokens += this.current() + " ";
+            this.next();
+        }
+        return outputTokens;
+    }
+
+    // Main method for testing
     public static void main(String[] args) {
         // Create a scanner to get the user's input.
         Scanner scanner = new Scanner(System.in);
@@ -28,13 +39,14 @@ public class SimpleTokenizer extends Tokenizer {
                 break;
 
             // Create an instance of the tokenizer.
-            Tokenizer tokenizer = new SimpleTokenizer(input);
+            SimpleTokenizer tokenizer = new SimpleTokenizer(input);
 
             // Print all the tokens.
             while (tokenizer.hasNext()) {
-                System.out.print(tokenizer.current() + " ");
+                tokenizer.outputTokens += tokenizer.current() + " ";
                 tokenizer.next();
             }
+            System.out.println(tokenizer.outputTokens);
             System.out.println();
         }
     }
@@ -56,15 +68,14 @@ public class SimpleTokenizer extends Tokenizer {
         }
 
         // If it starts with a Capital Letter Token is a name ("USER")
+        int pos = 0;
         if (text.charAt(0) >= 'A' && text.charAt(0) <= 'Z') {
-            int pos = 0;
             while (pos < text.length()) {
                 if (text.charAt(pos) == ' ') break;
                 pos++;
             }
             this.currentToken = new Token(text.substring(0,pos), Token.Type.USER);
         } else { // its an activity
-            int pos = 0;
             while (pos < text.length()) {
                 // comma or space (or both) separated activities
                 if (text.charAt(pos) == ' ' || text.charAt(pos) == ',') break;
