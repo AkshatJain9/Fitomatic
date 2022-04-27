@@ -3,12 +3,12 @@ package com.ajsmdllz.fitomatic;
 import java.util.Scanner;
 
 public class SimpleTokenizer extends Tokenizer {
-    private String text;    // save text
-    private int pos;        // current position
-    private Object current; // save token extracted
+    private String text;        // save text
+    private Token currentToken; // save token extracted
 
     public SimpleTokenizer(String input) {
         this.text = input.trim();
+        next();
     }
 
     public static void main(String[] args) {
@@ -18,7 +18,6 @@ public class SimpleTokenizer extends Tokenizer {
         /*
          Continue to get the user's input until they exit.
          To exit press: Control + D or providing the string 'q'
-         Example input you can try: ((1 + 2) * 5)/2
          */
         System.out.println("Provide a test string to be tokenized:");
         while (scanner.hasNext()) {
@@ -43,16 +42,41 @@ public class SimpleTokenizer extends Tokenizer {
 
     @Override
     public void next() {
+        // Remove any whitespace
+        String buffer = this.text.trim();
+        if (buffer.isEmpty()) {
+            this.currentToken = null;
+            return;
+        }
 
+        // If it starts with a Capital Letter Token is a name ("USER")
+        if (text.charAt(0) >= 'A' && text.charAt(0) <= 'Z') {
+            int pos = 0;
+            while (pos < text.length()) {
+                if (text.charAt(pos) == ' ') break;
+                pos++;
+            }
+            this.currentToken = new Token(text.substring(0,pos), Token.Type.USER);
+        } else { // its an activity
+            int pos = 0;
+            while (pos < text.length()) {
+                if (text.charAt(pos) == ' ') break;
+                pos++;
+            }
+            this.currentToken = new Token(text.substring(0,pos), Token.Type.ACTIVITY);
+        }
+        this.text = buffer.substring(currentToken.getToken().length());
+        this.text = text.trim();
     }
 
     @Override
-    public Object current() {
-        return null;
+    public Token current() {
+        return this.currentToken;
     }
 
     @Override
     public boolean hasNext() {
-        return false;
+        if (this.currentToken == null) return false;
+        return true;
     }
 }
