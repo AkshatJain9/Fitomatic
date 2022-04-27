@@ -3,7 +3,7 @@ package com.ajsmdllz.fitomatic;
 import java.util.Scanner;
 
 public class SimpleTokenizer extends Tokenizer {
-    private String text;        // save text
+    private String text;        // save text -> reduces in size after tokenizing
     private Token currentToken; // save token extracted
 
     public SimpleTokenizer(String input) {
@@ -42,11 +42,17 @@ public class SimpleTokenizer extends Tokenizer {
 
     @Override
     public void next() {
-        // Remove any whitespace
-        String buffer = this.text.trim();
-        if (buffer.isEmpty()) {
+        // End of text
+        if (text.isEmpty()) {
             this.currentToken = null;
             return;
+        }
+
+        // Remove any whitespace/comma
+        this.text = this.text.trim();
+        if (text.charAt(0) == ',') {
+            this.text = this.text.substring(1);
+            this.text = this.text.trim();
         }
 
         // If it starts with a Capital Letter Token is a name ("USER")
@@ -60,12 +66,13 @@ public class SimpleTokenizer extends Tokenizer {
         } else { // its an activity
             int pos = 0;
             while (pos < text.length()) {
-                if (text.charAt(pos) == ' ') break;
+                // comma or space (or both) separated activities
+                if (text.charAt(pos) == ' ' || text.charAt(pos) == ',') break;
                 pos++;
             }
             this.currentToken = new Token(text.substring(0,pos), Token.Type.ACTIVITY);
         }
-        this.text = buffer.substring(currentToken.getToken().length());
+        this.text = text.substring(currentToken.getToken().length());
         this.text = text.trim();
     }
 
