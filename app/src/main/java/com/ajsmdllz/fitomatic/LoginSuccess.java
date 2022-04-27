@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,7 +36,22 @@ public class LoginSuccess extends AppCompatActivity {
         tvSearchBar.setQueryHint("Search for something");
 
         tvSearchBar.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        // End of Search Bar Code
+
+        // Pass into tokenizer
+        tvSearchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+            // End of Search Bar Code
 
         // Feed
         ListView feed = findViewById(R.id.feed);
