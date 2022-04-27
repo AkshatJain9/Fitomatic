@@ -1,35 +1,45 @@
 package com.ajsmdllz.fitomatic;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class ProfileCreation extends AppCompatActivity {
     FirebaseFirestore db;
     String email;
-//    StorageReference storageReference;
+    Uri mImageUri;
+    StorageReference storRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_creation);
         db = FirebaseFirestore.getInstance();
-//        storageReference = storageReference.getRoot()
+        storRef = FirebaseStorage.getInstance().getReference("pfpImages");
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
@@ -87,6 +97,17 @@ public class ProfileCreation extends AppCompatActivity {
             db.collection("users").document(email).update("gender", gender);
             db.collection("users").document(email).update("age", seekBar.getProgress());
 
+
+            if (mImageUri != null) {
+                StorageReference pfpReference = storRef.child(email); //+"."+getFileExtension(mImageUri) DO NOT DELETE for now
+                pfpReference.putFile(mImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        Toast.makeText(ProfileCreation.this, "Image Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
             Toast.makeText(ProfileCreation.this, "Your Profile has been Created!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ProfileCreation.this, LoginSuccess.class));
 
@@ -104,9 +125,17 @@ public class ProfileCreation extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ImageView pfp = findViewById(R.id.pfp);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri mImageUri = data.getData();
+            mImageUri = data.getData();
+            pfp.setImageURI(mImageUri);
         }
-
     }
+
+    // DO NOT DELETE for now
+//    public String getFileExtension(Uri uri) {
+//        ContentResolver cR = getContentResolver();
+//        MimeTypeMap mime = MimeTypeMap.getSingleton();
+//        return mime.getExtensionFromMimeType(cR.getType(uri));
+//    }
 }
