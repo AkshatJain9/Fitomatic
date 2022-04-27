@@ -20,16 +20,20 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LoginSuccess extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_success);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         // Search Bar
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView tvSearchBar = findViewById(R.id.searchBar);
@@ -55,33 +59,15 @@ public class LoginSuccess extends AppCompatActivity {
 
         // Feed
         ListView feed = findViewById(R.id.feed);
-        ArrayList<FirebaseUser> feedArrayList = new ArrayList<>();
-        feedArrayList.add(mAuth.getCurrentUser());
+        ArrayList<FirebaseUser> users = new ArrayList<>();
 
-        // Adding test Users to display on feed
-        // NOTE: Need to figure out a way to nicely display info of Users
-//        User testUser1 = new User("integer@gmail.com");
-//        feedArrayList.add(testUser1);
-//        User testUser2 = new User("Claire@gmail.com");
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
-//        feedArrayList.add(testUser2);
+        FeedAdapter feedAdapter = new FeedAdapter(LoginSuccess.this,R.layout.login_success_list_user,users);
 
-        ArrayAdapter<FirebaseUser> adapter = new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, feedArrayList);
-        feed.setAdapter(adapter);
+        // Adding yourself to list for now
+        users.add(mAuth.getCurrentUser());
+        feedAdapter.add(mAuth.getCurrentUser());
+
+        feed.setAdapter(feedAdapter);
         // End of Feed Code
 
         // Home Button (sends user to home/main page)

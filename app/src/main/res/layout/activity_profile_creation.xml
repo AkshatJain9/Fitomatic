@@ -7,40 +7,23 @@
     android:background="@color/white"
     tools:context=".ProfileCreation">
 
-    <View
-        android:id="@+id/photoShape"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pfp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/logo_foreground_backing"
-        android:backgroundTint="@color/purple"
         android:onClick="uploadProfilePic"
+        android:src="@drawable/stockprofile"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        />
 
-    <View
-        android:id="@+id/photo_icon"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/ic_baseline_person_24"
-        android:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/photoShape"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="@+id/photoShape"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/photoShape"
-        app:layout_constraintTop_toTopOf="@+id/photoShape"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/firstName"
@@ -199,13 +182,12 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <ImageView
-        android:id="@+id/pfp"
-        android:layout_width="94dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toEndOf="@+id/photoShape"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:id="@+id/editIconPicture"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/pfp"
+        app:layout_constraintTop_toTopOf="@+id/pfp"
+        app:srcCompat="@drawable/edit_icon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
