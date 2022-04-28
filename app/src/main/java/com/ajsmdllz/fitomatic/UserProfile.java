@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,14 +40,14 @@ public class UserProfile extends AppCompatActivity {
                 String gender = task.getResult().getString("gender");
                 int age = task.getResult().getDouble("age").intValue();
 
-                // Display User information
-                TextView tvProfileTitle = findViewById(R.id.profileName);
-                tvProfileTitle.setText("Displaying basic user info:\n " +
-                        "Email: "+mAuth.getCurrentUser().getEmail()+"\n " +
-                        "Full Name: "+firstName+" "+lastName+"\n" +
-                        "bio: "+bio+"\n" +
-                        "gender: "+gender+"\n" +
-                        "age: "+age);
+                //Display User information
+//              TextView tvProfileTitle = findViewById(R.id.profileName);
+//              /tvProfileTitle.setText("Displaying basic user info:\n " +
+//                        "Email: "+mAuth.getCurrentUser().getEmail()+"\n " +
+//                        "Full Name: "+firstName+" "+lastName+"\n" +
+//                        "bio: "+bio+"\n" +
+//                        "gender: "+gender+"\n" +
+//                        "age: "+age);
 
             } else {
                 Toast.makeText(this, "(Something went wrong!) Should not get here - DENI", Toast.LENGTH_SHORT).show();
@@ -84,8 +85,8 @@ public class UserProfile extends AppCompatActivity {
 
     // Testing how we might edit our profile
     public void editProfile (View v) {
-        TextView tvProfileTitle = findViewById(R.id.profileName);
-        tvProfileTitle.setText("Entered Edit Mode");
+        //TextView tvProfileTitle = findViewById(R.id.profileName);
+        //tvProfileTitle.setText("Entered Edit Mode");
     }
 
     public void logout(View v) {
