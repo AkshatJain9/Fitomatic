@@ -90,19 +90,21 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/transparent"
                 android:onClick="editProfile"
-                android:paddingBottom="15dp"
-                android:text="Edit Profile" />
+                android:text="Edit Profile"
+                android:textAlignment="textStart"/>
 
             <Button
                 android:id="@+id/logoutButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/transparent"
                 android:onClick="logout"
-                android:paddingBottom="15dp"
-                android:text="Log Out" />
+                android:text="Log Out"
+                android:textAlignment="textStart"/>
         </LinearLayout>
     </ScrollView>
 
