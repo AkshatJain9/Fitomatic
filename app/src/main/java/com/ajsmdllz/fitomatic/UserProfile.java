@@ -7,14 +7,11 @@ import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Source;
 
 public class UserProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -31,6 +28,8 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        TextView nameText = findViewById(R.id.nameText);
+
         // Getting user's info from Firebase
         db.collection("users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
@@ -39,6 +38,8 @@ public class UserProfile extends AppCompatActivity {
                 String bio = task.getResult().getString("bio");
                 String gender = task.getResult().getString("gender");
                 int age = task.getResult().getDouble("age").intValue();
+
+                nameText.setText(firstName+" "+lastName);
 
                 //Display User information
 //              TextView tvProfileTitle = findViewById(R.id.profileName);
@@ -78,7 +79,7 @@ public class UserProfile extends AppCompatActivity {
         createPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserProfile.this, PostCreation.class));
+                startActivity(new Intent(UserProfile.this, PostCreationChoice.class));
             }
         });
     }

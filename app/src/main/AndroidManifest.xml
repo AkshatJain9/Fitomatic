@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitomatic">
         <activity
-            android:name=".PostCreation"
+            android:name=".PostCreationSingle"
+            android:exported="false" />
+        <activity
+            android:name=".PostCreationGroup"
+            android:exported="false" />
+        <activity
+            android:name=".PostCreationChoice"
             android:exported="false" />
         <activity
             android:name=".ChooseInterests"
             android:exported="false" />
         <activity
             android:name=".ProfileCreation"
-            android:exported="false" />
-        <activity
-            android:name=".LogInActivity"
             android:exported="false" />
         <activity
             android:name=".UserProfile"

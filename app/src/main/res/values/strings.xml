@@ -41,4 +41,33 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
+        <string name="Fitomatic">dropDownMenuExample</string>
+        <string-array name="activities">
+            <item name="running">Running</item>
+            <item name="walking">Walking</item>
+            <item name="weightLifting">Weight Lifting</item>
+            <item name="rowing">rowing</item>
+            <item name="yoga">Yoga</item>
+            <item name="soccer">Soccer</item>
+            <item name="hiking">Hiking</item>
+            <item name="gymnastics">Gymnastics</item>
+            <item name="aFL">AFL</item>
+            <item name="tennis">Tennis</item>
+            <item name="rugby">Rugby</item>
+            <item name="surfing">Surfing</item>
+            <item name="golf">Golf</item>
+            <item name="bowling">Bowling</item>
+            <item name="karate">karate</item>
+            <item name="bouldering">Bouldering</item>
+            <item name="rockClimbing">Rock Climbing</item>
+            <item name="cycling">Cycling</item>
+            <item name="mountainBiking">Mountain Biking</item>
+            <item name="swimming">Swimming</item>
+            <item name="cricket">Cricket</item>
+            <item name="judo">Judo</item>
+            <item name="taiQuanDao">Tai Quan Dao</item>
+        </string-array>
+
 </resources>
