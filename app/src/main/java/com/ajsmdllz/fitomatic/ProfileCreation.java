@@ -42,6 +42,8 @@ public class ProfileCreation extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         storRef = FirebaseStorage.getInstance().getReference("pfpImages");
 
+        Toast.makeText(ProfileCreation.this, "Add a Profile Picture", Toast.LENGTH_SHORT).show();
+
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
     }

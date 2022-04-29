@@ -187,7 +187,7 @@
         android:layout_height="25dp"
         app:layout_constraintEnd_toEndOf="@+id/pfp"
         app:layout_constraintTop_toTopOf="@+id/pfp"
-        app:srcCompat="@drawable/edit_icon" />
+        app:srcCompat="@drawable/add_icon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostCreationSingle">
+
+    <ImageView
+        android:id="@+id/editIconPicture2"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toBottomOf="@+id/postImageSingle"
+        app:layout_constraintStart_toEndOf="@+id/postImageSingle"
+        app:srcCompat="@drawable/add_icon" />
+
+    <Spinner
+        android:id="@+id/spinnerActivitySingle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/createTitleSingle"
+        app:layout_constraintStart_toStartOf="@+id/createTitleSingle"
+        app:layout_constraintTop_toBottomOf="@+id/createTitleSingle" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/postImageSingle"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="30dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/createTitleSingle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="Title of Post"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postImageSingle" />
+
+    <EditText
+        android:id="@+id/createDescriptionSingle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Description of Post"
+        android:inputType="textEmailAddress"
+        android:minHeight="200dp"
+        android:padding="15dp"
+        android:singleLine="false"
+        android:textColor="@color/purple"
+        app:layout_constraintBottom_toTopOf="@+id/createPostSingle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerActivitySingle"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:id="@+id/createPostSingle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/action_button"
+        android:text=" Create Post "
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/navBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.7"
+        android:background="@drawable/nav_bar_backgorund"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="Home"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_home_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/createPostButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="CreatePost"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <ImageButton
+            android:id="@+id/profileButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_weight="1"
+            android:contentDescription="Profile"
+            android:src="@drawable/ic_baseline_person_24" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

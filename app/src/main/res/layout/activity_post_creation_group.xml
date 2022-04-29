@@ -4,39 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostCreation">
+    tools:context=".PostCreationGroup">
 
-    <EditText
-        android:id="@+id/createDescription"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/textfield"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="Description of Post"
-        android:inputType="textEmailAddress"
-        android:minHeight="200dp"
-        android:padding="15dp"
-        android:singleLine="false"
-        android:textColor="@color/purple"
-        app:layout_constraintBottom_toTopOf="@+id/createPost"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/postImageGroup"
+        android:layout_width="170dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="30dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createLocation"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="RtlCompat" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/editIconPicture3"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toBottomOf="@+id/postImageGroup"
+        app:layout_constraintStart_toEndOf="@+id/postImageGroup"
+        app:srcCompat="@drawable/add_icon" />
 
     <EditText
-        android:id="@+id/createTitle"
+        android:id="@+id/createTitleGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -48,14 +43,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/postImageGroup" />
 
     <EditText
-        android:id="@+id/createLocation"
+        android:id="@+id/createDescriptionGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Description of Post"
+        android:inputType="textEmailAddress"
+        android:minHeight="200dp"
+        android:padding="15dp"
+        android:singleLine="false"
+        android:textColor="@color/purple"
+        app:layout_constraintBottom_toTopOf="@+id/createPostGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createLocationGroup"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:id="@+id/createPostGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/action_button"
+        android:text=" Create Group Post "
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/createLocationGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -67,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/createTitleGroup" />
 
     <LinearLayout
         android:id="@+id/navBar"
@@ -75,8 +105,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:alpha="0.7"
+        android:background="@drawable/nav_bar_backgorund"
         android:orientation="horizontal"
-        android:background="@drawable/nav_bar_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -109,13 +139,4 @@
             android:src="@drawable/ic_baseline_person_24" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/createPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Create Post"
-        app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

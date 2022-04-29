@@ -6,28 +6,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class PostCreation extends AppCompatActivity {
+public class PostCreationChoice extends AppCompatActivity {
     FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_creation);
+        setContentView(R.layout.activity_post_creation_choice);
         db = FirebaseFirestore.getInstance();
 
-        Button createPost = findViewById(R.id.createPost);
-        EditText title = findViewById(R.id.createTitle);
+        Button createSinglePost = findViewById(R.id.createSingleButton);
+        Button createGroupPost = findViewById(R.id.createGroupButton);
 
-        // createPost Button handler
-        createPost.setOnClickListener(new View.OnClickListener() {
+        // createSinglePost Button handler
+        createSinglePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // needs checks here to see whether the post being created is valid or not
+                startActivity(new Intent(PostCreationChoice.this, PostCreationSingle.class));
+            }
+        });
+
+        // createGroupPost Button handler
+        createGroupPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PostCreationChoice.this, PostCreationGroup.class));
             }
         });
 
@@ -36,7 +43,7 @@ public class PostCreation extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PostCreation.this, LoginSuccess.class));
+                startActivity(new Intent(PostCreationChoice.this, LoginSuccess.class));
             }
         });
 
@@ -45,7 +52,7 @@ public class PostCreation extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PostCreation.this, UserProfile.class));
+                startActivity(new Intent(PostCreationChoice.this, UserProfile.class));
             }
         });
 
@@ -54,7 +61,7 @@ public class PostCreation extends AppCompatActivity {
         createPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PostCreation.this, PostCreation.class));
+                startActivity(new Intent(PostCreationChoice.this, PostCreationChoice.class));
             }
         });
     }

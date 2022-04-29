@@ -11,9 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Source;
 
 public class UserProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -30,6 +28,8 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        TextView nameText = findViewById(R.id.nameText);
+
         // Getting user's info from Firebase
         db.collection("users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
@@ -39,14 +39,16 @@ public class UserProfile extends AppCompatActivity {
                 String gender = task.getResult().getString("gender");
                 int age = task.getResult().getDouble("age").intValue();
 
-                // Display User information
-                TextView tvProfileTitle = findViewById(R.id.profileName);
-                tvProfileTitle.setText("Displaying basic user info:\n " +
-                        "Email: "+mAuth.getCurrentUser().getEmail()+"\n " +
-                        "Full Name: "+firstName+" "+lastName+"\n" +
-                        "bio: "+bio+"\n" +
-                        "gender: "+gender+"\n" +
-                        "age: "+age);
+                nameText.setText(firstName+" "+lastName);
+
+                //Display User information
+//              TextView tvProfileTitle = findViewById(R.id.profileName);
+//              /tvProfileTitle.setText("Displaying basic user info:\n " +
+//                        "Email: "+mAuth.getCurrentUser().getEmail()+"\n " +
+//                        "Full Name: "+firstName+" "+lastName+"\n" +
+//                        "bio: "+bio+"\n" +
+//                        "gender: "+gender+"\n" +
+//                        "age: "+age);
 
             } else {
                 Toast.makeText(this, "(Something went wrong!) Should not get here - DENI", Toast.LENGTH_SHORT).show();
@@ -77,15 +79,15 @@ public class UserProfile extends AppCompatActivity {
         createPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserProfile.this, PostCreation.class));
+                startActivity(new Intent(UserProfile.this, PostCreationChoice.class));
             }
         });
     }
 
     // Testing how we might edit our profile
     public void editProfile (View v) {
-        TextView tvProfileTitle = findViewById(R.id.profileName);
-        tvProfileTitle.setText("Entered Edit Mode");
+        //TextView tvProfileTitle = findViewById(R.id.profileName);
+        //tvProfileTitle.setText("Entered Edit Mode");
     }
 
     public void logout(View v) {
