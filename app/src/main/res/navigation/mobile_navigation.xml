@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_message"
+        android:name="com.ajsmdllz.fitomatic.ui.message.MessageFragment"
+        android:label="message"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.ajsmdllz.fitomatic.ui.post.PostFragment"
         android:label="@string/title_dashboard"

@@ -7,6 +7,11 @@
         android:title="home" />
 
     <item
+        android:id="@+id/navigation_message"
+        android:icon="@drawable/message_icon"
+        android:title="message" />
+
+    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/post_icon"
         android:title="post" />
