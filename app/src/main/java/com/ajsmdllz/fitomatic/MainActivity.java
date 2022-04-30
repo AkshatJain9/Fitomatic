@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    startActivity(new Intent(MainActivity.this, LoginSuccess.class));
+                    startActivity(new Intent(MainActivity.this, hostActivity.class));
                 } else {
                     Toast.makeText(MainActivity.this, "Account not found. Please check Email and Password!", Toast.LENGTH_LONG).show();
                 }
