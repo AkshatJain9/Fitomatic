@@ -42,6 +42,29 @@ public class ProfileCreation extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         storRef = FirebaseStorage.getInstance().getReference("pfpImages");
 
+        SeekBar seek = findViewById(R.id.ageBar);
+        TextView age = findViewById(R.id.ageView);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                System.out.println(i);
+                age.setText("Age "+i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+
         Toast.makeText(ProfileCreation.this, "Add a Profile Picture", Toast.LENGTH_SHORT).show();
 
         Intent intent = getIntent();
@@ -79,21 +102,6 @@ public class ProfileCreation extends AppCompatActivity {
             Toast.makeText(ProfileCreation.this, "Please enter your Gender!", Toast.LENGTH_SHORT).show();
         } else {
             SeekBar seekBar = (SeekBar) findViewById(R.id.ageBar);
-            TextView ageView = (TextView) findViewById(R.id.ageView);
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @SuppressLint("SetTextI18n")
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                    ageView.setText("Age " + String.valueOf(i));
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                }
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                }
-            });
             db.collection("users").document(email).update("firstname", fname.getText().toString());
             db.collection("users").document(email).update("lastname", lname.getText().toString());
             db.collection("users").document(email).update("bio", bio.getText().toString());
@@ -112,7 +120,7 @@ public class ProfileCreation extends AppCompatActivity {
             }
 
             Toast.makeText(ProfileCreation.this, "Your Profile has been Created!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(ProfileCreation.this, LoginSuccess.class));
+            startActivity(new Intent(ProfileCreation.this, hostActivity.class));
 
         }
 
