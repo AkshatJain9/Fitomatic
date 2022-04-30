@@ -14,6 +14,9 @@
         <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_login_success.xml" value="0.34646739130434784" />
         <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_profile_creation.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_user_profile.xml" value="0.24682971014492755" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_message.xml" value="0.24682971014492755" />
+        <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_profile.xml" value="0.24682971014492755" />
         <entry key="..\:/Users/aksha/Documents/ANU/2022S1/C2100/comp2100-group-assignment-ajsmdllz/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2985" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/nav_bar_backgorund.xml" value="0.2595" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield_action.xml" value="0.2595" />
@@ -38,7 +41,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

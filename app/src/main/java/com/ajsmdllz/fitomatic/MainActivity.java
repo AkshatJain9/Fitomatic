@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            startActivity(new Intent(MainActivity.this, LoginSuccess.class));
-        }
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            startActivity(new Intent(MainActivity.this, LoginSuccess.class));
+//        }
     }
 
     public void toRegistration(View v) {
