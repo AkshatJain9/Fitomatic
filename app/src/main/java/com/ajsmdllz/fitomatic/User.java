@@ -1,6 +1,8 @@
 package com.ajsmdllz.fitomatic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class User {
     private String firstname;
@@ -11,6 +13,7 @@ public class User {
     private String gender;
     private ArrayList<String> interests;
     private ArrayList<Post> posts;
+//    private HashSet<String> deviceTokens;
 
 
     public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts) {
@@ -28,6 +31,12 @@ public class User {
     public User(String email) {
         this.email = email;
     }
+
+//    public User(String email, String token) {
+//        this.email = email;
+//        this.deviceTokens = new HashSet<>();
+//        deviceTokens.add(token);
+//    }
 
     public String getFirstname() {
         return firstname;
