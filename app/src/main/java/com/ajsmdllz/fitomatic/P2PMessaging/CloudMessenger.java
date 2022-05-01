@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.P2PMessaging;
 
 import android.content.Context;
 import android.os.StrictMode;

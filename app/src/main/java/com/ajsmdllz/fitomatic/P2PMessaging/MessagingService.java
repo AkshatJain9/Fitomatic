@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.P2PMessaging;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

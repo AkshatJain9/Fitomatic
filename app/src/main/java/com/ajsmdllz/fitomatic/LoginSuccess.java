@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.ajsmdllz.fitomatic.Posts.PostCreationChoice;
+import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;

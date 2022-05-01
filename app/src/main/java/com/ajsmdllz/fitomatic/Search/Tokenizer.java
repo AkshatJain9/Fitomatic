@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.Search;
 
 public abstract class Tokenizer {
 

@@ -1,4 +1,6 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.Posts;
+
+import com.ajsmdllz.fitomatic.Registration.User;
 
 import java.util.ArrayList;
 

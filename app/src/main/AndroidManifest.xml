@@ -14,19 +14,19 @@
             android:exported="false"
             android:label="@string/title_activity_host" />
         <activity
-            android:name=".PostCreationSingle"
+            android:name=".Posts.PostCreationSingle"
             android:exported="false" />
         <activity
-            android:name=".PostCreationGroup"
+            android:name=".Posts.PostCreationGroup"
             android:exported="false" />
         <activity
-            android:name=".PostCreationChoice"
+            android:name=".Posts.PostCreationChoice"
             android:exported="false" />
         <activity
-            android:name=".ChooseInterests"
+            android:name=".Registration.ChooseInterests"
             android:exported="false" />
         <activity
-            android:name=".ProfileCreation"
+            android:name=".Registration.ProfileCreation"
             android:exported="false" />
         <activity
             android:name=".UserProfile"
@@ -35,7 +35,7 @@
             android:name=".LoginSuccess"
             android:exported="false" />
         <activity
-            android:name=".Registration"
+            android:name=".Registration.Registration"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".MessagingService"
+            android:name=".P2PMessaging.MessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

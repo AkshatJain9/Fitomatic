@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.Registration;
 
 public enum Activities {
     RUNNING, SWIMMING, WALKING;

@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.Posts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.ajsmdllz.fitomatic.LoginSuccess;
+import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.UserProfile;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PostCreationChoice extends AppCompatActivity {

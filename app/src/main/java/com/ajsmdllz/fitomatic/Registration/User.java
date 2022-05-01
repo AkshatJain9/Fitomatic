@@ -1,8 +1,8 @@
-package com.ajsmdllz.fitomatic;
+package com.ajsmdllz.fitomatic.Registration;
+
+import com.ajsmdllz.fitomatic.Posts.Post;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class User {
     private String firstname;
