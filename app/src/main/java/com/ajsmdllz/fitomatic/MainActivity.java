@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    return;
+                }
+                String token = task.getResult();
+                System.out.println("TOKEN :" + token);
+            }
+        });
     }
 
     @Override
@@ -66,4 +77,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    // THIS NEEDS TO BE MOVED
+//    public void SendMessage(View v) {
+//        System.out.println("PLOUTY");
+//        EditText mTitle = findViewById(R.id.messageInput);
+//        EditText bio = findViewById(R.id.titleInput);
+//        String titleC = mTitle.getText().toString();
+//        String bioC = bio.getText().toString();
+//        CloudMessenger cm = CloudMessenger.getInstance();
+//        cm.sendNotification(MainActivity.this, ":dUY_i4lUTtip21h9HDMch2:APA91bH_pJqh6s53pL2h__td7Rkn5qzENuAO3YOrxUfYzuz2umJa7-RZq5KexWWsE0zZxHe-MJTBVPyqnxn9BcEAFyUEAFTE_eSZ0JC1bf41_asHmY_gJIpCRb7xLrjKlOGVdUis7Ey5",
+//        "Hello", "HelloWorld");
+//
+//    }
 }
