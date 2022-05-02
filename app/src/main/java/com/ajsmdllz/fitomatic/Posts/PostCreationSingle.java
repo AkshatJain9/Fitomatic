@@ -44,33 +44,6 @@ public class PostCreationSingle extends AppCompatActivity implements AdapterView
                 // FIXME -- Need to implement firebase Post stuff here (not sure how to do image handling)
             }
         });
-
-        // Home Button (simply sends user back to home/main page)
-        ImageButton homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PostCreationSingle.this, LoginSuccess.class));
-            }
-        });
-
-        // Profile Button (sends user to their profile page)
-        ImageButton profileButton = findViewById(R.id.profileButton);
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PostCreationSingle.this, UserProfile.class));
-            }
-        });
-
-        // Create Post Button (sends user to post creation page)
-        ImageButton createPostButton = findViewById(R.id.createPostButton);
-        createPostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PostCreationSingle.this, PostCreationChoice.class));
-            }
-        });
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
