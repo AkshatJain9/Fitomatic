@@ -8,22 +8,25 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/postImageGroup"
-        android:layout_width="170dp"
-        android:layout_height="93dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+
         android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toTopOf="@+id/createTitleGroup"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/editIconPicture3"
-        android:layout_width="54dp"
-        android:layout_height="51dp"
-        app:layout_constraintBottom_toBottomOf="@+id/postImageGroup"
-        app:layout_constraintStart_toEndOf="@+id/postImageGroup"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/postImageGroup"
+        app:layout_constraintTop_toTopOf="@+id/postImageGroup"
         app:srcCompat="@drawable/add_icon" />
 
     <EditText
@@ -31,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -43,16 +46,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postImageGroup" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/createDescriptionGroup"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/textfield"
         android:ems="10"
         android:gravity="top"
@@ -71,12 +74,15 @@
 
     <Button
         android:id="@+id/createPostGroup"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/action_button"
-        android:text=" Create Group Post "
-        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        android:text="Create Post"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -85,7 +91,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -99,44 +105,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createTitleGroup" />
 
-    <LinearLayout
-        android:id="@+id/navBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:alpha="0.7"
-        android:background="@drawable/nav_bar_background"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/homeButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="Home"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_home_black_24dp" />
-
-        <ImageButton
-            android:id="@+id/createPostButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="CreatePost"
-            app:srcCompat="@android:drawable/ic_input_add" />
-
-        <ImageButton
-            android:id="@+id/profileButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:layout_weight="1"
-            android:contentDescription="Profile"
-            android:src="@drawable/ic_baseline_person_24" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
