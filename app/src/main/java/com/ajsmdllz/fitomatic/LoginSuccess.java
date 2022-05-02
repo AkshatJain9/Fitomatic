@@ -13,6 +13,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ajsmdllz.fitomatic.Posts.PostCreationChoice;
+import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
 import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,10 +39,11 @@ public class LoginSuccess extends AppCompatActivity {
 
         // Pass into tokenizer
         tvSearchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            ///////////////////// FIX MEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
             @Override
             public boolean onQueryTextSubmit(String query) {
-                SimpleTokenizer tokens = new SimpleTokenizer(query);
-                Toast.makeText(getApplicationContext(), tokens.getOutputTokens(), Toast.LENGTH_SHORT).show();
+                SearchTokenizer tokens = new SearchTokenizer(query);
+                Toast.makeText(getApplicationContext(), (CharSequence) tokens.tokenize(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 
