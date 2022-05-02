@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.ajsmdllz.fitomatic.databinding.FragmentMessageBinding;
 import com.google.firebase.messaging.FirebaseMessagingService;
 
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMessageBinding binding;
 
@@ -37,5 +37,8 @@ public class MessageFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
+    }
 }
