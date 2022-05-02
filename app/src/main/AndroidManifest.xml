@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitomatic">
         <activity
+            android:name=".Posts.PostHostActivity"
+            android:exported="false" />
+        <activity
             android:name=".hostActivity"
             android:exported="false"
             android:label="@string/title_activity_host" />
@@ -47,6 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".P2PMessaging.MessagingService"
             android:exported="false">

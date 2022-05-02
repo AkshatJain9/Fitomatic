@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ajsmdllz.fitomatic.Posts.PostHostActivity;
 import com.ajsmdllz.fitomatic.databinding.ActivityMainBinding;
 import com.ajsmdllz.fitomatic.Registration.Registration;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -76,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void testing(View v) {
+        Intent intent = new Intent(this, PostHostActivity.class);
+        startActivity(intent);
     }
 
     // THIS NEEDS TO BE MOVED

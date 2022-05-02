@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/post_nav"
+    app:startDestination="@id/individualPostFragment">
+
+    <fragment
+        android:id="@+id/individualPostFragment"
+        android:name="com.ajsmdllz.fitomatic.IndividualPostFragment"
+        android:label="fragment_individual_post"
+        tools:layout="@layout/fragment_individual_post" />
+    <fragment
+        android:id="@+id/smallPostFragment"
+        android:name="com.ajsmdllz.fitomatic.SmallPostFragment"
+        android:label="fragment_small_post"
+        tools:layout="@layout/fragment_small_post" />
+    <fragment
+        android:id="@+id/largePostFragment"
+        android:name="com.ajsmdllz.fitomatic.LargePostFragment"
+        android:label="fragment_large_post"
+        tools:layout="@layout/fragment_large_post" />
+</navigation>
