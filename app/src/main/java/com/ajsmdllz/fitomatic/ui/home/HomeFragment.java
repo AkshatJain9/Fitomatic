@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ajsmdllz.fitomatic.FeedAdapter;
-import com.ajsmdllz.fitomatic.LoginSuccess;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.firebase.auth.FirebaseAuth;
