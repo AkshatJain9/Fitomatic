@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.databinding.FragmentMessageBinding;
-import com.google.firebase.messaging.FirebaseMessagingService;
 
 public class MessageFragment extends Fragment {
 
@@ -19,9 +19,7 @@ public class MessageFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentMessageBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return inflater.inflate(R.layout.fragment_message, container,false);
     }
 
     @Override
