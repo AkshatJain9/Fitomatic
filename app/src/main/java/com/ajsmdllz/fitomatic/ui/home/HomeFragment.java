@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
 import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,12 +52,13 @@ public class HomeFragment extends Fragment {
 
         tvSearchBar.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
 
+        // FIX MEEEEEEEEEEEEEEEEEEEEEEEEEEEE
         // Pass into tokenizer
         tvSearchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                SimpleTokenizer tokens = new SimpleTokenizer(query);
-                Toast.makeText(getContext().getApplicationContext(), tokens.getOutputTokens(), Toast.LENGTH_SHORT).show();
+                SearchTokenizer tokens = new SearchTokenizer(query);
+                Toast.makeText(getContext().getApplicationContext(), (CharSequence) tokens.tokenize(), Toast.LENGTH_SHORT).show();
                 return true;
             }
 
