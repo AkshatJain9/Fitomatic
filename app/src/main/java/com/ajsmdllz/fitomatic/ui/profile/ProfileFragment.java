@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.ajsmdllz.fitomatic.MainActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -62,5 +63,11 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "(Something went wrong!) Should not get here - DENI", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void logout(View v) {
+        mAuth.signOut();
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        startActivity(intent);
     }
 }
