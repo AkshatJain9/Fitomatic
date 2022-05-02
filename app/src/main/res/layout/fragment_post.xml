@@ -23,7 +23,7 @@
         android:layout_marginTop="30dp"
         android:contentDescription="@string/app_name"
         android:onClick="createPost"
-        android:src="@drawable/add_icon_purple"
+        android:src="@drawable/add_post_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
