@@ -5,46 +5,22 @@ import com.ajsmdllz.fitomatic.Registration.User;
 public class SingleActivity extends Post {
 
     // Unique to this concrete Post
-    public String activity;
+    private String activity;
 
-    public SingleActivity(User author, String title, String description, String activity, int likes) {
+    public SingleActivity(User author, String title, String description, String date, String activity, int likes) {
         this.author = author;
         this.title = title;
         this.description = description;
+        this.date = date;
         this.activity = activity;
         this.likes = likes;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getActivities() {
+    public String getActivity() {
         return activity;
     }
 
-    public void setActivities(String activity) {
+    public void setActivity(String activity) {
         this.activity = activity;
     }
-
 }
