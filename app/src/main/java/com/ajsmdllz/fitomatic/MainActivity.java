@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         if (password.getText().toString().length() == 0) {
-            Toast.makeText(MainActivity.this, "Please enter an password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Please enter a password!", Toast.LENGTH_SHORT).show();
             return;
         }
         mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim()).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
