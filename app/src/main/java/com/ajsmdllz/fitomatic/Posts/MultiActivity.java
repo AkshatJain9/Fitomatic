@@ -9,10 +9,10 @@ public class MultiActivity extends Post {
     // This class will be used to create and handle posts
     // additional attributes on top of base Template
     private String location; // As an address
-    public ArrayList<Activities> activities;
+    public ArrayList<String> activities;
 
 
-    public MultiActivity(User author, String title, ArrayList<User> followers, String location, String image, String description, ArrayList<Activities> activities, int likes) {
+    public MultiActivity(User author, String title, ArrayList<User> followers, String location, String image, String description, ArrayList<String> activities, int likes) {
         this.author = author;
         this.title = title;
         this.followers = followers;

@@ -1,18 +1,15 @@
 package com.ajsmdllz.fitomatic.Posts;
 
-import com.ajsmdllz.fitomatic.Registration.Activities;
 import com.ajsmdllz.fitomatic.Registration.User;
 
 public class SingleActivity extends Post {
 
-    // This class will be used to create and handle posts
-    public Activities activity;
+    // Unique to this concrete Post
+    public String activity;
 
-
-    public SingleActivity(User author, String title, String image, String description, Activities activity, int likes) {
+    public SingleActivity(User author, String title, String description, String activity, int likes) {
         this.author = author;
         this.title = title;
-        this.image = image;
         this.description = description;
         this.activity = activity;
         this.likes = likes;
@@ -34,14 +31,6 @@ public class SingleActivity extends Post {
         this.title = title;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -50,11 +39,11 @@ public class SingleActivity extends Post {
         this.description = description;
     }
 
-    public Activities getActivities() {
+    public String getActivities() {
         return activity;
     }
 
-    public void setActivities(Activities activity) {
+    public void setActivities(String activity) {
         this.activity = activity;
     }
 
