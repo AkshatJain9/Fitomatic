@@ -3,7 +3,7 @@ package com.ajsmdllz.fitomatic.Search;
 import com.ajsmdllz.fitomatic.Search.Expressions.Exp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.Query;
 
 import java.util.Objects;
 

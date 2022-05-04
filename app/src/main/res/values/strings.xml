@@ -10,7 +10,7 @@
     <string name="running">Running</string>
     <string name="walking">Walking</string>
     <string name="weightLifting">Weight Lifting</string>
-    <string name="rowing">rowing</string>
+    <string name="rowing">Rowing</string>
     <string name="yoga">Yoga</string>
     <string name="soccer">Soccer</string>
     <string name="hiking">Hiking</string>
@@ -21,7 +21,7 @@
     <string name="surfing">Surfing</string>
     <string name="golf">Golf</string>
     <string name="bowling">Bowling</string>
-    <string name="karate">karate</string>
+    <string name="karate">Karate</string>
     <string name="bouldering">Bouldering</string>
     <string name="rockClimbing">Rock Climbing</string>
     <string name="cycling">Cycling</string>
@@ -48,7 +48,7 @@
         <item name="running">Running</item>
         <item name="walking">Walking</item>
         <item name="weightLifting">Weight Lifting</item>
-        <item name="rowing">rowing</item>
+        <item name="rowing">Rowing</item>
         <item name="yoga">Yoga</item>
         <item name="soccer">Soccer</item>
         <item name="hiking">Hiking</item>
@@ -59,7 +59,7 @@
         <item name="surfing">Surfing</item>
         <item name="golf">Golf</item>
         <item name="bowling">Bowling</item>
-        <item name="karate">karate</item>
+        <item name="karate">Karate</item>
         <item name="bouldering">Bouldering</item>
         <item name="rockClimbing">Rock Climbing</item>
         <item name="cycling">Cycling</item>

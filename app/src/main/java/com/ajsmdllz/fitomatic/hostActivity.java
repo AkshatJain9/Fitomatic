@@ -1,7 +1,13 @@
 package com.ajsmdllz.fitomatic;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.ajsmdllz.fitomatic.Posts.PostCreationChoice;
+import com.ajsmdllz.fitomatic.Posts.PostCreationGroup;
+import com.ajsmdllz.fitomatic.Posts.PostCreationSingle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
