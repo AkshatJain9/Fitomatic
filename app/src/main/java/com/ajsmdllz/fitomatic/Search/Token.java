@@ -2,7 +2,7 @@ package com.ajsmdllz.fitomatic.Search;
 
 public class Token {
     // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
-    public enum Type {USER, ACTIVITY}
+    public enum Type {NAME, ACTIVITY, EVENTDESC, SIZE, TIME}
 
 
     // Fields of the class Token.
@@ -31,6 +31,6 @@ public class Token {
 
     @Override
     public String toString() {
-        return type + "("+ token+ ")";
+        return type + "( " + type + ": " + token + ")";
     }
 }

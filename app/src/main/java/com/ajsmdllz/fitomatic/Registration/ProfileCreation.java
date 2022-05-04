@@ -79,7 +79,6 @@ public class ProfileCreation extends AppCompatActivity {
             Toast.makeText(ProfileCreation.this, "Please enter your Gender!", Toast.LENGTH_SHORT).show();
             return;
         }
-        System.out.println(selected);
         RadioButton temp = findViewById(selected);
         String gender = temp.getText().toString();
 
