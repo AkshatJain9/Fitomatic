@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -15,11 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.ajsmdllz.fitomatic.AVLPosts;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.Registration.User;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
 import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,7 +59,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // Search Bar
         SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
         SearchView tvSearchBar = getView().findViewById(R.id.searchBar);
@@ -81,19 +85,40 @@ public class HomeFragment extends Fragment {
         // Home Button (sends user to home/main page)
 
         // Feed
-        ListView feed = getView().findViewById(R.id.feed);
-        ArrayList<FirebaseUser> users = new ArrayList<>();
+        RecyclerView feed = getView().findViewById(R.id.feed_recycler);
+        ArrayList<Post> users = new ArrayList<>();
 
-        FeedAdapter feedAdapter = new FeedAdapter(getContext(),R.layout.login_success_list_user,users);
+        //initialise with a user
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
 
-        // Adding yourself to list for now
-        users.add(mAuth.getCurrentUser());
-        feedAdapter.add(mAuth.getCurrentUser());
+        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), users);
 
-        feed.setAdapter(feedAdapter);
+        feed.setAdapter(recycleFeedAdapter);
+        feed.setLayoutManager(new LinearLayoutManager(getContext()));
         // End of Feed Code
     }
 
+    /**
+     * Returns all Posts in Array Form
+     * @return AVL Tree of Posts
+     */
     public AVLPosts getallPosts() {
         CollectionReference docs = db.collection("posts");
         final AVLPosts[] tree = {new AVLPosts()};
