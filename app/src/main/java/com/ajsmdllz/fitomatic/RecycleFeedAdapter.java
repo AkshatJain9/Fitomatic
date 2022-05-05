@@ -1,4 +1,4 @@
-package com.ajsmdllz.fitomatic.ui.home;
+package com.ajsmdllz.fitomatic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.Posts.Post;
-import com.ajsmdllz.fitomatic.R;
 
 import java.util.List;
 

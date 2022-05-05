@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -20,28 +18,23 @@ import com.ajsmdllz.fitomatic.AVLPosts;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
-import com.ajsmdllz.fitomatic.Posts.typesOfPosts.LargePostFragment;
 import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
-import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
