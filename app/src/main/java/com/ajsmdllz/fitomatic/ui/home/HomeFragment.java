@@ -14,16 +14,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
+import com.ajsmdllz.fitomatic.AVLPosts;
 import com.ajsmdllz.fitomatic.FeedAdapter;
+import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
 import com.ajsmdllz.fitomatic.Search.SimpleTokenizer;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -83,5 +91,29 @@ public class HomeFragment extends Fragment {
         feed.setAdapter(feedAdapter);
         // End of Feed Code
     }
+
+    public AVLPosts getallPosts() {
+        CollectionReference docs = db.collection("posts");
+        final AVLPosts[] tree = {new AVLPosts()};
+        docs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot d : task.getResult()) {
+                        tree[0] = tree[0].insert(d.toObject(Post.class));
+                    }
+                }
+            }
+        });
+        return tree[0];
+    }
+
+    public ArrayList<Post> getPosts() {
+        AVLPosts tree = getallPosts();
+        return tree.iterator();
+    }
+
+
+
 
 }

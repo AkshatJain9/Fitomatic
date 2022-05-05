@@ -1,8 +1,10 @@
 package com.ajsmdllz.fitomatic.Registration;
 
+import com.ajsmdllz.fitomatic.P2PMessaging.Message;
 import com.ajsmdllz.fitomatic.Posts.Post;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
     private String firstname;
@@ -13,7 +15,11 @@ public class User {
     private String gender;
     private ArrayList<String> interests;
     private ArrayList<Post> posts;
-//    private HashSet<String> deviceTokens;
+    private ArrayList<String> blocked;
+    private HashMap<String, ArrayList<Message>> messages;
+    private ArrayList<Post> following;
+
+
 
 
     public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts) {
@@ -32,11 +38,6 @@ public class User {
         this.email = email;
     }
 
-//    public User(String email, String token) {
-//        this.email = email;
-//        this.deviceTokens = new HashSet<>();
-//        deviceTokens.add(token);
-//    }
 
     public String getFirstname() {
         return firstname;
