@@ -7,14 +7,14 @@ import java.util.ArrayList;
 public abstract class Post {
 
     // These attributes are common among all concrete classes
-    public User author;
+    public String author;
     public String title;
     public String description;
     public String date;
     public int likes;
 
     // Setters
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
     public void setTitle(String title) {
@@ -31,7 +31,7 @@ public abstract class Post {
     }
 
     // Getters
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
     public String getTitle() {

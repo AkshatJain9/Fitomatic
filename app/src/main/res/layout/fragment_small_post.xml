@@ -91,7 +91,7 @@
         app:layout_constraintTop_toTopOf="@+id/createDateSmall" />
 
     <EditText
-        android:id="@+id/createDescriptionSingle3"
+        android:id="@+id/createDescriptionSmall"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -107,7 +107,7 @@
         android:padding="15dp"
         android:singleLine="false"
         android:textColor="@color/purple"
-        app:layout_constraintBottom_toTopOf="@+id/createPostSingle3"
+        app:layout_constraintBottom_toTopOf="@+id/createPostSmall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
         tools:ignore="RtlCompat" />
 
     <Button
-        android:id="@+id/createPostSingle3"
+        android:id="@+id/createPostSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"

@@ -15,7 +15,7 @@ public class EventActivity extends Post {
     private int maxParticipants;
 
 
-    public EventActivity(User author, String title, String description, String date, ArrayList<String> activities, String location, String image, ArrayList<String> followers, int price, int max, int likes) {
+    public EventActivity(String author, String title, String description, String date, ArrayList<String> activities, String location, String image, ArrayList<String> followers, int price, int max, int likes) {
         this.author = author;
         this.title = title;
         this.description = description;
