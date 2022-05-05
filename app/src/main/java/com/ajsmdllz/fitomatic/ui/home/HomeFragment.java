@@ -90,10 +90,15 @@ public class HomeFragment extends Fragment {
         users.add(mAuth.getCurrentUser());
         feedAdapter.add(mAuth.getCurrentUser());
 
-        feed.setAdapter(feedAdapter);
+//        feed.setAdapter(feedAdapter); // THIS IS THE LINE CAUSING ERROR
         // End of Feed Code
     }
 
+
+    /**
+     * Returns all Posts in Array Form
+     * @return AVL Tree of Posts
+     */
     public AVLPosts getallPosts() {
         CollectionReference docs = db.collection("posts");
         final AVLPosts[] tree = {new AVLPosts()};
