@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".Posts.typesOfPosts.IndividualPostFragment">
 
+    <EditText
+        android:id="@+id/createDateSingle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="@+id/createTitleSingle"
+        app:layout_constraintStart_toStartOf="@+id/createTitleSingle"
+        app:layout_constraintTop_toBottomOf="@+id/createTitleSingle" />
+
     <Spinner
         android:id="@+id/spinnerActivitySingle"
         android:layout_width="0dp"
@@ -15,38 +31,15 @@
         android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTitleSingle" />
+        app:layout_constraintTop_toBottomOf="@+id/createDateSingle" />
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/postImageSingle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginBottom="15dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        app:layout_constraintBottom_toTopOf="@+id/createTitleSingle"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/editIconPicture3"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        app:layout_constraintEnd_toEndOf="@+id/postImageSingle"
-        app:layout_constraintTop_toTopOf="@+id/postImageSingle"
-        app:srcCompat="@drawable/add_icon" />
 
     <EditText
         android:id="@+id/createTitleSingle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
