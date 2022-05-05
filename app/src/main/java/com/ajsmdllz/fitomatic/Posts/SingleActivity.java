@@ -7,8 +7,9 @@ public class SingleActivity extends Post {
     // Unique to this concrete Post
     private String activity;
 
-    public SingleActivity(String author, String title, String description, String date, String activity, int likes) {
+    public SingleActivity(String author, String id, String title, String description, String date, String activity, int likes) {
         this.author = author;
+        this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;

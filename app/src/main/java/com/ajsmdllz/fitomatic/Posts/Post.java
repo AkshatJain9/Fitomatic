@@ -11,9 +11,13 @@ public abstract class Post {
     public String title;
     public String description;
     public String date;
+    public String id;
     public int likes;
 
     // Setters
+    public void setId(String id) {
+        this.id = id;
+    }
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -31,6 +35,9 @@ public abstract class Post {
     }
 
     // Getters
+    public String getId() {
+        return id;
+    }
     public String getAuthor() {
         return author;
     }

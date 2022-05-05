@@ -87,16 +87,18 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
                     ArrayList<String> activites = new ArrayList<>();
                     activites.add(selectedActivity);
                     ArrayList<String> followers = new ArrayList<>();
-                    Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
+                            String id;
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 ArrayList<String> posts = (ArrayList<String>) document.get("posts");
                                 Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
-                                posts.add("("+email+", "+posts.size()+")");
+                                id = "("+email+", "+posts.size()+")";
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),id,title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
+                                db.collection("posts").document(id).set(post);
+                                posts.add(id);
                                 Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
                                 db.collection("users").document(email).update("posts", posts);
                             }

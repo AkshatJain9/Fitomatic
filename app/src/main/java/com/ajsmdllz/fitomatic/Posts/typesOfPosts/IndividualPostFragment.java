@@ -90,7 +90,6 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
                     ArrayList<String> activites = new ArrayList<>();
                     activites.add(selectedActivity);
                     ArrayList<String> followers = new ArrayList<>();
-                    Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
@@ -98,12 +97,14 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
                             if (document.exists()) {
                                 ArrayList<String> posts = (ArrayList<String>) document.get("posts");
                                 Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
                                 posts.add("("+email+", "+posts.size()+")");
                                 Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
                                 db.collection("users").document(email).update("posts", posts);
                             } else {
                                 ArrayList<String> posts = new ArrayList<String>();
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
                                 posts.add("("+email+", "+posts.size()+")");
                                 Toast.makeText(getContext(), posts.get(0).toString(), Toast.LENGTH_SHORT).show();
                                 db.collection("users").document(email).update("posts", posts);
