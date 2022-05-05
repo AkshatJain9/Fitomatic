@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.ajsmdllz.fitomatic.AVLPosts;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.R;
@@ -91,29 +93,5 @@ public class HomeFragment extends Fragment {
         feed.setAdapter(feedAdapter);
         // End of Feed Code
     }
-
-    public AVLPosts getallPosts() {
-        CollectionReference docs = db.collection("posts");
-        final AVLPosts[] tree = {new AVLPosts()};
-        docs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot d : task.getResult()) {
-                        tree[0] = tree[0].insert(d.toObject(Post.class));
-                    }
-                }
-            }
-        });
-        return tree[0];
-    }
-
-    public ArrayList<Post> getPosts() {
-        AVLPosts tree = getallPosts();
-        return tree.iterator();
-    }
-
-
-
 
 }
