@@ -90,6 +90,23 @@ public class HomeFragment extends Fragment {
 
         //initialise with a user
         users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
+        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
 
         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), users);
 
