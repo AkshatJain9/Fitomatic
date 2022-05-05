@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.R;
@@ -71,16 +72,10 @@ public class HomeFragment extends Fragment {
         // Home Button (sends user to home/main page)
 
         // Feed
-        ListView feed = getView().findViewById(R.id.feed);
-        ArrayList<FirebaseUser> users = new ArrayList<>();
+        RecyclerView feed = getView().findViewById(R.id.feed_recycler);
 
-        FeedAdapter feedAdapter = new FeedAdapter(getContext(),R.layout.login_success_list_user,users);
 
-        // Adding yourself to list for now
-        users.add(mAuth.getCurrentUser());
-        feedAdapter.add(mAuth.getCurrentUser());
 
-        feed.setAdapter(feedAdapter);
         // End of Feed Code
     }
 
