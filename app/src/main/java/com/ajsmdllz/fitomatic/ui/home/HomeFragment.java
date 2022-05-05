@@ -94,4 +94,25 @@ public class HomeFragment extends Fragment {
         // End of Feed Code
     }
 
+    public AVLPosts getallPosts() {
+        CollectionReference docs = db.collection("posts");
+        final AVLPosts[] tree = {new AVLPosts()};
+        docs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot d : task.getResult()) {
+                        tree[0] = tree[0].insert(d.toObject(Post.class));
+                    }
+                }
+            }
+        });
+        return tree[0];
+    }
+
+    public ArrayList<Post> getPosts() {
+        AVLPosts tree = getallPosts();
+        return tree.iterator();
+    }
+
 }
