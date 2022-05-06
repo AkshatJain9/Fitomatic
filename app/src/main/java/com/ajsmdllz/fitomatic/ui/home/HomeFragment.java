@@ -35,6 +35,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -110,6 +112,44 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot d : task.getResult()) {
+//                        Post p;
+//                        Map<String, Object> map = d.getData();
+//                        if (map.keySet().size() == 7) {
+//                            p = new SingleActivity((String) map.get("author"),
+//                                    (String)map.get("id"), (String) map.get("title"),
+//                                    (String) map.get("description"),
+//                                    (String) map.get("date"),
+//                                    (String) map.get("activity"),
+//                                    (int) map.get("likes"));
+//                        } else if (map.keySet().size() == 11) {
+//                            p = new SmallGroupActivity(
+//                                    (String) map.get("author"),
+//                                    (String) map.get("id"),
+//                                    (String) map.get("title"),
+//                                    (String) map.get("description"),
+//                                    (String) map.get("date"),
+//                                    (String) map.get("activity"),
+//                                    (String) map.get("location"),
+//                                    (String) map.get("imageRef"),
+//                                    (ArrayList<String>) map.get("followers"),
+//                                    (int) map.get("maxParticipants"),
+//                                    (int) map.get("likes"));
+//                        } else {
+//                            p = new EventActivity(
+//                                    (String) map.get("author"),
+//                                    (String) map.get("id"),
+//                                    (String) map.get("title"),
+//                                    (String) map.get("description"),
+//                                    (String) map.get("date"),
+//                                    (String) map.get("activity"),
+//                                    (String) map.get("location"),
+//                                    (String) map.get("imageRef"),
+//                                    (ArrayList<String>) map.get("followers"),
+//                                    (int) map.get("maxParticipants"),
+//                                    (int) map.get("likes"));
+//
+//                        }
+
                         tree[0] = tree[0].insert(d.toObject(Post.class));
                     }
                 }
