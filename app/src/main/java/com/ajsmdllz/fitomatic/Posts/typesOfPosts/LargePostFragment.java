@@ -73,7 +73,13 @@ public class LargePostFragment extends Fragment {
                 }else if (date.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
+                } else if (location.getText().toString().length() == 0) {
+                    Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (eventMaxPart == 0) {
+                    Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
                     // Successfully create a post
                     Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
 
