@@ -17,6 +17,7 @@ import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -31,6 +32,7 @@ public class MessageFragment extends Fragment {
     ArrayList<String> emails;
     ArrayAdapter emailAdapter;
     ListView ls;
+    FirebaseAuth mAuth;
 
 
 
@@ -39,8 +41,8 @@ public class MessageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_message, container,false);
         db = FirebaseFirestore.getInstance();
         ls = view.findViewById(R.id.ListView);
+        mAuth = FirebaseAuth.getInstance();
         emails = new ArrayList<>();
-        emails.add("Hello does this work?");
         CollectionReference docs = db.collection("users");
         docs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -49,9 +51,11 @@ public class MessageFragment extends Fragment {
                     for (QueryDocumentSnapshot d : task.getResult()) {
                         Map<String, Object> map = d.getData();
                         emails.add((String) map.get("email"));
-                        emailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, emails);
-                        ls.setAdapter(emailAdapter);
                     }
+                    emails.remove(mAuth.getCurrentUser().getEmail());
+//                    emails.removeAll() REMOVE ALL BLOCKED INDIVIDUALS HERE
+                    emailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, emails);
+                    ls.setAdapter(emailAdapter);
                 }
             }
         });
