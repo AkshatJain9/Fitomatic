@@ -50,73 +50,73 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Dropdown of activities
-        Spinner activity = getView().findViewById(R.id.spinnerActivitySingle);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-        activity.setAdapter(adapter);
-        // Sets listener for the spinner
-        activity.setOnItemSelectedListener(this);
-
-        EditText title = getView().findViewById(R.id.createTitleSmall);
-        EditText description = getView().findViewById(R.id.createDescriptionSmall);
-        EditText date = getView().findViewById(R.id.createDateSmall);
-        email = mAuth.getCurrentUser().getEmail();
-
-        // Create Post Button
-        Button createPost = getView().findViewById(R.id.createPostSmall);
-        createPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is where checks will be needed and then creating the post will happen
-                if (title.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (description.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-                    return;
-                }else if (date.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    // Successfully create a post
-                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
-
-                    PostFactory newPost = new PostFactory();
-                    ArrayList<String> activites = new ArrayList<>();
-                    activites.add(selectedActivity);
-                    ArrayList<String> followers = new ArrayList<>();
-                    // Add post to database
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            String id;
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                ArrayList<String> posts = (ArrayList<String>) document.get("posts");
-                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-                                id = "("+email+", "+posts.size()+")";
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),id,title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
-                                db.collection("posts").document(id).set(post);
-                                posts.add(id);
-                                Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
-                                db.collection("users").document(email).update("posts", posts);
-                            }
-//                            else {
-//                                ArrayList<String> posts = new ArrayList<String>();
-//                                posts.add("("+email+", "+posts.size()+")");
-//                                Toast.makeText(getContext(), posts.get(0).toString(), Toast.LENGTH_SHORT).show();
-//                                db.collection("users").document(email).update("posts", posts);
-//                            }
-                        } else {
-                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    // Go back to main page
-                    startActivity(new Intent(getContext(), hostActivity.class));
-                }
-            }
-        });
+//
+//        // Dropdown of activities
+//        Spinner activity = getView().findViewById(R.id.spinnerActivitySingle);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+//        activity.setAdapter(adapter);
+//        // Sets listener for the spinner
+//        activity.setOnItemSelectedListener(this);
+//
+//        EditText title = getView().findViewById(R.id.createTitleSmall);
+//        EditText description = getView().findViewById(R.id.createDescriptionSmall);
+//        EditText date = getView().findViewById(R.id.createDateSmall);
+//        email = mAuth.getCurrentUser().getEmail();
+//
+//        // Create Post Button
+//        Button createPost = getView().findViewById(R.id.createPostSmall);
+//        createPost.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // This is where checks will be needed and then creating the post will happen
+//                if (title.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else if (description.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }else if (date.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else {
+//                    // Successfully create a post
+//                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+//
+//                    PostFactory newPost = new PostFactory();
+//                    ArrayList<String> activites = new ArrayList<>();
+//                    activites.add(selectedActivity);
+//                    ArrayList<String> followers = new ArrayList<>();
+//                    // Add post to database
+////                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+////                        if (task.isSuccessful() && task.getResult() != null) {
+////                            String id;
+////                            DocumentSnapshot document = task.getResult();
+////                            if (document.exists()) {
+////                                ArrayList<String> posts = (ArrayList<String>) document.get("posts");
+////                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
+////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
+////                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
+////                                posts.add("("+email+", "+posts.size()+")");
+////                                Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
+////                                db.collection("users").document(email).update("posts", posts);
+////                            }
+////                            else {
+////                                ArrayList<String> posts = new ArrayList<String>();
+////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
+////                                posts.add("("+email+", "+posts.size()+")");
+////                                Toast.makeText(getContext(), posts.get(0).toString(), Toast.LENGTH_SHORT).show();
+////                                db.collection("users").document(email).update("posts", posts);
+////                            }
+////                        } else {
+////                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+////                        }
+////                    });
+//                    // Go back to main page
+//                    startActivity(new Intent(getContext(), hostActivity.class));
+//                }
+//            }
+//        });
     }
 
     @Override

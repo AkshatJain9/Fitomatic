@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ajsmdllz.fitomatic.FeedAdapter;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
+import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
@@ -91,8 +92,8 @@ public class HomeFragment extends Fragment {
         ArrayList<Post> users = new ArrayList<>();
 
         //initialise with a user
-        users.add(new SingleActivity("email","(email0)", "Title", "Description", "date", "activity", 0));
-//        users.add(new SmallGroupActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "", "", "", "", new ArrayList<>(), 1, 1));
+        users.add(new SingleActivity("email","(email, 0)", "Title", "Description", "date", "activity", 0));
+        users.add(new SmallGroupActivity("testing@testing1.com","(testing@testing1.com, 1)", "Title", "Description", "", "", "", "", new ArrayList<>(), 1, 1));
 //        users.add(new EventActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", new ArrayList<String>(), "", "", new ArrayList<String>(), 0, 0 ,0));
 
         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), users);
