@@ -2,19 +2,15 @@ package com.ajsmdllz.fitomatic.Posts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
-import com.ajsmdllz.fitomatic.LoginSuccess;
 import com.ajsmdllz.fitomatic.R;
-import com.ajsmdllz.fitomatic.UserProfile;
 
 public class PostCreationSingle extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private String selectedActivity;

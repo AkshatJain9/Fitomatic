@@ -23,19 +23,10 @@
             android:name=".Posts.PostCreationGroup"
             android:exported="false" />
         <activity
-            android:name=".Posts.PostCreationChoice"
-            android:exported="false" />
-        <activity
             android:name=".Registration.ChooseInterests"
             android:exported="false" />
         <activity
             android:name=".Registration.ProfileCreation"
-            android:exported="false" />
-        <activity
-            android:name=".UserProfile"
-            android:exported="false" />
-        <activity
-            android:name=".LoginSuccess"
             android:exported="false" />
         <activity
             android:name=".Registration.Registration"

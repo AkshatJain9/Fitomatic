@@ -140,7 +140,7 @@ public class LargePostFragment extends Fragment {
 
 
 
-        // Create Post Button
+        // Create Post Button handler
         Button createPost = getView().findViewById(R.id.createPostEvent);
         createPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,7 +174,7 @@ public class LargePostFragment extends Fragment {
                     ArrayList<String> followers = new ArrayList<>();
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful() && task.getResult() != null) {
                             Toast.makeText(getContext(), db.collection("users").document(email).get().toString(), Toast.LENGTH_SHORT).show();
                             ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
