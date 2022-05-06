@@ -1,66 +1,131 @@
 package com.ajsmdllz.fitomatic.Posts.typesOfPosts;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.PostFactory;
+import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.hostActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SmallPostFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SmallPostFragment extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SmallPostFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SmallPostFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SmallPostFragment newInstance(String param1, String param2) {
-        SmallPostFragment fragment = new SmallPostFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+public class SmallPostFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+    private FirebaseAuth mAuth;
+    FirebaseFirestore db;
+    private String selectedActivity;
+    private String email;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+    }
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_individual_post, container,false);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_small_post, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//
+//        // Dropdown of activities
+//        Spinner activity = getView().findViewById(R.id.spinnerActivitySingle);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+//        activity.setAdapter(adapter);
+//        // Sets listener for the spinner
+//        activity.setOnItemSelectedListener(this);
+//
+//        EditText title = getView().findViewById(R.id.createTitleSmall);
+//        EditText description = getView().findViewById(R.id.createDescriptionSmall);
+//        EditText date = getView().findViewById(R.id.createDateSmall);
+//        email = mAuth.getCurrentUser().getEmail();
+//
+//        // Create Post Button
+//        Button createPost = getView().findViewById(R.id.createPostSmall);
+//        createPost.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // This is where checks will be needed and then creating the post will happen
+//                if (title.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else if (description.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }else if (date.getText().toString().length() == 0) {
+//                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else {
+//                    // Successfully create a post
+//                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+//
+//                    PostFactory newPost = new PostFactory();
+//                    ArrayList<String> activites = new ArrayList<>();
+//                    activites.add(selectedActivity);
+//                    ArrayList<String> followers = new ArrayList<>();
+//                    // Add post to database
+////                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+////                        if (task.isSuccessful() && task.getResult() != null) {
+////                            String id;
+////                            DocumentSnapshot document = task.getResult();
+////                            if (document.exists()) {
+////                                ArrayList<String> posts = (ArrayList<String>) document.get("posts");
+////                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
+////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
+////                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
+////                                posts.add("("+email+", "+posts.size()+")");
+////                                Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
+////                                db.collection("users").document(email).update("posts", posts);
+////                            }
+////                            else {
+////                                ArrayList<String> posts = new ArrayList<String>();
+////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
+////                                posts.add("("+email+", "+posts.size()+")");
+////                                Toast.makeText(getContext(), posts.get(0).toString(), Toast.LENGTH_SHORT).show();
+////                                db.collection("users").document(email).update("posts", posts);
+////                            }
+////                        } else {
+////                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+////                        }
+////                    });
+//                    // Go back to main page
+//                    startActivity(new Intent(getContext(), hostActivity.class));
+//                }
+//            }
+//        });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+        selectedActivity = (String) adapterView.getItemAtPosition(pos);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

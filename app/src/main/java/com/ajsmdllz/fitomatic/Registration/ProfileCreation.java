@@ -59,9 +59,6 @@ public class ProfileCreation extends AppCompatActivity {
 
             }
         });
-
-
-
         Toast.makeText(ProfileCreation.this, "Add a Profile Picture", Toast.LENGTH_SHORT).show();
 
         Intent intent = getIntent();
@@ -122,14 +119,20 @@ public class ProfileCreation extends AppCompatActivity {
 
     }
 
+    /*
+        Open System Image Selection Pane (Referenced as Button Clickable in XML Doc)
+     */
     public void uploadProfilePic(View v) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, 1);
-
     }
 
+
+    /*
+        Preview image on page
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

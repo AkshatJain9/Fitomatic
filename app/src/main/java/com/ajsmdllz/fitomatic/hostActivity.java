@@ -17,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.ajsmdllz.fitomatic.databinding.ActivityHostBinding;
 
-public class hostActivity extends AppCompatActivity {
+public class hostActivity extends AppCompatActivity { // COULD NEED TO EXTEND FRAGMENT ACTIVITY
 
     private ActivityHostBinding binding;
 
