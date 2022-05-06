@@ -14,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ajsmdllz.fitomatic.Posts.Post;
@@ -35,6 +37,7 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
     FirebaseFirestore db;
     private String selectedActivity;
     private String email;
+    private int maxPart;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,73 +53,99 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//
-//        // Dropdown of activities
-//        Spinner activity = getView().findViewById(R.id.spinnerActivitySingle);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-//        activity.setAdapter(adapter);
-//        // Sets listener for the spinner
-//        activity.setOnItemSelectedListener(this);
-//
-//        EditText title = getView().findViewById(R.id.createTitleSmall);
-//        EditText description = getView().findViewById(R.id.createDescriptionSmall);
-//        EditText date = getView().findViewById(R.id.createDateSmall);
-//        email = mAuth.getCurrentUser().getEmail();
-//
-//        // Create Post Button
-//        Button createPost = getView().findViewById(R.id.createPostSmall);
-//        createPost.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                // This is where checks will be needed and then creating the post will happen
-//                if (title.getText().toString().length() == 0) {
-//                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                } else if (description.getText().toString().length() == 0) {
-//                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }else if (date.getText().toString().length() == 0) {
-//                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                } else {
-//                    // Successfully create a post
-//                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
-//
-//                    PostFactory newPost = new PostFactory();
-//                    ArrayList<String> activites = new ArrayList<>();
-//                    activites.add(selectedActivity);
-//                    ArrayList<String> followers = new ArrayList<>();
-//                    // Add post to database
-////                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-////                        if (task.isSuccessful() && task.getResult() != null) {
-////                            String id;
-////                            DocumentSnapshot document = task.getResult();
-////                            if (document.exists()) {
-////                                ArrayList<String> posts = (ArrayList<String>) document.get("posts");
-////                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
-////                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
-////                                posts.add("("+email+", "+posts.size()+")");
-////                                Toast.makeText(getContext(), posts.toString()+"", Toast.LENGTH_SHORT).show();
-////                                db.collection("users").document(email).update("posts", posts);
-////                            }
-////                            else {
-////                                ArrayList<String> posts = new ArrayList<String>();
-////                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers,1,0);
-////                                posts.add("("+email+", "+posts.size()+")");
-////                                Toast.makeText(getContext(), posts.get(0).toString(), Toast.LENGTH_SHORT).show();
-////                                db.collection("users").document(email).update("posts", posts);
-////                            }
-////                        } else {
-////                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
-////                        }
-////                    });
-//                    // Go back to main page
-//                    startActivity(new Intent(getContext(), hostActivity.class));
-//                }
-//            }
-//        });
+
+        // Dropdown of activities
+        Spinner activity = getView().findViewById(R.id.spinnerActivitySmall);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        activity.setAdapter(adapter);
+        // Sets listener for the spinner
+        activity.setOnItemSelectedListener(this);
+
+        EditText title = getView().findViewById(R.id.createTitleSmall);
+        EditText description = getView().findViewById(R.id.createDescriptionSmall);
+        EditText date = getView().findViewById(R.id.createDateSmall);
+        EditText location = getView().findViewById(R.id.createLocationSmall);
+        email = mAuth.getCurrentUser().getEmail();
+
+        // Create Post Button
+        Button createPost = getView().findViewById(R.id.createPostSmall);
+        createPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // This is where checks will be needed and then creating the post will happen
+                if (title.getText().toString().length() == 0) {
+                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (description.getText().toString().length() == 0) {
+                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (date.getText().toString().length() == 0) {
+                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (location.getText().toString().length() == 0) {
+                    Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (maxPart == 0) {
+                    Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    // Successfully create a post
+                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+
+                    // Using post factory to create different posts
+                    PostFactory newPost = new PostFactory();
+
+                    // Adding the selected activity to the
+                    ArrayList<String> activites = new ArrayList<>();
+                    activites.add(selectedActivity);
+
+                    ArrayList<String> followers = new ArrayList<>();
+                    // Add post to database
+                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            Toast.makeText(getContext(), db.collection("users").document(email).get().toString(), Toast.LENGTH_SHORT).show();
+                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
+                            if (posts != null) {
+                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,0, maxPart,0);
+                                // Adding the post to Firebase
+                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
+                                posts.add("("+email+", "+posts.size()+")");
+                                // Adding the post to list of posts that the user has made
+                                db.collection("users").document(email).update("posts", posts);
+                            } else {
+                                // This is the user's first post so it needs to be setup slightly differently to any other, i.e. posts size is 0
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,0,maxPart,0);
+                                ArrayList<String> firstPost = new ArrayList<>();
+                                firstPost.add("("+email+", "+0+")");
+                                db.collection("posts").document("("+email+", "+0+")").set(post);
+                                db.collection("users").document(email).update("posts", firstPost);
+                            }
+                        } else {
+                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    // Go back to main page
+                    startActivity(new Intent(getContext(), hostActivity.class));
+                }
+            }
+        });
+
+        SeekBar maxPartBar = getView().findViewById(R.id.maxPartBarSmall);
+        TextView maxPartSmall = getView().findViewById(R.id.maxPartSmall);
+        maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                System.out.println(i);
+                maxPartSmall.setText("Max Participants " + i);
+                maxPart = i;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
     }
 
     @Override

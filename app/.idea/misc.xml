@@ -40,6 +40,7 @@
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield.xml" value="0.2645" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield_action.xml" value="0.2775" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_choose_interests.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_feed_post.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_fire_base.xml" value="0.5" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_host.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_login_success.xml" value="0.33" />
@@ -53,11 +54,11 @@
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_home.xml" value="0.297554347826087" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_individual_post.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_large_post.xml" value="0.2536231884057971" />
+        <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_large_post.xml" value="0.5" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_message.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_post.xml" value="0.24003623188405798" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_profile.xml" value="0.2536231884057971" />
-        <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_small_post.xml" value="0.24003623188405798" />
+        <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_small_post.xml" value="0.5" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/login_success_list_user.xml" value="0.2695035460992908" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/post_creation_single.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Pengu/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/test.xml" value="0.5541666666666667" />

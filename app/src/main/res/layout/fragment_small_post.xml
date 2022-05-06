@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Posts.typesOfPosts.SmallPostFragment">
 
+    <SeekBar
+        android:id="@+id/maxPartBarSmall"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="100"
+        android:progress="12"
+        android:thumbTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/maxPartSmall"
+        app:layout_constraintEnd_toEndOf="@+id/createDescriptionSmall"
+        app:layout_constraintStart_toEndOf="@+id/maxPartSmall"
+        app:layout_constraintTop_toTopOf="@+id/maxPartSmall" />
+
+    <TextView
+        android:id="@+id/maxPartSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Max Participants 0"
+        app:layout_constraintBottom_toTopOf="@+id/createPostSmall"
+        app:layout_constraintStart_toStartOf="@+id/createDescriptionSmall" />
+
     <Spinner
         android:id="@+id/spinnerActivitySmall"
         android:layout_width="0dp"
@@ -107,7 +128,7 @@
         android:padding="15dp"
         android:singleLine="false"
         android:textColor="@color/purple"
-        app:layout_constraintBottom_toTopOf="@+id/createPostSmall"
+        app:layout_constraintBottom_toTopOf="@+id/maxPartBarSmall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

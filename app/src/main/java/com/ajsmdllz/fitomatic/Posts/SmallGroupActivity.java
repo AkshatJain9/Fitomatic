@@ -13,7 +13,6 @@ public class SmallGroupActivity extends Post {
     private ArrayList<String> followers;
     private int maxParticipants;
 
-
     public SmallGroupActivity(String author, String id, String title, String description, String date, String activity, String location, String image, ArrayList<String> followers, int max, int likes) {
         this.author = author;
         this.id = id;
