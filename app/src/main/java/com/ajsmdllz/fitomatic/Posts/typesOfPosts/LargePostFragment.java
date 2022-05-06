@@ -70,6 +70,7 @@ public class LargePostFragment extends Fragment {
         // initialise variables
         TextView popUptextView = getView().findViewById(R.id.multiActivityDropdown);
         boolean[] selectedActivities = new boolean[activities.length];
+        popUptextView.setKeyListener(null);
         popUptextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

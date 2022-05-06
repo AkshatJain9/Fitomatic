@@ -71,28 +71,12 @@ public class Registration extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-//                        final String[] token = new String[1];
-//                        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<String> task) {
-//                                if (task.isSuccessful()) {
-//                                    token[0] = task.getResult();
-//                                } else {
-//                                    Toast.makeText(Registration.this, "Something is not right lmao", Toast.LENGTH_LONG).show();
-//                                    return;
-//                                }
-//                            }
-//                        });
-//                        if (token[0] == null) {
-//                            return;
-//                        }
-//                        User user = new User(email, token[0]);
                         User user = new User(email);
                         db.collection("users").document(email).set(user);
 
                         Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                         Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
-                        toProfileCreation.putExtra("email", email.toString());
+                        toProfileCreation.putExtra("email", email);
                         startActivity(toProfileCreation);
 
                         Toast.makeText(Registration.this, "Authentication SUCCESS.",

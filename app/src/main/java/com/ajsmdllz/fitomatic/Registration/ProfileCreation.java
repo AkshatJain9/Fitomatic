@@ -25,6 +25,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class ProfileCreation extends AppCompatActivity {
     FirebaseFirestore db;
     String email;
@@ -100,7 +103,9 @@ public class ProfileCreation extends AppCompatActivity {
             db.collection("users").document(email).update("bio", bio.getText().toString());
             db.collection("users").document(email).update("gender", gender);
             db.collection("users").document(email).update("age", seekBar.getProgress());
-
+            db.collection("users").document(email).update("messages", new HashMap<>());
+            db.collection("users").document(email).update("blocked", new ArrayList<>());
+            db.collection("users").document(email).update("following", new ArrayList<>());
 
             if (mImageUri != null) {
                 StorageReference pfpReference = storRef.child(email); //+"."+getFileExtension(mImageUri) DO NOT DELETE for now

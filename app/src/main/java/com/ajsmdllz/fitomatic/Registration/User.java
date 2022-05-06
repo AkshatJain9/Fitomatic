@@ -20,7 +20,19 @@ public class User {
     private ArrayList<Post> following;
 
 
-
+    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<Post> following) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.bio = bio;
+        this.age = age;
+        this.gender = gender;
+        this.interests = interests;
+        this.posts = posts;
+        this.blocked = blocked;
+        this.messages = messages;
+        this.following = following;
+    }
 
     public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts) {
         this.firstname = firstname;
@@ -36,6 +48,9 @@ public class User {
 
     public User(String email) {
         this.email = email;
+        blocked = new ArrayList<>();
+        messages = new HashMap<>();
+        following = new ArrayList<>();
     }
 
 

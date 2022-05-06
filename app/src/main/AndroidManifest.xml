@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Fitomatic">
         <activity
+            android:name=".ui.message.DirectMessage"
+            android:exported="false" />
+        <activity
             android:name=".Posts.PostHostActivity"
             android:exported="false" />
         <activity
