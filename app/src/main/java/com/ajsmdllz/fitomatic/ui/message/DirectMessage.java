@@ -46,7 +46,8 @@ public class DirectMessage extends AppCompatActivity {
         sender = mAuth.getCurrentUser().getEmail();
 
         messages = new ArrayList<>();
-        // Creating Session on Sender Side
+
+        // Creating Session on Sender Side / Querying all messages if exists
         DocumentReference ref = db.collection("users").document(sender);
         ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -54,13 +55,12 @@ public class DirectMessage extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot d = task.getResult();
                     Map<String, Object> mLog = d.getData();
-                    HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
-
+                    HashMap<String,  ArrayList<HashMap<String, String>>> messageLog = (HashMap<String,  ArrayList<HashMap<String, String>>>) mLog.get("messages");
 
                     if (messageLog != null && messageLog.containsKey(recip) && messageLog.get(recip) != null) {
-                        ArrayList<Message> pasts = messageLog.get(recip);
-                        for (Message m : pasts) {
-                            messages.add(m.message);
+                        ArrayList<HashMap<String, String>> pasts = messageLog.get(recip);
+                        for (HashMap<String, String> m : pasts) {
+                            messages.add(m.get("message"));
                         }
                         // If user has never messaged specific individual before
                     } else {
@@ -76,22 +76,29 @@ public class DirectMessage extends AppCompatActivity {
                 }
             }
         });
-//        HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) ref.get().getResult().getData().get("messages");
 
-//        DocumentReference refR = db.collection("users").document(recip);
-//        HashMap<String, ArrayList<Message>> messageLogR = (HashMap<String, ArrayList<Message>>) refR.get().getResult().getData().get("messages");
+        DocumentReference ref1 = db.collection("users").document(recip);
+        ref1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot d = task.getResult();
+                    Map<String, Object> mLog = d.getData();
+                    HashMap<String,  ArrayList<HashMap<String, String>>> messageLog = (HashMap<String,  ArrayList<HashMap<String, String>>>) mLog.get("messages");
+                    if (messageLog == null) {
+                        HashMap<String, ArrayList<Message>> newMap = new HashMap<>();
+                        newMap.put(sender, new ArrayList<>());
+                        ref1.update("messages", newMap);
+                        return;
+                    }
+                    if (!messageLog.containsKey(sender) || messageLog.get(sender) == null) {
+                        messageLog.put(sender, new ArrayList<>());
+                        ref1.update("messages", messageLog);
+                    }
+                }
+            }
+        });
 
-        // If user has been messaged before
-
-
-//        if (messageLogR == null) {
-//            HashMap<String, ArrayList<Message>> newMap = new HashMap<>();
-//            newMap.put(sender, new ArrayList<>());
-//            refR.update("messages", newMap);
-//        } else {
-//            messageLogR.put(sender, new ArrayList<>());
-//            refR.update("messages", messageLog);
-//        }
 
         ListView messageView = (ListView) findViewById(R.id.MessageBoard);
         messageAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, messages);
@@ -108,7 +115,6 @@ public class DirectMessage extends AppCompatActivity {
         String messagetoSendString = messagetoSend.getText().toString();
 
         DocumentReference currUser = db.collection("users").document(sender);
-//        DocumentReference sendUser = db.collection("users").document(recip);
 
         currUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -123,18 +129,23 @@ public class DirectMessage extends AppCompatActivity {
             }
         });
 
-//        HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) currUser.get().getResult().getData().get("messages");
-//        messageLog.get(recip).add(new Message(sender, messagetoSendString));
-
-
-//        HashMap<String, ArrayList<Message>> messageLogR = (HashMap<String, ArrayList<Message>>) sendUser.get().getResult().getData().get("messages");
-//        messageLogR.get(recip).add(new Message(sender, messagetoSendString));
+        DocumentReference sendUser = db.collection("users").document(recip);
+        sendUser.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot d = task.getResult();
+                    Map<String, Object> mLog = d.getData();
+                    HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
+                    messageLog.get(sender).add(new Message(sender, messagetoSendString));
+                    sendUser.update("messages", messageLog);
+                }
+            }
+        });
 
         messages.add(messagetoSendString);
-
         messageAdapter.notifyDataSetChanged();
         messagetoSend.setText("");
-
     }
 
 
