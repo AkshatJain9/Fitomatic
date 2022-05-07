@@ -42,7 +42,6 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         TextView nameText = getView().findViewById(R.id.nameText);
         email = mAuth.getCurrentUser().getEmail();
-        Toast.makeText(getContext(), email, Toast.LENGTH_SHORT).show();
 
         // Getting user's info from Firebase
         db.collection("users").document(email).get().addOnCompleteListener(task -> {
