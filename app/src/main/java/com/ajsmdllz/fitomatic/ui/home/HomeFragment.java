@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
+import com.ajsmdllz.fitomatic.Posts.typesOfPosts.IndividualPostFragment;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.ajsmdllz.fitomatic.Registration.User;
@@ -126,7 +128,8 @@ public class HomeFragment extends Fragment {
                                     (String) map.get("description"),
                                     (String) map.get("date"),
                                     (String) map.get("activity"),
-                                    ((Long) map.get("likes")).intValue());
+                                    ((Long) map.get("likes")).intValue(),
+                                    (ArrayList<String>) map.get("liked"));
                         } else if (map.keySet().size() == 11) {
                             p = new SmallGroupActivity(
                                     (String) map.get("author"),
@@ -136,10 +139,10 @@ public class HomeFragment extends Fragment {
                                     (String) map.get("date"),
                                     (String) map.get("activity"),
                                     (String) map.get("location"),
-                                    (String) map.get("imageRef"),
                                     (ArrayList<String>) map.get("followers"),
                                     ((Long) map.get("maxParticipants")).intValue(),
-                                    ((Long) map.get("likes")).intValue());
+                                    ((Long) map.get("likes")).intValue(),
+                                    (ArrayList<String>) map.get("liked"));
                         } else {
                             p = new EventActivity(
                                     (String) map.get("author"),
@@ -149,11 +152,11 @@ public class HomeFragment extends Fragment {
                                     (String) map.get("date"),
                                     (ArrayList<String>) map.get("activity"),
                                     (String) map.get("location"),
-                                    (String) map.get("imageRef"),
                                     (ArrayList<String>) map.get("followers"),
                                     ((Long) map.get("price")).intValue(),
                                     ((Long) map.get("maxParticipants")).intValue(),
-                                    ((Long) map.get("likes")).intValue());
+                                    ((Long) map.get("likes")).intValue(),
+                                    (ArrayList<String>) map.get("liked"));
                         }
                         tree[0] = tree[0].insert(p);
                     }

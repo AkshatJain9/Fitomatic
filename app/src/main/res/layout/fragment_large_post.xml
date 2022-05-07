@@ -16,7 +16,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:max="100"
-        android:progress="12"
+        android:progress="0"
         android:thumbTint="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/maxPartBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="15dp"
         android:max="100"
-        android:progress="12"
+        android:progress="0"
         android:thumbTint="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/createPostEvent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -167,28 +167,5 @@
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createTitleEvent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/postImageEvent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginBottom="15dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        app:layout_constraintBottom_toTopOf="@id/createTitleEvent"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/editIconPictureEvent"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        app:layout_constraintEnd_toEndOf="@id/postImageEvent"
-        app:layout_constraintTop_toTopOf="@id/postImageEvent"
-        app:srcCompat="@drawable/add_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

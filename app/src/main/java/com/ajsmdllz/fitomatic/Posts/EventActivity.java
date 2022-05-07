@@ -9,13 +9,12 @@ public class EventActivity extends Post {
     // additional attributes on top of base Template
     private ArrayList<String> activities;
     private String location; // As an address
-    private String imageRef; // Stored as string for now
     private ArrayList<String> followers;
     private int price;
     private int maxParticipants;
 
 
-    public EventActivity(String author, String id, String title, String description, String date, ArrayList<String> activities, String location, String image, ArrayList<String> followers, int price, int max, int likes) {
+    public EventActivity(String author, String id, String title, String description, String date, ArrayList<String> activities, String location, ArrayList<String> followers, int price, int max, int likes, ArrayList<String> liked) {
         this.author = author;
         this.id = id;
         this.title = title;
@@ -23,11 +22,11 @@ public class EventActivity extends Post {
         this.date = date;
         this.activities = activities;
         this.location = location;
-        this.imageRef = image;
         this.followers = followers;
         this.price = price;
         this.maxParticipants = max;
         this.likes = likes;
+        this.liked = liked;
     }
 
     // Setters
@@ -36,9 +35,6 @@ public class EventActivity extends Post {
     }
     public void setLocation(String location) {
         this.location = location;
-    }
-    public void setImageRef(String imageRef) {
-        this.imageRef = imageRef;
     }
     public void setFollowers(ArrayList<String> followers) {
         this.followers = followers;
@@ -56,9 +52,6 @@ public class EventActivity extends Post {
     }
     public String getLocation() {
         return location;
-    }
-    public String getImageRef() {
-        return imageRef;
     }
     public ArrayList<String> getFollowers() {
         return followers;

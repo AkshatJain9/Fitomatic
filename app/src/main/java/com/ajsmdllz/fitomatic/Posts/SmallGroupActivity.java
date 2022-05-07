@@ -9,11 +9,11 @@ public class SmallGroupActivity extends Post {
     // additional attributes on top of base Template
     private String activity;
     private String location; // As an address
-    private String imageRef; // Stored as string for now
     private ArrayList<String> followers;
     private int maxParticipants;
+    private ArrayList<String> liked;
 
-    public SmallGroupActivity(String author, String id, String title, String description, String date, String activity, String location, String image, ArrayList<String> followers, int max, int likes) {
+    public SmallGroupActivity(String author, String id, String title, String description, String date, String activity, String location, ArrayList<String> followers, int max, int likes, ArrayList<String> liked) {
         this.author = author;
         this.id = id;
         this.title = title;
@@ -21,43 +21,22 @@ public class SmallGroupActivity extends Post {
         this.date = date;
         this.activity = activity;
         this.location = location;
-        this.imageRef = image;
         this.followers = followers;
         this.maxParticipants = max;
         this.likes = likes;
+        this.liked = liked;
     }
+    // Getters
+    public String getActivity() { return activity; }
+    public String getLocation() { return location; }
+    public ArrayList<String> getFollowers() { return followers; }
+    public int getMaxParticipants() { return maxParticipants; }
+    public ArrayList<String> getLiked() { return liked; }
 
     // Setters
-    public void setActivity(String activity) {
-        this.activity = activity;
-    }
-    public void setLocation(String location) {
-        this.location = location;
-    }
-    public void setImageRef(String imageRef) {
-        this.imageRef = imageRef;
-    }
-    public void setFollowers(ArrayList<String> followers) {
-        this.followers = followers;
-    }
-    public void setMaxParticipants(int maxParticipants) {
-        this.maxParticipants = maxParticipants;
-    }
-
-    // Getters
-    public String getActivity() {
-        return activity;
-    }
-    public String getLocation() {
-        return location;
-    }
-    public String getImageRef() {
-        return imageRef;
-    }
-    public ArrayList<String> getFollowers() {
-        return followers;
-    }
-    public int getMaxParticipants() {
-        return maxParticipants;
-    }
+    public void setActivity(String activity) { this.activity = activity; }
+    public void setLocation(String location) { this.location = location; }
+    public void setFollowers(ArrayList<String> followers) { this.followers = followers; }
+    public void setMaxParticipants(int maxParticipants) { this.maxParticipants = maxParticipants; }
+    public void setLiked(ArrayList<String> liked) { this.liked = liked; }
 }

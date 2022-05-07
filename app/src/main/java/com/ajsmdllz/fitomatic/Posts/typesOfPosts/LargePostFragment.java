@@ -53,11 +53,6 @@ public class LargePostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // initialize variables for multiple activity selection
-        ArrayList<Integer> activityList = new ArrayList<>();
-        String[] activities = {"Running", "Walking", "Weight Lifting", "Rowing", "Yoga", "Soccer", "Hiking",
-                "Gymnastics", "AFL", "Tennis", "Rugby", "Surfing", "Golf", "Bowling", "Karate",
-                "Bouldering", "Rock Climbing", "Cycling", "Mountain Biking", "Swimming",
-                "Cricket", "Judo", "Tai Quan Dao"};
         email = mAuth.getCurrentUser().getEmail();
         SeekBar priceBar = getView().findViewById(R.id.priceBar);
         TextView price = getView().findViewById(R.id.price);
@@ -67,7 +62,12 @@ public class LargePostFragment extends Fragment {
         EditText location = getView().findViewById(R.id.locationEvent);
 
 
-        // initialise variables
+        // initialise variables for multi select activities
+        ArrayList<Integer> activityList = new ArrayList<>();
+        String[] activities = {"Running", "Walking", "Weight Lifting", "Rowing", "Yoga", "Soccer", "Hiking",
+                "Gymnastics", "AFL", "Tennis", "Rugby", "Surfing", "Golf", "Bowling", "Karate",
+                "Bouldering", "Rock Climbing", "Cycling", "Mountain Biking", "Swimming",
+                "Cricket", "Judo", "Tai Quan Dao"};
         TextView popUptextView = getView().findViewById(R.id.multiActivityDropdown);
         boolean[] selectedActivities = new boolean[activities.length];
         popUptextView.setKeyListener(null);
@@ -99,7 +99,6 @@ public class LargePostFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Initialize string builder
                         StringBuilder stringBuilder = new StringBuilder();
-                        // use for loop
                         for (int j = 0; j < activityList.size(); j++) {
                             // concat array value
                             stringBuilder.append(activities[activityList.get(j)]);
@@ -170,9 +169,12 @@ public class LargePostFragment extends Fragment {
                     PostFactory newPost = new PostFactory();
 
                     ArrayList<String> activites = new ArrayList<>();
-                    activites.add("SampleActivity"); // Need to be able to select all the activities
+                    for (Integer elem: activityList) {
+                        activites.add(activities[elem]);
+                    }
 
                     ArrayList<String> followers = new ArrayList<>();
+                    ArrayList<String> liked = new ArrayList<>();
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
@@ -180,12 +182,12 @@ public class LargePostFragment extends Fragment {
                             ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
                                 Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,eventPrice, eventMaxPart,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,eventPrice, eventMaxPart,0, liked);
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
                                 posts.add("("+email+", "+posts.size()+")");
                                 db.collection("users").document(email).update("posts", posts);
                             } else {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,eventPrice,eventMaxPart,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,eventPrice,eventMaxPart,0, liked);
                                 ArrayList<String> firstPost = new ArrayList<>();
                                 firstPost.add("("+email+", "+0+")");
                                 db.collection("posts").document("("+email+", "+0+")").set(post);
@@ -202,9 +204,6 @@ public class LargePostFragment extends Fragment {
         });
 
 
-
-//        SeekBar priceBar = getView().findViewById(R.id.priceBar);
-//        TextView price = getView().findViewById(R.id.price);
         priceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -234,7 +233,5 @@ public class LargePostFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-        // Multiple Activity Selection
     }
 }

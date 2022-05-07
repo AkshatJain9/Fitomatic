@@ -61,6 +61,7 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
         EditText date = getView().findViewById(R.id.createDateSingle);
         email = mAuth.getCurrentUser().getEmail();
 
+        ArrayList<String> liked = new ArrayList<>();
         // Create Post Button
         Button createPost = getView().findViewById(R.id.createPostSingle);
         createPost.setOnClickListener(new View.OnClickListener() {
@@ -88,12 +89,12 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
                         if (task.isSuccessful() && task.getResult() != null) {
                             ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", "", followers, 0, 1,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", followers, 0, 1,0, liked);
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
                                 posts.add("("+email+", "+posts.size()+")");
                                 db.collection("users").document(email).update("posts", posts);
                             } else {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites,"", "", followers,0,1,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites,"",  followers,0,1,0, liked);
                                 ArrayList<String> firstPost = new ArrayList<>();
                                 firstPost.add("("+email+", "+0+")");
                                 db.collection("posts").document("("+email+", "+0+")").set(post);

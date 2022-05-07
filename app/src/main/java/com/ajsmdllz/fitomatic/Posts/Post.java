@@ -13,6 +13,7 @@ public abstract class Post {
     public String date;
     public String id;
     public int likes;
+    public ArrayList<String> liked;
 
     // Setters
     public void setId(String id) {
