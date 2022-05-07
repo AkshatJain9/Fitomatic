@@ -41,6 +41,7 @@ import java.util.Map;
 public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
+    RecyclerView feed;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,9 +84,12 @@ public class HomeFragment extends Fragment {
         // Home Button (sends user to home/main page)
 
         // Feed
-        RecyclerView feed = getView().findViewById(R.id.feed_recycler);
+        feed = getView().findViewById(R.id.feed_recycler);
 
-        ArrayList<Post> users = getPosts(); // line causes crashes
+        getAllPosts();
+
+//        getPosts(); // line causes crashes
+
 //        ArrayList<Post> users = new ArrayList<>();
 
         //initialise with a user
@@ -93,10 +97,10 @@ public class HomeFragment extends Fragment {
 //        users.add(new SmallGroupActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "", "", "", "", new ArrayList<>(), 1, 1));
 //        users.add(new EventActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", new ArrayList<String>(), "", "", new ArrayList<String>(), 0, 0 ,0));
 
-        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), users);
-
-        feed.setAdapter(recycleFeedAdapter);
-        feed.setLayoutManager(new LinearLayoutManager(getContext()));
+//        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), poststuff);
+//
+//        feed.setAdapter(recycleFeedAdapter);
+//        feed.setLayoutManager(new LinearLayoutManager(getContext()));
         // End of Feed Code
     }
 
@@ -104,7 +108,7 @@ public class HomeFragment extends Fragment {
      * Returns all Posts in Array Form
      * @return AVL Tree of Posts
      */
-    public AVLPosts getallPosts() {
+    public void getAllPosts() {
         CollectionReference docs = db.collection("posts");
         final AVLPosts[] tree = {new AVLPosts()};
         docs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -153,15 +157,31 @@ public class HomeFragment extends Fragment {
                         }
                         tree[0] = tree[0].insert(p);
                     }
+//                    postCallback.postQueried(tree[0]);
+                    RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), tree[0].iterator());
+
+                    feed.setAdapter(recycleFeedAdapter);
+                    feed.setLayoutManager(new LinearLayoutManager(getContext()));
                 }
             }
         });
-        return tree[0];
     }
 
-    public ArrayList<Post> getPosts() {
-        AVLPosts tree = getallPosts();
-        return tree.iterator();
-    }
+//    public ArrayList<Post> poststuff;
+//
+//    public void getPosts() {
+//        final AVLPosts[] treeyeah = new AVLPosts[1];
+//        getAllPosts(new postCallback() {
+//            @Override
+//            public void postQueried(AVLPosts queried) {
+//                treeyeah[0] = queried;
+//                poststuff = treeyeah[0].iterator();
+//            }
+//        });
+//    }
+//
+//    interface postCallback {
+//        void postQueried (AVLPosts queried);
+//    }
 
 }
