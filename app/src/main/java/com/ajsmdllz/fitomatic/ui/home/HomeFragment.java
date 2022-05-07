@@ -85,8 +85,8 @@ public class HomeFragment extends Fragment {
         // Feed
         RecyclerView feed = getView().findViewById(R.id.feed_recycler);
 
-        //ArrayList<Post> users = getPosts(); // line causes crashes
-        ArrayList<Post> users = new ArrayList<>();
+        ArrayList<Post> users = getPosts(); // line causes crashes
+//        ArrayList<Post> users = new ArrayList<>();
 
         //initialise with a user
 //        users.add(new SingleActivity((new User("b", "b", "b", "b", 2, "m", new ArrayList<String>(), new ArrayList<Post>())), "Title", "Description", "date", "activity", 0));
@@ -112,45 +112,46 @@ public class HomeFragment extends Fragment {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot d : task.getResult()) {
-//                        Post p;
-//                        Map<String, Object> map = d.getData();
-//                        if (map.keySet().size() == 7) {
-//                            p = new SingleActivity((String) map.get("author"),
-//                                    (String)map.get("id"), (String) map.get("title"),
-//                                    (String) map.get("description"),
-//                                    (String) map.get("date"),
-//                                    (String) map.get("activity"),
-//                                    (int) map.get("likes"));
-//                        } else if (map.keySet().size() == 11) {
-//                            p = new SmallGroupActivity(
-//                                    (String) map.get("author"),
-//                                    (String) map.get("id"),
-//                                    (String) map.get("title"),
-//                                    (String) map.get("description"),
-//                                    (String) map.get("date"),
-//                                    (String) map.get("activity"),
-//                                    (String) map.get("location"),
-//                                    (String) map.get("imageRef"),
-//                                    (ArrayList<String>) map.get("followers"),
-//                                    (int) map.get("maxParticipants"),
-//                                    (int) map.get("likes"));
-//                        } else {
-//                            p = new EventActivity(
-//                                    (String) map.get("author"),
-//                                    (String) map.get("id"),
-//                                    (String) map.get("title"),
-//                                    (String) map.get("description"),
-//                                    (String) map.get("date"),
-//                                    (String) map.get("activity"),
-//                                    (String) map.get("location"),
-//                                    (String) map.get("imageRef"),
-//                                    (ArrayList<String>) map.get("followers"),
-//                                    (int) map.get("maxParticipants"),
-//                                    (int) map.get("likes"));
-//
-//                        }
-
-                        tree[0] = tree[0].insert(d.toObject(Post.class));
+                        Post p;
+                        Map<String, Object> map = d.getData();
+                        if (map.keySet().size() == 7) {
+                            p = new SingleActivity(
+                                    (String) map.get("author"),
+                                    (String) map.get("id"),
+                                    (String) map.get("title"),
+                                    (String) map.get("description"),
+                                    (String) map.get("date"),
+                                    (String) map.get("activity"),
+                                    ((Long) map.get("likes")).intValue());
+                        } else if (map.keySet().size() == 11) {
+                            p = new SmallGroupActivity(
+                                    (String) map.get("author"),
+                                    (String) map.get("id"),
+                                    (String) map.get("title"),
+                                    (String) map.get("description"),
+                                    (String) map.get("date"),
+                                    (String) map.get("activity"),
+                                    (String) map.get("location"),
+                                    (String) map.get("imageRef"),
+                                    (ArrayList<String>) map.get("followers"),
+                                    ((Long) map.get("maxParticipants")).intValue(),
+                                    ((Long) map.get("likes")).intValue());
+                        } else {
+                            p = new EventActivity(
+                                    (String) map.get("author"),
+                                    (String) map.get("id"),
+                                    (String) map.get("title"),
+                                    (String) map.get("description"),
+                                    (String) map.get("date"),
+                                    (ArrayList<String>) map.get("activity"),
+                                    (String) map.get("location"),
+                                    (String) map.get("imageRef"),
+                                    (ArrayList<String>) map.get("followers"),
+                                    ((Long) map.get("price")).intValue(),
+                                    ((Long) map.get("maxParticipants")).intValue(),
+                                    ((Long) map.get("likes")).intValue());
+                        }
+                        tree[0] = tree[0].insert(p);
                     }
                 }
             }
