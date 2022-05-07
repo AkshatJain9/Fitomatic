@@ -20,12 +20,6 @@
             android:exported="false"
             android:label="@string/title_activity_host" />
         <activity
-            android:name=".Posts.PostCreationSingle"
-            android:exported="false" />
-        <activity
-            android:name=".Posts.PostCreationGroup"
-            android:exported="false" />
-        <activity
             android:name=".Registration.ChooseInterests"
             android:exported="false" />
         <activity

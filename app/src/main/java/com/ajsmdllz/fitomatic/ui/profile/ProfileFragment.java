@@ -17,9 +17,12 @@ import com.ajsmdllz.fitomatic.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
+
 public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
+    private String email;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,29 +41,19 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView nameText = getView().findViewById(R.id.nameText);
+        email = mAuth.getCurrentUser().getEmail();
+        Toast.makeText(getContext(), email, Toast.LENGTH_SHORT).show();
 
         // Getting user's info from Firebase
-        db.collection("users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(task -> {
+        db.collection("users").document(email).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 String firstName = task.getResult().getString("firstname");
                 String lastName = task.getResult().getString("lastname");
-                String bio = task.getResult().getString("bio");
-                String gender = task.getResult().getString("gender");
-                int age = task.getResult().getDouble("age").intValue();
+//                String bio = task.getResult().getString("bio");
 
                 nameText.setText(firstName+" "+lastName);
-
-                //Display User information
-//              TextView tvProfileTitle = findViewById(R.id.profileName);
-//              /tvProfileTitle.setText("Displaying basic user info:\n " +
-//                        "Email: "+mAuth.getCurrentUser().getEmail()+"\n " +
-//                        "Full Name: "+firstName+" "+lastName+"\n" +
-//                        "bio: "+bio+"\n" +
-//                        "gender: "+gender+"\n" +
-//                        "age: "+age);
-
             } else {
-                Toast.makeText(getContext(), "(Something went wrong!) Should not get here - DENI", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
     }
