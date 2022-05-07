@@ -53,11 +53,6 @@ public class LargePostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // initialize variables for multiple activity selection
-        ArrayList<Integer> activityList = new ArrayList<>();
-        String[] activities = {"Running", "Walking", "Weight Lifting", "Rowing", "Yoga", "Soccer", "Hiking",
-                "Gymnastics", "AFL", "Tennis", "Rugby", "Surfing", "Golf", "Bowling", "Karate",
-                "Bouldering", "Rock Climbing", "Cycling", "Mountain Biking", "Swimming",
-                "Cricket", "Judo", "Tai Quan Dao"};
         email = mAuth.getCurrentUser().getEmail();
         SeekBar priceBar = getView().findViewById(R.id.priceBar);
         TextView price = getView().findViewById(R.id.price);
@@ -67,7 +62,12 @@ public class LargePostFragment extends Fragment {
         EditText location = getView().findViewById(R.id.locationEvent);
 
 
-        // initialise variables
+        // initialise variables for multi select activities
+        ArrayList<Integer> activityList = new ArrayList<>();
+        String[] activities = {"Running", "Walking", "Weight Lifting", "Rowing", "Yoga", "Soccer", "Hiking",
+                "Gymnastics", "AFL", "Tennis", "Rugby", "Surfing", "Golf", "Bowling", "Karate",
+                "Bouldering", "Rock Climbing", "Cycling", "Mountain Biking", "Swimming",
+                "Cricket", "Judo", "Tai Quan Dao"};
         TextView popUptextView = getView().findViewById(R.id.multiActivityDropdown);
         boolean[] selectedActivities = new boolean[activities.length];
         popUptextView.setKeyListener(null);
@@ -99,7 +99,6 @@ public class LargePostFragment extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // Initialize string builder
                         StringBuilder stringBuilder = new StringBuilder();
-                        // use for loop
                         for (int j = 0; j < activityList.size(); j++) {
                             // concat array value
                             stringBuilder.append(activities[activityList.get(j)]);
@@ -204,9 +203,6 @@ public class LargePostFragment extends Fragment {
         });
 
 
-
-//        SeekBar priceBar = getView().findViewById(R.id.priceBar);
-//        TextView price = getView().findViewById(R.id.price);
         priceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -236,7 +232,5 @@ public class LargePostFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-        // Multiple Activity Selection
     }
 }
