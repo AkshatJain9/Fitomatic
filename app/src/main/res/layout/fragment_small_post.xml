@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:max="100"
-        android:progress="12"
+        android:progress="0"
         android:thumbTint="@color/green"
         app:layout_constraintBottom_toBottomOf="@+id/maxPartSmall"
         app:layout_constraintEnd_toEndOf="@+id/createDescriptionSmall"

@@ -165,7 +165,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:max="100"
-        android:progress="12"
+        android:progress="0"
         android:thumbTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ageView"
