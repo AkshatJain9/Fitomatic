@@ -174,6 +174,7 @@ public class LargePostFragment extends Fragment {
                     }
 
                     ArrayList<String> followers = new ArrayList<>();
+                    ArrayList<String> liked = new ArrayList<>();
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
@@ -181,12 +182,12 @@ public class LargePostFragment extends Fragment {
                             ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
                                 Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,eventPrice, eventMaxPart,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,eventPrice, eventMaxPart,0, liked);
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
                                 posts.add("("+email+", "+posts.size()+")");
                                 db.collection("users").document(email).update("posts", posts);
                             } else {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), "", followers,eventPrice,eventMaxPart,0);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,eventPrice,eventMaxPart,0, liked);
                                 ArrayList<String> firstPost = new ArrayList<>();
                                 firstPost.add("("+email+", "+0+")");
                                 db.collection("posts").document("("+email+", "+0+")").set(post);
