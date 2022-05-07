@@ -170,7 +170,9 @@ public class LargePostFragment extends Fragment {
                     PostFactory newPost = new PostFactory();
 
                     ArrayList<String> activites = new ArrayList<>();
-                    activites.add("SampleActivity"); // Need to be able to select all the activities
+                    for (Integer elem: activityList) {
+                        activites.add(activities[elem]);
+                    }
 
                     ArrayList<String> followers = new ArrayList<>();
                     // Add post to database
