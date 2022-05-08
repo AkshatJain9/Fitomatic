@@ -44,37 +44,33 @@ public class ProfileCreation extends AppCompatActivity {
 
         SeekBar seek = findViewById(R.id.ageBar);
         TextView age = findViewById(R.id.ageView);
+        // Making it so Age Bar Changes displayed numerical value as User decides age
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                System.out.println(i);
-                age.setText("Age "+i);
+                age.setText("Age " + i);
             }
-
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
         Toast.makeText(ProfileCreation.this, "Add a Profile Picture", Toast.LENGTH_SHORT).show();
-
+        // Obtain email from ChooseInterests for PK indexing
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
     }
 
+    /**
+     * Stores all MetaData for the user in the Firestore Database
+     */
     public void createAccount(View v) {
         EditText fname = findViewById(R.id.firstName);
         EditText lname = findViewById(R.id.lastName);
         EditText bio = findViewById(R.id.bio);
         RadioGroup genders = findViewById(R.id.radioGroup);
         int selected = genders.getCheckedRadioButtonId();
-
+        // Ensuring Each Field is Actually Filled in
         if (selected == - 1) {
             Toast.makeText(ProfileCreation.this, "Please enter your Gender!", Toast.LENGTH_SHORT).show();
             return;
@@ -97,6 +93,7 @@ public class ProfileCreation extends AppCompatActivity {
         if (gender.length() == 0) {
             Toast.makeText(ProfileCreation.this, "Please enter your Gender!", Toast.LENGTH_SHORT).show();
         } else {
+            // Storing each individual attribute since PK was imported from previous Intent
             SeekBar seekBar = (SeekBar) findViewById(R.id.ageBar);
             db.collection("users").document(email).update("firstname", fname.getText().toString());
             db.collection("users").document(email).update("lastname", lname.getText().toString());
@@ -107,25 +104,20 @@ public class ProfileCreation extends AppCompatActivity {
             db.collection("users").document(email).update("blocked", new ArrayList<>());
             db.collection("users").document(email).update("following", new ArrayList<>());
 
+            // Storing the profile image in the separate database using the email as an index again
             if (mImageUri != null) {
-                StorageReference pfpReference = storRef.child(email); //+"."+getFileExtension(mImageUri) DO NOT DELETE for now
-                pfpReference.putFile(mImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        Toast.makeText(ProfileCreation.this, "Image Successfully Uploaded!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                StorageReference pfpReference = storRef.child(email);
+                pfpReference.putFile(mImageUri).addOnCompleteListener(task ->
+                        Toast.makeText(ProfileCreation.this, "Image Successfully Uploaded!", Toast.LENGTH_SHORT).show());
             }
 
             Toast.makeText(ProfileCreation.this, "Your Profile has been Created!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(ProfileCreation.this, hostActivity.class));
-
         }
-
     }
 
-    /*
-        Open System Image Selection Pane (Referenced as Button Clickable in XML Doc)
+    /**
+     * Opens System File Manager to select Profile Image
      */
     public void uploadProfilePic(View v) {
         Intent intent = new Intent();
@@ -135,8 +127,8 @@ public class ProfileCreation extends AppCompatActivity {
     }
 
 
-    /*
-        Preview image on page
+    /**
+     * Previews image on PFP page
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -147,11 +139,4 @@ public class ProfileCreation extends AppCompatActivity {
             pfp.setImageURI(mImageUri);
         }
     }
-
-    // DO NOT DELETE for now
-//    public String getFileExtension(Uri uri) {
-//        ContentResolver cR = getContentResolver();
-//        MimeTypeMap mime = MimeTypeMap.getSingleton();
-//        return mime.getExtensionFromMimeType(cR.getType(uri));
-//    }
 }

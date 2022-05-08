@@ -15,7 +15,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Registration extends AppCompatActivity {
-
     FirebaseAuth mAuth;
     FirebaseFirestore db;
 
@@ -31,6 +30,9 @@ public class Registration extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Checks fields and ensures only valid user objects are made and stored in the db
+     */
     public void RegisterUser(View v) {
         EditText email = findViewById(R.id.emailreg);
         EditText pass = findViewById(R.id.passreg);
@@ -52,6 +54,7 @@ public class Registration extends AppCompatActivity {
             return;
         }
         DocumentReference doc = db.collection("users").document(email.getText().toString());
+        // If input fields are valid, check if user has already been created, if not call createAccount()
         doc.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot fullDoc = task.getResult();
@@ -67,13 +70,18 @@ public class Registration extends AppCompatActivity {
         });
     }
 
+    /**
+     * Creates the user in Authentication Database, and gives feedback to the user
+     * @param email Email (PK) of the user being made
+     * @param password Password of User
+     */
     private void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         User user = new User(email);
                         db.collection("users").document(email).set(user);
-
+                        // Feedback to user
                         Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                         Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
                         toProfileCreation.putExtra("email", email);
