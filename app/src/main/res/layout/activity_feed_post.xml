@@ -3,8 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/textfield">
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/feed_background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textfield"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/individualTitleText"
@@ -41,7 +54,7 @@
         android:text="Follow"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/feed_background" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/likeChip"
@@ -49,9 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="@color/green"
         android:text=" Like "
         android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/feed_background"
         app:layout_constraintEnd_toStartOf="@+id/dislikeChip"
         app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
 
@@ -66,4 +81,5 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

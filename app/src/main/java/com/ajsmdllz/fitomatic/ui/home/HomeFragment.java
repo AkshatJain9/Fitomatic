@@ -90,7 +90,10 @@ public class HomeFragment extends Fragment {
                 for (QueryDocumentSnapshot d : task.getResult()) {
                     Post p;
                     Map<String, Object> map = d.getData();
-                    if (map.keySet().size() == 7) {
+
+                    System.out.println(" HELLOO OOO O O O OO O" + map.keySet().size());
+
+                    if (map.keySet().size() == 8) {
                         p = new SingleActivity(
                                 (String) map.get("author"),
                                 (String) map.get("id"),
