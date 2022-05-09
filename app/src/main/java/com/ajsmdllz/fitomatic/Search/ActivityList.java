@@ -3,6 +3,9 @@ package com.ajsmdllz.fitomatic.Search;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * List of available activities to check against
+ */
 public class ActivityList {
     public static ArrayList<String> ActivityList = new ArrayList<>(Arrays.asList(
             "running",

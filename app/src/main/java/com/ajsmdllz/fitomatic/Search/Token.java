@@ -1,5 +1,8 @@
 package com.ajsmdllz.fitomatic.Search;
 
+/**
+ * Tokens representing what a search term could be
+ */
 public class Token {
     // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
     public enum Type {NAME, ACTIVITY, EVENTDESC, SIZE, TIME}

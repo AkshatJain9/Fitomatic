@@ -62,6 +62,9 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 SearchTokenizer tokens = new SearchTokenizer(query);
                 Toast.makeText(getContext().getApplicationContext(), (CharSequence) tokens.tokenize(), Toast.LENGTH_SHORT).show();
+                // STORE SOME POSTS
+
+
                 return true;
             }
             @Override
@@ -123,7 +126,7 @@ public class HomeFragment extends Fragment {
                                 (String) map.get("title"),
                                 (String) map.get("description"),
                                 (String) map.get("date"),
-                                (ArrayList<String>) map.get("activity"),
+                                (ArrayList<String>) map.get("activities"),
                                 (String) map.get("location"),
                                 (ArrayList<String>) map.get("followers"),
                                 ((Long) map.get("price")).intValue(),

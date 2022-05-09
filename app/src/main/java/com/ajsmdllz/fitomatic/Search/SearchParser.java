@@ -1,8 +1,6 @@
 package com.ajsmdllz.fitomatic.Search;
 
 import com.ajsmdllz.fitomatic.Search.Expressions.*;
-
-
 import java.util.ArrayList;
 
 public class SearchParser {
@@ -16,7 +14,10 @@ public class SearchParser {
         index = 0;
     }
 
-
+    /**
+     * A Statement can either be Parsed to be just a User Expression or Just search fields
+     * @return <Statement> => userExp(<Fields>) | <Fields>
+     */
     public Exp parseStatement() {
         if (tokens.size() == 0) {
             return new EmptyExpression();
@@ -30,6 +31,10 @@ public class SearchParser {
         return parseFields();
     }
 
+    /**
+     * A Field refers to any attributes that pertain to the description or title of a post
+     * @return <Field> => PostQueryExp(<Fields>) | <Activities>
+     */
     public Exp parseFields() {
         if (index >= tokens.size()) {
             return new EmptyExpression();
@@ -44,6 +49,10 @@ public class SearchParser {
 
     }
 
+    /**
+     * Activities refer to any physical activity
+     * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
+     */
     public Exp parseActivites() {
         if (index >= tokens.size()) {
             return new EmptyExpression();
@@ -57,6 +66,10 @@ public class SearchParser {
         return parseTime();
     }
 
+    /**
+     * Time refers to any date-related query
+     * @return <Time> => TimeExp(<Size>) | <Size>
+     */
     public Exp parseTime() {
         if (index >= tokens.size()) {
             return new EmptyExpression();
@@ -68,14 +81,14 @@ public class SearchParser {
         return parseSize();
     }
 
+    /**
+     * Size refers to the scale of the event being searched
+     * @return <Size> => SizeExp(EmptyExp) | EmptyExp
+     */
     public Exp parseSize() {
         if (index >= tokens.size()) {
             return new EmptyExpression();
         }
-
         return new SizeExpression(tokens.get(index).getToken(), new EmptyExpression());
     }
-
-
-
 }

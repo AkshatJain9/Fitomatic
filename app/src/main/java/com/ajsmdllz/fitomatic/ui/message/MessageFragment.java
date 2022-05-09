@@ -45,7 +45,7 @@ public class MessageFragment extends Fragment {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot d : task.getResult()) {
                     Map<String, Object> map = d.getData();
-                    emails.add((String) map.get("email"));
+                    emails.add((String) map.get("firstname") + (String) map.get("lastname"));
                 }
                 // Remove current user's email
                 emails.remove(mAuth.getCurrentUser().getEmail());
@@ -59,6 +59,10 @@ public class MessageFragment extends Fragment {
                         ArrayList<String> userBlocked = (ArrayList<String>) userAttributes.get("blocked");
                         emails.removeAll(userBlocked);
                     }
+                    // GET USER OBJECT
+
+
+
                     emailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, emails);
                     ls.setAdapter(emailAdapter);
                 });

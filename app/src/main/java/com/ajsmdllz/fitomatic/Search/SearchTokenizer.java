@@ -2,6 +2,7 @@ package com.ajsmdllz.fitomatic.Search;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SearchTokenizer {
     private String search;
@@ -13,10 +14,14 @@ public class SearchTokenizer {
         this.searchElems = input.split("[ ,]+");
     }
 
+    /**
+     * Given the input search string in array form, segment them into a sequential Token Array
+     * @return ArrayList of Tokens
+     */
     public ArrayList<Token> tokenize() {
         ArrayList<Token> tokens = new ArrayList<>();
         for (String s : searchElems) {
-            if (ActivityList.ActivityList.contains(s)) {
+            if (ActivityList.ActivityList.contains(s.trim().toLowerCase())) {
                 tokens.add(new Token(s, Token.Type.ACTIVITY));
                 continue;
             }
