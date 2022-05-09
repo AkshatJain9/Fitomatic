@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,11 +56,15 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    public void logout(View v) {
-        mAuth.signOut();
-        Intent intent = new Intent(getContext(), MainActivity.class);
-        startActivity(intent);
+        Button logout = getView().findViewById(R.id.logoutChip);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -37,7 +37,6 @@
         android:layout_marginTop="27dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="@color/green"
-        android:onClick="logout"
         android:text="Logout"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

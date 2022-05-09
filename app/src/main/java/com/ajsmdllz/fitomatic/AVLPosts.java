@@ -1,12 +1,11 @@
 package com.ajsmdllz.fitomatic;
 
 import com.ajsmdllz.fitomatic.Posts.Post;
-import com.ajsmdllz.fitomatic.Posts.SingleActivity;
-import com.ajsmdllz.fitomatic.Registration.User;
-
-import java.sql.Array;
 import java.util.ArrayList;
 
+/**
+ * AVLPosts Stores Queried Posts from the Database in Tree form for Optimised Insertion and Selection
+ */
 public class AVLPosts {
     public Post post;
     public AVLPosts leftnode;
@@ -23,13 +22,11 @@ public class AVLPosts {
         this.post = null;
     }
 
-    public AVLPosts (Post p) {
-        this.post = p;
-        this.leftnode = new AVLPosts();
-        this.rightnode = new AVLPosts();
-    }
-
-
+    /**
+     * Insert Post in Accordance to AVL Tree Rules, the "Order" is determined by the number of likes
+     * @param p Post to be Inserted
+     * @return Tree with inserted Post
+     */
     public AVLPosts insert(Post p) {
         if (p == null) {
             return this;
@@ -84,47 +81,57 @@ public class AVLPosts {
         }
     }
 
-
+    /**
+     * Right Rotates the Tree around the current node
+     * @return AVL Tree having been rotated
+     */
     public AVLPosts rightRotate() {
         if (this.leftnode == null || this.leftnode.post == null) {
             return this;
         }
-
+        // Assigning new nodes
         AVLPosts newParent = this.leftnode;
         AVLPosts newLeftOfCurrent = newParent.rightnode;
         AVLPosts curr = this;
-
+        // Setting relevant children of new nodes
         curr.leftnode = newLeftOfCurrent;
         newParent.rightnode = curr;
+
         return newParent;
     }
 
+    /**
+     * Left Rotates the Tree around the current node
+     * @return AVL Tree having been rotated
+     */
     public AVLPosts leftRotate() {
         if (this.rightnode == null || this.rightnode.post == null){
             return this;
         }
-
+        // Assigning new nodes
         AVLPosts newParent = this.rightnode;
         AVLPosts newRightOfCurrent = newParent.leftnode;
         AVLPosts curr = this;
-
+        // Setting relevant children of new nodes
         curr.rightnode = newRightOfCurrent;
         newParent.leftnode = curr;
-
 
         return newParent;
     }
 
-
+    /**
+     * Counts Distance to Root Nodes for Height of Tree (Recursive)
+     * @return Height of Tree
+     */
     public int getHeight() {
-        // Check whether leftNode or rightNode are EmptyTree
+        // Getting leftNode Height
         int leftNodeHeight;
         if (this.leftnode == null) {
             leftNodeHeight = 0;
         } else {
             leftNodeHeight = 1 + this.leftnode.getHeight();
         }
-
+        // Getting rightNode Height
         int rightNodeHeight;
         if (this.rightnode == null) {
             rightNodeHeight = 0;
@@ -135,17 +142,20 @@ public class AVLPosts {
         return Math.max(leftNodeHeight, rightNodeHeight);
     }
 
-
+    /**
+     * Calculates Height of Subtrees to get Balance Factor
+     * @return Balance Factor of Tree at current node
+     */
     public int getBalanceFactor() {
         int leftHeight;
         int rightHeight;
-
+        // Left Height
         if (leftnode == null) {
             leftHeight = 0;
         } else {
             leftHeight = leftnode.getHeight();
         }
-
+        // Right Height
         if (rightnode == null) {
             rightHeight = 0;
         } else {
@@ -155,14 +165,17 @@ public class AVLPosts {
         return leftHeight - rightHeight;
     }
 
-
+    /**
+     * Iterates Over Tree From Most Likes posts to least-liked
+     * @return ArrayList of Posts from Most-Liked to Least-Liked
+     */
     public ArrayList<Post> iterator() {
         if (this.post == null) return new ArrayList<>();
         ArrayList<Post> out = new ArrayList<>();
-        out.add(this.post);
         if (rightnode != null) {
             out.addAll(this.rightnode.iterator());
         }
+        out.add(this.post);
         if (leftnode != null) {
             out.addAll(this.leftnode.iterator());
         }
