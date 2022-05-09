@@ -43,9 +43,9 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
-            case 0: return new IndividualViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_feed_post, parent, false));
-            case 1: return new SmallViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_feed_post, parent, false));
-            case 2: return new LargeViewHolder(LayoutInflater.from(context).inflate(R.layout.activity_feed_post, parent, false));
+            case 0: return new IndividualViewHolder(LayoutInflater.from(context).inflate(R.layout.feed_post_individual, parent, false));
+            case 1: return new SmallViewHolder(LayoutInflater.from(context).inflate(R.layout.feed_post_small_group, parent, false));
+            case 2: return new LargeViewHolder(LayoutInflater.from(context).inflate(R.layout.feed_post_large_group, parent, false));
             default:
                 try {
                     throw new Exception("No such type of post defined");
@@ -101,8 +101,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public SmallViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.individualTitleText);
-            description = itemView.findViewById(R.id.individualDescriptionText);
+            title = itemView.findViewById(R.id.smallTitleText);
+            description = itemView.findViewById(R.id.smallDescriptionText);
         }
 
         public TextView getTextViewTitle(){return title;}
@@ -115,8 +115,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public LargeViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.individualTitleText);
-            description = itemView.findViewById(R.id.individualDescriptionText);
+            title = itemView.findViewById(R.id.largeTitleText);
+            description = itemView.findViewById(R.id.largeDescriptionText);
         }
 
         public TextView getTextViewTitle(){return title;}
