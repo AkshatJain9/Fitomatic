@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="TextView"
+        android:text="Large Post Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/followChip"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +36,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="TextView"
+        android:text="Large Post Description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/largeTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/largeActivityChipGroup" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/followChip"
@@ -71,11 +71,44 @@
         app:layout_constraintTop_toBottomOf="@+id/largeDescriptionText" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/largeDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="large group"
-        app:layout_constraintEnd_toStartOf="@+id/likeChip"
-        app:layout_constraintTop_toBottomOf="@+id/largeDescriptionText" />
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="XX/XX/XX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
+
+    <TextView
+        android:id="@+id/largeLocationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Location"
+        app:layout_constraintEnd_toStartOf="@+id/largeDateText"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
+
+    <TextView
+        android:id="@+id/largePriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="$X.XXpp"
+        app:layout_constraintEnd_toStartOf="@+id/largeLocationText"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/largeActivityChipGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/largePriceText">
+
+    </com.google.android.material.chip.ChipGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

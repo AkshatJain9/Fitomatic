@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="TextView"
+        android:layout_marginEnd="10dp"
+        android:text="Small Post title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/followChip"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,19 +37,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="TextView"
+        android:text="small post description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/smallTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/smallActivityChip" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/followChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="@color/green"
         android:text="Follow"
@@ -71,12 +72,39 @@
         app:layout_constraintTop_toBottomOf="@+id/smallDescriptionText"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView5"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/smallActivityChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="small group"
-        app:layout_constraintEnd_toStartOf="@+id/likeChip"
-        app:layout_constraintTop_toBottomOf="@+id/smallDescriptionText" />
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/purple"
+        android:text="ACTIVITY"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smallTitleText" />
+
+    <TextView
+        android:id="@+id/smallDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="XX/XX/XX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
+
+    <TextView
+        android:id="@+id/smallLocationText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Location, Location"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/smallDateText"
+        app:layout_constraintStart_toEndOf="@+id/smallActivityChip"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

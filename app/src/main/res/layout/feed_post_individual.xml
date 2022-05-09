@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -24,43 +24,45 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:text="TextView"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Individual Post Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/followChip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/individualAuthorText" />
 
     <TextView
         android:id="@+id/individualDescriptionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="TextView"
+        android:text="Individual post description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/individualTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/individualActivityChip" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/followChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="@color/green"
         android:text="Follow"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/feed_background" />
+        app:layout_constraintTop_toBottomOf="@+id/individualAuthorText" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/likeChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/green"
@@ -71,11 +73,37 @@
         app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/individualAuthorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="individual"
-        app:layout_constraintEnd_toStartOf="@+id/likeChip"
-        app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Author Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/feed_background" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/individualActivityChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/purple"
+        android:text="Activity"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/individualTitleText" />
+
+    <TextView
+        android:id="@+id/individualDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="XX/XX/XX"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/followChip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
