@@ -94,8 +94,6 @@ public class HomeFragment extends Fragment {
                     Post p;
                     Map<String, Object> map = d.getData();
 
-                    System.out.println(" HELLOO OOO O O O OO O" + map.keySet().size());
-
                     if (map.keySet().size() == 8) {
                         p = new SingleActivity(
                                 (String) map.get("author"),

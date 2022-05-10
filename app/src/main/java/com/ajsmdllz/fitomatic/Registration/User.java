@@ -70,4 +70,7 @@ public class User {
         this.posts = posts;
     }
 
+    public String getFirstname() {return firstname;}
+
+    public String getLastname() {return lastname;}
 }
