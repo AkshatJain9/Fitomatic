@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.ajsmdllz.fitomatic.MainActivity;
 import com.ajsmdllz.fitomatic.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -78,13 +79,18 @@ public class ProfileFragment extends Fragment {
         // Display user profile picture
         ImageView profilePic = getView().findViewById(R.id.profilePicture);
         try {
-            final File profileFile = File.createTempFile(email, "jpeg");
+            final File profileFile = File.createTempFile(email, "jpg");
             StorageReference picture = mStorage.child("pfpImages/" + email);
             picture.getFile(profileFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap bits = BitmapFactory.decodeFile(profileFile.getAbsolutePath());
                     profilePic.setImageBitmap(bits);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "Profile Picture Not Found", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (IOException e) {
