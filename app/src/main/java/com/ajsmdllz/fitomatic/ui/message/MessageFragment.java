@@ -45,7 +45,7 @@ public class MessageFragment extends Fragment {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot d : task.getResult()) {
                     Map<String, Object> map = d.getData();
-                    emails.add((String) map.get("firstname") + (String) map.get("lastname"));
+                    emails.add((String) map.get("email"));
                 }
                 // Remove current user's email
                 emails.remove(mAuth.getCurrentUser().getEmail());
