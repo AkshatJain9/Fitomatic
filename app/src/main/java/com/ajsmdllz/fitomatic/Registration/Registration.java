@@ -14,6 +14,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
+
 public class Registration extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -53,13 +55,13 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
             return;
         }
-        DocumentReference doc = db.collection("users").document(email.getText().toString());
+        DocumentReference doc = db.collection("users").document(email.getText().toString().toLowerCase(Locale.ROOT));
         // If input fields are valid, check if user has already been created, if not call createAccount()
         doc.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot fullDoc = task.getResult();
                 if (!fullDoc.exists()) {
-                    createAccount(email.getText().toString(), pass.getText().toString());
+                    createAccount(email.getText().toString().toLowerCase(Locale.ROOT), pass.getText().toString());
                 } else {
                     Toast.makeText(Registration.this, "Account with this email already exists!", Toast.LENGTH_SHORT).show();
                 }

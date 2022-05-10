@@ -25,12 +25,15 @@ public class ProfileFragment extends Fragment {
     FirebaseFirestore db;
     private String email;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        // CREATE ARRAYLIST OF POSTS (Followed)
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

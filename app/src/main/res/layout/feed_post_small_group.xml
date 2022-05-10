@@ -20,7 +20,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/individualTitleText"
+        android:id="@+id/smallTitleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/individualDescriptionText"
+        android:id="@+id/smallDescriptionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/individualTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/smallTitleText" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/followChip"
@@ -61,25 +61,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/green"
         android:text=" Like "
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/feed_background"
-        app:layout_constraintEnd_toStartOf="@+id/dislikeChip"
-        app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/smallDescriptionText"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/dislikeChip"
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="15dp"
-        android:backgroundTint="@color/red"
-        android:text="Dislike"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
+        android:text="small group"
+        app:layout_constraintEnd_toStartOf="@+id/likeChip"
+        app:layout_constraintTop_toBottomOf="@+id/smallDescriptionText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
