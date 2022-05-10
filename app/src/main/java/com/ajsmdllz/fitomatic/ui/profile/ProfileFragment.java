@@ -97,7 +97,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Button logout = getView().findViewById(R.id.logoutChip);
+        ImageView logout = getView().findViewById(R.id.logoutIcon);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
