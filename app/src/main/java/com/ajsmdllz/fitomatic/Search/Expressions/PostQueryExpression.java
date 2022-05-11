@@ -9,8 +9,6 @@ public class PostQueryExpression extends Exp {
         this.furtherAttributes = e;
     }
 
-
-
     @Override
     public String show() {
         return "POST";
@@ -24,5 +22,13 @@ public class PostQueryExpression extends Exp {
     @Override
     public Exp getNext() {
         return furtherAttributes;
+    }
+
+    @Override
+    public String toString() {
+        return "PostQueryExpression{" +
+                "attribute='" + attribute + '\'' +
+                ", furtherAttributes=" + furtherAttributes +
+                '}';
     }
 }

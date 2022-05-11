@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SearchParser {
     SearchTokenizer tokenizer;
-    ArrayList<Token> tokens;
+    public ArrayList<Token> tokens;
     int index;
 
     public SearchParser (SearchTokenizer st) {

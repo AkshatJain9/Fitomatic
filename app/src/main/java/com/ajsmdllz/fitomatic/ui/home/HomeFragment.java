@@ -22,13 +22,25 @@ import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
+import com.ajsmdllz.fitomatic.Search.DBQuery;
+import com.ajsmdllz.fitomatic.Search.Expressions.Exp;
+import com.ajsmdllz.fitomatic.Search.SearchParser;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import org.w3c.dom.Document;
+
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 public class HomeFragment extends Fragment {
@@ -61,8 +73,74 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 SearchTokenizer tokens = new SearchTokenizer(query);
-                Toast.makeText(getContext().getApplicationContext(), (CharSequence) tokens.tokenize(), Toast.LENGTH_SHORT).show();
-                // STORE SOME POSTS
+                SearchParser parser = new SearchParser(tokens);
+                Exp e = parser.parseStatement();
+                ArrayList<Post> searchedPosts = new ArrayList<>();
+
+                DBQuery queryHandler = DBQuery.getInstance();
+//                CollectionReference colref = db.collection("posts");
+//                Query q = colref.whereNotEqualTo("author", null).whereEqualTo("title", "workers");
+                Query q = queryHandler.getQuery(e);
+                q.get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot snapshot = task.getResult();
+                        ArrayList<DocumentSnapshot> docs = (ArrayList<DocumentSnapshot>) snapshot.getDocuments();
+                        for (DocumentSnapshot d : docs) {
+                            Post p;
+                            Map<String, Object> map = d.getData();
+
+                            if (map.keySet().size() == 8) {
+                                p = new SingleActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (String) map.get("activity"),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            } else if (map.keySet().size() == 11) {
+                                p = new SmallGroupActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (String) map.get("activity"),
+                                        (String) map.get("location"),
+                                        (ArrayList<String>) map.get("followers"),
+                                        ((Long) map.get("maxParticipants")).intValue(),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            } else {
+                                p = new EventActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (ArrayList<String>) map.get("activities"),
+                                        (String) map.get("location"),
+                                        (ArrayList<String>) map.get("followers"),
+                                        ((Long) map.get("price")).intValue(),
+                                        ((Long) map.get("maxParticipants")).intValue(),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            }
+                            searchedPosts.add(p);
+                        }
+                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()), Toast.LENGTH_SHORT).show();
+                        System.out.println(searchedPosts.size());
+
+                        // "searchedPosts" IS NOW USABLE
+
+                    } else {
+                        Toast.makeText(getContext(), "QUERY FAILED", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                Toast.makeText(getContext(), q.toString(), Toast.LENGTH_SHORT).show();
+//                 STORE SOME POSTS
 
 
                 return true;

@@ -24,4 +24,12 @@ public class UserQueryExpression extends Exp {
     public Exp getNext() {
         return fields;
     }
+
+    @Override
+    public String toString() {
+        return "UserQueryExpression{" +
+                "user='" + user + '\'' +
+                ", fields=" + fields +
+                '}';
+    }
 }

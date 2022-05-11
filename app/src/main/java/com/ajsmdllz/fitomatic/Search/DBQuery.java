@@ -21,8 +21,9 @@ public class DBQuery {
 
     public Query getQuery(Exp e) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference posts = db.collection("posts");
         if (e.show().equals("EMPTY")) {
-            return null;
+            posts.whereNotEqualTo("auhtor", null);
         }
 
         if (e.show().equals("USER")) {
@@ -30,7 +31,6 @@ public class DBQuery {
             return users.whereEqualTo("firstname", e.getVal());
         }
 
-        CollectionReference posts = db.collection("posts");
         Query q = posts.whereNotEqualTo("auhtor", null);
         while (!e.show().equals("EMPTY")) {
             if (e.show().equals("ACTIVITY")) {

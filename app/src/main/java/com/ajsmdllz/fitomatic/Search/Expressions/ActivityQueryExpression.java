@@ -25,4 +25,12 @@ public class ActivityQueryExpression extends Exp{
     public Exp getNext() {
         return next;
     }
+
+    @Override
+    public String toString() {
+        return "ActivityQueryExpression{" +
+                "activity='" + activity + '\'' +
+                ", next=" + next +
+                '}';
+    }
 }

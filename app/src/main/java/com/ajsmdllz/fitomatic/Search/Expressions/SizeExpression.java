@@ -24,4 +24,12 @@ public class SizeExpression extends Exp {
     public Exp getNext() {
         return next;
     }
+
+    @Override
+    public String toString() {
+        return "SizeExpression{" +
+                "size='" + size + '\'' +
+                ", next=" + next +
+                '}';
+    }
 }

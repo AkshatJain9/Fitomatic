@@ -25,4 +25,12 @@ public class TimeExpression extends Exp {
     public Exp getNext() {
         return next;
     }
+
+    @Override
+    public String toString() {
+        return "TimeExpression{" +
+                "time='" + time + '\'' +
+                ", next=" + next +
+                '}';
+    }
 }

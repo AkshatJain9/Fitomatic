@@ -15,4 +15,9 @@ public class EmptyExpression extends Exp {
     public Exp getNext() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "EmptyExpression{}";
+    }
 }
