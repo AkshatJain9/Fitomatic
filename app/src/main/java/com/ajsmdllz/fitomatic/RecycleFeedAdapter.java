@@ -6,7 +6,9 @@ import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +19,10 @@ import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -84,6 +89,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         //Populate the Individual Posts
         if(dataset.get(position) instanceof SingleActivity) {
+            ((IndividualViewHolder)holder).id = dataset.get(position).getId();
             ((IndividualViewHolder)holder).getAuthor().setText(dataset.get(position).getAuthor());
             ((IndividualViewHolder)holder).getTextViewTitle().setText(dataset.get(position).getTitle());
             ((IndividualViewHolder)holder).getDescription().setText(dataset.get(position).getDescription());
@@ -92,6 +98,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             //Populate the Small Group Posts
         }else if (dataset.get(position) instanceof SmallGroupActivity){
+            ((SmallViewHolder)holder).id = dataset.get(position).getId();
             ((SmallViewHolder)holder).getTextViewTitle().setText(dataset.get(position).getTitle());
             ((SmallViewHolder)holder).getDescription().setText(dataset.get(position).getDescription());
             ((SmallViewHolder)holder).getDate().setText(dataset.get(position).getDate());
@@ -100,6 +107,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             //Populate the Large Group Posts
         } else if ((dataset.get(position) instanceof EventActivity)){
+            ((LargeViewHolder)holder).id = dataset.get(position).getId();
             ((LargeViewHolder)holder).getTextViewTitle().setText(dataset.get(position).getTitle());
             ((LargeViewHolder)holder).getDescription().setText(dataset.get(position).getDescription());
             ((LargeViewHolder)holder).getDate().setText(dataset.get(position).getDate());
@@ -138,6 +146,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      */
 
     public class IndividualViewHolder extends RecyclerView.ViewHolder{
+        String id;
+        FirebaseFirestore db;
         private final TextView author;
         private final TextView title;
         private final TextView description;
@@ -146,13 +156,59 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public IndividualViewHolder(@NonNull View itemView) {
             super(itemView);
+            db = FirebaseFirestore.getInstance();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
             author = itemView.findViewById(R.id.individualAuthorText);
             title = itemView.findViewById(R.id.individualTitleText);
             description = itemView.findViewById(R.id.individualDescriptionText);
             date = itemView.findViewById(R.id.individualDateText);
             activity = itemView.findViewById(R.id.individualActivityChip);
+            String email = mAuth.getCurrentUser().getEmail();
+            // Like button listener
+            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Make connection to database and get the post details
+                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+                            Long likes = task.getResult().getLong("likes");
+                            // If there is no posts or the user has not already liked the post update relevant fields
+                             if (liked != null && !liked.contains(email)) {
+                                liked.add(email);
+                                likes++;
+                                db.collection("posts").document(id).update("likes", likes);
+                                db.collection("posts").document(id).update("liked", liked);
+                            } else {
+                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else
+                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
+            // Follow button listener
+            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                            if (following != null && !following.contains(id)) {
+                                // Adding the post to the user's list of following posts
+                                following.add(id);
+                                db.collection("users").document(email).update("following", following);
+                            } else {
+                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            });
         }
 
+        public String getId() {return id;}
         public Chip getActivity() {return activity;}
         public TextView getDate() {return date;}
         public TextView getAuthor() {return author;}
@@ -161,6 +217,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public class SmallViewHolder extends RecyclerView.ViewHolder{
+        String id;
+        FirebaseFirestore db;
         private final TextView title;
         private final TextView description;
         private final TextView date;
@@ -170,13 +228,59 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public SmallViewHolder(@NonNull View itemView) {
             super(itemView);
+            db = FirebaseFirestore.getInstance();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
             title = itemView.findViewById(R.id.smallTitleText);
             description = itemView.findViewById(R.id.smallDescriptionText);
             date = itemView.findViewById(R.id.smallDateText);
             activity = itemView.findViewById(R.id.smallActivityChip);
             location = itemView.findViewById(R.id.smallLocationText);
+            String email = mAuth.getCurrentUser().getEmail();
+            // Like button listener
+            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Make connection to database and get the post details
+                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+                            Long likes = task.getResult().getLong("likes");
+                            // If there is no posts or the user has not already liked the post update relevant fields
+                            if (liked != null && !liked.contains(email)) {
+                                liked.add(email);
+                                likes++;
+                                db.collection("posts").document(id).update("likes", likes);
+                                db.collection("posts").document(id).update("liked", liked);
+                            } else {
+                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else
+                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
+            // Follow button listener
+            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                            if (following != null && !following.contains(id)) {
+                                // Adding the post to the user's list of following posts
+                                following.add(id);
+                                db.collection("users").document(email).update("following", following);
+                            } else {
+                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            });
         }
 
+        public String getId() {return id;}
         public TextView getLocation() {return location;}
         public Chip getActivity() {return activity;}
         public TextView getDate() {return date;}
@@ -185,6 +289,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public class LargeViewHolder extends RecyclerView.ViewHolder{
+        String id;
+        FirebaseFirestore db;
         private final TextView title;
         private final TextView description;
         private final TextView date;
@@ -194,14 +300,60 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         public LargeViewHolder(@NonNull View itemView) {
             super(itemView);
+            db = FirebaseFirestore.getInstance();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
             title = itemView.findViewById(R.id.largeTitleText);
             description = itemView.findViewById(R.id.largeDescriptionText);
             date = itemView.findViewById(R.id.largeDateText);
             activities = itemView.findViewById(R.id.largeActivityChipGroup);
             location = itemView.findViewById(R.id.largeLocationText);
             price = itemView.findViewById(R.id.largePriceText);
+            String email = mAuth.getCurrentUser().getEmail();
+            // Like button listener
+            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Make connection to database and get the post details
+                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+                            Long likes = task.getResult().getLong("likes");
+                            // If there is no posts or the user has not already liked the post update relevant fields
+                            if (liked != null && !liked.contains(email)) {
+                                liked.add(email);
+                                likes++;
+                                db.collection("posts").document(id).update("likes", likes);
+                                db.collection("posts").document(id).update("liked", liked);
+                            } else {
+                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                            }
+                        } else
+                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                    });
+                }
+            });
+
+            // Follow button listener
+            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                            if (following != null && !following.contains(id)) {
+                                // Adding the post to the user's list of following posts
+                                following.add(id);
+                                db.collection("users").document(email).update("following", following);
+                            } else {
+                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            });
         }
 
+        public String getId() {return id;}
         public TextView getPrice() {return price;}
         public ChipGroup getActivities() {return activities; }
         public TextView getDate() {return date;}
