@@ -22,6 +22,7 @@ public class DBQuery {
     public Query getQuery(Exp e) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference posts = db.collection("posts");
+
         if (e.show().equals("EMPTY")) {
             posts.whereNotEqualTo("auhtor", null);
         }

@@ -75,12 +75,13 @@ public class HomeFragment extends Fragment {
                 SearchTokenizer tokens = new SearchTokenizer(query);
                 SearchParser parser = new SearchParser(tokens);
                 Exp e = parser.parseStatement();
+                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 ArrayList<Post> searchedPosts = new ArrayList<>();
 
                 DBQuery queryHandler = DBQuery.getInstance();
-//                CollectionReference colref = db.collection("posts");
-//                Query q = colref.whereNotEqualTo("author", null).whereEqualTo("title", "workers");
-                Query q = queryHandler.getQuery(e);
+                CollectionReference colref = db.collection("posts");
+                Query q = colref.whereEqualTo("title", "indTitle");
+//                Query q = queryHandler.getQuery(e);
                 q.get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
@@ -129,7 +130,7 @@ public class HomeFragment extends Fragment {
                             }
                             searchedPosts.add(p);
                         }
-                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()), Toast.LENGTH_SHORT).show();
                         System.out.println(searchedPosts.size());
 
                         // "searchedPosts" IS NOW USABLE

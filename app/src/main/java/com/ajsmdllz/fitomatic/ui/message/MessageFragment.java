@@ -1,24 +1,33 @@
 package com.ajsmdllz.fitomatic.ui.message;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajsmdllz.fitomatic.P2PMessaging.Message;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MessageFragment extends Fragment {
 
@@ -33,77 +42,103 @@ public class MessageFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         //create the recycler view
-        RecyclerView messageRecycler = getView().findViewById(R.id.messageRecyclerView);
+//        RecyclerView messageRecycler = getView().findViewById(R.id.messageRecyclerView);
 
         //update users to contain the list of users
-        users = new ArrayList<>();
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users = new ArrayList<>();
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
+//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
 
         //add them to the adapter
-        MessageRecyclerAdapter adapter = new MessageRecyclerAdapter(getContext(), users);
-        messageRecycler.setAdapter(adapter);
-        messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
+//        MessageRecyclerAdapter adapter = new MessageRecyclerAdapter(getContext(), users);
+//        messageRecycler.setAdapter(adapter);
+//        messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        getUsers();
     }
 
-    //TODO
     /**
      * getUsers accesses the database and updates the users list to contain a list of all users or
      * potentially all users the current user follows
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void getUsers(){
-        db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        users = new ArrayList<>();
 
-//        CollectionReference userCollection = db.collection("users");
-//        // Queries all Emails for FireStore to Display
-//        userCollection.get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                for (QueryDocumentSnapshot d : task.getResult()) {
+        users = new ArrayList<>();
+        ArrayList<String> emails = new ArrayList<>();
+
+        CollectionReference userCollection = db.collection("users");
+        // Queries all Emails for FireStore to Display
+        userCollection.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot d : task.getResult()) {
+                    HashMap<String, Object> map = (HashMap<String, Object>) d.getData();
+                    User u;
+                    u = new User(
+                            (String) map.get("firstname"),
+                            (String) map.get("lastname"),
+                            (String) map.get("email"),
+                            (String) map.get("bio"),
+                            ((Long) map.get("age")).intValue(),
+                            (String) map.get("gender"),
+                            (ArrayList<String>) map.get("interests"),
+                            (ArrayList<String>) map.get("posts"),
+                            (ArrayList<String>) map.get("blocked"),
+                            (HashMap<String, ArrayList< Message >>) map.get("messages"),
+                            (ArrayList<String>) map.get("following")
+                    );
+                    users.add(u);
+
 //                    Map<String, Object> map = d.getData();
-//                    emails.add((String) map.get("firstname") + (String) map.get("lastname"));
-//                }
-//                // Remove current user's email
-//                emails.remove(mAuth.getCurrentUser().getEmail());
-//
-//                // Query all Blocked Users and Remove them too
-//                DocumentReference userDocument = userCollection.document(mAuth.getCurrentUser().getEmail());
-//                userDocument.get().addOnCompleteListener(task1 -> {
-//                    if (task1.isSuccessful()) {
-//                        DocumentSnapshot d = task1.getResult();
-//                        Map<String, Object> userAttributes = d.getData();
-//                        ArrayList<String> userBlocked = (ArrayList<String>) userAttributes.get("blocked");
-//                        emails.removeAll(userBlocked);
-//                    }
-//                    // GET USER OBJECT
-//
-//
-//
-//                    emailAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, emails);
-//                    ls.setAdapter(emailAdapter);
-//                });
-//            }
-//        });
-//
+//                    emails.add((String) map.get("email");
+                }
+
+                String curr = mAuth.getCurrentUser().getEmail();
+                users.removeIf(u -> u.getEmail().equals(curr));
+
+                // Remove current user's email
+                emails.remove(curr);
+
+                // Query all Blocked Users and Remove them too
+                DocumentReference userDocument = userCollection.document(curr);
+                userDocument.get().addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        DocumentSnapshot d = task1.getResult();
+                        Map<String, Object> userAttributes = d.getData();
+                        ArrayList<String> userBlocked = (ArrayList<String>) userAttributes.get("blocked");
+                        users.removeIf(u -> userBlocked.contains(u.getEmail()));
+                        emails.removeAll(userBlocked);
+
+                        RecyclerView messageRecycler = getView().findViewById(R.id.messageRecyclerView);
+                        MessageRecyclerAdapter adapter = new MessageRecyclerAdapter(getContext(), users);
+                        messageRecycler.setAdapter(adapter);
+                        messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                    }
+                    // GET USER OBJECT
+
+                });
+            }
+        });
+
 //        // When an email is clicked start a direct message activity with that email as the recipient
 //        ls.setOnItemClickListener((adapterView, view1, i, l) -> {
 //            String recip = emails.get(i);

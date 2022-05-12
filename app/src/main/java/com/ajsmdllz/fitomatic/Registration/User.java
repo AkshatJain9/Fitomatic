@@ -1,7 +1,6 @@
 package com.ajsmdllz.fitomatic.Registration;
 
 import com.ajsmdllz.fitomatic.P2PMessaging.Message;
-import com.ajsmdllz.fitomatic.Posts.Post;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class User {
     private int age;
     private String gender;
     private ArrayList<String> interests;
-    private ArrayList<Post> posts;
+    private ArrayList<String> posts;
     private ArrayList<String> blocked;
     private HashMap<String, ArrayList<Message>> messages;
     private ArrayList<String> following;
@@ -22,7 +21,7 @@ public class User {
     // Used for Database Casting, do not delete
     public User() {}
 
-    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<String> following) {
+    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<String> following) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -36,7 +35,7 @@ public class User {
         this.following = following;
     }
 
-    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts) {
+    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -64,13 +63,7 @@ public class User {
         this.email = email;
     }
 
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
 
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
-    }
 
     public String getFirstname() {return firstname;}
 
