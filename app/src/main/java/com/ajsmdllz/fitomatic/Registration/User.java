@@ -19,6 +19,8 @@ public class User {
     private HashMap<String, ArrayList<Message>> messages;
     private ArrayList<Post> following;
 
+    // Used for Database Casting, do not delete
+    public User() {}
 
     public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<Post> following) {
         this.firstname = firstname;
