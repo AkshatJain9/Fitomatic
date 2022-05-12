@@ -17,11 +17,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ajsmdllz.fitomatic.MainActivity;
+import com.ajsmdllz.fitomatic.Posts.EventActivity;
+import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.SingleActivity;
+import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -30,7 +40,9 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,6 +51,7 @@ public class ProfileFragment extends Fragment {
     FirebaseFirestore db;
     private String email;
     private StorageReference mStorage;
+    ArrayList<Post> followingPosts;
 
 
     @Override
@@ -48,8 +61,67 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
+        email = mAuth.getCurrentUser().getEmail();
 
-        // CREATE ARRAYLIST OF POSTS (Followed)
+        ArrayList<String> postIDs = new ArrayList<>();
+        db.collection("users").document(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                postIDs.addAll((ArrayList<String>) task.getResult().get("following"));
+
+                followingPosts = new ArrayList<>();
+
+                for (String id : postIDs) {
+                    db.collection("posts").document(id).get().addOnCompleteListener(task1 -> {
+                       if (task1.isSuccessful()) {
+                           DocumentSnapshot temp = task1.getResult();
+                           Map<String, Object> map = temp.getData();
+                           Post p;
+                           if (map.keySet().size() == 8) {
+                               p = new SingleActivity(
+                                       (String) map.get("author"),
+                                       (String) map.get("id"),
+                                       (String) map.get("title"),
+                                       (String) map.get("description"),
+                                       (String) map.get("date"),
+                                       (String) map.get("activity"),
+                                       ((Long) map.get("likes")).intValue(),
+                                       (ArrayList<String>) map.get("liked"));
+                           } else if (map.keySet().size() == 11) {
+                               p = new SmallGroupActivity(
+                                       (String) map.get("author"),
+                                       (String) map.get("id"),
+                                       (String) map.get("title"),
+                                       (String) map.get("description"),
+                                       (String) map.get("date"),
+                                       (String) map.get("activity"),
+                                       (String) map.get("location"),
+                                       (ArrayList<String>) map.get("followers"),
+                                       ((Long) map.get("maxParticipants")).intValue(),
+                                       ((Long) map.get("likes")).intValue(),
+                                       (ArrayList<String>) map.get("liked"));
+                           } else {
+                               p = new EventActivity(
+                                       (String) map.get("author"),
+                                       (String) map.get("id"),
+                                       (String) map.get("title"),
+                                       (String) map.get("description"),
+                                       (String) map.get("date"),
+                                       (ArrayList<String>) map.get("activities"),
+                                       (String) map.get("location"),
+                                       (ArrayList<String>) map.get("followers"),
+                                       ((Long) map.get("price")).intValue(),
+                                       ((Long) map.get("maxParticipants")).intValue(),
+                                       ((Long) map.get("likes")).intValue(),
+                                       (ArrayList<String>) map.get("liked"));
+                           }
+                           followingPosts.add(p);
+                       }
+                    });
+                }
+
+            }
+        });
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

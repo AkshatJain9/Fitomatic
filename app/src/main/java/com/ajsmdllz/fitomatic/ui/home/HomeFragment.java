@@ -140,7 +140,6 @@ public class HomeFragment extends Fragment {
                 });
 
                 Toast.makeText(getContext(), q.toString(), Toast.LENGTH_SHORT).show();
-//                 STORE SOME POSTS
 
 
                 return true;
