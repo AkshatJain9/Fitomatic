@@ -17,12 +17,12 @@ public class User {
     private ArrayList<Post> posts;
     private ArrayList<String> blocked;
     private HashMap<String, ArrayList<Message>> messages;
-    private ArrayList<Post> following;
+    private ArrayList<String> following;
 
     // Used for Database Casting, do not delete
     public User() {}
 
-    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<Post> following) {
+    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<Post> posts, ArrayList<String> blocked, HashMap<String, ArrayList<Message>> messages, ArrayList<String> following) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
