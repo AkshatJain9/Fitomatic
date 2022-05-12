@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.android.material.chip.Chip;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder> {
@@ -33,6 +37,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
 
     @Override
     public void onBindViewHolder(@NonNull MessageRecyclerAdapter.MessageViewHolder holder, int position) {
+        holder.email = dataset.get(position).getEmail();
         holder.getName().setText(dataset.get(position).getFirstname() + " " + dataset.get(position).getLastname());
     }
 
@@ -42,17 +47,41 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     }
 
     public class MessageViewHolder extends RecyclerView.ViewHolder{
+        FirebaseFirestore db;
+        String email;
         private final TextView name;
         private final Chip block;
 
-
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
+            db = FirebaseFirestore.getInstance();
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
             this.name = itemView.findViewById(R.id.messageName);
             this.block = itemView.findViewById(R.id.messageBlock);
+            // Block button handler
+            this.block.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    db.collection("users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            ArrayList<String> blocked = (ArrayList<String>) task.getResult().get("blocked");
+                            Toast.makeText(context, email, Toast.LENGTH_SHORT).show();
+                            if (blocked != null && !blocked.contains(email)) {
+                                // Adding the post to the user's list of blocked users
+                                blocked.add(email);
+                                db.collection("users").document(mAuth.getCurrentUser().getEmail()).update("blocked", blocked);
+                            } else {
+                                Toast.makeText(context, "Already blocked this user!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            });
+
         }
 
         public Chip getBlock() {return block;}
+        public String getEmail() {return email;}
         public TextView getName() {return name;}
     }
 }
