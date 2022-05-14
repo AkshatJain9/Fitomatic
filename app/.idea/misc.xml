@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/nav_bar_background.xml" value="0.1955" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield.xml" value="0.535" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_choose_interests.xml" value="0.33" />
+        <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_direct_message.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_fire_base.xml" value="0.46693840579710144" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_host.xml" value="0.5" />
         <entry key="..\:/Users/Leon/IdeaProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_login_success.xml" value="0.5541666666666667" />
@@ -74,5 +75,5 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK" />
 </project>

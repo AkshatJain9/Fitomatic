@@ -143,6 +143,7 @@ public class DirectMessage extends AppCompatActivity {
         DirectMessageRecyclerAdapter adapter = new DirectMessageRecyclerAdapter(this, messages);
         messageRecycler.setAdapter(adapter);
         messageRecycler.setLayoutManager(new LinearLayoutManager(this));
+        messageRecycler.scrollToPosition(adapter.getItemCount()-1);
     }
 
 }

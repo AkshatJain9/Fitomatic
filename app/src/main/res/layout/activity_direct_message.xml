@@ -8,22 +8,24 @@
 
     <EditText
         android:id="@+id/Message"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="Enter Message"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Send"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/Send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="30dp"
         android:onClick="SendMessage"
         android:text="Send Message"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +38,11 @@
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/Message"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:reverseLayout="true"
+        app:stackFromEnd="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
