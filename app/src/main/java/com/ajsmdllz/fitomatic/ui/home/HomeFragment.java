@@ -88,7 +88,6 @@ public class HomeFragment extends Fragment {
                         for (DocumentSnapshot d : docs) {
                             Post p;
                             Map<String, Object> map = d.getData();
-
                             if (map.keySet().size() == 8) {
                                 p = new SingleActivity(
                                         (String) map.get("author"),
@@ -129,15 +128,17 @@ public class HomeFragment extends Fragment {
                             }
                             searchedPosts.add(p);
                         }
-                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()) + " POSTS FOUND", Toast.LENGTH_SHORT).show();
-                        System.out.println(searchedPosts.size() + " POSTS FOUND");
-                        // "searchedPosts" IS NOW USABLE
-
+                        // add search posts to the feed
+                        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), searchedPosts);
+                        feed.setAdapter(recycleFeedAdapter);
+                        feed.setLayoutManager(new LinearLayoutManager(getContext()));
 
                     } else {
                         // If you get to this point, an attribute hasn't been indexed, please add on Firebase (or ask AJ)
                         Toast.makeText(getContext(), "QUERY FAILED", Toast.LENGTH_SHORT).show();
                     }
+                    // TRY FROM HERE
+
                 });
 
 
