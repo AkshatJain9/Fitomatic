@@ -60,6 +60,8 @@ public class PostFragment extends Fragment {
 
         View add = getView().findViewById(R.id.addPostIcon);
         add.setOnClickListener(listener);
+
+
     }
 
     public void populateUsersPosts() {
