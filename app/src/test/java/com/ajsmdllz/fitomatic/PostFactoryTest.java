@@ -24,7 +24,7 @@ public class PostFactoryTest {
     private final ArrayList<String> likedBy = new ArrayList<>(Arrays.asList("Deni, Leon, Akshat"));
 
     @Test
-    public void SingleActivityFactoryCreation() {
+    public void SingleActivityFactoryCreationTest() {
         PostFactory testFactory = new PostFactory();
         Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Post", "This is a single activity post test", "12/05/2022", singleActivity,"",followers,-1,0,3, likedBy);
 
@@ -34,7 +34,7 @@ public class PostFactoryTest {
     }
 
     @Test
-    public void SmallGroupActivityFactoryCreation() {
+    public void SmallGroupActivityFactoryCreationTest() {
         PostFactory testFactory = new PostFactory();
         Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Small Group Post", "This is a small group activity post test", "12/05/2022", singleActivity,"Canberra",followers,-1,5,3, likedBy);
 
@@ -44,7 +44,7 @@ public class PostFactoryTest {
     }
 
     @Test
-    public void EventActivityFactoryCreation() {
+    public void EventActivityFactoryCreationTest() {
         PostFactory testFactory = new PostFactory();
         Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Event Post", "This is an event activity post test", "13/05/2022", multiActivities,"Canberra",followers,10,20,3, likedBy);
 
@@ -54,7 +54,7 @@ public class PostFactoryTest {
     }
 
     @Test
-    public void EventActivityFactoryCreationEdgeCase() {
+    public void EventActivityFactoryCreationEdgeCaseTest() {
         // Edge case: if Event only has 1 activity -> Should still be of type Event and not Single
         PostFactory testFactory = new PostFactory();
         Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Event Post", "This is an event activity post test", "13/05/2022", singleActivity,"Canberra",followers,10,20,3, likedBy);
