@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.MainActivity;
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
@@ -22,6 +24,7 @@ import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
+import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,7 +54,7 @@ public class ProfileFragment extends Fragment {
     FirebaseFirestore db;
     private String email;
     private StorageReference mStorage;
-    ArrayList<Post> followingPosts;
+    ArrayList<Post> followingPosts = new ArrayList<>();
 
 
     @Override
@@ -62,66 +65,6 @@ public class ProfileFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
         email = mAuth.getCurrentUser().getEmail();
-
-        ArrayList<String> postIDs = new ArrayList<>();
-        db.collection("users").document(email).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                postIDs.addAll((ArrayList<String>) task.getResult().get("following"));
-
-                followingPosts = new ArrayList<>();
-
-                for (String id : postIDs) {
-                    db.collection("posts").document(id).get().addOnCompleteListener(task1 -> {
-                       if (task1.isSuccessful()) {
-                           DocumentSnapshot temp = task1.getResult();
-                           Map<String, Object> map = temp.getData();
-                           Post p;
-                           if (map.keySet().size() == 8) {
-                               p = new SingleActivity(
-                                       (String) map.get("author"),
-                                       (String) map.get("id"),
-                                       (String) map.get("title"),
-                                       (String) map.get("description"),
-                                       (String) map.get("date"),
-                                       (String) map.get("activity"),
-                                       ((Long) map.get("likes")).intValue(),
-                                       (ArrayList<String>) map.get("liked"));
-                           } else if (map.keySet().size() == 11) {
-                               p = new SmallGroupActivity(
-                                       (String) map.get("author"),
-                                       (String) map.get("id"),
-                                       (String) map.get("title"),
-                                       (String) map.get("description"),
-                                       (String) map.get("date"),
-                                       (String) map.get("activity"),
-                                       (String) map.get("location"),
-                                       (ArrayList<String>) map.get("followers"),
-                                       ((Long) map.get("maxParticipants")).intValue(),
-                                       ((Long) map.get("likes")).intValue(),
-                                       (ArrayList<String>) map.get("liked"));
-                           } else {
-                               p = new EventActivity(
-                                       (String) map.get("author"),
-                                       (String) map.get("id"),
-                                       (String) map.get("title"),
-                                       (String) map.get("description"),
-                                       (String) map.get("date"),
-                                       (ArrayList<String>) map.get("activities"),
-                                       (String) map.get("location"),
-                                       (ArrayList<String>) map.get("followers"),
-                                       ((Long) map.get("price")).intValue(),
-                                       ((Long) map.get("maxParticipants")).intValue(),
-                                       ((Long) map.get("likes")).intValue(),
-                                       (ArrayList<String>) map.get("liked"));
-                           }
-                           followingPosts.add(p);
-                       }
-                    });
-                }
-
-            }
-        });
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -148,7 +91,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // Display user profile picture
+        //Display user profile picture
         ImageView profilePic = getView().findViewById(R.id.profilePicture);
         try {
             final File profileFile = File.createTempFile(email, "jpg");
@@ -176,6 +119,75 @@ public class ProfileFragment extends Fragment {
                 mAuth.signOut();
                 Intent intent = new Intent(getContext(), MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //populate the following feed
+        populateFollowingFeed();
+    }
+
+    private void populateFollowingFeed(){
+        ArrayList<String> postIDs = new ArrayList<>();
+        db.collection("users").document(email).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                postIDs.addAll((ArrayList<String>) task.getResult().get("following"));
+
+                followingPosts = new ArrayList<>();
+
+                for (String id : postIDs) {
+                    db.collection("posts").document(id).get().addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()) {
+                            DocumentSnapshot temp = task1.getResult();
+                            Map<String, Object> map = temp.getData();
+                            Post p;
+                            if (map.keySet().size() == 8) {
+                                p = new SingleActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (String) map.get("activity"),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            } else if (map.keySet().size() == 11) {
+                                p = new SmallGroupActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (String) map.get("activity"),
+                                        (String) map.get("location"),
+                                        (ArrayList<String>) map.get("followers"),
+                                        ((Long) map.get("maxParticipants")).intValue(),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            } else {
+                                p = new EventActivity(
+                                        (String) map.get("author"),
+                                        (String) map.get("id"),
+                                        (String) map.get("title"),
+                                        (String) map.get("description"),
+                                        (String) map.get("date"),
+                                        (ArrayList<String>) map.get("activities"),
+                                        (String) map.get("location"),
+                                        (ArrayList<String>) map.get("followers"),
+                                        ((Long) map.get("price")).intValue(),
+                                        ((Long) map.get("maxParticipants")).intValue(),
+                                        ((Long) map.get("likes")).intValue(),
+                                        (ArrayList<String>) map.get("liked"));
+                            }
+                            followingPosts.add(p);
+                        }
+                        RecyclerView followingFeed = getView().findViewById(R.id.followingFeed);
+                        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), followingPosts);
+                        followingFeed.setAdapter(recycleFeedAdapter);
+                        followingFeed.setLayoutManager(new LinearLayoutManager(getContext()));
+                    });
+
+                }
+
             }
         });
     }

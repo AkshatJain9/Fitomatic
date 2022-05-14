@@ -1,6 +1,8 @@
 package com.ajsmdllz.fitomatic.ui.message;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 public class DirectMessage extends AppCompatActivity {
     FirebaseFirestore db;
-    ArrayList<String> messages;
+    ArrayList<Message> messages;
     ArrayAdapter<String> messageAdapter;
     String recip;
     String sender;
@@ -55,7 +57,7 @@ public class DirectMessage extends AppCompatActivity {
                 if (messageLog != null && messageLog.containsKey(recip) && messageLog.get(recip) != null) {
                     ArrayList<HashMap<String, String>> pasts = messageLog.get(recip);
                     for (HashMap<String, String> m : pasts) {
-                        messages.add(m.get("message"));
+                        messages.add(new Message(m.get("sender"), m.get("message")));
                     }
                 // If user has never messaged specific individual before, start storing messages (new session)
                 } else {
@@ -69,6 +71,7 @@ public class DirectMessage extends AppCompatActivity {
                         senderRef.update("messages", messageLog);
                     }
                 }
+                populateMessages();
             }
         });
 
@@ -93,11 +96,6 @@ public class DirectMessage extends AppCompatActivity {
                 }
             }
         });
-        // Setting the messages to be seen on the ListView
-        ListView messageView = findViewById(R.id.MessageBoard);
-        messageAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, messages);
-        messageView.setAdapter(messageAdapter);
-        messageView.setOnItemClickListener((adapterView, view, i, l) -> {});
     }
 
 
@@ -107,6 +105,7 @@ public class DirectMessage extends AppCompatActivity {
     public void SendMessage (View v) {
         EditText messagetoSend = findViewById(R.id.Message);
         String messagetoSendString = messagetoSend.getText().toString();
+
 
         DocumentReference currUser = db.collection("users").document(sender);
         currUser.get().addOnCompleteListener(task -> {
@@ -132,10 +131,17 @@ public class DirectMessage extends AppCompatActivity {
             }
         });
 
-        // Notifies Adapter to Update Screen
-        messages.add(messagetoSendString);
-        messageAdapter.notifyDataSetChanged();
+        messages.add(new Message(sender, messagetoSendString));
+        populateMessages();
         messagetoSend.setText("");
+    }
+
+    private void populateMessages(){
+        //Populate the recycler with the messages
+        RecyclerView messageRecycler = findViewById(R.id.directMessagesRecycler);
+        DirectMessageRecyclerAdapter adapter = new DirectMessageRecyclerAdapter(this, messages);
+        messageRecycler.setAdapter(adapter);
+        messageRecycler.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
