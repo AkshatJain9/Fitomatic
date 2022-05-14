@@ -15,14 +15,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PostFactoryTest {
-    private final ArrayList<String> activities = new ArrayList<>(Arrays.asList("Soccer"));
+    private final ArrayList<String> singleActivities = new ArrayList<>(Arrays.asList("Soccer"));
+    private final ArrayList<String> multiActivities = new ArrayList<>(Arrays.asList("Soccer", "AFL", "Golf"));
     private final ArrayList<String> followers = new ArrayList<>();
     private final ArrayList<String> likedBy = new ArrayList<>(Arrays.asList("Deni, Leon, Akshat"));
 
     @Test
     public void SingleActivityFactoryCreation() {
         PostFactory testFactory = new PostFactory();
-        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Post", "This is a single activity post test", "12/05/2022", activities,"",followers,0,0,3, likedBy);
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Post", "This is a single activity post test", "12/05/2022", singleActivities,"",followers,-1,0,3, likedBy);
 
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
@@ -32,7 +33,17 @@ public class PostFactoryTest {
     @Test
     public void SmallGroupActivityFactoryCreation() {
         PostFactory testFactory = new PostFactory();
-        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Small Group Post", "This is a small group activity post test", "12/05/2022", activities,"Canberra",followers,0,5,3, likedBy);
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Small Group Post", "This is a small group activity post test", "12/05/2022", singleActivities,"Canberra",followers,-1,5,3, likedBy);
+
+        assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SingleActivity);
+        assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
+        assertTrue("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
+    }
+
+    @Test
+    public void EventActivityFactoryCreation() {
+        PostFactory testFactory = new PostFactory();
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Event Post", "This is an event activity post test", "13/05/2022", multiActivities,"Canberra",followers,10,20,3, likedBy);
 
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SingleActivity);
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
