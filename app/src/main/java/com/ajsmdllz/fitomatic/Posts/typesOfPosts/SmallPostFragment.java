@@ -109,7 +109,7 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
                             ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
                                 Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,0, maxPart,0, liked);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1, maxPart,0, liked);
                                 // Adding the post to Firebase
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
                                 posts.add("("+email+", "+posts.size()+")");
@@ -117,7 +117,7 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
                                 db.collection("users").document(email).update("posts", posts);
                             } else {
                                 // This is the user's first post so it needs to be setup slightly differently to any other, i.e. posts size is 0
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,0,maxPart,0, liked);
+                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1,maxPart,0, liked);
                                 ArrayList<String> firstPost = new ArrayList<>();
                                 firstPost.add("("+email+", "+0+")");
                                 db.collection("posts").document("("+email+", "+0+")").set(post);
