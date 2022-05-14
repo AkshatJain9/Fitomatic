@@ -59,6 +59,8 @@ public class DirectMessage extends AppCompatActivity {
                     for (HashMap<String, String> m : pasts) {
                         messages.add(new Message(m.get("sender"), m.get("message")));
                     }
+
+                    populateMessages();
                 // If user has never messaged specific individual before, start storing messages (new session)
                 } else {
                     // If Sender hasn't messaged ANYONE before, then a new hasmap object needs to be made
@@ -71,7 +73,6 @@ public class DirectMessage extends AppCompatActivity {
                         senderRef.update("messages", messageLog);
                     }
                 }
-                populateMessages();
             }
         });
 
