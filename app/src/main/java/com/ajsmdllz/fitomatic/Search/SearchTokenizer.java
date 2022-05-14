@@ -1,8 +1,6 @@
 package com.ajsmdllz.fitomatic.Search;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class SearchTokenizer {
     private String search;
@@ -21,15 +19,17 @@ public class SearchTokenizer {
     public ArrayList<Token> tokenize() {
         ArrayList<Token> tokens = new ArrayList<>();
         for (String s : searchElems) {
-            if (ActivityList.ActivityList.contains(s.trim().toLowerCase())) {
+            if (KeywordList.ActivityList.contains(s.trim().toLowerCase())) {
                 tokens.add(new Token(s, Token.Type.ACTIVITY));
                 continue;
             }
-            if (s.equals("small") || s.equals("one-on-one") || s.equals("large") || Character.isDigit(s.charAt(0))) {
-                tokens.add(new Token(s, Token.Type.SIZE));
+
+            if (KeywordList.TimeList.contains(s.trim().toLowerCase()) || s.contains("/") || s.contains(":")) {
+                tokens.add(new Token(s, Token.Type.TIME));
                 continue;
             }
-            if (s.charAt(0) >= 'A' && s.charAt(0) <= 'Z') {
+
+            if (s.contains("@")) {
                 tokens.add(new Token(s, Token.Type.NAME));
             } else {
                 tokens.add(new Token(s, Token.Type.EVENTDESC));

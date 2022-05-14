@@ -1,6 +1,6 @@
 # Team Ace
 
-## Team Meeting 1 - Week 7 - 18/4/2022 (11:00am - 11:55am)
+## Team Meeting 3 - Week 7 - 18/4/2022 (11:00am - 11:55am)
 **Absent:**
 none
 **Scribe:**

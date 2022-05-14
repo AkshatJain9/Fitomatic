@@ -6,7 +6,7 @@ import java.util.Arrays;
 /**
  * List of available activities to check against
  */
-public class ActivityList {
+public class KeywordList {
     public static ArrayList<String> ActivityList = new ArrayList<>(Arrays.asList(
             "running",
             "walking",
@@ -32,4 +32,19 @@ public class ActivityList {
             "judo",
             "taiquandao"
     ));
+
+    public static ArrayList<String> TimeList = new ArrayList<>(Arrays.asList(
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday",
+            "evening",
+            "morning",
+            "afternoon"
+    ));
+
+
 }
