@@ -28,6 +28,25 @@ public class SearchParser {
             return new UserQueryExpression(tokens.get(0).getToken(), parseFields());
         }
 
+        return parseActivites();
+    }
+
+    /**
+     * Activities refer to any physical activity
+     * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
+     */
+    public Exp parseActivites() {
+        if (index >= tokens.size()) {
+            return new EmptyExpression();
+        }
+
+        if (tokens.get(index).getType() == Token.Type.ACTIVITY) {
+            index++;
+            String s = tokens.get(index - 1).getToken().toLowerCase();
+            String input = s.substring(0,1).toUpperCase() + s.substring(1);
+            return new ActivityQueryExpression(input, parseActivites());
+        }
+
         return parseFields();
     }
 
@@ -42,33 +61,16 @@ public class SearchParser {
 
         if (tokens.get(index).getType() == Token.Type.EVENTDESC) {
             index++;
-            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseFields());
-        }
-
-        return parseActivites();
-
-    }
-
-    /**
-     * Activities refer to any physical activity
-     * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
-     */
-    public Exp parseActivites() {
-        if (index >= tokens.size()) {
-            return new EmptyExpression();
-        }
-
-        if (tokens.get(index).getType() == Token.Type.ACTIVITY) {
-            index++;
-            return new ActivityQueryExpression(tokens.get(index - 1).getToken(), parseActivites());
+            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseTime());
         }
 
         return parseTime();
+
     }
 
     /**
      * Time refers to any date-related query
-     * @return <Time> => TimeExp(<Size>) | <Size>
+     * @return <Time> => TimeExp(<Size>) | <Empty>
      */
     public Exp parseTime() {
         if (index >= tokens.size()) {
@@ -76,19 +78,19 @@ public class SearchParser {
         }
         if (tokens.get(index).getType() == Token.Type.TIME) {
             index++;
-            return new TimeExpression(tokens.get(index - 1).getToken(), parseSize());
+            return new TimeExpression(tokens.get(index - 1).getToken(), parseTime());
         }
-        return parseSize();
+        return new EmptyExpression();
     }
 
-    /**
-     * Size refers to the scale of the event being searched
-     * @return <Size> => SizeExp(EmptyExp) | EmptyExp
-     */
-    public Exp parseSize() {
-        if (index >= tokens.size()) {
-            return new EmptyExpression();
-        }
-        return new SizeExpression(tokens.get(index).getToken(), new EmptyExpression());
-    }
+//    /**
+//     * Size refers to the scale of the event being searched
+//     * @return <Size> => SizeExp(EmptyExp) | EmptyExp
+//     */
+//    public Exp parseSize() {
+//        if (index >= tokens.size()) {
+//            return new EmptyExpression();
+//        }
+//        return new SizeExpression(tokens.get(index).getToken(), new EmptyExpression());
+//    }
 }

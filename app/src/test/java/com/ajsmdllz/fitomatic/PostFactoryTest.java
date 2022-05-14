@@ -15,14 +15,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PostFactoryTest {
-    private final ArrayList<String> activities = new ArrayList<>(Arrays.asList("Soccer"));
+    /**
+     * With these tests the PostFactory achieves 100% Branch Coverage
+     */
+    private final ArrayList<String> singleActivity = new ArrayList<>(Arrays.asList("Soccer"));
+    private final ArrayList<String> multiActivities = new ArrayList<>(Arrays.asList("Soccer", "AFL", "Golf"));
     private final ArrayList<String> followers = new ArrayList<>();
     private final ArrayList<String> likedBy = new ArrayList<>(Arrays.asList("Deni, Leon, Akshat"));
 
     @Test
-    public void SingleActivityFactoryCreation() {
+    public void SingleActivityFactoryCreationTest() {
         PostFactory testFactory = new PostFactory();
-        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Post", "This is a single activity post test", "12/05/2022", activities,"",followers,0,0,3, likedBy);
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Post", "This is a single activity post test", "12/05/2022", singleActivity,"",followers,-1,0,3, likedBy);
 
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
         assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
@@ -30,12 +34,33 @@ public class PostFactoryTest {
     }
 
     @Test
-    public void SmallGroupActivityFactoryCreation() {
+    public void SmallGroupActivityFactoryCreationTest() {
         PostFactory testFactory = new PostFactory();
-        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Small Group Post", "This is a small group activity post test", "12/05/2022", activities,"Canberra",followers,0,5,3, likedBy);
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Small Group Post", "This is a small group activity post test", "12/05/2022", singleActivity,"Canberra",followers,-1,5,3, likedBy);
 
-        assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SingleActivity);
-        assertFalse("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
-        assertTrue("Post should be of type SingleActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
+        assertFalse("Post should be of type SmallGroup but got "+testPost.getClass(),testPost instanceof SingleActivity);
+        assertFalse("Post should be of type SmallGroup but got "+testPost.getClass(),testPost instanceof EventActivity);
+        assertTrue("Post should be of type SmallGroup but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
+    }
+
+    @Test
+    public void EventActivityFactoryCreationTest() {
+        PostFactory testFactory = new PostFactory();
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Event Post", "This is an event activity post test", "13/05/2022", multiActivities,"Canberra",followers,10,20,3, likedBy);
+
+        assertFalse("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof SingleActivity);
+        assertFalse("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
+        assertTrue("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
+    }
+
+    @Test
+    public void EventActivityFactoryCreationEdgeCaseTest() {
+        // Edge case: if Event only has 1 activity -> Should still be of type Event and not Single
+        PostFactory testFactory = new PostFactory();
+        Post testPost = testFactory.createPost("Shaazaan","shzn123", "Test Event Post", "This is an event activity post test", "13/05/2022", singleActivity,"Canberra",followers,10,20,3, likedBy);
+
+        assertFalse("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof SingleActivity);
+        assertFalse("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof SmallGroupActivity);
+        assertTrue("Post should be of type EventActivity but got "+testPost.getClass(),testPost instanceof EventActivity);
     }
 }

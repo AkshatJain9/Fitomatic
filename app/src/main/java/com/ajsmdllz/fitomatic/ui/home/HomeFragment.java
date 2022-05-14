@@ -75,14 +75,13 @@ public class HomeFragment extends Fragment {
                 SearchTokenizer tokens = new SearchTokenizer(query);
                 SearchParser parser = new SearchParser(tokens);
                 Exp e = parser.parseStatement();
-                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show(); Keep for now
                 ArrayList<Post> searchedPosts = new ArrayList<>();
-
+                System.out.println(e);
                 DBQuery queryHandler = DBQuery.getInstance();
                 CollectionReference colref = db.collection("posts");
-                Query q = colref.whereEqualTo("title", "indTitle");
-//                Query q = queryHandler.getQuery(e);
-                q.get().addOnCompleteListener(task -> {
+                Query r = queryHandler.getQuery(e, colref);
+                r.get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
                         ArrayList<DocumentSnapshot> docs = (ArrayList<DocumentSnapshot>) snapshot.getDocuments();
@@ -130,17 +129,17 @@ public class HomeFragment extends Fragment {
                             }
                             searchedPosts.add(p);
                         }
-//                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()), Toast.LENGTH_SHORT).show();
-                        System.out.println(searchedPosts.size());
-
+                        Toast.makeText(getContext(), String.valueOf(searchedPosts.size()) + " POSTS FOUND", Toast.LENGTH_SHORT).show();
+                        System.out.println(searchedPosts.size() + " POSTS FOUND");
                         // "searchedPosts" IS NOW USABLE
 
+
                     } else {
+                        // If you get to this point, an attribute hasn't been indexed, please add on Firebase (or ask AJ)
                         Toast.makeText(getContext(), "QUERY FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                Toast.makeText(getContext(), q.toString(), Toast.LENGTH_SHORT).show();
 
 
                 return true;

@@ -1,6 +1,7 @@
 package com.ajsmdllz.fitomatic.ui.message;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ajsmdllz.fitomatic.P2PMessaging.Message;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.android.material.chip.Chip;
@@ -75,6 +77,16 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
                             }
                         }
                     });
+                }
+            });
+
+            this.name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String recip = email;
+                    Intent intent = new Intent(context, DirectMessage.class);
+                    intent.putExtra("recip", recip);
+                    context.startActivity(intent);
                 }
             });
 
