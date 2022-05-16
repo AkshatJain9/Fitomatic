@@ -34,7 +34,7 @@ The following is a report template to help your team successfully provide all th
 | u7283219 | Shaazaan Majeed | [role] |
 | u7284728 | Deni Lanc | [role] |
 | u7284072 | Akshat Jain | [role] |
-| u7281588 | Leon Zolati | [role] |
+| u7285188 | Leon Zolati | [role] |
 
 ## Summary of Individual Contributions
 
