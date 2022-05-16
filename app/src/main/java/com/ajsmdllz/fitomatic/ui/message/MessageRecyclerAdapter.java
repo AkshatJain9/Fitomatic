@@ -41,6 +41,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     public void onBindViewHolder(@NonNull MessageRecyclerAdapter.MessageViewHolder holder, int position) {
         holder.email = dataset.get(position).getEmail();
         holder.getName().setText(dataset.get(position).getFirstname() + " " + dataset.get(position).getLastname());
+
     }
 
     @Override

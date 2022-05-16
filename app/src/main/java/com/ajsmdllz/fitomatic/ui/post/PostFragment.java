@@ -61,6 +61,7 @@ public class PostFragment extends Fragment {
         View add = getView().findViewById(R.id.addPostIcon);
         add.setOnClickListener(listener);
 
+        populateUsersPosts();
 
     }
 
@@ -68,7 +69,9 @@ public class PostFragment extends Fragment {
         ArrayList<String> postIDs = new ArrayList<>();
         db.collection("users").document(email).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                postIDs.addAll((ArrayList<String>) task.getResult().get("posts"));
+                if (task.getResult().get("posts") != null) {
+                    postIDs.addAll((ArrayList<String>) task.getResult().get("posts"));
+                }
 
                 userPosts = new ArrayList<>();
 
@@ -118,10 +121,10 @@ public class PostFragment extends Fragment {
                             }
                             userPosts.add(p);
                         }
-//                        RecyclerView followingFeed = getView().findViewById(R.id.followingFeed);
-//                        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), userPosts);
-//                        followingFeed.setAdapter(recycleFeedAdapter);
-//                        followingFeed.setLayoutManager(new LinearLayoutManager(getContext()));
+                        RecyclerView postRecycler = getView().findViewById(R.id.myPostRecycler);
+                        RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), userPosts);
+                        postRecycler.setAdapter(recycleFeedAdapter);
+                        postRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
                     });
 
                 }

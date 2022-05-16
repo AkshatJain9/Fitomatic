@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| u7283219 | Shaazaan Majeed | [role] |
+| u7284728 | Deni Lanc | [role] |
+| u7284072 | Akshat Jain | [role] |
+| u7281588 | Leon Zolati | [role] |
 
 ## Summary of Individual Contributions
 
@@ -209,6 +209,13 @@ The following is a report template to help your team successfully provide all th
 *Here is an example:*
 
 - *[Team Meeting 1](./MeetingTemplate.md)*
+- *[Team Meeting 0](./meetings/Meeting0_6-4-22.md)*
+- *[Team Meeting 1](./meetings/Meeting1_9-4-22.md)*
+- *[Team Meeting 2](./meetings/Meeting2_13-4-22.md)*
+- *[Team Meeting 3](./meetings/Meeting3_18-4-22.md)*
+- *[Team Meeting 4](./meetings/Meeting4_23-4-22.md)*
+- *[Team Meeting 5](./meetings/Meeting5_1-5-22.md)*
+- *[Team Meeting 6](./meetings/Meeting6_5-5-22.md)*
 - ...
 
 *Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*

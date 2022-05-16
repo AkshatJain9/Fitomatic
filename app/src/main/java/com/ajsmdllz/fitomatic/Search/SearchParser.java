@@ -59,7 +59,7 @@ public class SearchParser {
             return new EmptyExpression();
         }
 
-        if (tokens.get(index).getType() == Token.Type.EVENTDESC) {
+        if (tokens.get(index).getType() == Token.Type.TITLE) {
             index++;
             return new PostQueryExpression(tokens.get(index - 1).getToken(), parseTime());
         }

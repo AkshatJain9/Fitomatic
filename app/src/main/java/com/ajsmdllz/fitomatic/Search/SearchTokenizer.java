@@ -32,7 +32,7 @@ public class SearchTokenizer {
             if (s.contains("@")) {
                 tokens.add(new Token(s, Token.Type.NAME));
             } else {
-                tokens.add(new Token(s, Token.Type.EVENTDESC));
+                tokens.add(new Token(s, Token.Type.TITLE));
             }
         }
         return tokens;

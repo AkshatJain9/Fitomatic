@@ -107,34 +107,35 @@ public class DirectMessage extends AppCompatActivity {
         EditText messagetoSend = findViewById(R.id.Message);
         String messagetoSendString = messagetoSend.getText().toString();
 
+        if(!messagetoSendString.equals("")) {
+            DocumentReference currUser = db.collection("users").document(sender);
+            currUser.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Because a DB side session is made when Activity is made, we can just update field in Database
+                    DocumentSnapshot d = task.getResult();
+                    Map<String, Object> mLog = d.getData();
+                    HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
+                    messageLog.get(recip).add(new Message(sender, messagetoSendString));
+                    currUser.update("messages", messageLog);
+                }
+            });
 
-        DocumentReference currUser = db.collection("users").document(sender);
-        currUser.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Because a DB side session is made when Activity is made, we can just update field in Database
-                DocumentSnapshot d = task.getResult();
-                Map<String, Object> mLog = d.getData();
-                HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
-                messageLog.get(recip).add(new Message(sender, messagetoSendString));
-                currUser.update("messages", messageLog);
-            }
-        });
+            DocumentReference sendUser = db.collection("users").document(recip);
+            sendUser.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Because a DB side session is made when Activity is made, we can just update field in Database
+                    DocumentSnapshot d = task.getResult();
+                    Map<String, Object> mLog = d.getData();
+                    HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
+                    messageLog.get(sender).add(new Message(sender, messagetoSendString));
+                    sendUser.update("messages", messageLog);
+                }
+            });
 
-        DocumentReference sendUser = db.collection("users").document(recip);
-        sendUser.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Because a DB side session is made when Activity is made, we can just update field in Database
-                DocumentSnapshot d = task.getResult();
-                Map<String, Object> mLog = d.getData();
-                HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
-                messageLog.get(sender).add(new Message(sender, messagetoSendString));
-                sendUser.update("messages", messageLog);
-            }
-        });
-
-        messages.add(new Message(sender, messagetoSendString));
-        populateMessages();
-        messagetoSend.setText("");
+            messages.add(new Message(sender, messagetoSendString));
+            populateMessages();
+            messagetoSend.setText("");
+        }
     }
 
     private void populateMessages(){
@@ -143,6 +144,7 @@ public class DirectMessage extends AppCompatActivity {
         DirectMessageRecyclerAdapter adapter = new DirectMessageRecyclerAdapter(this, messages);
         messageRecycler.setAdapter(adapter);
         messageRecycler.setLayoutManager(new LinearLayoutManager(this));
+        messageRecycler.scrollToPosition(adapter.getItemCount()-1);
     }
 
 }
