@@ -206,9 +206,8 @@ Find a neutral member for the given issue to delegate a discussion between the d
 
 ## Team Meetings
 
-*Here is an example:*
+Meeting Minutes
 
-- *[Team Meeting 1](./MeetingTemplate.md)*
 - *[Team Meeting 0](./meetings/Meeting0_6-4-22.md)*
 - *[Team Meeting 1](./meetings/Meeting1_9-4-22.md)*
 - *[Team Meeting 2](./meetings/Meeting2_13-4-22.md)*
@@ -216,6 +215,6 @@ Find a neutral member for the given issue to delegate a discussion between the d
 - *[Team Meeting 4](./meetings/Meeting4_23-4-22.md)*
 - *[Team Meeting 5](./meetings/Meeting5_1-5-22.md)*
 - *[Team Meeting 6](./meetings/Meeting6_5-5-22.md)*
-- ...
+- *[Team Meeting 7](./meetings/Meeting7_16-5-22.md)*
 
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
+Note: smaller informal meetings were also conducted however these did not require minutes to be taken.
