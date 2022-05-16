@@ -61,7 +61,7 @@ The following is a report template to help your team successfully provide all th
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+Find a neutral member for the given issue to delegate a discussion between the disagreeing parties. Construct a positives and negatives list outlining the key aspects of the conflict, combine ideas where possible and make compromises to solve the issue. However, if the conflict still continues hear all sides of the argument in full and hold a final group vote where a solution will be made based on assignment specifications and mutual compromise.
 
 ## Application Description
 
