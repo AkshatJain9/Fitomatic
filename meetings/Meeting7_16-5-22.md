@@ -1,30 +1,31 @@
 # Team Ace
 
-## Team Meeting 6 - Teaching Break Week 1 - 13/4/2022 (11:00am - 12:30pm)
+## Team Meeting 7 - Week 11 - 16/5/2022 (6:30pm - 7:30pm)
 **Absent:**
 none
 **Scribe:**
-AJ
+Shaazaan
 
 ## Agreed Procedure
-Discuss week 10 timeline
+Discuss final app and submission specifcations
 
 ## Agenda Items
 | Number | Item |
 | :--- | ---: |
-| 1 | Discuss Post Classes and Mechanisms in More Depth |
-| 2 | Discuss P2P Progress |
-| 3 | Update Project timeline  |
+| 1 | Make sure final app complete |
+| 2 | Delegate final tasks to members |
+| 3 | Update Project timeline |
 
 ## Meeting Minutes
-- Hard Tasks: Peer-to-Peer Messaging
-- Medium Tasks: Firebase Storage, Blocking Messages, Following Posts
-- Easy Tasks: Micro_Interactions, Firebase Authentication, User Profile Containing Media, Visualise Progress of a Process
+- Outline all assignment aspects which need to be completed
+- Delegate all remaining tasks to members
+- Go through assignment checklist, ticking off completed tasks
+- Completed admin documentaion, overwiew of app
+- Think about the special feature (refactoring)
 
 ## TODO Items
 | Task | Assignee |
 | :--- | ---: |
-| Start Working on P2P and Finish Tree | Akshat |
-| Continue working on UI implementation and fix post-registration page | Leon |
-| Finish specifically facotry method for creating posts and work with Leon to implement in UI | Deni & Shaazaan |
-
+| Report Sections | Akshat, Shaazaan, Deni |
+| Continue working on UI implementation and fix small bugs | Leon |
+| Make slide show for presentation | Leon |

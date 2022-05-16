@@ -1,6 +1,6 @@
 # Team Ace
 
-## Team Meeting 2 - Teaching Break Week 1 - 13/4/2022 (11:00am - 12:30pm)
+## Team Meeting 2 - Teaching Break Week 2 - 13/4/2022 (11:00am - 12:30pm)
 **Absent:**
 none
 **Scribe:**
