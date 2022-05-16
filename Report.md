@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| u7283219 | Shaazaan Majeed | [role] |
-| u7284728 | Deni Lanc | [role] |
-| u7284072 | Akshat Jain | [role] |
-| u7285188 | Leon Zolati | [role] |
+| u7283219 | Shaazaan Majeed | Backend Logic, Software Testing |
+| u7284728 | Deni Lanc | Backend Logic, Software Testing |
+| u7284072 | Akshat Jain | Data management (Firebase) |
+| u7285188 | Leon Zolati | UI Design + Development |
 
 ## Summary of Individual Contributions
 
