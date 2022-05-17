@@ -12,7 +12,7 @@ public class SearchParser {
 
     /**
      * A Statement can either be Parsed to be just a User Expression or Just search fields
-     * @return <Statement> => userExp(<Fields>) | <Fields>
+     * @return <Statement> => userExp(user, <Activities>) | <Activities>
      */
     public Exp parseStatement() {
         if (tokenizer.getNext().getType() == Token.Type.NAME) {
@@ -26,7 +26,7 @@ public class SearchParser {
 
     /**
      * Activities refer to any physical activity
-     * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
+     * @return <Activity> => ActivityQueryExp(activity, <Activity>) | <Fields>
      */
     public Exp parseActivites() {
         if (!tokenizer.hasNext()) {
@@ -58,7 +58,7 @@ public class SearchParser {
 
     /**
      * A Field refers to any attributes that pertain to the description or title of a post
-     * @return <Field> => PostQueryExp(<Fields>) | <Activities>
+     * @return <Field> => PostQueryExp(title, <Fields>) | <Time>
      */
     public Exp parseFields() {
         if (!tokenizer.hasNext()) {
@@ -85,7 +85,7 @@ public class SearchParser {
 
     /**
      * Time refers to any date-related query
-     * @return <Time> => TimeExp(<Size>) | <Empty>
+     * @return <Time> => TimeExp(date, <Empty>) | <Empty>
      */
     public Exp parseTime() {
         if (!tokenizer.hasNext()) {
