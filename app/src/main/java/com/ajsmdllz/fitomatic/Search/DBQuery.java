@@ -42,7 +42,16 @@ public class DBQuery {
             }
 
             if (e.show().equals("POST")) {
-                q = q.whereEqualTo("title", e.getVal());
+                StringBuilder postTitle = new StringBuilder();
+                while (e.show().equals("POST")) {
+                    postTitle.append(e.getVal());
+                    e = e.getNext();
+                    if (e.show().equals("POST")) {
+                        postTitle.append(" ");
+                    }
+                }
+                System.out.println(postTitle);
+                q = q.whereEqualTo("title", postTitle.toString());
             }
 
             if (e.show().equals("TIME")) {

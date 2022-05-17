@@ -19,13 +19,9 @@ public class SearchParser {
      * @return <Statement> => userExp(<Fields>) | <Fields>
      */
     public Exp parseStatement() {
-        if (tokens.size() == 0) {
-            return new EmptyExpression();
-        }
-
         if (tokens.get(0).getType() == Token.Type.NAME) {
             index++;
-            return new UserQueryExpression(tokens.get(0).getToken(), parseFields());
+            return new UserQueryExpression(tokens.get(0).getToken(), parseActivites());
         }
 
         return parseActivites();
@@ -61,7 +57,7 @@ public class SearchParser {
 
         if (tokens.get(index).getType() == Token.Type.TITLE) {
             index++;
-            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseTime());
+            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseFields());
         }
 
         return parseTime();
@@ -83,14 +79,5 @@ public class SearchParser {
         return new EmptyExpression();
     }
 
-//    /**
-//     * Size refers to the scale of the event being searched
-//     * @return <Size> => SizeExp(EmptyExp) | EmptyExp
-//     */
-//    public Exp parseSize() {
-//        if (index >= tokens.size()) {
-//            return new EmptyExpression();
-//        }
-//        return new SizeExpression(tokens.get(index).getToken(), new EmptyExpression());
-//    }
+
 }

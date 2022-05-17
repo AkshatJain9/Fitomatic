@@ -1,6 +1,7 @@
 package com.ajsmdllz.fitomatic.Posts;
 
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -22,7 +23,52 @@ public class PostFactory {
     }
 
 
-    public Post createPostfromDB(DocumentSnapshot d) {
+    public Post createPostfromDBSnapshot(DocumentSnapshot d) {
+        Post p;
+        Map<String, Object> map = d.getData();
+        if (map == null) return null;
+        if (map.keySet().size() == 8) {
+            p = new SingleActivity(
+                    (String) map.get("author"),
+                    (String) map.get("id"),
+                    (String) map.get("title"),
+                    (String) map.get("description"),
+                    (String) map.get("date"),
+                    (String) map.get("activity"),
+                    ((Long) map.get("likes")).intValue(),
+                    (ArrayList<String>) map.get("liked"));
+        } else if (map.keySet().size() == 11) {
+            p = new SmallGroupActivity(
+                    (String) map.get("author"),
+                    (String) map.get("id"),
+                    (String) map.get("title"),
+                    (String) map.get("description"),
+                    (String) map.get("date"),
+                    (String) map.get("activity"),
+                    (String) map.get("location"),
+                    (ArrayList<String>) map.get("followers"),
+                    ((Long) map.get("maxParticipants")).intValue(),
+                    ((Long) map.get("likes")).intValue(),
+                    (ArrayList<String>) map.get("liked"));
+        } else {
+            p = new EventActivity(
+                    (String) map.get("author"),
+                    (String) map.get("id"),
+                    (String) map.get("title"),
+                    (String) map.get("description"),
+                    (String) map.get("date"),
+                    (ArrayList<String>) map.get("activities"),
+                    (String) map.get("location"),
+                    (ArrayList<String>) map.get("followers"),
+                    ((Long) map.get("price")).intValue(),
+                    ((Long) map.get("maxParticipants")).intValue(),
+                    ((Long) map.get("likes")).intValue(),
+                    (ArrayList<String>) map.get("liked"));
+        }
+        return p;
+    }
+
+    public Post createPostfromDBQuerySnapshot(QueryDocumentSnapshot d) {
         Post p;
         Map<String, Object> map = d.getData();
         if (map.keySet().size() == 8) {
