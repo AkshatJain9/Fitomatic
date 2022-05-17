@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -163,7 +164,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             description = itemView.findViewById(R.id.individualDescriptionText);
             date = itemView.findViewById(R.id.individualDateText);
             activity = itemView.findViewById(R.id.individualActivityChip);
-            String email = mAuth.getCurrentUser().getEmail();
+            String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -235,7 +236,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             date = itemView.findViewById(R.id.smallDateText);
             activity = itemView.findViewById(R.id.smallActivityChip);
             location = itemView.findViewById(R.id.smallLocationText);
-            String email = mAuth.getCurrentUser().getEmail();
+            String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -308,7 +309,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             activities = itemView.findViewById(R.id.largeActivityChipGroup);
             location = itemView.findViewById(R.id.largeLocationText);
             price = itemView.findViewById(R.id.largePriceText);
-            String email = mAuth.getCurrentUser().getEmail();
+            String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override

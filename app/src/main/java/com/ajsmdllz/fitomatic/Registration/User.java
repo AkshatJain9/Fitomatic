@@ -35,6 +35,7 @@ public class User {
         this.following = following;
     }
 
+    // FIXME - Do we need this? as well as lot's of stuff above ^^
     public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts) {
         this.firstname = firstname;
         this.lastname = lastname;

@@ -5,6 +5,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class PostFactory {
     /**
@@ -35,7 +36,7 @@ public class PostFactory {
                     (String) map.get("description"),
                     (String) map.get("date"),
                     (String) map.get("activity"),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         } else if (map.keySet().size() == 11) {
             p = new SmallGroupActivity(
@@ -47,8 +48,8 @@ public class PostFactory {
                     (String) map.get("activity"),
                     (String) map.get("location"),
                     (ArrayList<String>) map.get("followers"),
-                    ((Long) map.get("maxParticipants")).intValue(),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("maxParticipants"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         } else {
             p = new EventActivity(
@@ -60,9 +61,9 @@ public class PostFactory {
                     (ArrayList<String>) map.get("activities"),
                     (String) map.get("location"),
                     (ArrayList<String>) map.get("followers"),
-                    ((Long) map.get("price")).intValue(),
-                    ((Long) map.get("maxParticipants")).intValue(),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("price"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("maxParticipants"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         }
         return p;
@@ -79,7 +80,7 @@ public class PostFactory {
                     (String) map.get("description"),
                     (String) map.get("date"),
                     (String) map.get("activity"),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         } else if (map.keySet().size() == 11) {
             p = new SmallGroupActivity(
@@ -91,8 +92,8 @@ public class PostFactory {
                     (String) map.get("activity"),
                     (String) map.get("location"),
                     (ArrayList<String>) map.get("followers"),
-                    ((Long) map.get("maxParticipants")).intValue(),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("maxParticipants"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         } else {
             p = new EventActivity(
@@ -104,9 +105,9 @@ public class PostFactory {
                     (ArrayList<String>) map.get("activities"),
                     (String) map.get("location"),
                     (ArrayList<String>) map.get("followers"),
-                    ((Long) map.get("price")).intValue(),
-                    ((Long) map.get("maxParticipants")).intValue(),
-                    ((Long) map.get("likes")).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("price"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("maxParticipants"))).intValue(),
+                    ((Long) Objects.requireNonNull(map.get("likes"))).intValue(),
                     (ArrayList<String>) map.get("liked"));
         }
         return p;

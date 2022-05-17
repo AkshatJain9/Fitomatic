@@ -25,20 +25,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class PostFragment extends Fragment {
     ArrayList<Post> userPosts = new ArrayList<>();
     FirebaseFirestore db;
-    private FirebaseAuth mAuth;
     private String email;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        email = mAuth.getCurrentUser().getEmail();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,7 +58,7 @@ public class PostFragment extends Fragment {
             }
         };
 
-        View add = getView().findViewById(R.id.addPostIcon);
+        View add = requireView().findViewById(R.id.addPostIcon);
         add.setOnClickListener(listener);
 
         populateUsersPosts();
@@ -121,7 +121,7 @@ public class PostFragment extends Fragment {
                             }
                             userPosts.add(p);
                         }
-                        RecyclerView postRecycler = getView().findViewById(R.id.myPostRecycler);
+                        RecyclerView postRecycler = requireView().findViewById(R.id.myPostRecycler);
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), userPosts);
                         postRecycler.setAdapter(recycleFeedAdapter);
                         postRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

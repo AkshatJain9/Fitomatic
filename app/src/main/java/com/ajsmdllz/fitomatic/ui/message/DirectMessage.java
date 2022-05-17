@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class DirectMessage extends AppCompatActivity {
     FirebaseFirestore db;
@@ -41,7 +42,7 @@ public class DirectMessage extends AppCompatActivity {
         recip = intent.getStringExtra("recip");
         // Getting the sender's email for indexing
         mAuth = FirebaseAuth.getInstance();
-        sender = mAuth.getCurrentUser().getEmail();
+        sender = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
 
         messages = new ArrayList<>();
 
