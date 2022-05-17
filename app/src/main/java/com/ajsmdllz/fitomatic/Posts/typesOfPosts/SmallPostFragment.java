@@ -30,6 +30,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class SmallPostFragment extends Fragment implements AdapterView.OnItemSelectedListener{
@@ -55,43 +56,38 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
         super.onViewCreated(view, savedInstanceState);
 
         // Dropdown of activities
-        Spinner activity = getView().findViewById(R.id.spinnerActivitySmall);
+        Spinner activity = requireView().findViewById(R.id.spinnerActivitySmall);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.activities, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         activity.setAdapter(adapter);
         // Sets listener for the spinner
         activity.setOnItemSelectedListener(this);
 
-        EditText title = getView().findViewById(R.id.createTitleSmall);
-        EditText description = getView().findViewById(R.id.createDescriptionSmall);
-        EditText date = getView().findViewById(R.id.createDateSmall);
-        EditText location = getView().findViewById(R.id.createLocationSmall);
-        email = mAuth.getCurrentUser().getEmail();
+        EditText title = requireView().findViewById(R.id.createTitleSmall);
+        EditText description = requireView().findViewById(R.id.createDescriptionSmall);
+        EditText date = requireView().findViewById(R.id.createDateSmall);
+        EditText location = requireView().findViewById(R.id.createLocationSmall);
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
 
         // Create Post Button
-        Button createPost = getView().findViewById(R.id.createPostSmall);
+        Button createPost = requireView().findViewById(R.id.createPostSmall);
         createPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // This is where checks will be needed and then creating the post will happen
                 if (title.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (description.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-                    return;
                 }else if (date.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (location.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (maxPart == 0) {
                     Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
-                    return;
                 }else {
                     // Successfully create a post
-                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
 
                     // Using post factory to create different posts
                     PostFactory newPost = new PostFactory();
@@ -105,10 +101,8 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            Toast.makeText(getContext(), db.collection("users").document(email).get().toString(), Toast.LENGTH_SHORT).show();
-                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
+                            ArrayList<String> posts = task.getResult().get("posts", ArrayList.class);
                             if (posts != null) {
-                                Toast.makeText(getContext(), posts.size()+"", Toast.LENGTH_SHORT).show();
                                 Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1, maxPart,0, liked);
                                 // Adding the post to Firebase
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
@@ -133,8 +127,8 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
             }
         });
 
-        SeekBar maxPartBar = getView().findViewById(R.id.maxPartBarSmall);
-        TextView maxPartSmall = getView().findViewById(R.id.maxPartSmall);
+        SeekBar maxPartBar = requireView().findViewById(R.id.maxPartBarSmall);
+        TextView maxPartSmall = requireView().findViewById(R.id.maxPartSmall);
         maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {

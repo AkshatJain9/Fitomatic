@@ -1,5 +1,7 @@
 package com.ajsmdllz.fitomatic.Search.Expressions;
 
+import androidx.annotation.NonNull;
+
 public class EmptyExpression extends Exp {
     @Override
     public String show() {
@@ -16,6 +18,7 @@ public class EmptyExpression extends Exp {
         return null;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "EmptyExpression{}";

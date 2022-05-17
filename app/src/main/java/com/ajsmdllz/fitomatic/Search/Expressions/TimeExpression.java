@@ -1,6 +1,8 @@
 package com.ajsmdllz.fitomatic.Search.Expressions;
 
 
+import androidx.annotation.NonNull;
+
 public class TimeExpression extends Exp {
     String time;
     Exp next;
@@ -26,6 +28,7 @@ public class TimeExpression extends Exp {
         return next;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "TimeExpression{" +

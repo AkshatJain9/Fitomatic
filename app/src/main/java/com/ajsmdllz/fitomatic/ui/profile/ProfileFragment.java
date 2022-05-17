@@ -66,7 +66,7 @@ public class ProfileFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mStorage = FirebaseStorage.getInstance().getReference();
-        email = mAuth.getCurrentUser().getEmail();
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -77,16 +77,14 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView nameText = getView().findViewById(R.id.nameText);
-        email = mAuth.getCurrentUser().getEmail();
+        TextView nameText = requireView().findViewById(R.id.nameText);
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
 
         // Getting user's info from Firebase
         db.collection("users").document(email).get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 String firstName = task.getResult().getString("firstname");
                 String lastName = task.getResult().getString("lastname");
-//                String bio = task.getResult().getString("bio");
-
                 nameText.setText(firstName+" "+lastName);
             } else {
                 Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
@@ -94,7 +92,7 @@ public class ProfileFragment extends Fragment {
         });
 
         //Display user profile picture
-        ImageView profilePic = getView().findViewById(R.id.profilePicture);
+        ImageView profilePic = requireView().findViewById(R.id.profilePicture);
         try {
             final File profileFile = File.createTempFile(email, "jpg");
             StorageReference picture = mStorage.child("pfpImages/" + email);
@@ -114,7 +112,7 @@ public class ProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-        ImageView logout = getView().findViewById(R.id.logoutIcon);
+        ImageView logout = requireView().findViewById(R.id.logoutIcon);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,53 +139,14 @@ public class ProfileFragment extends Fragment {
                         if (task1.isSuccessful()) {
                             DocumentSnapshot temp = task1.getResult();
                             PostFactory fact = new PostFactory();
-//                            Map<String, Object> map = temp.getData();
+                            // Uses PostFactory to create correct post
                             Post p = fact.createPostfromDBSnapshot(temp);
-
-//                            if (map.keySet().size() == 8) {
-//                                p = new SingleActivity(
-//                                        (String) map.get("author"),
-//                                        (String) map.get("id"),
-//                                        (String) map.get("title"),
-//                                        (String) map.get("description"),
-//                                        (String) map.get("date"),
-//                                        (String) map.get("activity"),
-//                                        ((Long) map.get("likes")).intValue(),
-//                                        (ArrayList<String>) map.get("liked"));
-//                            } else if (map.keySet().size() == 11) {
-//                                p = new SmallGroupActivity(
-//                                        (String) map.get("author"),
-//                                        (String) map.get("id"),
-//                                        (String) map.get("title"),
-//                                        (String) map.get("description"),
-//                                        (String) map.get("date"),
-//                                        (String) map.get("activity"),
-//                                        (String) map.get("location"),
-//                                        (ArrayList<String>) map.get("followers"),
-//                                        ((Long) map.get("maxParticipants")).intValue(),
-//                                        ((Long) map.get("likes")).intValue(),
-//                                        (ArrayList<String>) map.get("liked"));
-//                            } else {
-//                                p = new EventActivity(
-//                                        (String) map.get("author"),
-//                                        (String) map.get("id"),
-//                                        (String) map.get("title"),
-//                                        (String) map.get("description"),
-//                                        (String) map.get("date"),
-//                                        (ArrayList<String>) map.get("activities"),
-//                                        (String) map.get("location"),
-//                                        (ArrayList<String>) map.get("followers"),
-//                                        ((Long) map.get("price")).intValue(),
-//                                        ((Long) map.get("maxParticipants")).intValue(),
-//                                        ((Long) map.get("likes")).intValue(),
-//                                        (ArrayList<String>) map.get("liked"));
-//                            }
                             if (p != null) {
                                 followingPosts.add(p);
                             }
 
                         }
-                        RecyclerView followingFeed = getView().findViewById(R.id.followingFeed);
+                        RecyclerView followingFeed = requireView().findViewById(R.id.followingFeed);
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), followingPosts);
                         followingFeed.setAdapter(recycleFeedAdapter);
                         followingFeed.setLayoutManager(new LinearLayoutManager(getContext()));

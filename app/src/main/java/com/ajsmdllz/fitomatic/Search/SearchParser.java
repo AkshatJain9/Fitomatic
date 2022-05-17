@@ -18,41 +18,27 @@ public class SearchParser {
         if (tokenizer.getNext().getType() == Token.Type.NAME) {
             String user = tokenizer.getNext().getToken();
             tokenizer.toNext();
-            return new UserQueryExpression(user, parseActivites());
+            return new UserQueryExpression(user, parseActivities());
         }
 
-        return parseActivites();
+        return parseActivities();
     }
 
     /**
      * Activities refer to any physical activity
      * @return <Activity> => ActivityQueryExp(activity, <Activity>) | <Fields>
      */
-    public Exp parseActivites() {
+    public Exp parseActivities() {
         if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
 
         if (tokenizer.getNext().getType() == Token.Type.ACTIVITY) {
-            tokenizer.toNext();
             String s = tokenizer.getNext().getToken().toLowerCase();
             String input = s.substring(0,1).toUpperCase() + s.substring(1);
-            return new ActivityQueryExpression(input, parseActivites());
+            tokenizer.toNext();
+            return new ActivityQueryExpression(input, parseActivities());
         }
-
-
-
-//        if (index >= tokens.size()) {
-//            return new EmptyExpression();
-//        }
-//
-//        if (tokens.get(index).getType() == Token.Type.ACTIVITY) {
-//            index++;
-//            String s = tokens.get(index - 1).getToken().toLowerCase();
-//            String input = s.substring(0,1).toUpperCase() + s.substring(1);
-//            return new ActivityQueryExpression(input, parseActivites());
-//        }
-
         return parseFields();
     }
 
@@ -70,17 +56,7 @@ public class SearchParser {
             tokenizer.toNext();
             return new PostQueryExpression(field, parseFields());
         }
-//        if (index >= tokens.size()) {
-//            return new EmptyExpression();
-//        }
-//
-//        if (tokens.get(index).getType() == Token.Type.TITLE) {
-//            index++;
-//            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseFields());
-//        }
-
         return parseTime();
-
     }
 
     /**
@@ -91,18 +67,12 @@ public class SearchParser {
         if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
+
         if (tokenizer.getNext().getType() == Token.Type.TIME) {
             String time = tokenizer.getNext().getToken();
             tokenizer.toNext();
             return new TimeExpression(time, new EmptyExpression());
         }
-//        if (index >= tokens.size()) {
-//            return new EmptyExpression();
-//        }
-//        if (tokens.get(index).getType() == Token.Type.TIME) {
-//            index++;
-//            return new TimeExpression(tokens.get(index - 1).getToken(), parseTime());
-//        }
         return new EmptyExpression();
     }
 

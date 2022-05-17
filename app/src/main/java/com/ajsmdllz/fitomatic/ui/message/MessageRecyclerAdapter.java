@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder> {
     private final Context context;
@@ -65,14 +66,14 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
             this.block.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    db.collection("users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(task -> {
+                    db.collection("users").document(Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> blocked = (ArrayList<String>) task.getResult().get("blocked");
+                            ArrayList<String> blocked = task.getResult().get("blocked", ArrayList.class);
                             Toast.makeText(context, email, Toast.LENGTH_SHORT).show();
                             if (blocked != null && !blocked.contains(email)) {
                                 // Adding the post to the user's list of blocked users
                                 blocked.add(email);
-                                db.collection("users").document(mAuth.getCurrentUser().getEmail()).update("blocked", blocked);
+                                db.collection("users").document(Objects.requireNonNull(mAuth.getCurrentUser().getEmail())).update("blocked", blocked);
                             } else {
                                 Toast.makeText(context, "Already blocked this user!", Toast.LENGTH_SHORT).show();
                             }

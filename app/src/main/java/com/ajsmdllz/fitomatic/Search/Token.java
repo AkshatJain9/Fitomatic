@@ -1,5 +1,7 @@
 package com.ajsmdllz.fitomatic.Search;
 
+import androidx.annotation.NonNull;
+
 /**
  * Tokens representing what a search term could be
  */
@@ -32,6 +34,7 @@ public class Token {
         return this.type == ((Token) other).getType() && this.token.equals(((Token) other).getToken()); // Values are the same.
     }
 
+    @NonNull
     @Override
     public String toString() {
         return type + "( " + type + ": " + token + ")";
