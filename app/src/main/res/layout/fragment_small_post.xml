@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/purple"
     tools:context=".Posts.typesOfPosts.SmallPostFragment">
 
     <SeekBar
@@ -22,7 +23,7 @@
         android:id="@+id/maxPartSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="30dp"
         android:text="Max Participants 0"
         app:layout_constraintBottom_toTopOf="@+id/createPostSmall"
         app:layout_constraintStart_toStartOf="@+id/createDescriptionSmall" />
@@ -34,6 +35,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
@@ -63,6 +65,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/textfield"
         android:ems="10"
         android:hint="Date"
@@ -100,7 +103,7 @@
         android:ems="10"
         android:gravity="top"
         android:hint="Description of Post"
-        android:inputType="textEmailAddress"
+        android:inputType="text|textMultiLine"
         android:minHeight="200dp"
         android:padding="15dp"
         android:singleLine="false"
