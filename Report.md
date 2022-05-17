@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| u7283219 | Shaazaan Majeed | [role] |
-| u7284728 | Deni Lanc | [role] |
-| u7284072 | Akshat Jain | [role] |
-| u7281588 | Leon Zolati | [role] |
+| u7283219 | Shaazaan Majeed | Backend Logic, Software Testing |
+| u7284728 | Deni Lanc | Backend Logic, Software Testing |
+| u7284072 | Akshat Jain | Data management (Firebase) |
+| u7285188 | Leon Zolati | UI Design + Development |
 
 ## Summary of Individual Contributions
 
@@ -61,7 +61,7 @@ The following is a report template to help your team successfully provide all th
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+Find a neutral member for the given issue to delegate a discussion between the disagreeing parties. Construct a positives and negatives list outlining the key aspects of the conflict, combine ideas where possible and make compromises to solve the issue. However, if the conflict still continues hear all sides of the argument in full and hold a final group vote where a solution will be made based on assignment specifications and mutual compromise.
 
 ## Application Description
 
@@ -206,9 +206,8 @@ The following is a report template to help your team successfully provide all th
 
 ## Team Meetings
 
-*Here is an example:*
+Meeting Minutes
 
-- *[Team Meeting 1](./MeetingTemplate.md)*
 - *[Team Meeting 0](./meetings/Meeting0_6-4-22.md)*
 - *[Team Meeting 1](./meetings/Meeting1_9-4-22.md)*
 - *[Team Meeting 2](./meetings/Meeting2_13-4-22.md)*
@@ -216,6 +215,6 @@ The following is a report template to help your team successfully provide all th
 - *[Team Meeting 4](./meetings/Meeting4_23-4-22.md)*
 - *[Team Meeting 5](./meetings/Meeting5_1-5-22.md)*
 - *[Team Meeting 6](./meetings/Meeting6_5-5-22.md)*
-- ...
+- *[Team Meeting 7](./meetings/Meeting7_16-5-22.md)*
 
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
+Note: smaller informal meetings were also conducted however these did not require minutes to be taken.
