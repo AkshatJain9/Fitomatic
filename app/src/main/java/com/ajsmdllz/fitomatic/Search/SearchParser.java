@@ -18,26 +18,26 @@ public class SearchParser {
         if (tokenizer.getNext().getType() == Token.Type.NAME) {
             String user = tokenizer.getNext().getToken();
             tokenizer.toNext();
-            return new UserQueryExpression(user, parseActivites());
+            return new UserQueryExpression(user, parseActivities());
         }
 
-        return parseActivites();
+        return parseActivities();
     }
 
     /**
      * Activities refer to any physical activity
      * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
      */
-    public Exp parseActivites() {
+    public Exp parseActivities() {
         if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
 
         if (tokenizer.getNext().getType() == Token.Type.ACTIVITY) {
-            tokenizer.toNext();
             String s = tokenizer.getNext().getToken().toLowerCase();
             String input = s.substring(0,1).toUpperCase() + s.substring(1);
-            return new ActivityQueryExpression(input, parseActivites());
+            tokenizer.toNext();
+            return new ActivityQueryExpression(input, parseActivities());
         }
 
 

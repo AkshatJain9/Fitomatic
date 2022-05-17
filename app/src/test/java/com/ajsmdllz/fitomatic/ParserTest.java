@@ -21,15 +21,6 @@ public class ParserTest {
 
     private static final String[] testExample = new String[]{"Greg@gmail.com", "running", "running, walking, soccer", "14/05/2022", "Monday", "ThisIsATitle"};
 
-    @Test
-    public void emptyExpressionTest() {
-        SearchTokenizer tok = new SearchTokenizer("");
-        SearchParser pas = new SearchParser(tok);
-        System.out.println(pas.tokens);
-
-        Exp empty = new SearchParser(tok).parseStatement();
-        assertEquals("No","Test", empty.show());
-    }
 
     @Test
     public void testSimpleUser() {
