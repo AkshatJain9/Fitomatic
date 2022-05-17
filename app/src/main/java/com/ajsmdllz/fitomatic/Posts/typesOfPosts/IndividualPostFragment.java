@@ -85,7 +85,7 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> posts = task.getResult().get("posts", ArrayList.class);
+                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
                                 Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", followers, -1, 1,0, liked);
                                 db.collection("posts").document("("+email+", "+posts.size()+")").set(post);

@@ -101,7 +101,7 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
                     // Add post to database
                     db.collection("users").document(email).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> posts = task.getResult().get("posts", ArrayList.class);
+                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
                             if (posts != null) {
                                 Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1, maxPart,0, liked);
                                 // Adding the post to Firebase
