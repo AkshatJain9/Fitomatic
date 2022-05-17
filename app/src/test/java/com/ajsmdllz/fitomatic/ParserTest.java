@@ -14,12 +14,12 @@ public class ParserTest {
      * Initial Setup of Tokenizer and token strings
      */
     private static SearchTokenizer tokenizer;
-    private static final String SIMPLE_CASE = "@Steve@gmail.com";
-    private static final String MID_CASE = "@Bob@outlook.com, soccer, running, tennis, golf";
-    private static final String COMPLEX_CASE1 = "@Steve@gmail.com, running, 15/10/2023    myTitle";
-    private static final String COMPLEX_CASE2 = "@Miranda@gmail.com, cycling, walking, karate, afternoon    JoinMeInSomeAfternoonActivities";
+    private static final String SIMPLE_CASE = "Steve@gmail.com";
+    private static final String MID_CASE = "Bob@outlook.com, soccer, running, tennis, golf";
+    private static final String COMPLEX_CASE1 = "Steve@gmail.com, running, myTitle    15/10/2023";
+    private static final String COMPLEX_CASE2 = "Miranda@gmail.com, cycling, walking, karate, JoinMeInSomeAfternoonActivities    afternoon";
 
-    private static final String[] testExample = new String[]{"@Greg@gmail.com", "running", "running, walking, soccer", "14/05/2022", "Monday", "ThisIsATitle"};
+    private static final String[] testExample = new String[]{"Greg@gmail.com", "running", "running, walking, soccer", "14/05/2022", "Monday", "ThisIsATitle"};
 
     @Test
     public void emptyExpressionTest() {
@@ -35,11 +35,11 @@ public class ParserTest {
     public void testSimpleUser() {
         SearchTokenizer tok = new SearchTokenizer(SIMPLE_CASE);
         Exp userExp = new SearchParser(tok).parseStatement();
-        assertEquals("UserQueryExpression{user='@Steve@gmail.com', fields=EmptyExpression{}}", userExp.toString());
+        assertEquals("UserQueryExpression{user='Steve@gmail.com', fields=EmptyExpression{}}", userExp.toString());
 
         SearchTokenizer tok1 = new SearchTokenizer(testExample[0]);
         Exp userExp1 = new SearchParser(tok1).parseStatement();
-        assertEquals("UserQueryExpression{user='@Greg@gmail.com', fields=EmptyExpression{}}", userExp1.toString());
+        assertEquals("UserQueryExpression{user='Greg@gmail.com', fields=EmptyExpression{}}", userExp1.toString());
     }
 
     @Test
@@ -76,9 +76,36 @@ public class ParserTest {
     @Test
     public void testMidCase() {
         SearchTokenizer tok = new SearchTokenizer(MID_CASE);
-        System.out.println(tok.tokenize());
         Exp midExp = new SearchParser(tok).parseStatement();
         assertEquals("USER", midExp.show());
-        assertEquals("No",midExp.toString());
+        assertEquals("UserQueryExpression{user='Bob@outlook.com', " +
+                                "fields=ActivityQueryExpression{activity='Soccer', " +
+                                    "next=ActivityQueryExpression{activity='Running', " +
+                                    "next=ActivityQueryExpression{activity='Tennis', " +
+                                    "next=ActivityQueryExpression{activity='Golf', next=EmptyExpression{}}}}}}", midExp.toString());
+    }
+
+    @Test
+    public void testComplexCase1() {
+        SearchTokenizer tok = new SearchTokenizer(COMPLEX_CASE1);
+        Exp complexExp = new SearchParser(tok).parseStatement();
+        assertEquals("USER", complexExp.show());
+        assertEquals("UserQueryExpression{user='Steve@gmail.com', " +
+                                "fields=ActivityQueryExpression{activity='Running', " +
+                                    "next=PostQueryExpression{attribute='myTitle', " +
+                                    "furtherAttributes=TimeExpression{time='15/10/2023', " + "next=EmptyExpression{}}}}}", complexExp.toString());
+    }
+
+    @Test
+    public void testComplexCase2() {
+        SearchTokenizer tok = new SearchTokenizer(COMPLEX_CASE2);
+        Exp complexExp = new SearchParser(tok).parseStatement();
+        assertEquals("USER", complexExp.show());
+        assertEquals("UserQueryExpression{user='Miranda@gmail.com', " +
+                                "fields=ActivityQueryExpression{activity='Cycling', " +
+                                    "next=ActivityQueryExpression{activity='Walking', " +
+                                    "next=ActivityQueryExpression{activity='Karate', " +
+                                    "next=PostQueryExpression{attribute='JoinMeInSomeAfternoonActivities', " +
+                                    "furtherAttributes=TimeExpression{time='afternoon', " + "next=EmptyExpression{}}}}}}}", complexExp.toString());
     }
 }
