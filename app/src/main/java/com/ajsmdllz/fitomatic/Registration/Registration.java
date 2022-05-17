@@ -83,6 +83,7 @@ public class Registration extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         User user = new User(email);
                         db.collection("users").document(email).set(user);
+                        db.collection("users").document(email).update("age", 0);
                         // Feedback to user
                         Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                         Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);

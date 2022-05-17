@@ -117,6 +117,14 @@ public class ProfileCreation extends AppCompatActivity {
     }
 
     /**
+     * Go back to interests
+     * @param v View
+     */
+    public void backtoInterests(View v) {
+        finish();
+    }
+
+    /**
      * Opens System File Manager to select Profile Image
      */
     public void uploadProfilePic(View v) {

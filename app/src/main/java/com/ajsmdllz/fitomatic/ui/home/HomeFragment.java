@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ajsmdllz.fitomatic.AVLPosts;
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
@@ -26,8 +27,6 @@ import com.ajsmdllz.fitomatic.Search.DBQuery;
 import com.ajsmdllz.fitomatic.Search.Expressions.Exp;
 import com.ajsmdllz.fitomatic.Search.SearchParser;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,11 +35,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Document;
-
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 public class HomeFragment extends Fragment {
@@ -85,48 +80,53 @@ public class HomeFragment extends Fragment {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
                         ArrayList<DocumentSnapshot> docs = (ArrayList<DocumentSnapshot>) snapshot.getDocuments();
+                        PostFactory fact = new PostFactory();
                         for (DocumentSnapshot d : docs) {
-                            Post p;
-                            Map<String, Object> map = d.getData();
-                            if (map.keySet().size() == 8) {
-                                p = new SingleActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (String) map.get("activity"),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
-                            } else if (map.keySet().size() == 11) {
-                                p = new SmallGroupActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (String) map.get("activity"),
-                                        (String) map.get("location"),
-                                        (ArrayList<String>) map.get("followers"),
-                                        ((Long) map.get("maxParticipants")).intValue(),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
-                            } else {
-                                p = new EventActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (ArrayList<String>) map.get("activities"),
-                                        (String) map.get("location"),
-                                        (ArrayList<String>) map.get("followers"),
-                                        ((Long) map.get("price")).intValue(),
-                                        ((Long) map.get("maxParticipants")).intValue(),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
+                            Post p = fact.createPostfromDBSnapshot(d);
+//                            Post p;
+//                            Map<String, Object> map = d.getData();
+//                            if (map.keySet().size() == 8) {
+//                                p = new SingleActivity(
+//                                        (String) map.get("author"),
+//                                        (String) map.get("id"),
+//                                        (String) map.get("title"),
+//                                        (String) map.get("description"),
+//                                        (String) map.get("date"),
+//                                        (String) map.get("activity"),
+//                                        ((Long) map.get("likes")).intValue(),
+//                                        (ArrayList<String>) map.get("liked"));
+//                            } else if (map.keySet().size() == 11) {
+//                                p = new SmallGroupActivity(
+//                                        (String) map.get("author"),
+//                                        (String) map.get("id"),
+//                                        (String) map.get("title"),
+//                                        (String) map.get("description"),
+//                                        (String) map.get("date"),
+//                                        (String) map.get("activity"),
+//                                        (String) map.get("location"),
+//                                        (ArrayList<String>) map.get("followers"),
+//                                        ((Long) map.get("maxParticipants")).intValue(),
+//                                        ((Long) map.get("likes")).intValue(),
+//                                        (ArrayList<String>) map.get("liked"));
+//                            } else {
+//                                p = new EventActivity(
+//                                        (String) map.get("author"),
+//                                        (String) map.get("id"),
+//                                        (String) map.get("title"),
+//                                        (String) map.get("description"),
+//                                        (String) map.get("date"),
+//                                        (ArrayList<String>) map.get("activities"),
+//                                        (String) map.get("location"),
+//                                        (ArrayList<String>) map.get("followers"),
+//                                        ((Long) map.get("price")).intValue(),
+//                                        ((Long) map.get("maxParticipants")).intValue(),
+//                                        ((Long) map.get("likes")).intValue(),
+//                                        (ArrayList<String>) map.get("liked"));
+//                            }
+                            if (p != null) {
+                                searchedPosts.add(p);
                             }
-                            searchedPosts.add(p);
+
                         }
                         // add search posts to the feed
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), searchedPosts);
@@ -168,48 +168,49 @@ public class HomeFragment extends Fragment {
         docs.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 // Casting Map Representation to Post Objects
+                PostFactory fact = new PostFactory();
                 for (QueryDocumentSnapshot d : task.getResult()) {
-                    Post p;
-                    Map<String, Object> map = d.getData();
-
-                    if (map.keySet().size() == 8) {
-                        p = new SingleActivity(
-                                (String) map.get("author"),
-                                (String) map.get("id"),
-                                (String) map.get("title"),
-                                (String) map.get("description"),
-                                (String) map.get("date"),
-                                (String) map.get("activity"),
-                                ((Long) map.get("likes")).intValue(),
-                                (ArrayList<String>) map.get("liked"));
-                    } else if (map.keySet().size() == 11) {
-                        p = new SmallGroupActivity(
-                                (String) map.get("author"),
-                                (String) map.get("id"),
-                                (String) map.get("title"),
-                                (String) map.get("description"),
-                                (String) map.get("date"),
-                                (String) map.get("activity"),
-                                (String) map.get("location"),
-                                (ArrayList<String>) map.get("followers"),
-                                ((Long) map.get("maxParticipants")).intValue(),
-                                ((Long) map.get("likes")).intValue(),
-                                (ArrayList<String>) map.get("liked"));
-                    } else {
-                        p = new EventActivity(
-                                (String) map.get("author"),
-                                (String) map.get("id"),
-                                (String) map.get("title"),
-                                (String) map.get("description"),
-                                (String) map.get("date"),
-                                (ArrayList<String>) map.get("activities"),
-                                (String) map.get("location"),
-                                (ArrayList<String>) map.get("followers"),
-                                ((Long) map.get("price")).intValue(),
-                                ((Long) map.get("maxParticipants")).intValue(),
-                                ((Long) map.get("likes")).intValue(),
-                                (ArrayList<String>) map.get("liked"));
-                    }
+                    Post p = fact.createPostfromDBQuerySnapshot(d);
+//                    Map<String, Object> map = d.getData();
+//
+//                    if (map.keySet().size() == 8) {
+//                        p = new SingleActivity(
+//                                (String) map.get("author"),
+//                                (String) map.get("id"),
+//                                (String) map.get("title"),
+//                                (String) map.get("description"),
+//                                (String) map.get("date"),
+//                                (String) map.get("activity"),
+//                                ((Long) map.get("likes")).intValue(),
+//                                (ArrayList<String>) map.get("liked"));
+//                    } else if (map.keySet().size() == 11) {
+//                        p = new SmallGroupActivity(
+//                                (String) map.get("author"),
+//                                (String) map.get("id"),
+//                                (String) map.get("title"),
+//                                (String) map.get("description"),
+//                                (String) map.get("date"),
+//                                (String) map.get("activity"),
+//                                (String) map.get("location"),
+//                                (ArrayList<String>) map.get("followers"),
+//                                ((Long) map.get("maxParticipants")).intValue(),
+//                                ((Long) map.get("likes")).intValue(),
+//                                (ArrayList<String>) map.get("liked"));
+//                    } else {
+//                        p = new EventActivity(
+//                                (String) map.get("author"),
+//                                (String) map.get("id"),
+//                                (String) map.get("title"),
+//                                (String) map.get("description"),
+//                                (String) map.get("date"),
+//                                (ArrayList<String>) map.get("activities"),
+//                                (String) map.get("location"),
+//                                (ArrayList<String>) map.get("followers"),
+//                                ((Long) map.get("price")).intValue(),
+//                                ((Long) map.get("maxParticipants")).intValue(),
+//                                ((Long) map.get("likes")).intValue(),
+//                                (ArrayList<String>) map.get("liked"));
+//                    }
                     tree[0] = tree[0].insert(p);
                 }
                 // Setting Recycle Feeds adapter to display

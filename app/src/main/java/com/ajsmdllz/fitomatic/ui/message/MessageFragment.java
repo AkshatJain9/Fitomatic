@@ -111,7 +111,7 @@ public class MessageFragment extends Fragment {
 //                    Map<String, Object> map = d.getData();
 //                    emails.add((String) map.get("email");
                 }
-
+                System.out.println("THE SIZE IS: " + users.size());
                 String curr = mAuth.getCurrentUser().getEmail();
                 users.removeIf(u -> u.getEmail().equals(curr));
 
