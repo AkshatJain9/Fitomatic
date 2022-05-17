@@ -5,13 +5,9 @@ import java.util.ArrayList;
 
 public class SearchParser {
     SearchTokenizer tokenizer;
-    public ArrayList<Token> tokens;
-    int index;
 
     public SearchParser (SearchTokenizer st) {
         this.tokenizer = st;
-        this.tokens = st.tokenize();
-        index = 0;
     }
 
     /**
@@ -19,9 +15,10 @@ public class SearchParser {
      * @return <Statement> => userExp(<Fields>) | <Fields>
      */
     public Exp parseStatement() {
-        if (tokens.get(0).getType() == Token.Type.NAME) {
-            index++;
-            return new UserQueryExpression(tokens.get(0).getToken(), parseActivites());
+        if (tokenizer.getNext().getType() == Token.Type.NAME) {
+            String user = tokenizer.getNext().getToken();
+            tokenizer.toNext();
+            return new UserQueryExpression(user, parseActivites());
         }
 
         return parseActivites();
@@ -32,16 +29,29 @@ public class SearchParser {
      * @return <Activity> => ActivityQueryExp(<Activity>) | <Time>
      */
     public Exp parseActivites() {
-        if (index >= tokens.size()) {
+        if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
 
-        if (tokens.get(index).getType() == Token.Type.ACTIVITY) {
-            index++;
-            String s = tokens.get(index - 1).getToken().toLowerCase();
+        if (tokenizer.getNext().getType() == Token.Type.ACTIVITY) {
+            tokenizer.toNext();
+            String s = tokenizer.getNext().getToken().toLowerCase();
             String input = s.substring(0,1).toUpperCase() + s.substring(1);
             return new ActivityQueryExpression(input, parseActivites());
         }
+
+
+
+//        if (index >= tokens.size()) {
+//            return new EmptyExpression();
+//        }
+//
+//        if (tokens.get(index).getType() == Token.Type.ACTIVITY) {
+//            index++;
+//            String s = tokens.get(index - 1).getToken().toLowerCase();
+//            String input = s.substring(0,1).toUpperCase() + s.substring(1);
+//            return new ActivityQueryExpression(input, parseActivites());
+//        }
 
         return parseFields();
     }
@@ -51,14 +61,23 @@ public class SearchParser {
      * @return <Field> => PostQueryExp(<Fields>) | <Activities>
      */
     public Exp parseFields() {
-        if (index >= tokens.size()) {
+        if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
 
-        if (tokens.get(index).getType() == Token.Type.TITLE) {
-            index++;
-            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseFields());
+        if (tokenizer.getNext().getType() == Token.Type.TITLE) {
+            String field = tokenizer.getNext().getToken();
+            tokenizer.toNext();
+            return new PostQueryExpression(field, parseFields());
         }
+//        if (index >= tokens.size()) {
+//            return new EmptyExpression();
+//        }
+//
+//        if (tokens.get(index).getType() == Token.Type.TITLE) {
+//            index++;
+//            return new PostQueryExpression(tokens.get(index - 1).getToken(), parseFields());
+//        }
 
         return parseTime();
 
@@ -69,13 +88,21 @@ public class SearchParser {
      * @return <Time> => TimeExp(<Size>) | <Empty>
      */
     public Exp parseTime() {
-        if (index >= tokens.size()) {
+        if (!tokenizer.hasNext()) {
             return new EmptyExpression();
         }
-        if (tokens.get(index).getType() == Token.Type.TIME) {
-            index++;
-            return new TimeExpression(tokens.get(index - 1).getToken(), parseTime());
+        if (tokenizer.getNext().getType() == Token.Type.TIME) {
+            String time = tokenizer.getNext().getToken();
+            tokenizer.toNext();
+            return new TimeExpression(time, new EmptyExpression());
         }
+//        if (index >= tokens.size()) {
+//            return new EmptyExpression();
+//        }
+//        if (tokens.get(index).getType() == Token.Type.TIME) {
+//            index++;
+//            return new TimeExpression(tokens.get(index - 1).getToken(), parseTime());
+//        }
         return new EmptyExpression();
     }
 

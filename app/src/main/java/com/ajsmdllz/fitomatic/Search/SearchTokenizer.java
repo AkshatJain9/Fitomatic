@@ -1,15 +1,19 @@
 package com.ajsmdllz.fitomatic.Search;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchTokenizer {
     private String search;
     private String[] searchElems;
+    private ArrayList<Token> tokenised;
+    private int iteratorindex = 0;
 
 
     public SearchTokenizer(String input) {
         this.search = input;
         this.searchElems = input.split("[ ,]+");
+        this.tokenised = tokenize();
     }
 
     /**
@@ -36,6 +40,29 @@ public class SearchTokenizer {
             }
         }
         return tokens;
+    }
+
+    /**
+     *
+     * @return If there are any remaining tokens for the parser to consider
+     */
+    public boolean hasNext() {
+        return iteratorindex < tokenised.size();
+    }
+
+    /**
+     *
+     * @return The next token, be sure to call toNext() to go to next
+     */
+    public Token getNext() {
+        return tokenised.get(iteratorindex);
+    }
+
+    /**
+     * Goes to next token index (if exists)
+     */
+    public void toNext() {
+        iteratorindex++;
     }
 
 }
