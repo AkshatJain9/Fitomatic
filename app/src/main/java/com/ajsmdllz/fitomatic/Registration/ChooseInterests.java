@@ -21,9 +21,9 @@ public class ChooseInterests extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_interests);
         db = FirebaseFirestore.getInstance();
+        // Retrieving Email from Previous Activity to continue Indexing
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
-
 
         // Next Step Button Listener
         Button next = findViewById(R.id.nextStep);
@@ -37,7 +37,7 @@ public class ChooseInterests extends AppCompatActivity {
                 }
             }
             db.collection("users").document(email).update("interests", interestsToAdd);
-
+            // Send email to next activity to continue registration
             Intent toDetails = new Intent(ChooseInterests.this, ProfileCreation.class);
             toDetails.putExtra("email", email);
             startActivity(toDetails);

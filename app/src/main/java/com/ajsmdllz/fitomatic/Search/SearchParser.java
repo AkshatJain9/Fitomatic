@@ -1,7 +1,6 @@
 package com.ajsmdllz.fitomatic.Search;
 
 import com.ajsmdllz.fitomatic.Search.Expressions.*;
-import java.util.ArrayList;
 
 public class SearchParser {
     SearchTokenizer tokenizer;
@@ -29,7 +28,7 @@ public class SearchParser {
      * @return <Activity> => ActivityQueryExp(activity, <Activity>) | <Fields>
      */
     public Exp parseActivities() {
-        if (!tokenizer.hasNext()) {
+        if (tokenizer.isEnd()) {
             return new EmptyExpression();
         }
 
@@ -47,7 +46,7 @@ public class SearchParser {
      * @return <Field> => PostQueryExp(title, <Fields>) | <Time>
      */
     public Exp parseFields() {
-        if (!tokenizer.hasNext()) {
+        if (tokenizer.isEnd()) {
             return new EmptyExpression();
         }
 
@@ -64,7 +63,7 @@ public class SearchParser {
      * @return <Time> => TimeExp(date, <Empty>) | <Empty>
      */
     public Exp parseTime() {
-        if (!tokenizer.hasNext()) {
+        if (tokenizer.isEnd()) {
             return new EmptyExpression();
         }
 

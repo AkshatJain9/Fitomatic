@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * List of available activities to check against
+ * List of keywords for Activities and Dates (Time) Used at Tokenization stage
  */
 public class KeywordList {
     public static ArrayList<String> ActivityList = new ArrayList<>(Arrays.asList(
@@ -45,6 +45,5 @@ public class KeywordList {
             "morning",
             "afternoon"
     ));
-
 
 }
