@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
+import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.Posts.PostHostActivity;
 import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
@@ -25,20 +26,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class PostFragment extends Fragment {
     ArrayList<Post> userPosts = new ArrayList<>();
     FirebaseFirestore db;
-    private FirebaseAuth mAuth;
     private String email;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        email = mAuth.getCurrentUser().getEmail();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,7 +59,7 @@ public class PostFragment extends Fragment {
             }
         };
 
-        View add = getView().findViewById(R.id.addPostIcon);
+        View add = requireView().findViewById(R.id.addPostIcon);
         add.setOnClickListener(listener);
 
         populateUsersPosts();
@@ -79,49 +80,14 @@ public class PostFragment extends Fragment {
                     db.collection("posts").document(id).get().addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful()) {
                             DocumentSnapshot temp = task1.getResult();
-                            Map<String, Object> map = temp.getData();
-                            Post p;
-                            if (map.keySet().size() == 8) {
-                                p = new SingleActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (String) map.get("activity"),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
-                            } else if (map.keySet().size() == 11) {
-                                p = new SmallGroupActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (String) map.get("activity"),
-                                        (String) map.get("location"),
-                                        (ArrayList<String>) map.get("followers"),
-                                        ((Long) map.get("maxParticipants")).intValue(),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
-                            } else {
-                                p = new EventActivity(
-                                        (String) map.get("author"),
-                                        (String) map.get("id"),
-                                        (String) map.get("title"),
-                                        (String) map.get("description"),
-                                        (String) map.get("date"),
-                                        (ArrayList<String>) map.get("activities"),
-                                        (String) map.get("location"),
-                                        (ArrayList<String>) map.get("followers"),
-                                        ((Long) map.get("price")).intValue(),
-                                        ((Long) map.get("maxParticipants")).intValue(),
-                                        ((Long) map.get("likes")).intValue(),
-                                        (ArrayList<String>) map.get("liked"));
+                            PostFactory fact = new PostFactory();
+                            // Uses PostFactory to create correct post
+                            Post p = fact.createPostfromDBSnapshot(temp);
+                            if (p != null) {
+                                userPosts.add(p);
                             }
-                            userPosts.add(p);
                         }
-                        RecyclerView postRecycler = getView().findViewById(R.id.myPostRecycler);
+                        RecyclerView postRecycler = requireView().findViewById(R.id.myPostRecycler);
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), userPosts);
                         postRecycler.setAdapter(recycleFeedAdapter);
                         postRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

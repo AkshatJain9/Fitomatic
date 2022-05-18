@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MessageFragment extends Fragment {
 
@@ -51,28 +52,6 @@ public class MessageFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        //create the recycler view
-//        RecyclerView messageRecycler = getView().findViewById(R.id.messageRecyclerView);
-
-        //update users to contain the list of users
-//        users = new ArrayList<>();
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-//        users.add(new User("Brian", "Smith", "", "", 2,"",new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new HashMap<>(), new ArrayList<>()));
-
-        //add them to the adapter
-//        MessageRecyclerAdapter adapter = new MessageRecyclerAdapter(getContext(), users);
-//        messageRecycler.setAdapter(adapter);
-//        messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         getUsers();
     }
 
@@ -98,7 +77,7 @@ public class MessageFragment extends Fragment {
                             (String) map.get("lastname"),
                             (String) map.get("email"),
                             (String) map.get("bio"),
-                            ((Long) map.get("age")).intValue(),
+                            ((Long) Objects.requireNonNull(map.get("age"))).intValue(),
                             (String) map.get("gender"),
                             (ArrayList<String>) map.get("interests"),
                             (ArrayList<String>) map.get("posts"),
@@ -107,12 +86,9 @@ public class MessageFragment extends Fragment {
                             (ArrayList<String>) map.get("following")
                     );
                     users.add(u);
-
-//                    Map<String, Object> map = d.getData();
-//                    emails.add((String) map.get("email");
                 }
                 System.out.println("THE SIZE IS: " + users.size());
-                String curr = mAuth.getCurrentUser().getEmail();
+                String curr = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
                 users.removeIf(u -> u.getEmail().equals(curr));
 
                 // Remove current user's email
@@ -128,7 +104,7 @@ public class MessageFragment extends Fragment {
                         users.removeIf(u -> userBlocked.contains(u.getEmail()));
                         emails.removeAll(userBlocked);
 
-                        RecyclerView messageRecycler = getView().findViewById(R.id.messageRecyclerView);
+                        RecyclerView messageRecycler = requireView().findViewById(R.id.messageRecyclerView);
                         MessageRecyclerAdapter adapter = new MessageRecyclerAdapter(getContext(), users);
                         messageRecycler.setAdapter(adapter);
                         messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -138,13 +114,5 @@ public class MessageFragment extends Fragment {
                 });
             }
         });
-
-//        // When an email is clicked start a direct message activity with that email as the recipient
-//        ls.setOnItemClickListener((adapterView, view1, i, l) -> {
-//            String recip = emails.get(i);
-//            Intent intent = new Intent(getContext(), DirectMessage.class);
-//            intent.putExtra("recip", recip);
-//            startActivity(intent);
-//        });
     }
 }

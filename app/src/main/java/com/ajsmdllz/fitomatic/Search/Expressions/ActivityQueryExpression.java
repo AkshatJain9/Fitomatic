@@ -1,5 +1,7 @@
 package com.ajsmdllz.fitomatic.Search.Expressions;
 
+import androidx.annotation.NonNull;
+
 public class ActivityQueryExpression extends Exp{
 
     String activity;
@@ -26,6 +28,7 @@ public class ActivityQueryExpression extends Exp{
         return next;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ActivityQueryExpression{" +

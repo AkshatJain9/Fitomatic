@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -165,7 +166,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             description = itemView.findViewById(R.id.individualDescriptionText);
             date = itemView.findViewById(R.id.individualDateText);
             activity = itemView.findViewById(R.id.individualActivityChip);
-            String email = mAuth.getCurrentUser().getEmail();
+            String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -241,6 +242,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             author = itemView.findViewById(R.id.smallAuthorText);
 
             String email = mAuth.getCurrentUser().getEmail();
+            String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override

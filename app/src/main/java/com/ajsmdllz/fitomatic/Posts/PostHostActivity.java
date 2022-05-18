@@ -13,13 +13,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PostHostActivity extends AppCompatActivity {
 
-    private ActivityPostHostBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityPostHostBinding.inflate(getLayoutInflater());
+        com.ajsmdllz.fitomatic.databinding.ActivityPostHostBinding binding = ActivityPostHostBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);

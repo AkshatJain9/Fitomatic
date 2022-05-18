@@ -1,5 +1,7 @@
 package com.ajsmdllz.fitomatic.Search.Expressions;
 
+import androidx.annotation.NonNull;
+
 public class PostQueryExpression extends Exp {
     String attribute;
     Exp furtherAttributes;
@@ -24,6 +26,7 @@ public class PostQueryExpression extends Exp {
         return furtherAttributes;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PostQueryExpression{" +

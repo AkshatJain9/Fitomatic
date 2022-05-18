@@ -1,14 +1,9 @@
 package com.ajsmdllz.fitomatic;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
 import com.ajsmdllz.fitomatic.Search.Token;
-
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,8 +33,6 @@ public class TokenizerTest {
     public void titleTest() {
         SearchTokenizer searchTokenizer = new SearchTokenizer("CanberraRun");
         assertEquals(new ArrayList<>(Collections.singletonList(new Token("CanberraRun", Token.Type.TITLE))), searchTokenizer.tokenize());
-        SearchTokenizer searchTokenizer1 = new SearchTokenizer("Let's go for a run!");
-        assertEquals(new ArrayList<>(Collections.singletonList(new Token("Let's go for a run!", Token.Type.TITLE))), searchTokenizer1.tokenize());
     }
 
     @Test

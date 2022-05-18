@@ -9,7 +9,6 @@ public class SmallGroupActivity extends Post {
     private String location; // As an address
     private ArrayList<String> followers;
     private int maxParticipants;
-    private ArrayList<String> liked;
 
     public SmallGroupActivity(String author, String id, String title, String description, String date, String activity, String location, ArrayList<String> followers, int max, int likes, ArrayList<String> liked) {
         this.author = author;
@@ -24,17 +23,16 @@ public class SmallGroupActivity extends Post {
         this.likes = likes;
         this.liked = liked;
     }
+
     // Getters
     public String getActivity() { return activity; }
     public String getLocation() { return location; }
     public ArrayList<String> getFollowers() { return followers; }
     public int getMaxParticipants() { return maxParticipants; }
-    public ArrayList<String> getLiked() { return liked; }
 
     // Setters
     public void setActivity(String activity) { this.activity = activity; }
     public void setLocation(String location) { this.location = location; }
     public void setFollowers(ArrayList<String> followers) { this.followers = followers; }
     public void setMaxParticipants(int maxParticipants) { this.maxParticipants = maxParticipants; }
-    public void setLiked(ArrayList<String> liked) { this.liked = liked; }
 }

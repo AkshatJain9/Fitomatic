@@ -1,5 +1,7 @@
 package com.ajsmdllz.fitomatic.Search.Expressions;
 
+import androidx.annotation.NonNull;
+
 public class UserQueryExpression extends Exp {
     public String user;
     Exp fields;
@@ -25,6 +27,7 @@ public class UserQueryExpression extends Exp {
         return fields;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "UserQueryExpression{" +

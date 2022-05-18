@@ -27,6 +27,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LargePostFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -53,13 +54,13 @@ public class LargePostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // initialize variables for multiple activity selection
-        email = mAuth.getCurrentUser().getEmail();
-        SeekBar priceBar = getView().findViewById(R.id.priceBar);
-        TextView price = getView().findViewById(R.id.price);
-        EditText title = getView().findViewById(R.id.createTitleEvent);
-        EditText description = getView().findViewById(R.id.createDescriptionEvent);
-        EditText date = getView().findViewById(R.id.date);
-        EditText location = getView().findViewById(R.id.locationEvent);
+        email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
+        SeekBar priceBar = requireView().findViewById(R.id.priceBar);
+        TextView price = requireView().findViewById(R.id.price);
+        EditText title = requireView().findViewById(R.id.createTitleEvent);
+        EditText description = requireView().findViewById(R.id.createDescriptionEvent);
+        EditText date = requireView().findViewById(R.id.date);
+        EditText location = requireView().findViewById(R.id.locationEvent);
 
 
         // initialise variables for multi select activities
@@ -68,7 +69,7 @@ public class LargePostFragment extends Fragment {
                 "Gymnastics", "AFL", "Tennis", "Rugby", "Surfing", "Golf", "Bowling", "Karate",
                 "Bouldering", "Rock Climbing", "Cycling", "Mountain Biking", "Swimming",
                 "Cricket", "Judo", "Tai Quan Dao"};
-        TextView popUptextView = getView().findViewById(R.id.multiActivityDropdown);
+        TextView popUptextView = requireView().findViewById(R.id.multiActivityDropdown);
         boolean[] selectedActivities = new boolean[activities.length];
         popUptextView.setKeyListener(null);
         popUptextView.setOnClickListener(new View.OnClickListener() {
@@ -141,29 +142,24 @@ public class LargePostFragment extends Fragment {
 
 
         // Create Post Button handler
-        Button createPost = getView().findViewById(R.id.createPostEvent);
+        Button createPost = requireView().findViewById(R.id.createPostEvent);
         createPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // This is where checks will be needed and then creating the post will happen
                 if (title.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (description.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-                    return;
                 }else if (date.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (location.getText().toString().length() == 0) {
                     Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
-                    return;
                 } else if (eventMaxPart == 0) {
                     Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
-                    return;
                 }else {
                     // Successfully create a post
-                    Toast.makeText(getView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
 
                     // Using post factory to create different posts
                     PostFactory newPost = new PostFactory();
@@ -218,8 +214,8 @@ public class LargePostFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        SeekBar maxPartBar = getView().findViewById(R.id.maxPartBar);
-        TextView maxPart = getView().findViewById(R.id.maxPart);
+        SeekBar maxPartBar = requireView().findViewById(R.id.maxPartBar);
+        TextView maxPart = requireView().findViewById(R.id.maxPart);
         maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
