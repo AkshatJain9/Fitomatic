@@ -125,6 +125,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 System.out.println(s);
 
             ChipGroup group = ((LargeViewHolder)holder).getActivities();
+            //must remove all views before otherwise it adds the chips again everytime it loads the post
+            group.removeAllViews();
 
             if(activities.size() != 0) {
                 for (String a : activities) {
