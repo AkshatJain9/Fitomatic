@@ -124,6 +124,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             //must remove all views before otherwise it adds the chips again everytime it loads the post
             group.removeAllViews();
 
+            //go through all the activities and make a chip adding it to the group
             if(activities.size() != 0) {
                 for (String a : activities) {
                     Chip c = new Chip(((LargeViewHolder) holder).getActivities().getContext());
@@ -153,7 +154,12 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      *  on the recycle view
      */
 
+    /**
+     * Defines the viewholder class for the recycler view that coresponds to the Individual posts
+     * This is the internal class that makes the xml file link to the adapter
+     */
     public class IndividualViewHolder extends RecyclerView.ViewHolder{
+        //initialise the elements that will be populated by the adapter
         String id;
         FirebaseFirestore db;
         private final TextView author;
@@ -162,6 +168,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView date;
         private final Chip activity;
 
+        //Constructor that gets the elements in the xml file
         public IndividualViewHolder(@NonNull View itemView) {
             super(itemView);
             db = FirebaseFirestore.getInstance();
@@ -216,6 +223,9 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             });
         }
 
+        /**
+         * setters and getters for the IndividualViewHolder
+         */
         public String getId() {return id;}
         public Chip getActivity() {return activity;}
         public TextView getDate() {return date;}
@@ -224,7 +234,12 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView getDescription(){return description;}
     }
 
+    /**
+     * Defines the viewholder class for the recycler view that coresponds to the Small Group posts
+     * This is the internal class that makes the xml file link to the adapter
+     */
     public class SmallViewHolder extends RecyclerView.ViewHolder{
+        //initialise the elements that will be populated by the adapter
         String id;
         FirebaseFirestore db;
         private final TextView title;
@@ -234,7 +249,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView location;
         private final TextView author;
 
-
+        //Constructor that gets the elements in the xml file
         public SmallViewHolder(@NonNull View itemView) {
             super(itemView);
             db = FirebaseFirestore.getInstance();
@@ -292,6 +307,9 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             });
         }
 
+        /**
+         * setters and getters for the smallViewHolder
+         */
         public String getId() {return id;}
         public TextView getLocation() {return location;}
         public Chip getActivity() {return activity;}
@@ -301,7 +319,12 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView getAuthor(){return author;}
     }
 
+    /**
+     * Defines the viewholder class for the recycler view that coresponds to the large Group posts
+     * This is the internal class that makes the xml file link to the adapter
+     */
     public class LargeViewHolder extends RecyclerView.ViewHolder{
+        //initialise the elements that will be populated by the adapter
         String id;
         FirebaseFirestore db;
         private final TextView title;
@@ -312,6 +335,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView price;
         private final TextView author;
 
+        //Constructor that gets the elements in the xml file
         public LargeViewHolder(@NonNull View itemView) {
             super(itemView);
             db = FirebaseFirestore.getInstance();
@@ -369,6 +393,9 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             });
         }
 
+        /**
+         * setters and getters for the largeViewHolder
+         */
         public String getId() {return id;}
         public TextView getPrice() {return price;}
         public ChipGroup getActivities() {return activities; }
