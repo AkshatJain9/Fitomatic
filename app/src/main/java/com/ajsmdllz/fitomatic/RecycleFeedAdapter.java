@@ -120,10 +120,6 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             List<String> activities = ((EventActivity) dataset.get(position)).getActivities();
 
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            for(String s : activities)
-                System.out.println(s);
-
             ChipGroup group = ((LargeViewHolder)holder).getActivities();
             //must remove all views before otherwise it adds the chips again everytime it loads the post
             group.removeAllViews();
@@ -137,9 +133,6 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     c.setChipBackgroundColorResource(R.color.purple);
                     group.addView(c);
                 }
-            }
-            else{
-                System.out.println("SHOULD NOT GET HERE POST SHOULD HAVE ACTIVITIES");
             }
         }
     }
