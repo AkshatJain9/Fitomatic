@@ -116,12 +116,13 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((LargeViewHolder)holder).getPrice().setText("$" + ((EventActivity) dataset.get(position)).getPrice() + "pp");
 
             List<String> activities = ((EventActivity) dataset.get(position)).getActivities();
-            if(activities != null) {
+            if(activities.size() != 0) {
                 for (String a : activities) {
                     Chip c = new Chip(((LargeViewHolder) holder).getActivities().getContext());
                     c.setText(a);
                     c.setCheckable(false);
-                    c.setBackgroundTintList(context.getResources().getColorStateList(R.color.purple));;
+                    c.setBackgroundTintList(context.getResources().getColorStateList(R.color.purple));
+                    Toast.makeText(context, c.getText(), Toast.LENGTH_SHORT).show(); // Prints each Chip text value (REMOVE WHEN BUG IS FIXED)
                 }
             }
             else{
@@ -165,7 +166,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             date = itemView.findViewById(R.id.individualDateText);
             activity = itemView.findViewById(R.id.individualActivityChip);
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
-            // Like button listener
+            // Like button handler
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -189,7 +190,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             });
 
-            // Follow button listener
+            // Follow button handler
             itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -237,7 +238,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             activity = itemView.findViewById(R.id.smallActivityChip);
             location = itemView.findViewById(R.id.smallLocationText);
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
-            // Like button listener
+            // Like button handler
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -261,7 +262,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             });
 
-            // Follow button listener
+            // Follow button handler
             itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -310,7 +311,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             location = itemView.findViewById(R.id.largeLocationText);
             price = itemView.findViewById(R.id.largePriceText);
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
-            // Like button listener
+            // Like button handler
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -334,7 +335,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             });
 
-            // Follow button listener
+            // Follow button handler
             itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
