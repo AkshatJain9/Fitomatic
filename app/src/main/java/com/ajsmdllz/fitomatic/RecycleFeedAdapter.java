@@ -242,7 +242,6 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             location = itemView.findViewById(R.id.smallLocationText);
             author = itemView.findViewById(R.id.smallAuthorText);
 
-            String email = mAuth.getCurrentUser().getEmail();
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button handler
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
