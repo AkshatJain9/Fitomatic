@@ -99,6 +99,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             //Populate the Small Group Posts
         }else if (dataset.get(position) instanceof SmallGroupActivity){
             ((SmallViewHolder)holder).id = dataset.get(position).getId();
+            ((SmallViewHolder)holder).getAuthor().setText(dataset.get(position).getAuthor());
             ((SmallViewHolder)holder).getTextViewTitle().setText(dataset.get(position).getTitle());
             ((SmallViewHolder)holder).getDescription().setText(dataset.get(position).getDescription());
             ((SmallViewHolder)holder).getDate().setText(dataset.get(position).getDate());
@@ -108,6 +109,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             //Populate the Large Group Posts
         } else if ((dataset.get(position) instanceof EventActivity)){
             ((LargeViewHolder)holder).id = dataset.get(position).getId();
+            ((LargeViewHolder)holder).getAuthor().setText(dataset.get(position).getAuthor());
             ((LargeViewHolder)holder).getTextViewTitle().setText(dataset.get(position).getTitle());
             ((LargeViewHolder)holder).getDescription().setText(dataset.get(position).getDescription());
             ((LargeViewHolder)holder).getDate().setText(dataset.get(position).getDate());
@@ -224,6 +226,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView date;
         private final Chip activity;
         private final TextView location;
+        private final TextView author;
 
 
         public SmallViewHolder(@NonNull View itemView) {
@@ -235,6 +238,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             date = itemView.findViewById(R.id.smallDateText);
             activity = itemView.findViewById(R.id.smallActivityChip);
             location = itemView.findViewById(R.id.smallLocationText);
+            author = itemView.findViewById(R.id.smallAuthorText);
+
             String email = mAuth.getCurrentUser().getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
@@ -286,6 +291,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView getDate() {return date;}
         public TextView getTextViewTitle(){return title;}
         public TextView getDescription(){return description;}
+        public TextView getAuthor(){return author;}
     }
 
     public class LargeViewHolder extends RecyclerView.ViewHolder{
@@ -297,6 +303,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final ChipGroup activities;
         private final TextView location;
         private final TextView price;
+        private final TextView author;
 
         public LargeViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -308,6 +315,8 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             activities = itemView.findViewById(R.id.largeActivityChipGroup);
             location = itemView.findViewById(R.id.largeLocationText);
             price = itemView.findViewById(R.id.largePriceText);
+            author = itemView.findViewById(R.id.largeAuthorText);
+
             String email = mAuth.getCurrentUser().getEmail();
             // Like button listener
             itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
@@ -360,5 +369,6 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public TextView getLocation() {return location;}
         public TextView getTextViewTitle(){return title;}
         public TextView getDescription(){return description;}
+        public TextView getAuthor() {return author;}
     }
 }

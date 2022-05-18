@@ -20,16 +20,27 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/largeAuthorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Author Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/feed_background" />
+
+    <TextView
         android:id="@+id/largeTitleText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="Large Post Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/followChip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/largeAuthorText" />
 
     <TextView
         android:id="@+id/largeDescriptionText"
@@ -48,13 +59,13 @@
         android:id="@+id/followChip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="@color/green"
         android:text="Follow"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/feed_background" />
+        app:layout_constraintTop_toBottomOf="@+id/largeAuthorText" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/likeChip"
