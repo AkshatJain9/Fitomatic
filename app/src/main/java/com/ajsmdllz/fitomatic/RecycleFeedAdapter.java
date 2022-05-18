@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.Posts.EventActivity;
@@ -118,13 +119,21 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ((LargeViewHolder)holder).getPrice().setText("$" + ((EventActivity) dataset.get(position)).getPrice() + "pp");
 
             List<String> activities = ((EventActivity) dataset.get(position)).getActivities();
+
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            for(String s : activities)
+                System.out.println(s);
+
+            ChipGroup group = ((LargeViewHolder)holder).getActivities();
+
             if(activities.size() != 0) {
                 for (String a : activities) {
                     Chip c = new Chip(((LargeViewHolder) holder).getActivities().getContext());
                     c.setText(a);
+                    c.setTextColor(ContextCompat.getColor(context, R.color.white));
                     c.setCheckable(false);
-                    c.setBackgroundTintList(context.getResources().getColorStateList(R.color.purple));
-                    Toast.makeText(context, c.getText(), Toast.LENGTH_SHORT).show(); // Prints each Chip text value (REMOVE WHEN BUG IS FIXED)
+                    c.setChipBackgroundColorResource(R.color.purple);
+                    group.addView(c);
                 }
             }
             else{
@@ -251,6 +260,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     db.collection("posts").document(id).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful() && task.getResult() != null) {
                             ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+
                             Long likes = task.getResult().getLong("likes");
                             // If there is no posts or the user has not already liked the post update relevant fields
                             if (liked != null && !liked.contains(email)) {
