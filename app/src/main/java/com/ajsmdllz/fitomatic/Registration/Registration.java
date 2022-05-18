@@ -67,7 +67,7 @@ public class Registration extends AppCompatActivity {
                 }
 
             } else {
-                Toast.makeText(Registration.this, "Something went wrong (Please let AJ know if you somehow get this error)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registration.this, "Something went wrong. Please make sure you're connected to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -87,14 +87,13 @@ public class Registration extends AppCompatActivity {
                         // Feedback to user
                         Toast.makeText(Registration.this, "Registration successful!", Toast.LENGTH_SHORT).show();
                         Intent toProfileCreation = new Intent(Registration.this, ChooseInterests.class);
+                        // Once registered, send registered email to next activity for Firestore Indexing
                         toProfileCreation.putExtra("email", email);
                         startActivity(toProfileCreation);
 
-                        Toast.makeText(Registration.this, "Authentication SUCCESS.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Authentication SUCCESS", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(Registration.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Authentication FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

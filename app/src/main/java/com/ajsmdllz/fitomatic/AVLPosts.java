@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 public class AVLPosts {
     public Post post;
-    public AVLPosts leftnode;
-    public AVLPosts rightnode;
+    public AVLPosts leftNode;
+    public AVLPosts rightNode;
 
 
     public AVLPosts (Post p, AVLPosts ln, AVLPosts rn) {
         this.post = p;
-        this.leftnode = ln;
-        this.rightnode = rn;
+        this.leftNode = ln;
+        this.rightNode = rn;
     }
 
     public AVLPosts() {
@@ -28,6 +28,7 @@ public class AVLPosts {
      * @return Tree with inserted Post
      */
     public AVLPosts insert(Post p) {
+        // Base cases, insertion at leaves
         if (p == null) {
             return this;
         }
@@ -37,42 +38,51 @@ public class AVLPosts {
             return this;
         }
 
+        // Insert into right subtree
         if (p.likes > this.post.likes) {
             AVLPosts rightins;
-            if (this.rightnode == null) {
-                this.rightnode = new AVLPosts();
+            if (this.rightNode == null) {
+                this.rightNode = new AVLPosts();
             }
-            rightins = new AVLPosts(this.post, this.leftnode, this.rightnode.insert(p));
+            rightins = new AVLPosts(this.post, this.leftNode, this.rightNode.insert(p));
+            // Checking if right rotation is needed
             if (rightins.getBalanceFactor() > 1) {
-                if ((rightins.leftnode != null) && (rightins.leftnode.getBalanceFactor() < 0)) {
-                    rightins.leftnode = rightins.leftnode.leftRotate();
+                // Checking if double rotation is needed
+                if ((rightins.leftNode != null) && (rightins.leftNode.getBalanceFactor() < 0)) {
+                    rightins.leftNode = rightins.leftNode.leftRotate();
                 }
                 rightins = rightins.rightRotate();
                 return rightins;
             }
+            // Checking if left rotation is needed
             if (rightins.getBalanceFactor() < -1) {
-                if (!(rightins.rightnode == null) && (rightins.rightnode.getBalanceFactor() > 0)) {
-                    rightins.rightnode = rightins.rightnode.rightRotate();
+                // Checking if double rotation is needed
+                if (!(rightins.rightNode == null) && (rightins.rightNode.getBalanceFactor() > 0)) {
+                    rightins.rightNode = rightins.rightNode.rightRotate();
                 }
                 rightins = rightins.leftRotate();
                 return rightins;
             }
             return rightins;
-        } else {
-            if (this.leftnode == null) {
-                this.leftnode = new AVLPosts();
+        } else { // Insert into left-subtree
+            if (this.leftNode == null) {
+                this.leftNode = new AVLPosts();
             }
-            AVLPosts leftins = new AVLPosts(this.post, this.leftnode.insert(p), this.rightnode);
+            AVLPosts leftins = new AVLPosts(this.post, this.leftNode.insert(p), this.rightNode);
+            // Checking if left rotation is needed
             if (leftins.getBalanceFactor() > 1) {
-                if (!(leftins.leftnode == null) && (leftins.leftnode.getBalanceFactor() < 0)) {
-                    leftins.leftnode = leftins.leftnode.leftRotate();
+                // Checking if double rotation is needed
+                if (!(leftins.leftNode == null) && (leftins.leftNode.getBalanceFactor() < 0)) {
+                    leftins.leftNode = leftins.leftNode.leftRotate();
                 }
                 leftins = leftins.rightRotate();
                 return leftins;
             }
+            // Checking if right rotation is needed
             if (leftins.getBalanceFactor() < -1) {
-                if (!(leftins.rightnode == null) && (leftins.rightnode.getBalanceFactor() > 0)) {
-                    leftins.rightnode = leftins.rightnode.rightRotate();
+                // Checking if double rotation is needed
+                if (!(leftins.rightNode == null) && (leftins.rightNode.getBalanceFactor() > 0)) {
+                    leftins.rightNode = leftins.rightNode.rightRotate();
                 }
                 leftins = leftins.leftRotate();
                 return leftins;
@@ -86,16 +96,16 @@ public class AVLPosts {
      * @return AVL Tree having been rotated
      */
     public AVLPosts rightRotate() {
-        if (this.leftnode == null || this.leftnode.post == null) {
+        if (this.leftNode == null || this.leftNode.post == null) {
             return this;
         }
         // Assigning new nodes
-        AVLPosts newParent = this.leftnode;
-        AVLPosts newLeftOfCurrent = newParent.rightnode;
+        AVLPosts newParent = this.leftNode;
+        AVLPosts newLeftOfCurrent = newParent.rightNode;
         AVLPosts curr = this;
         // Setting relevant children of new nodes
-        curr.leftnode = newLeftOfCurrent;
-        newParent.rightnode = curr;
+        curr.leftNode = newLeftOfCurrent;
+        newParent.rightNode = curr;
 
         return newParent;
     }
@@ -105,16 +115,16 @@ public class AVLPosts {
      * @return AVL Tree having been rotated
      */
     public AVLPosts leftRotate() {
-        if (this.rightnode == null || this.rightnode.post == null){
+        if (this.rightNode == null || this.rightNode.post == null){
             return this;
         }
         // Assigning new nodes
-        AVLPosts newParent = this.rightnode;
-        AVLPosts newRightOfCurrent = newParent.leftnode;
+        AVLPosts newParent = this.rightNode;
+        AVLPosts newRightOfCurrent = newParent.leftNode;
         AVLPosts curr = this;
         // Setting relevant children of new nodes
-        curr.rightnode = newRightOfCurrent;
-        newParent.leftnode = curr;
+        curr.rightNode = newRightOfCurrent;
+        newParent.leftNode = curr;
 
         return newParent;
     }
@@ -126,17 +136,17 @@ public class AVLPosts {
     public int getHeight() {
         // Getting leftNode Height
         int leftNodeHeight;
-        if (this.leftnode == null) {
+        if (this.leftNode == null) {
             leftNodeHeight = 0;
         } else {
-            leftNodeHeight = 1 + this.leftnode.getHeight();
+            leftNodeHeight = 1 + this.leftNode.getHeight();
         }
         // Getting rightNode Height
         int rightNodeHeight;
-        if (this.rightnode == null) {
+        if (this.rightNode == null) {
             rightNodeHeight = 0;
         } else {
-            rightNodeHeight = 1 + this.rightnode.getHeight();
+            rightNodeHeight = 1 + this.rightNode.getHeight();
         }
 
         return Math.max(leftNodeHeight, rightNodeHeight);
@@ -150,16 +160,16 @@ public class AVLPosts {
         int leftHeight;
         int rightHeight;
         // Left Height
-        if (leftnode == null) {
+        if (leftNode == null) {
             leftHeight = 0;
         } else {
-            leftHeight = leftnode.getHeight();
+            leftHeight = leftNode.getHeight();
         }
         // Right Height
-        if (rightnode == null) {
+        if (rightNode == null) {
             rightHeight = 0;
         } else {
-            rightHeight = rightnode.getHeight();
+            rightHeight = rightNode.getHeight();
         }
 
         return leftHeight - rightHeight;
@@ -172,12 +182,12 @@ public class AVLPosts {
     public ArrayList<Post> iterator() {
         if (this.post == null) return new ArrayList<>();
         ArrayList<Post> out = new ArrayList<>();
-        if (rightnode != null) {
-            out.addAll(this.rightnode.iterator());
+        if (rightNode != null) {
+            out.addAll(this.rightNode.iterator());
         }
         out.add(this.post);
-        if (leftnode != null) {
-            out.addAll(this.leftnode.iterator());
+        if (leftNode != null) {
+            out.addAll(this.leftNode.iterator());
         }
         return out;
     }
