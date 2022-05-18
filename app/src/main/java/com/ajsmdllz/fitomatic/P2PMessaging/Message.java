@@ -1,8 +1,8 @@
 package com.ajsmdllz.fitomatic.P2PMessaging;
 
 public class Message {
-    private String sender;
-    private String message;
+    private final String sender;
+    private final String message;
 
     public Message(String sender, String message) {
         this.sender = sender;
