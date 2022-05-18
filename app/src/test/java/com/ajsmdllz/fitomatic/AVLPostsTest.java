@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AVLPostsTest {
-    private final PostFactory testFactory = new PostFactory();
-//    private final ArrayList<Post> posts = new ArrayList<>();
-//    private final AVLPosts avl = new AVLPosts();
     private final Post pSingle1 = new SingleActivity("p", "p", "p", "p", "date", "activity",0,new ArrayList<>());
     private final Post pSingle2 = new SingleActivity("p", "p", "p", "p", "date", "activity",6,new ArrayList<>());
     private final Post pSingle3 = new SingleActivity("p", "p", "p", "p", "date", "activity",2,new ArrayList<>());
@@ -83,19 +80,6 @@ public class AVLPostsTest {
         avl1 = avl1.insert(pEvent3);
         assertEquals(postArrayList1, avl1.iterator());
         assertEquals(3, avl1.getHeight());
-
-        AVLPosts avl2 = new AVLPosts();
-
-//        avl2 = avl2.insert(pSmall1);
-//        System.out.println((avl2.leftnode == null) + "left");
-//        System.out.println((avl2.rightnode == null) + "right");
-//        System.out.println(avl2.getHeight()+"");
-//        avl2 = avl2.insert(pSmall2);
-//        System.out.println((avl2.leftnode == null) + "left");
-//        System.out.println((avl2.rightnode == null) + "right");
-//        System.out.println(avl2.getHeight()+"");
-
-//        assertEquals(pEvent3, avl1.leftnode.iterator().get(0));
     }
 
 }
