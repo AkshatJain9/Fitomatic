@@ -144,7 +144,6 @@ public class ProfileFragment extends Fragment {
                             if (p != null) {
                                 followingPosts.add(p);
                             }
-
                         }
                         RecyclerView followingFeed = requireView().findViewById(R.id.followingFeed);
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), followingPosts);
