@@ -10,9 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.P2PMessaging.Message;
-import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.R;
-import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -27,6 +25,13 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         this.dataset = dataset;
     }
 
+    /** Inflates the layout of the messages that is to say that it gets the right type of
+     *  xml file for the message.
+     *
+     * @param parent: the parent of the view
+     * @param viewType: The type of post (0 -> myMessage, 1 -> theirMessage)
+     * @return: the viewHolder that corresponds to the viewType
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +48,11 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         return null;
     }
 
+    /** Used to populate the view holders with the contents of that message
+     *
+     * @param holder: the viewHolder to be populated
+     * @param position: the position in the data list that contains the message
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -54,6 +64,10 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         }
     }
 
+    /**
+     * returns the size of the RecycleView
+     * @return: the length of the recycleView
+     */
     @Override
     public int getItemCount() {
         return dataset.size();
@@ -68,6 +82,10 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
             return 1;
     }
 
+    /**
+     * Defines the viewholder class for the recycler view that corresponds to the myMessage type of message
+     * This is the internal class that makes the xml file link to the adapter
+     */
     public static class myMessageHolder extends RecyclerView.ViewHolder{
         TextView message;
 
@@ -81,6 +99,10 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         }
     }
 
+    /**
+     * Defines the viewholder class for the recycler view that corresponds to the theirMessage type of message
+     * This is the internal class that makes the xml file link to the adapter
+     */
     public static class theirMessageHolder extends RecyclerView.ViewHolder{
         TextView message;
         public theirMessageHolder(@NonNull View itemView) {

@@ -1,12 +1,9 @@
 package com.ajsmdllz.fitomatic;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +58,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      *
      * @param parent: yes
      * @param viewType: the type of Post that it is (0 -> indiv. 1 -> sml. 2 -> lrg.)
-     * @return
+     * @return: the viewHolder that corresponds to the viewType
      */
     @NonNull
     @Override
@@ -320,7 +317,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     /**
-     * Defines the viewholder class for the recycler view that coresponds to the large Group posts
+     * Defines the viewholder class for the recycler view that corresponds to the large Group posts
      * This is the internal class that makes the xml file link to the adapter
      */
     public class LargeViewHolder extends RecyclerView.ViewHolder{
