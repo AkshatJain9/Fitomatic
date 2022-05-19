@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class SmallPostFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+    /**
+     * This class is used to create Small (Event) posts.
+     * Content linked to fragment_individual_post.xml (page where you create the post)
+     */
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private String selectedActivity;

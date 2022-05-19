@@ -29,6 +29,10 @@ import java.util.Objects;
 
 
 public class IndividualPostFragment extends Fragment implements AdapterView.OnItemSelectedListener{
+    /**
+     * This class is used to create Individual (Single) posts.
+     * Content linked to fragment_large_post.xml (page where you create the post)
+     */
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private String selectedActivity;
