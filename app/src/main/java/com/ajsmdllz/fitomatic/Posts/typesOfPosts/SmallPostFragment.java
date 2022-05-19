@@ -2,11 +2,9 @@ package com.ajsmdllz.fitomatic.Posts.typesOfPosts;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +16,14 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
-import com.ajsmdllz.fitomatic.Posts.SingleActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.hostActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Objects;
-
 
 public class SmallPostFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     private FirebaseAuth mAuth;
