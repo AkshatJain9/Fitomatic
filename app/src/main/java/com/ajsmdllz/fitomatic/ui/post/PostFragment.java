@@ -12,12 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.Posts.PostHostActivity;
-import com.ajsmdllz.fitomatic.Posts.SingleActivity;
-import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +22,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -51,12 +47,9 @@ public class PostFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PostHostActivity.class);
-                startActivity(intent);
-            }
+        View.OnClickListener listener = v -> {
+            Intent intent = new Intent(getActivity(), PostHostActivity.class);
+            startActivity(intent);
         };
 
         View add = requireView().findViewById(R.id.addPostIcon);
