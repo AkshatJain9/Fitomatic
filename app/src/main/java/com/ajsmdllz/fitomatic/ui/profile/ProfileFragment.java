@@ -133,12 +133,12 @@ public class ProfileFragment extends Fragment {
                 postIDs.addAll((ArrayList<String>) task.getResult().get("following"));
 
                 followingPosts = new ArrayList<>();
-
+                PostFactory fact = new PostFactory();
                 for (String id : postIDs) {
                     db.collection("posts").document(id).get().addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful()) {
                             DocumentSnapshot temp = task1.getResult();
-                            PostFactory fact = new PostFactory();
+
                             // Uses PostFactory to create correct post
                             Post p = fact.createPostfromDBSnapshot(temp);
                             if (p != null) {

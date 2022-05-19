@@ -42,9 +42,9 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      */
     @Override
     public int getItemViewType(int position) {
-        if(dataset.get(position) instanceof SingleActivity) {
+        if (dataset.get(position) instanceof SingleActivity) {
             return 0;
-        }else if (dataset.get(position) instanceof SmallGroupActivity){
+        } else if (dataset.get(position) instanceof SmallGroupActivity){
             return 1;
         } else if ((dataset.get(position) instanceof EventActivity)){
             return 2;
@@ -177,47 +177,39 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             activity = itemView.findViewById(R.id.individualActivityChip);
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button handler
-            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Make connection to database and get the post details
-                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
-                            Long likes = task.getResult().getLong("likes");
-                            // If there is no posts or the user has not already liked the post update relevant fields
-                             if (liked != null && !liked.contains(email)) {
-                                liked.add(email);
-                                likes++;
-                                db.collection("posts").document(id).update("likes", likes);
-                                db.collection("posts").document(id).update("liked", liked);
-                            } else {
-                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
-                            }
-                        } else
-                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
-                    });
-                }
+            itemView.findViewById(R.id.likeChip).setOnClickListener(view -> {
+                // Make connection to database and get the post details
+                db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+                        Long likes = task.getResult().getLong("likes");
+                        // If there is no posts or the user has not already liked the post update relevant fields
+                         if (liked != null && !liked.contains(email)) {
+                            liked.add(email);
+                            likes++;
+                            db.collection("posts").document(id).update("likes", likes);
+                            db.collection("posts").document(id).update("liked", liked);
+                        } else {
+                            Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else
+                        Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                });
             });
 
             // Follow button handler
-            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
-                            if (following != null && !following.contains(id)) {
-                                // Adding the post to the user's list of following posts
-                                following.add(id);
-                                db.collection("users").document(email).update("following", following);
-                            } else {
-                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            itemView.findViewById(R.id.followChip).setOnClickListener(view -> db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                    if (following != null && !following.contains(id)) {
+                        // Adding the post to the user's list of following posts
+                        following.add(id);
+                        db.collection("users").document(email).update("following", following);
+                    } else {
+                        Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            });
+            }));
         }
 
         /**
@@ -260,48 +252,40 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             String email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
             // Like button handler
-            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Make connection to database and get the post details
-                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+            itemView.findViewById(R.id.likeChip).setOnClickListener(view -> {
+                // Make connection to database and get the post details
+                db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
 
-                            Long likes = task.getResult().getLong("likes");
-                            // If there is no posts or the user has not already liked the post update relevant fields
-                            if (liked != null && !liked.contains(email)) {
-                                liked.add(email);
-                                likes++;
-                                db.collection("posts").document(id).update("likes", likes);
-                                db.collection("posts").document(id).update("liked", liked);
-                            } else {
-                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
-                            }
-                        } else
-                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
-                    });
-                }
+                        Long likes = task.getResult().getLong("likes");
+                        // If there is no posts or the user has not already liked the post update relevant fields
+                        if (liked != null && !liked.contains(email)) {
+                            liked.add(email);
+                            likes++;
+                            db.collection("posts").document(id).update("likes", likes);
+                            db.collection("posts").document(id).update("liked", liked);
+                        } else {
+                            Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else
+                        Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                });
             });
 
             // Follow button handler
-            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
-                            if (following != null && !following.contains(id)) {
-                                // Adding the post to the user's list of following posts
-                                following.add(id);
-                                db.collection("users").document(email).update("following", following);
-                            } else {
-                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            itemView.findViewById(R.id.followChip).setOnClickListener(view -> db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                    if (following != null && !following.contains(id)) {
+                        // Adding the post to the user's list of following posts
+                        following.add(id);
+                        db.collection("users").document(email).update("following", following);
+                    } else {
+                        Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            });
+            }));
         }
 
         /**
@@ -347,47 +331,39 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             String email = mAuth.getCurrentUser().getEmail();
             // Like button listener
-            itemView.findViewById(R.id.likeChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Make connection to database and get the post details
-                    db.collection("posts").document(id).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
-                            Long likes = task.getResult().getLong("likes");
-                            // If there is no posts or the user has not already liked the post update relevant fields
-                            if (liked != null && !liked.contains(email)) {
-                                liked.add(email);
-                                likes++;
-                                db.collection("posts").document(id).update("likes", likes);
-                                db.collection("posts").document(id).update("liked", liked);
-                            } else {
-                                Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
-                            }
-                        } else
-                            Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
-                    });
-                }
+            itemView.findViewById(R.id.likeChip).setOnClickListener(view -> {
+                // Make connection to database and get the post details
+                db.collection("posts").document(id).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        ArrayList<String> liked = (ArrayList<String>) task.getResult().get("liked");
+                        Long likes = task.getResult().getLong("likes");
+                        // If there is no posts or the user has not already liked the post update relevant fields
+                        if (liked != null && !liked.contains(email)) {
+                            liked.add(email);
+                            likes++;
+                            db.collection("posts").document(id).update("likes", likes);
+                            db.collection("posts").document(id).update("liked", liked);
+                        } else {
+                            Toast.makeText(context, "Already liked this post!", Toast.LENGTH_SHORT).show();
+                        }
+                    } else
+                        Toast.makeText(context, "Error occurred!", Toast.LENGTH_SHORT).show();
+                });
             });
 
             // Follow button handler
-            itemView.findViewById(R.id.followChip).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
-                            if (following != null && !following.contains(id)) {
-                                // Adding the post to the user's list of following posts
-                                following.add(id);
-                                db.collection("users").document(email).update("following", following);
-                            } else {
-                                Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            itemView.findViewById(R.id.followChip).setOnClickListener(view -> db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    ArrayList<String> following = (ArrayList<String>) task.getResult().get("following");
+                    if (following != null && !following.contains(id)) {
+                        // Adding the post to the user's list of following posts
+                        following.add(id);
+                        db.collection("users").document(email).update("following", following);
+                    } else {
+                        Toast.makeText(context, "Already following!", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            });
+            }));
         }
 
         /**

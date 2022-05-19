@@ -16,18 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.AVLPosts;
-import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
-import com.ajsmdllz.fitomatic.Posts.SingleActivity;
-import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
 import com.ajsmdllz.fitomatic.Search.DBQuery;
 import com.ajsmdllz.fitomatic.Search.Expressions.Exp;
 import com.ajsmdllz.fitomatic.Search.SearchParser;
 import com.ajsmdllz.fitomatic.Search.SearchTokenizer;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,8 +32,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
     FirebaseFirestore db;
@@ -46,7 +40,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
     }
 
@@ -68,16 +61,17 @@ public class HomeFragment extends Fragment {
         tvSearchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                // When string submitted, parse into Expression
                 SearchTokenizer tokens = new SearchTokenizer(query);
                 SearchParser parser = new SearchParser(tokens);
                 Exp e = parser.parseStatement();
-//                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show(); Keep for now
+                // Store Searched Posts for Display
                 ArrayList<Post> searchedPosts = new ArrayList<>();
-                System.out.println(e);
+                // Parse into query object to be called
                 DBQuery queryHandler = DBQuery.getInstance();
-                CollectionReference colref = db.collection("posts");
-                Query r = queryHandler.getQuery(e, colref);
-                r.get().addOnCompleteListener(task -> {
+                CollectionReference colRef = db.collection("posts");
+                Query postQuery = queryHandler.getQuery(e, colRef);
+                postQuery.get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
                         ArrayList<DocumentSnapshot> docs = (ArrayList<DocumentSnapshot>) snapshot.getDocuments();
@@ -93,17 +87,11 @@ public class HomeFragment extends Fragment {
                         RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), searchedPosts);
                         feed.setAdapter(recycleFeedAdapter);
                         feed.setLayoutManager(new LinearLayoutManager(getContext()));
-
                     } else {
                         // If you get to this point, an attribute hasn't been indexed, please add on Firebase (or ask AJ)
                         Toast.makeText(getContext(), "QUERY FAILED", Toast.LENGTH_SHORT).show();
                     }
-                    // TRY FROM HERE
-
                 });
-
-
-
                 return true;
             }
             @Override
@@ -138,13 +126,12 @@ public class HomeFragment extends Fragment {
                 // Setting Recycle Feeds adapter to display
                 RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), tree[0].iterator());
                 feed.setAdapter(recycleFeedAdapter);
-                feed.setLayoutManager(new LinearLayoutManager(getContext()));
             } else {
                 // If Query was unsuccessful, display and empty feed
                 RecycleFeedAdapter recycleFeedAdapter = new RecycleFeedAdapter(getContext(), new ArrayList<>());
                 feed.setAdapter(recycleFeedAdapter);
-                feed.setLayoutManager(new LinearLayoutManager(getContext()));
             }
+            feed.setLayoutManager(new LinearLayoutManager(getContext()));
         });
     }
 }
