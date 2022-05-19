@@ -35,24 +35,19 @@ public class User {
         this.following = following;
     }
 
-    // FIXME - REMEMBER TO REMOVE AT THE END
-//    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts) {
-//        this.firstname = firstname;
-//        this.lastname = lastname;
-//        this.email = email;
-//        this.bio = bio;
-//        this.age = age;
-//        this.gender = gender;
-//        this.interests = interests;
-//        this.posts = posts;
-//    }
-
-
     public User(String email) {
         this.email = email;
-        blocked = new ArrayList<>();
-        messages = new HashMap<>();
-        following = new ArrayList<>();
+        this.firstname = "";
+        this.lastname = "";
+        this.blocked = new ArrayList<>();
+        this.messages = new HashMap<>();
+        this.following = new ArrayList<>();
+        this.bio = "";
+        this.age = 0;
+        this.gender = "";
+        this.interests = new ArrayList<>();
+        this.posts = new ArrayList<>();
+        this.blocked = new ArrayList<>();
     }
 
 
