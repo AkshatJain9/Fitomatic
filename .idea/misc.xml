@@ -24,6 +24,8 @@
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/nav_bar_backgorund.xml" value="0.2595" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/textfield_action.xml" value="0.2595" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/drawable/transparent.xml" value="0.2595" />
+        <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout-land/activity_fire_base.xml" value="0.14114583333333333" />
+        <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout-land/fragment_small_post.xml" value="0.3219761499148211" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_choose_interests.xml" value="0.2" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_direct_message.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/activity_feed_post.xml" value="0.4" />
@@ -38,9 +40,11 @@
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/direct_message_my.xml" value="0.4" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/direct_message_theirs.xml" value="0.4" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_message.xml" value="0.2" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_post.xml" value="0.264" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/login_success_list_user.xml" value="0.2" />
+        <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/layout/message_recycler.xml" value="0.536" />
         <entry key="..\:/Users/leonz/AndroidStudioProjects/comp2100-group-assignment-ajsmdllz/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable-anydpi/ic_person.xml" value="0.2585" />
         <entry key="..\:/Users/shaaz/Documents/MyPC/ANU/Y2/Sem1/COMP2100/GroupProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2585" />
@@ -56,7 +60,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

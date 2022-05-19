@@ -54,6 +54,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     public void onBindViewHolder(@NonNull MessageRecyclerAdapter.MessageViewHolder holder, int position) {
         holder.email = dataset.get(position).getEmail();
         holder.getName().setText(dataset.get(position).getFirstname() + " " + dataset.get(position).getLastname());
+        holder.getEmailText().setText(dataset.get(position).getEmail());
 
     }
 
@@ -74,7 +75,9 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         FirebaseFirestore db;
         String email;
         private final TextView name;
+        private final TextView emailText;
         private final Chip block;
+        private final View click;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +85,8 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             this.name = itemView.findViewById(R.id.messageName);
             this.block = itemView.findViewById(R.id.messageBlock);
+            this.emailText = itemView.findViewById(R.id.emailText);
+            this.click = itemView.findViewById(R.id.clickView);
             // Block button handler
             this.block.setOnClickListener(view -> db.collection("users").document(Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful() && task.getResult() != null) {
@@ -102,7 +107,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
                 }
             }));
 
-            this.name.setOnClickListener(view -> {
+            this.click.setOnClickListener(view -> {
                 String recip = email;
                 Intent intent = new Intent(context, DirectMessage.class);
                 intent.putExtra("recip", recip);
@@ -114,5 +119,6 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         public Chip getBlock() {return block;}
         public String getEmail() {return email;}
         public TextView getName() {return name;}
+        public TextView getEmailText() {return emailText;}
     }
 }

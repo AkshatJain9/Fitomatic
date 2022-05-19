@@ -123,5 +123,6 @@
     <string name="date">Date</string>
     <string name="john_smith">John Smith</string>
     <string name="block">Block</string>
+    <string name="max_participants">Max Participants 0</string>
 
 </resources>

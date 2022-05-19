@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="Max Participants 0"
+        android:text="@string/max_participants"
         app:layout_constraintStart_toStartOf="@+id/createDescriptionSmall"
         app:layout_constraintTop_toBottomOf="@+id/createTitleSmall" />
 
@@ -50,7 +50,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Title of Post"
+        android:hint="@string/title_of_post"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -68,7 +68,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Date"
+        android:hint="@string/date"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
