@@ -15,9 +15,11 @@ import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,7 +37,6 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
      *
      * @param parent: the parent of the view
      * @param viewType: the type of view (unimportant for this adapter)
-     * @return: the viewHolder to be used in the adapter
      */
     @NonNull
     @Override
@@ -82,33 +83,30 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
             this.name = itemView.findViewById(R.id.messageName);
             this.block = itemView.findViewById(R.id.messageBlock);
             // Block button handler
-            this.block.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    db.collection("users").document(Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> blocked = task.getResult().get("blocked", ArrayList.class);
-                            Toast.makeText(context, email, Toast.LENGTH_SHORT).show();
-                            if (blocked != null && !blocked.contains(email)) {
-                                // Adding the post to the user's list of blocked users
-                                blocked.add(email);
-                                db.collection("users").document(Objects.requireNonNull(mAuth.getCurrentUser().getEmail())).update("blocked", blocked);
-                            } else {
-                                Toast.makeText(context, "Already blocked this user!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }
-            });
+            this.block.setOnClickListener(view -> db.collection("users").document(Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail())).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    DocumentSnapshot d = task.getResult();
+                    HashMap<String, Object> map = (HashMap<String, Object>) d.getData();
 
-            this.name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String recip = email;
-                    Intent intent = new Intent(context, DirectMessage.class);
-                    intent.putExtra("recip", recip);
-                    context.startActivity(intent);
+                    ArrayList<String> blocked = (ArrayList<String>) map.get("blocked");
+
+//                            ArrayList<String> blocked = task.getResult().get("blocked", ArrayList.class);
+                    Toast.makeText(context, email, Toast.LENGTH_SHORT).show();
+                    if (blocked != null && !blocked.contains(email)) {
+                        // Adding the post to the user's list of blocked users
+                        blocked.add(email);
+                        db.collection("users").document(Objects.requireNonNull(mAuth.getCurrentUser().getEmail())).update("blocked", blocked);
+                    } else {
+                        Toast.makeText(context, "Already blocked this user!", Toast.LENGTH_SHORT).show();
+                    }
                 }
+            }));
+
+            this.name.setOnClickListener(view -> {
+                String recip = email;
+                Intent intent = new Intent(context, DirectMessage.class);
+                intent.putExtra("recip", recip);
+                context.startActivity(intent);
             });
 
         }
