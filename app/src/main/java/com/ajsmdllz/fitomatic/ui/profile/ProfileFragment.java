@@ -32,6 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -103,7 +104,12 @@ public class ProfileFragment extends Fragment {
         ArrayList<String> postIDs = new ArrayList<>();
         db.collection("users").document(email).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                postIDs.addAll((ArrayList<String>) task.getResult().get("following"));
+                DocumentSnapshot d = task.getResult();
+
+                HashMap<String, Object> map = (HashMap<String, Object>) d.getData();
+                ArrayList<String> following = (ArrayList<String>) map.get("following");
+
+                postIDs.addAll(following);
 
                 followingPosts = new ArrayList<>();
                 PostFactory fact = new PostFactory();
