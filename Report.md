@@ -28,16 +28,107 @@ After spending over two years in lockdown under various restrictions it has made
 
 ## Summary of Individual Contributions
 
-*[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
+*u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:*
+* xml files:
+  * fragment_individual_post.xml 
+  * fragment_small_post.xml
+  * login_success_list_user.xml (Removed)
+  * activity_user_profile.xml (Removed)
+* SmallPostFragment.java
+* LargePostFragment.java
+* IndividualPostFragment.java
+* UserProfile.java (Removed)
+* FeedAdapter.java (Removed)
+  * Was used to originally display the users on the main feed page but we changed it to posts.
+* TokenizerTest.java
+* MessageRecyclerAdapter.java
+  * Block button handler
+* RecycleFeedAdapter.java
+  * Individual, Small and Large like and follow handlers
+* Email.java (Removed)
+  * Was a singleton design pattern but we ended up not needing it
+* Report writing sections written
+  * Wrote meeting minutes 2 and 3
+  * Testing Summary
+  * Data Structures
+  * Tokenizer and Parser
+  * Design Patterns
 
-*[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
+*u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:*
+* All xml files with the following exceptions (only small alterations made to layout and bugfix): 
+  * fragment_individual_post.xml 
+  * fragment_large_post.xml
+  * fragment_small_post.xml
+* RecycleFeedAdapter.java
+* MessageRecyclerAdapter.java
+* DirectMessageAdapter.java
+* hostActivity.java
+  * Created the bottom navigation menu and corresponding fragments and refactored old activities to work as fragments (changes made due to different life cycle of fragments, ways of getting the context, etc.)
+* PostHostActivity.java
+  * Created the navigation menu including scaffolding for the fragments but did not actually implement the forms front end.
+* Other small additions like adding the adapters to recycleView’s
+*Other contributions:*
+* Use of Figma to do the following:
+  * Creation of a style guide
+  * Creation of Logo
+  * Creation of User Flow (how a user will go through the app which pages lead to where)
+  * Creation of Icons
+* Created and will present the Minute Madness presentation
 
-*Here is an example:*
+*u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
+Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.*
+* Code Implementation: Created the factory design pattern for standardising post creation between three concrete post classes.
+  * Post.java
+  * SingleActivity.java
+  * SmallGroupActivity.java
+  * EventActivity.java
+  * PostFactory.java
+* Code Implementation: Created original Tokenizer with deprecated grammar, which was expanded on by Akshat. Git commit version (https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/tree/a4e9d9effc0f154356f2fa11c8f167cccdbba609/app/src/main/java/com/ajsmdllz/fitomatic)
+  * Token.java
+  * Tokenizer.java (Removed)
+  * SimpleTokenizer.java (Removed)
+* Code Implementation: Software tests created
+  * AVLPostsTest.java
+  * MessageTest.java
+  * ParserTest.java
+  * PostFactory.java
+  * TokenTest.java
+* UI Design: Created UI elements xml files:
+  * fragment_large_post.xml 
+* Report writing sections written
+  * Team Members and Roles
+  * Conflict Resolution Protocol
+  * Application design and use cases
+  * Summary of known errors and bugs
+  * Team meetings
+* Miscellaneuos:
+  * Created and maintained the group discord server for project management and team communications.
 
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
+*u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:*
+* Set up and configured Firestore Database, Image Storage Database and User Authentication Database for use.
+* Created all of the Peer-to-Peer Messaging mechanism from the back-end, including reading from input fields, updating the firebase, and retrieving the messages previously sent. This also included filtering blocked users. I then later worked with Leon to transfer all of this logic to Recycle Feeds so that it would fit the UI theme. The following was written by myself;
+  * DirectMessage.java (excl. populateMessages)
+  * MessageFragment.java
+* Inspired heavily by the initial tokeniser logic created by Shaazaan, I created the full search mechanism, including the Tokeniser (with the Iterator Design Pattern), Parser (including the Grammar) and DBQuery.java which creates a Firestore Query Object. So in total, the following classes.
+  * DBQuery.java
+  * Expressions Folder
+  * KeywordList.java (Used in Tokeniser)
+  * Token.java
+  * SearchParser.java
+  * SearchTokenizer.java (Built from Shaazaan’s initial version)
+* Storing all user data in Firestore store database in the registration phase. This also included storing the user profile picture in a separate database.
+  * ChooseInterests.java (Line 31-43)
+  * Registration.java
+  * ProfileCreation.java (Excl. onCreate())
+* Created a mechanism for querying posts from the database to be displayed on the main feed, the profile page (following posts), the user’s own posts. Similarly, also added a mechanism to retrieve all user objects for display on the message fragment.
+  * PostFactory.java (createPostfromDBSnapshot & createPostfromDBQuerySnapshot)
+  * HomeFragment.java (76-86, 120-125)
+  * ProfileFragment.java (133-147)
+  * MessageFragment.java (73-105) 
+* Created the AVL tree which stores the posts queried in the database in a sequential matter (from most likes to least) in an efficient manner. Also made this data structure usable with the UI (working with Leon)
+  * AVLPosts.java
+  * HomeFragment.java (120-125)
+
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
