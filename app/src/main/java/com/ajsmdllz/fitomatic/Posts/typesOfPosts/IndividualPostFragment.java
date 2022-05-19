@@ -2,11 +2,9 @@ package com.ajsmdllz.fitomatic.Posts.typesOfPosts;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.hostActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -69,46 +65,43 @@ public class IndividualPostFragment extends Fragment implements AdapterView.OnIt
         ArrayList<String> liked = new ArrayList<>();
         // Create Post Button
         Button createPost = requireView().findViewById(R.id.createPostSingle);
-        createPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is where checks will be needed and then creating the post will happen
-                if (title.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-                } else if (description.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-                }else if (date.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Successfully create a post
-                    Toast.makeText(requireView().getContext(), "Successfully created a post!", Toast.LENGTH_SHORT).show();
-                    PostFactory newPost = new PostFactory();
-                    ArrayList<String> activites = new ArrayList<>();
-                    activites.add(selectedActivity);
-                    ArrayList<String> followers = new ArrayList<>();
-                    // Add post to database
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
-                            if (posts != null) {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", followers, -1, 1,0, liked);
-                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
-                                posts.add("("+email+", "+posts.size()+")");
-                                db.collection("users").document(email).update("posts", posts);
-                            } else {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites,"",  followers,-1,1,0, liked);
-                                ArrayList<String> firstPost = new ArrayList<>();
-                                firstPost.add("("+email+", "+0+")");
-                                db.collection("posts").document("("+email+", "+0+")").set(post);
-                                db.collection("users").document(email).update("posts", firstPost);
-                            }
+        createPost.setOnClickListener(view1 -> {
+            // This is where checks will be needed and then creating the post will happen
+            if (title.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
+            } else if (description.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
+            }else if (date.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
+            } else {
+                // Successfully create a post
+                Toast.makeText(requireView().getContext(), "Successfully created a post!", Toast.LENGTH_SHORT).show();
+                PostFactory newPost = new PostFactory();
+                ArrayList<String> activites = new ArrayList<>();
+                activites.add(selectedActivity);
+                ArrayList<String> followers = new ArrayList<>();
+                // Add post to database
+                db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
+                        if (posts != null) {
+                            Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, "", followers, -1, 1,0, liked);
+                            db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
+                            posts.add("("+email+", "+posts.size()+")");
+                            db.collection("users").document(email).update("posts", posts);
                         } else {
-                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites,"",  followers,-1,1,0, liked);
+                            ArrayList<String> firstPost = new ArrayList<>();
+                            firstPost.add("("+email+", "+0+")");
+                            db.collection("posts").document("("+email+", "+0+")").set(post);
+                            db.collection("users").document(email).update("posts", firstPost);
                         }
-                    });
-                    // Go back to main page
-                    startActivity(new Intent(getContext(), hostActivity.class));
-                }
+                    } else {
+                        Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                // Go back to main page
+                startActivity(new Intent(getContext(), hostActivity.class));
             }
         });
     }

@@ -4,11 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +15,12 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.hostActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -75,71 +71,68 @@ public class LargePostFragment extends Fragment {
         TextView popUptextView = requireView().findViewById(R.id.multiActivityDropdown);
         boolean[] selectedActivities = new boolean[activities.length];
         popUptextView.setKeyListener(null);
-        popUptextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Initialize alert dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Select Activities");
-                // set dialog non cancelable
-                builder.setCancelable(false);
+        popUptextView.setOnClickListener(view1 -> {
+            // Initialize alert dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Select Activities");
+            // set dialog non cancelable
+            builder.setCancelable(false);
 
-                builder.setMultiChoiceItems(activities, selectedActivities, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+            builder.setMultiChoiceItems(activities, selectedActivities, new DialogInterface.OnMultiChoiceClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                    // check condition
+                    if (b) {
+                        // when checkbox selected add in activity list
+                        activityList.add(i);
+                    } else {
+                        // when checkbox unselected remove position from langList
+                        activityList.remove(Integer.valueOf(i));
+                    }
+                }
+            });
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // Initialize string builder
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int j = 0; j < activityList.size(); j++) {
+                        // concat array value
+                        stringBuilder.append(activities[activityList.get(j)]);
                         // check condition
-                        if (b) {
-                            // when checkbox selected add in activity list
-                            activityList.add(i);
-                        } else {
-                            // when checkbox unselected remove position from langList
-                            activityList.remove(Integer.valueOf(i));
+                        if (j != activityList.size() - 1) {
+                            // add comma between elements
+                            stringBuilder.append(", ");
                         }
                     }
-                });
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // Initialize string builder
-                        StringBuilder stringBuilder = new StringBuilder();
-                        for (int j = 0; j < activityList.size(); j++) {
-                            // concat array value
-                            stringBuilder.append(activities[activityList.get(j)]);
-                            // check condition
-                            if (j != activityList.size() - 1) {
-                                // add comma between elements
-                                stringBuilder.append(", ");
-                            }
-                        }
-                        // set text on textView
-                        popUptextView.setText(stringBuilder.toString());
+                    // set text on textView
+                    popUptextView.setText(stringBuilder.toString());
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // dismiss dialog
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    // use for loop
+                    for (int j = 0; j < selectedActivities.length; j++) {
+                        // remove all selection
+                        selectedActivities[j] = false;
+                        // clear activity list
+                        activityList.clear();
+                        // clear text view value
+                        popUptextView.setText("");
                     }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // dismiss dialog
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.setNeutralButton("Clear All", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        // use for loop
-                        for (int j = 0; j < selectedActivities.length; j++) {
-                            // remove all selection
-                            selectedActivities[j] = false;
-                            // clear activity list
-                            activityList.clear();
-                            // clear text view value
-                            popUptextView.setText("");
-                        }
-                    }
-                });
-                // show dialog
-                builder.show();
-            }
+                }
+            });
+            // show dialog
+            builder.show();
         });
 
 
