@@ -29,25 +29,11 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-            @Override
-            public void onComplete(@NonNull Task<String> task) {
-                if (!task.isSuccessful()) {
-                    return;
-                }
-                String token = task.getResult();
-                System.out.println("TOKEN :" + token);
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            startActivity(new Intent(MainActivity.this, LoginSuccess.class));
-//        }
     }
 
     public void toRegistration(View v) {
@@ -73,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Account not found. Please check Email and Password!", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    public void testing(View v) {
-        Intent intent = new Intent(this, PostHostActivity.class);
-        startActivity(intent);
     }
 
 }
