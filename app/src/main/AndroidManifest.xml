@@ -21,20 +21,16 @@
             android:label="@string/title_activity_host" />
         <activity
             android:name=".Registration.ChooseInterests"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:exported="false" />
         <activity
             android:name=".Registration.ProfileCreation"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:exported="false" />
         <activity
             android:name=".Registration.Registration"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
