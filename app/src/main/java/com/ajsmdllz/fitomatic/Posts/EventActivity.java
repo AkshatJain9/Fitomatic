@@ -3,8 +3,11 @@ package com.ajsmdllz.fitomatic.Posts;
 import java.util.ArrayList;
 
 public class EventActivity extends Post {
-    // This class will be used to create and handle posts
-    // additional attributes on top of base Template
+    /**
+     * This class will be used to create and handle larger Posts
+     * targeted for big events and fundraisers
+     */
+    // Additional attributes on top of base Template
     private ArrayList<String> activities;
     private String location; // As an address
     private ArrayList<String> followers;

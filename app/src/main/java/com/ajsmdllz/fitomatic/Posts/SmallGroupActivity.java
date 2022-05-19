@@ -3,8 +3,11 @@ package com.ajsmdllz.fitomatic.Posts;
 import java.util.ArrayList;
 
 public class SmallGroupActivity extends Post {
-    // This class will be used to create and handle posts
-    // additional attributes on top of base Template
+    /**
+     * This class will be used to create and handle small group Posts
+     * targeted for activities between informal groups
+     */
+    // additional attributes on top of base abstract Post
     private String activity;
     private String location; // As an address
     private ArrayList<String> followers;

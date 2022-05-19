@@ -3,7 +3,10 @@ package com.ajsmdllz.fitomatic.Posts;
 import java.util.ArrayList;
 
 public class SingleActivity extends Post {
-
+    /**
+     * This class will be used to create and handle one-on-one Posts
+     * targeted for activities between individuals
+     */
     // Unique to this concrete Post
     private String activity;
 
