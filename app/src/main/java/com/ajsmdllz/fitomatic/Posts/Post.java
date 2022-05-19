@@ -3,6 +3,10 @@ package com.ajsmdllz.fitomatic.Posts;
 import java.util.ArrayList;
 
 public abstract class Post {
+    /**
+     * The abstract Post class is the base for other concrete Post types
+     * Posts will be utilised with the use of a PostFactory class
+     */
 
     // These attributes are common among all concrete classes
     public String author;

@@ -23,7 +23,7 @@ public class PostFactory {
             return new EventActivity(author, id, title, description, date, activities, location, followers, price, max, likes, liked);
     }
 
-
+    // Posts instantiated from FireBase Queries
     public Post createPostfromDBSnapshot(DocumentSnapshot d) {
         Post p;
         Map<String, Object> map = d.getData();

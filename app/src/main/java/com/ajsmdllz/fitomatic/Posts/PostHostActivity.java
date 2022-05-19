@@ -12,7 +12,9 @@ import com.ajsmdllz.fitomatic.databinding.ActivityPostHostBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PostHostActivity extends AppCompatActivity {
-
+    /**
+     * Host activity to hold the different Post fragments
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

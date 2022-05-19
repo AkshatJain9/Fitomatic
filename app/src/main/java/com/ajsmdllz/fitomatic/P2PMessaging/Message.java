@@ -1,6 +1,9 @@
 package com.ajsmdllz.fitomatic.P2PMessaging;
 
 public class Message {
+    /**
+     * This class sets the peer to peer text messages
+     */
     private final String sender;
     private final String message;
 
