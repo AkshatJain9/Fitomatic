@@ -15,14 +15,14 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/pfp"
         android:onClick="uploadProfilePic"
         android:src="@drawable/stockprofile"
         app:layout_constraintBottom_toTopOf="@+id/firstName"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        />
+        tools:ignore="MissingConstraints" />
 
 
     <EditText
@@ -34,7 +34,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/first_name"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -42,7 +42,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/bio"
@@ -55,10 +57,10 @@
         android:background="@drawable/textfield"
         android:ems="10"
         android:gravity="top"
-        android:hint="Tell Everyone About Yourself!"
+        android:hint="@string/tell_everyone_about_yourself"
+        android:inputType="text|textMultiLine"
         android:minHeight="200dp"
         android:padding="15dp"
-        android:inputType="text|textMultiLine"
         android:singleLine="false"
         android:textColor="@color/purple"
         app:layout_constraintBottom_toTopOf="@+id/createProfile"
@@ -67,7 +69,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageBar"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat,TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/lastName"
@@ -78,7 +81,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/last_name"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -86,7 +89,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/createProfile"
@@ -97,12 +102,13 @@
         android:layout_marginBottom="15dp"
         android:background="@drawable/action_button"
         android:onClick="createAccount"
-        android:text="Create Profile"
+        android:text="@string/create_profile"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/backToInterests"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/backToInterests"
@@ -113,7 +119,7 @@
         android:layout_marginBottom="60dp"
         android:background="@drawable/secondary_button"
         android:onClick="backtoInterests"
-        android:text="Back To Interests"
+        android:text="@string/back_to_interests"
         android:textColor="@color/purple"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,28 +141,31 @@
         app:layout_constraintTop_toBottomOf="@+id/lastName">
 
         <RadioButton
-            android:theme="@style/RadioButtonStyle"
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
-            android:paddingEnd="15dp"/>
+            android:paddingEnd="15dp"
+            android:text="@string/male"
+            android:theme="@style/RadioButtonStyle"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
-            android:theme="@style/RadioButtonStyle"
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
-            android:paddingEnd="15dp"/>
+            android:paddingEnd="15dp"
+            android:text="@string/female"
+            android:theme="@style/RadioButtonStyle"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
-            android:theme="@style/RadioButtonStyle"
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other"
-            android:paddingEnd="15dp"/>
+            android:paddingEnd="15dp"
+            android:text="@string/other"
+            android:theme="@style/RadioButtonStyle"
+            tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 
     <SeekBar
@@ -178,7 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:text="Age 0"
+        android:text="@string/age_0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -186,6 +195,7 @@
         android:id="@+id/editIconPicture"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:contentDescription="@string/editicon"
         app:layout_constraintEnd_toEndOf="@+id/pfp"
         app:layout_constraintTop_toTopOf="@+id/pfp"
         app:srcCompat="@drawable/add_icon" />
@@ -196,6 +206,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="15dp"
+        android:contentDescription="@string/imageview5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/progress3" />
