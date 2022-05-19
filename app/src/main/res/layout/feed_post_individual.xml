@@ -26,7 +26,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Individual Post Title"
+        android:text="@string/individual_post_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/followChip"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="Individual post description"
+        android:text="@string/individual_post_description"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
@@ -53,10 +53,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="@color/green"
-        android:text="Follow"
+        android:text="@string/follow"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/individualAuthorText" />
+        app:layout_constraintTop_toBottomOf="@+id/individualAuthorText"
+        tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/likeChip"
@@ -66,11 +67,12 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/green"
-        android:text=" Like "
+        android:text="@string/like"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/feed_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText" />
+        app:layout_constraintTop_toBottomOf="@+id/individualDescriptionText"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/individualAuthorText"
@@ -78,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="Author Name"
+        android:text="@string/author_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/feed_background" />
@@ -90,7 +92,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/purple"
-        android:text="Activity"
+        android:text="@string/activity"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/individualTitleText" />
@@ -101,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
-        android:text="XX/XX/XX"
+        android:text="@string/xx_xx_xx"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/followChip" />

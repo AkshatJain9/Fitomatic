@@ -36,16 +36,16 @@ public class User {
     }
 
     // FIXME - Do we need this? as well as lot's of stuff above ^^
-    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.bio = bio;
-        this.age = age;
-        this.gender = gender;
-        this.interests = interests;
-        this.posts = posts;
-    }
+//    public User(String firstname, String lastname, String email, String bio, int age, String gender, ArrayList<String> interests, ArrayList<String> posts) {
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.bio = bio;
+//        this.age = age;
+//        this.gender = gender;
+//        this.interests = interests;
+//        this.posts = posts;
+//    }
 
 
     public User(String email) {
