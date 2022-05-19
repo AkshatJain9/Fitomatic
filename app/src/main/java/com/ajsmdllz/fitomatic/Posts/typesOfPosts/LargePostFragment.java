@@ -23,13 +23,16 @@ import com.ajsmdllz.fitomatic.Posts.PostFactory;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.hostActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class LargePostFragment extends Fragment {
+    /**
+     * This class is used to create Large (Event) posts.
+     * Content linked to fragment_large_post.xml (page where you create the post)
+     */
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private String email;

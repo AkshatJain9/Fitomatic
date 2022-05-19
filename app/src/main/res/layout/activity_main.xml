@@ -13,6 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="45dp"
         android:layout_marginBottom="45dp"
+        android:contentDescription="@string/applogo"
         app:layout_constraintBottom_toTopOf="@+id/background_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -50,7 +51,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/background_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
 
     <EditText
@@ -62,14 +65,15 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+        app:layout_constraintTop_toBottomOf="@+id/firstName"
+        tools:ignore="TextContrastCheck" />
 
 
     <Button
@@ -81,12 +85,13 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/action_button"
         android:onClick="loginUser"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass" />
+        app:layout_constraintTop_toBottomOf="@+id/pass"
+        tools:ignore="TextContrastCheck" />
 
 
     <Button
@@ -98,7 +103,7 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/secondary_button"
         android:onClick="toRegistration"
-        android:text="Create an Account"
+        android:text="@string/create_an_account"
         android:textColor="@color/purple"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"

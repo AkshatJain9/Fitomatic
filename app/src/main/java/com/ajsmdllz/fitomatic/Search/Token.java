@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
  */
 public class Token {
     // The following enum defines different types of tokens. Example of accessing these: Token.Type.INT
-    public enum Type {NAME, ACTIVITY, TITLE, SIZE, TIME}
+    public enum Type {NAME, ACTIVITY, TITLE, TIME}
 
 
     // Fields of the class Token.

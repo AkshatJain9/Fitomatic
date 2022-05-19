@@ -13,14 +13,16 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Date"
+        android:hint="@string/date"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="@+id/createTitleSingle"
         app:layout_constraintStart_toStartOf="@+id/createTitleSingle"
-        app:layout_constraintTop_toBottomOf="@+id/createTitleSingle" />
+        app:layout_constraintTop_toBottomOf="@+id/createTitleSingle"
+        tools:ignore="TextContrastCheck" />
 
     <Spinner
         android:id="@+id/spinnerActivitySingle"
@@ -32,7 +34,8 @@
         android:backgroundTint="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createDateSingle" />
+        app:layout_constraintTop_toBottomOf="@+id/createDateSingle"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
     <EditText
@@ -44,7 +47,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Title of Post"
+        android:hint="@string/title_of_post"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -52,7 +55,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createDescriptionSingle"
@@ -65,18 +70,19 @@
         android:background="@drawable/textfield"
         android:ems="10"
         android:gravity="top"
-        android:hint="Description of Post"
+        android:hint="@string/description_of_post"
         android:inputType="text|textMultiLine"
-        android:singleLine="false"
         android:minHeight="200dp"
         android:padding="15dp"
+        android:singleLine="false"
         android:textColor="@color/purple"
         app:layout_constraintBottom_toTopOf="@+id/createPostSingle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerActivitySingle"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat,TextContrastCheck"
+        android:importantForAutofill="no" />
 
 
     <Button
@@ -87,10 +93,11 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/action_button"
-        android:text="Create Post"
+        android:text="@string/create_post"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

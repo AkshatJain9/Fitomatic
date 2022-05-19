@@ -14,6 +14,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 public class ChooseInterests extends AppCompatActivity {
+    /**
+     * This class holds the interest selection UI
+     */
     FirebaseFirestore db;
 
     @Override
