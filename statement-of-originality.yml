@@ -81,6 +81,10 @@ code:
   - comment: used to teach how to use drawables as backgrounds for UI elements
     url: https://www.youtube.com/watch?v=nlPtfncjOWA
 
+  - comment: Used to construct queries
+    url: https://firebase.google.com/docs/firestore/query-data/queries
+
+
 
 
 # add as many "url+licence+comment" entries as necessary
