@@ -193,11 +193,10 @@ public class LargePostFragment extends Fragment {
             }
         });
 
-
+        // Update the price slider when moved
         priceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                System.out.println(i);
                 price.setText("Price $" + i);
                 eventPrice = i;
             }
@@ -208,12 +207,12 @@ public class LargePostFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
+        // Update the participant slider when moved
         SeekBar maxPartBar = requireView().findViewById(R.id.maxPartBar);
         TextView maxPart = requireView().findViewById(R.id.maxPart);
         maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                System.out.println(i);
                 maxPart.setText("Max Participants " + i);
                 eventMaxPart = i;
             }

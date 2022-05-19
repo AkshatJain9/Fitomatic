@@ -120,12 +120,12 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
             }
         });
 
+        // Update the participant slider when moved
         SeekBar maxPartBar = requireView().findViewById(R.id.maxPartBarSmall);
         TextView maxPartSmall = requireView().findViewById(R.id.maxPartSmall);
         maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                System.out.println(i);
                 maxPartSmall.setText("Max Participants " + i);
                 maxPart = i;
             }
