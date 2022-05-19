@@ -83,7 +83,7 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     /**
-     * Defines the viewholder class for the recycler view that corresponds to the myMessage type of message
+     * Defines the view-holder class for the recycler view that corresponds to the myMessage type of message
      * This is the internal class that makes the xml file link to the adapter
      */
     public static class myMessageHolder extends RecyclerView.ViewHolder{
@@ -100,7 +100,7 @@ public class DirectMessageRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     /**
-     * Defines the viewholder class for the recycler view that corresponds to the theirMessage type of message
+     * Defines the view-holder class for the recycler view that corresponds to the theirMessage type of message
      * This is the internal class that makes the xml file link to the adapter
      */
     public static class theirMessageHolder extends RecyclerView.ViewHolder{

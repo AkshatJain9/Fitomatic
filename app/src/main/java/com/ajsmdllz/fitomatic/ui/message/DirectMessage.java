@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.ajsmdllz.fitomatic.P2PMessaging.Message;
 import com.ajsmdllz.fitomatic.R;
@@ -27,7 +26,7 @@ public class DirectMessage extends AppCompatActivity {
     FirebaseFirestore db;
     ArrayList<Message> messages;
     ArrayAdapter<String> messageAdapter;
-    String recip;
+    String recipient;
     String sender;
     FirebaseAuth mAuth;
 
@@ -39,7 +38,7 @@ public class DirectMessage extends AppCompatActivity {
 
         // Getting the recipient's email for indexing
         Intent intent = getIntent();
-        recip = intent.getStringExtra("recip");
+        recipient = intent.getStringExtra("recip");
         // Getting the sender's email for indexing
         mAuth = FirebaseAuth.getInstance();
         sender = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
@@ -55,8 +54,8 @@ public class DirectMessage extends AppCompatActivity {
                 Map<String, Object> mLog = d.getData();
                 HashMap<String,  ArrayList<HashMap<String, String>>> messageLog = (HashMap<String,  ArrayList<HashMap<String, String>>>) mLog.get("messages");
                 // If User has Messaged Recipient Before, then get all the messages
-                if (messageLog != null && messageLog.containsKey(recip) && messageLog.get(recip) != null) {
-                    ArrayList<HashMap<String, String>> pasts = messageLog.get(recip);
+                if (messageLog != null && messageLog.containsKey(recipient) && messageLog.get(recipient) != null) {
+                    ArrayList<HashMap<String, String>> pasts = messageLog.get(recipient);
                     for (HashMap<String, String> m : pasts) {
                         messages.add(new Message(m.get("sender"), m.get("message")));
                     }
@@ -64,20 +63,20 @@ public class DirectMessage extends AppCompatActivity {
                     populateMessages();
                 // If user has never messaged specific individual before, start storing messages (new session)
                 } else {
-                    // If Sender hasn't messaged ANYONE before, then a new hasmap object needs to be made
+                    // If Sender hasn't messaged ANYONE before, then a new hashmap object needs to be made
                     if (messageLog == null) {
                         HashMap<String, ArrayList<Message>> newMap = new HashMap<>();
-                        newMap.put(recip, new ArrayList<>());
+                        newMap.put(recipient, new ArrayList<>());
                         senderRef.update("messages", newMap);
                     } else {
-                        messageLog.put(recip, new ArrayList<>());
+                        messageLog.put(recipient, new ArrayList<>());
                         senderRef.update("messages", messageLog);
                     }
                 }
             }
         });
 
-        DocumentReference recipRef = db.collection("users").document(recip);
+        DocumentReference recipRef = db.collection("users").document(recipient);
         recipRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 // Now storing the Recipient User Object
@@ -105,10 +104,10 @@ public class DirectMessage extends AppCompatActivity {
      * Given the message provided in the input field, appropriately stores it in the database and displays on Sender Side immediately
      */
     public void SendMessage (View v) {
-        EditText messagetoSend = findViewById(R.id.Message);
-        String messagetoSendString = messagetoSend.getText().toString();
+        EditText messageToSend = findViewById(R.id.Message);
+        String messageToSendString = messageToSend.getText().toString();
 
-        if(!messagetoSendString.equals("")) {
+        if(!messageToSendString.equals("")) {
             DocumentReference currUser = db.collection("users").document(sender);
             currUser.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -116,26 +115,26 @@ public class DirectMessage extends AppCompatActivity {
                     DocumentSnapshot d = task.getResult();
                     Map<String, Object> mLog = d.getData();
                     HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
-                    messageLog.get(recip).add(new Message(sender, messagetoSendString));
+                    messageLog.get(recipient).add(new Message(sender, messageToSendString));
                     currUser.update("messages", messageLog);
                 }
             });
 
-            DocumentReference sendUser = db.collection("users").document(recip);
+            DocumentReference sendUser = db.collection("users").document(recipient);
             sendUser.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     // Because a DB side session is made when Activity is made, we can just update field in Database
                     DocumentSnapshot d = task.getResult();
                     Map<String, Object> mLog = d.getData();
                     HashMap<String, ArrayList<Message>> messageLog = (HashMap<String, ArrayList<Message>>) mLog.get("messages");
-                    messageLog.get(sender).add(new Message(sender, messagetoSendString));
+                    messageLog.get(sender).add(new Message(sender, messageToSendString));
                     sendUser.update("messages", messageLog);
                 }
             });
 
-            messages.add(new Message(sender, messagetoSendString));
+            messages.add(new Message(sender, messageToSendString));
             populateMessages();
-            messagetoSend.setText("");
+            messageToSend.setText("");
         }
     }
 

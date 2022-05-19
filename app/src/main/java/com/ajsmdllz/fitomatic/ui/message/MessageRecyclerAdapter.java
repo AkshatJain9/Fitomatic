@@ -67,7 +67,7 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
     }
 
     /**
-     * Defines the viewholder class for the recycler view
+     * Defines the view-holder class for the recycler view
      * This is the internal class that links the xml file to the adapter
      */
     public class MessageViewHolder extends RecyclerView.ViewHolder{

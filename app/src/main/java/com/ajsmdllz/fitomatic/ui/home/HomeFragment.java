@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
                         feed.setAdapter(recycleFeedAdapter);
                         feed.setLayoutManager(new LinearLayoutManager(getContext()));
                     } else {
-                        // If you get to this point, an attribute hasn't been indexed, please add on Firebase (or ask AJ)
+                        // If you get to this point, an attribute hasn't been indexed
                         Toast.makeText(getContext(), "QUERY FAILED", Toast.LENGTH_SHORT).show();
                     }
                 });
