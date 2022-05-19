@@ -56,7 +56,7 @@ public class RecycleFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     /** Inflates the layout of the Posts that is to say that it gets the right type of
      * xml file for the post.
      *
-     * @param parent: yes
+     * @param parent: the parent of the view
      * @param viewType: the type of Post that it is (0 -> indiv. 1 -> sml. 2 -> lrg.)
      * @return: the viewHolder that corresponds to the viewType
      */

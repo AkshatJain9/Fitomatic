@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ajsmdllz.fitomatic.P2PMessaging.Message;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.Registration.User;
 import com.google.android.material.chip.Chip;
@@ -31,6 +30,13 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         this.context = context;
     }
 
+    /**Inflates the layout of the Posts that is to say that it gets the right type of
+     * xml file for the post.
+     *
+     * @param parent: the parent of the view
+     * @param viewType: the type of view (unimportant for this adapter)
+     * @return: the viewHolder to be used in the adapter
+     */
     @NonNull
     @Override
     public MessageRecyclerAdapter.MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,6 +44,11 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
         return new MessageViewHolder(view);
     }
 
+    /**Used to populate the view holders with the name of the user
+     *
+     * @param holder: the viewHolder to be populated
+     * @param position: the position in the list that stores the username
+     */
     @Override
     public void onBindViewHolder(@NonNull MessageRecyclerAdapter.MessageViewHolder holder, int position) {
         holder.email = dataset.get(position).getEmail();
@@ -45,11 +56,19 @@ public class MessageRecyclerAdapter extends RecyclerView.Adapter<MessageRecycler
 
     }
 
+    /**
+     * Returns the number of items in the Recycle View
+     * @return the number of items in the recycleView
+     */
     @Override
     public int getItemCount() {
         return dataset.size();
     }
 
+    /**
+     * Defines the viewholder class for the recycler view
+     * This is the internal class that links the xml file to the adapter
+     */
     public class MessageViewHolder extends RecyclerView.ViewHolder{
         FirebaseFirestore db;
         String email;
