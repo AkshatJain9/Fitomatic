@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Posts.typesOfPosts.LargePostFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <SeekBar
         android:id="@+id/priceBar"
         android:layout_width="0dp"
@@ -176,6 +174,7 @@
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createTitleEvent"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

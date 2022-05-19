@@ -56,7 +56,8 @@
         android:layout_marginEnd="15dp"
         android:src="@drawable/logout_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/log_out" />
 
     <TextView
         android:id="@+id/textView3"
@@ -64,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:text="Following"
+        android:text="@string/following"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameText" />

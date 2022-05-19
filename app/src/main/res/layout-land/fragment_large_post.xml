@@ -38,7 +38,7 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price $0"
+        android:text="@string/price_0"
         app:layout_constraintBottom_toTopOf="@+id/maxPart"
         app:layout_constraintStart_toStartOf="@+id/createDescriptionEvent" />
 
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="Max Participants 0"
+        android:text="@string/max_participants_0"
         app:layout_constraintBottom_toTopOf="@+id/createPostEvent"
         app:layout_constraintStart_toStartOf="@+id/createDescriptionEvent" />
 
@@ -59,7 +59,7 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/action_button"
-        android:text="Create Post"
+        android:text="@string/create_post"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
         android:background="@drawable/textfield"
         android:ems="10"
         android:gravity="top"
-        android:hint="Description of Post"
+        android:hint="@string/description_of_post"
         android:inputType="text|textMultiLine"
         android:minHeight="200dp"
         android:padding="15dp"
@@ -86,7 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date"
         app:layout_constraintTop_toBottomOf="@+id/createTitleEvent"
-        tools:ignore="RtlCompat" />
+        tools:ignore="RtlCompat"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createTitleEvent"
@@ -97,7 +98,7 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Title of Post"
+        android:hint="@string/title_of_post"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
@@ -105,7 +106,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/multiActivityDropdown"
@@ -116,13 +118,14 @@
         android:drawableRight="@android:drawable/arrow_down_float"
         android:ems="10"
         android:focusable="false"
-        android:hint="Activities"
+        android:hint="@string/activities"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/createDescriptionEvent" />
+        app:layout_constraintTop_toTopOf="@+id/createDescriptionEvent"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/date"
@@ -132,13 +135,14 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Date"
+        android:hint="@string/date"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiActivityDropdown" />
+        app:layout_constraintTop_toBottomOf="@+id/multiActivityDropdown"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/locationEvent"
@@ -148,12 +152,13 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Location"
+        android:hint="@string/location"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:importantForAutofill="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

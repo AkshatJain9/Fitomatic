@@ -30,7 +30,7 @@
         android:layout_marginEnd="45dp"
         android:background="@drawable/action_button"
         android:onClick="RegisterUser"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="45dp"
         android:background="@drawable/secondary_button"
         android:onClick="backButton"
-        android:text="I Already have an Account"
+        android:text="@string/i_already_have_an_account"
         android:textColor="@color/purple"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,14 +62,15 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/passreg" />
+        app:layout_constraintTop_toBottomOf="@+id/passreg"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/passreg"
@@ -80,14 +81,15 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/emailreg" />
+        app:layout_constraintTop_toBottomOf="@+id/emailreg"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/emailreg"
@@ -98,14 +100,15 @@
         android:layout_marginEnd="30dp"
         android:background="@drawable/textfield"
         android:ems="10"
-        android:hint="email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:paddingLeft="15dp"
         android:textColor="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -119,7 +122,8 @@
         app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_backed" />
+        app:srcCompat="@drawable/logo_backed"
+        android:contentDescription="@string/fitomatic_logo" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -129,7 +133,8 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view"
-        app:srcCompat="@drawable/progress1" />
+        app:srcCompat="@drawable/progress1"
+        android:contentDescription="progress bar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
