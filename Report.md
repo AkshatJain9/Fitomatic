@@ -1,6 +1,6 @@
 # Team ACE Report - AJSMDLLZ
 
-**Problem Statement:** 
+**Problem Statement:**  
 After spending over two years in lockdown under various restrictions it has made it very difficult to socialise with others and leave the house. Our app helps promote social good by facilitating an environment that encourages an active and healthy lifestyle. Fitomatic is a social exercising app, where users are able to interact with others in an active environment. 
 
 
@@ -55,11 +55,14 @@ Find a neutral member for the given issue to delegate a discussion between the d
 
 ## Application Description
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
+Fitomatic is a social media application encouraging users to socialise in a group or one-on-one fitness activity. Users are able to view, follow, like and search from thousands of different posts on the home feed. These posts include the activity participants will do, when and where it will occur along with additional information. Posts are broken down into three distinct categories an individual post (one-on-one fitness activity), a small group post and a large group post targeted for big events and fundraisers. 
 
-*Here is a pet specific application example*
+Users first create a profile by completing their login credentials via an email and password then select various active interests. Finally completing their profile with identifiable information such as name, gender, age and a description. After completing a profile users are able to fully utilise the application. The application involves four main fragments, the home feed, a peer to peer messaging service, create a post and profile view. From there users can follow posts, message individuals, create their own events and view their list of following posts on their profile page. 
 
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+On the home feed users are able to view, follow, like and search from thousands of different posts. On the peer-to-peer messaging fragment users are able to individually message other users as well as being able to block others which will remove them from the messaging view. On the post fragment, users can view their own created posts as well as create new posts. When a user creates a new post, a subfragment view is displayed where individual, small group or large group posts can be selected. Each post type has differences between them and with the use of a factory method post creation is standardised. Finally, on the profile fragment users can view their profile picture and name towards the top of the screen and view their following posts below.
+
+Fitomatic is a gateway to socialise with others while in an active environment promoting a healthy lifestyle. 
+
 
 **Application Use Cases and or Examples**
 
