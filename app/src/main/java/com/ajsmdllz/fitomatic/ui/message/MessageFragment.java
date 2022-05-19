@@ -87,7 +87,7 @@ public class MessageFragment extends Fragment {
                     );
                     users.add(u);
                 }
-                System.out.println("THE SIZE IS: " + users.size());
+
                 String curr = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
                 users.removeIf(u -> u.getEmail().equals(curr));
 
@@ -109,7 +109,6 @@ public class MessageFragment extends Fragment {
                         messageRecycler.setAdapter(adapter);
                         messageRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
                     }
-                    // GET USER OBJECT
 
                 });
             }

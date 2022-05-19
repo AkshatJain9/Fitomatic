@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,37 +18,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ajsmdllz.fitomatic.MainActivity;
-import com.ajsmdllz.fitomatic.Posts.EventActivity;
 import com.ajsmdllz.fitomatic.Posts.Post;
 import com.ajsmdllz.fitomatic.Posts.PostFactory;
-import com.ajsmdllz.fitomatic.Posts.SingleActivity;
-import com.ajsmdllz.fitomatic.Posts.SmallGroupActivity;
 import com.ajsmdllz.fitomatic.R;
 import com.ajsmdllz.fitomatic.RecycleFeedAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -96,30 +80,19 @@ public class ProfileFragment extends Fragment {
         try {
             final File profileFile = File.createTempFile(email, "jpg");
             StorageReference picture = mStorage.child("pfpImages/" + email);
-            picture.getFile(profileFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap bits = BitmapFactory.decodeFile(profileFile.getAbsolutePath());
-                    profilePic.setImageBitmap(bits);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), "Profile Picture Not Found", Toast.LENGTH_SHORT).show();
-                }
-            });
+            picture.getFile(profileFile).addOnSuccessListener(taskSnapshot -> {
+                Bitmap bits = BitmapFactory.decodeFile(profileFile.getAbsolutePath());
+                profilePic.setImageBitmap(bits);
+            }).addOnFailureListener(e -> {});
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         ImageView logout = requireView().findViewById(R.id.logoutIcon);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                startActivity(intent);
-            }
+        logout.setOnClickListener(view1 -> {
+            mAuth.signOut();
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            startActivity(intent);
         });
 
         //populate the following feed

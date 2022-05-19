@@ -67,68 +67,65 @@ public class SmallPostFragment extends Fragment implements AdapterView.OnItemSel
 
         // Create Post Button
         Button createPost = requireView().findViewById(R.id.createPostSmall);
-        createPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // This is where checks will be needed and then creating the post will happen
-                if (title.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
-                } else if (description.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
-                }else if (date.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
-                } else if (location.getText().toString().length() == 0) {
-                    Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
-                } else if (maxPart == 0) {
-                    Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
-                }else {
-                    // Successfully create a post
-                    Toast.makeText(requireView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
+        createPost.setOnClickListener(view1 -> {
+            // This is where checks will be needed and then creating the post will happen
+            if (title.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
+            } else if (description.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a description!", Toast.LENGTH_SHORT).show();
+            }else if (date.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a date!", Toast.LENGTH_SHORT).show();
+            } else if (location.getText().toString().length() == 0) {
+                Toast.makeText(getContext(), "Please enter a location!", Toast.LENGTH_SHORT).show();
+            } else if (maxPart == 0) {
+                Toast.makeText(getContext(), "Please select max participants!", Toast.LENGTH_SHORT).show();
+            }else {
+                // Successfully create a post
+                Toast.makeText(requireView().getContext(), "Created Post!", Toast.LENGTH_SHORT).show();
 
-                    // Using post factory to create different posts
-                    PostFactory newPost = new PostFactory();
+                // Using post factory to create different posts
+                PostFactory newPost = new PostFactory();
 
-                    // Adding the selected activity to the
-                    ArrayList<String> activites = new ArrayList<>();
-                    activites.add(selectedActivity);
+                // Adding the selected activity to the
+                ArrayList<String> activites = new ArrayList<>();
+                activites.add(selectedActivity);
 
-                    ArrayList<String> liked = new ArrayList<>();
-                    ArrayList<String> followers = new ArrayList<>();
-                    // Add post to database
-                    db.collection("users").document(email).get().addOnCompleteListener(task -> {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
-                            if (posts != null) {
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1, maxPart,0, liked);
-                                // Adding the post to Firebase
-                                db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
-                                posts.add("("+email+", "+posts.size()+")");
-                                // Adding the post to list of posts that the user has made
-                                db.collection("users").document(email).update("posts", posts);
-                            } else {
-                                // This is the user's first post so it needs to be setup slightly differently to any other, i.e. posts size is 0
-                                Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1,maxPart,0, liked);
-                                ArrayList<String> firstPost = new ArrayList<>();
-                                firstPost.add("("+email+", "+0+")");
-                                db.collection("posts").document("("+email+", "+0+")").set(post);
-                                db.collection("users").document(email).update("posts", firstPost);
-                            }
+                ArrayList<String> liked = new ArrayList<>();
+                ArrayList<String> followers = new ArrayList<>();
+                // Add post to database
+                db.collection("users").document(email).get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        ArrayList<String> posts = (ArrayList<String>) task.getResult().get("posts");
+                        if (posts != null) {
+                            Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+posts.size()+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1, maxPart,0, liked);
+                            // Adding the post to Firebase
+                            db.collection("posts").document("("+email+", "+posts.size()+")").set(post);
+                            posts.add("("+email+", "+posts.size()+")");
+                            // Adding the post to list of posts that the user has made
+                            db.collection("users").document(email).update("posts", posts);
                         } else {
-                            Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                            // This is the user's first post so it needs to be setup slightly differently to any other, i.e. posts size is 0
+                            Post post = newPost.createPost(mAuth.getCurrentUser().getEmail(),"("+email+", "+0+")",title.getText().toString(),description.getText().toString(),date.getText().toString(),activites, location.getText().toString(), followers,-1,maxPart,0, liked);
+                            ArrayList<String> firstPost = new ArrayList<>();
+                            firstPost.add("("+email+", "+0+")");
+                            db.collection("posts").document("("+email+", "+0+")").set(post);
+                            db.collection("users").document(email).update("posts", firstPost);
                         }
-                    });
-                    // Go back to main page
-                    startActivity(new Intent(getContext(), hostActivity.class));
-                }
+                    } else {
+                        Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                // Go back to main page
+                startActivity(new Intent(getContext(), hostActivity.class));
             }
         });
 
+        // Update the participant slider when moved
         SeekBar maxPartBar = requireView().findViewById(R.id.maxPartBarSmall);
         TextView maxPartSmall = requireView().findViewById(R.id.maxPartSmall);
         maxPartBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                System.out.println(i);
                 maxPartSmall.setText("Max Participants " + i);
                 maxPart = i;
             }
