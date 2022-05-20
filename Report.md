@@ -249,9 +249,9 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 1. Loading Profile Picture
    * There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
 2. Following deleted posts
-  * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
+   * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
 3. Rapidly switching between the fragments in the navigation
- * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
+   * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
 4. Creating a new user and not finishing the process
    * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
 
@@ -260,6 +260,49 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 AVLPostTest.java
   * Number of test cases: 9
   * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+  * Types of tests created:
+    * Null 
+    * Height 
+    * Insert 
+    * Complex insert
+TokenTest.java
+  * Number of test cases: 18
+  * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+  * Types of tests created:
+    * .getToken
+    * .getType
+    * Equality tests
+    * toString
+TokenizerTest.java
+  * Number of test cases: 6
+  * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+  * Types of tests created:
+    * Correct title, time, user, activity and combined
+PostFactory.java
+  * Number of test cases: 12
+  * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+    * Note: Only tested relevant fields as there are elements related to Firebase which cannot be tested.
+  * Types of tests created:
+    * Single, small, event and event edge cases test.
+ParserTest.java
+  * Number of test cases: 13
+  * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+  * Types of tests created:
+    * Testing simple title, time, user, activity
+    * A mid case and two complex cases with multiple activities and a user, time and also using .toString
+MessageTest.java
+  * Number of test cases: 6
+  * Code coverage: Used IntelliJ Run with Coverage
+  * Image
+  * Types of tests created:
+    * .getMessage and .getSender
+
+
 
 
 ## Implemented Features
