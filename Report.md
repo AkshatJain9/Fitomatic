@@ -259,7 +259,7 @@ Corrections:
    * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/master/app/src/main/java/com/ajsmdllz/fitomatic/Search/DBQuery.java
 
 Explanations:
-1. Our first smell was an encapsulation smell regarding the mechanism we use to query posts for display on our main feed. The following link shows that when obtaining the posts from the database, the firebase object mapping is manually loaded and converted within the home fragment class. However, this piece of logic has nothing to do with the HomeFragment’s mechanism and is closer to the functionality of the post factory class. Considering this <u>exact</u> portion of code will need to be repeated to display the followed posts on the profile fragment, this section should be encapsulated to the PostFactory class.
+1. Our first smell was an encapsulation smell regarding the mechanism we use to query posts for display on our main feed. The following link shows that when obtaining the posts from the database, the firebase object mapping is manually loaded and converted within the home fragment class. However, this piece of logic has nothing to do with the HomeFragment’s mechanism and is closer to the functionality of the post factory class. Considering this **exact** portion of code will need to be repeated to display the followed posts on the profile fragment, this section should be encapsulated to the PostFactory class.
 2. The following two files show the mechanism for tokenizing and parsing. We importantly see that the **Parser** is responsible for iterating over the **Tokenised** strings which is another class. This miss-match of delegation of iterative logic is a smell as it reduced modularity of the two classes since they are now independent. Hence, some mechanism should be added within the SearchTokeniser to encapsulate the iterator logic within itself. This was done by adding an iterator design pattern to the tokeniser class.
 3. The third smell is an abstraction smell where the user object that is stored in the firebase is directly updated within the ProfileCreation class which is instead responsible for the UI logic when creating the user. This could be abstracted into its own class which is responsible for updating the user fields in the database. However, given that this interaction was only done once with these specific fields, we found that this abstraction was somewhat unnecessary. If we were to scale our application to more features however, this would be an appropriate candidate for refactoring.
 4. The fourth and final smell involves the DBQuery class being static, meaning it cannot extend or implement non-static features, reducing its modularity. Given that DBQuery is responsible for constructing a query object, we would perhaps like it to be extendable in the future if we want to implement a more complicated search mechanism in the future or add any additional features regarding query optimisations etc. Hence, to fix this, we implemented the class as a singleton so it can be easily extended, without compromising its functionality.
@@ -340,6 +340,19 @@ MessageTest.java
   * Types of tests created:
     * .getMessage and .getSender
 
+**White-Box Testing - UI** 
+We further took a systematic approach to testing each UI component. We were able to use some of the same principles we learned in lectures and apply them to the UI control flow.
+
+For instance, when registering a user, in the first pane we have 3 input fields. For testing, we tried having every permutation of valid/invalid inputs to test if they would create the correct toast. Similarly, when selecting activities, uploading profile photos and entering the name/age/bio, we could vary each of these inputs as valid inputs or invalid/non-existent. Hence, in doing so, we were able to replicate a sort of “branch coverage” when testing the UI control flow for the registration process.
+
+A similar approach was taken when testing the create post classes. For each type of post, we tried creating activities with invalid/valid field combinations to make sure no bogus post was stored in the database. Contrasting to the registration however, this testing was more aligned to make sure our database code was functioning. 
+
+We further tested the searching mechanism by creating multiple posts with different field names by different users. We then tested searching by user, activities, multi-word titles etc. and then made sure that the relevant posts that we made showed up. This was again testing out firebase code (mainly DBQuery.java) to make sure that our interactions with the database was correct.
+
+Hence, using these techniques, we were able to demonstrate our ability to take the content we learned in lectures and extend it to aspects of our application that could not be covered by JUnit in an efficient manner. It also allowed us to fix countless bugs and firebase mechanisms.
+
+Testing Conclusion:  
+Counting both our JUnit tests and our systematic testing of the app’s firebase functionality, we were able to achieve a test coverage of over 70% excluding UI. We were importantly able to maintain confidence that our app worked as intended (excluding the bugs we found through testing) and achieve the goals we set out to do. Hence, testing was a highly helpful and enjoyable section.
 
 
 
@@ -367,6 +380,7 @@ Greater Data Usage, Handling and Sophistication
 Image
 
 User Interactivity
+
 1. Feature 3: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event). (easy)
   * Users are able to like and follow posts as well as message other users and block users from messaging them. If a user likes a post, it updates the count of likes within the specific post which is then used to order the post within the feed.
 Image
@@ -375,16 +389,19 @@ Image
   * Users can follow posts they are interested in from the main page by clicking the ‘Follow’ button. Followed posts are visible from the user's profile page. The Profile Image below shows an example of the user ‘Joanna Brick’ who has followed a post with the title ‘BowlingTrip’ and is visible on their profile page.
 Image 
 
-Privacy 
+Privacy
+
 5. Feature 5: Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages containing abusive language, etc) shall not be visible to the user who blocked that activity. (medium)
    * Within the message tab, each user is coupled with a block button. Upon clicking the block button, the email of the user they want to block is added to the “blocked” field in the user class, which is stored on the firestore database. When the list of users is queried, users with emails in this array are filtered out. Hence, the user no longer sees the blocked user on their feed, nor do they see their messages in any form. Again, using the email as the blocking metric as it is the most efficient way to identify a user who has been blocked, as it is the “primary-key”
 Image
 
 Creating Processes
+
 2. Feature 6: Process visualisation. Your app may implement a graphical element to visualise the progress of a process/event. (easy)
    * Our app implements a graphical element to visualise the progress of creating a new user. The process involves three stages, setting up basic authentication information, email, and password. Then choosing activities/interestes while finally adding more data to your profile such as a profile picture, name, gender, age, and a description about yourself. This process of creating a user is visualised by a circle filling up in the top right-hand corner. The circle indicates the progress the user has made in completing their profile. (shown below)
 
 Peer to Peer Messaging
+
 1. Feature 7: Provide users with the ability to message each other or an institution directly (e.g., a user can message an event/movement that is managed by another user). (hard)
    * On the messages tab, a user has the option to message any other user (which they have not blocked). The users are displayed in accordance with their first and last names. When a user-name is clicked, a new activity (DirectMessage.java) is opened with the recipient’s email in the intent. Previous messages are loaded and displayed accordingly. When a user types and sends a message using the input field, the string is first created into a Message object which additionally has the sender’s email. It is then stored in the database as a part of the “messages” field in the user classes where the recipient is treated as a “key” to the conversation. The conversation itself is stored as an arraylist of messages. The message is also added to the recipient’s user object as well. This design allows for precise querying when loading messages as we can use the previously designed email keys for direct access. The use of arraylist was also seen as the most efficient data structure to store the messages as we are reading and writing at similar frequencies. 
 
