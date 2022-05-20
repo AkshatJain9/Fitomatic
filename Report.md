@@ -28,7 +28,7 @@ Spending over two years in lockdown under various restrictions has made it very 
 
 ## Summary of Individual Contributions
 
-u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:
+u7284728, Deni Lanc, I contributed 25% of the code. Here are my contributions:
 * xml files:
   * fragment_individual_post.xml 
   * fragment_small_post.xml
@@ -54,7 +54,7 @@ u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:
   * Tokenizer and Parser
   * Design Patterns
 
-u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:
+u7285188, Leon Zolati, I contribute 25% of the code. Here are my contributions:
 * All xml files with the following exceptions (only small alterations made to layout and bugfix): 
   * fragment_individual_post.xml 
   * fragment_large_post.xml
@@ -219,10 +219,10 @@ An iterator design pattern was used within the tokeniser to simplify the logic w
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-<br> \<Statement> => userExp(user, \<Activity>) | \<Activity> <br>
-<br> \<Activity> => ActivityQueryExp(activity, \<Activity>) | \<Fields> <br>
-<br> \<Field> => PostQueryExp(title, <Fields>) | <Time> <br>
-<br> \<Time> => TimeExp(date, EmptyExp) | EmptyExp <br>
+<br> \<Statement> => userExp(user, \<Activity>) | \<Activity>
+<br> \<Activity> => ActivityQueryExp(activity, \<Activity>) | \<Fields>
+<br> \<Field> => PostQueryExp(title, \<Fields>) | \<Time>
+<br> \<Time> => TimeExp(date, EmptyExp) | EmptyExp
 
 The following is the search grammar which the parsed expression must conform to. WIt is ordered by what users would naturally search for. Importantly, the users should be able to search for multiple activities and multi-worded titles. Hence, the grammar is self recursive in these two fields. If a user wants to search for a user, it seems natural that this would be the first thing they search for. Finally, the time allows users to narrow down searches further (or search for themselves in entirety) so it was placed last. The modular design of the Grammar is also easily extensible to add for more fields later if needed. This is mainly due to the fact that it is a purely linear grammar opposed to a circular one. The design is also extremely helpful when constructing the Query object as its nested structure allows queries to be built upon. Overall, the design suits the use case and is easy to use.
 
@@ -246,28 +246,21 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 
 ## Summary of Known Errors and Bugs
 
-1. *Loading Profile Picture*
+1. Loading Profile Picture
    * There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
-2. *Following deleted posts*
-   * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
-3. *Rapidly switching between the fragments in the navigation*
-   * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
-4. *Creating a new user and not finishing the process*
+2. Following deleted posts
+  * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
+3. Rapidly switching between the fragments in the navigation
+ * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
+4. Creating a new user and not finishing the process
    * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
 
 ## Testing Summary
 
-*[What features have you tested? What is your testing coverage?]*
+AVLPostTest.java
+  * Number of test cases: 9
+  * Code coverage: Used IntelliJ Run with Coverage
 
-*Here is an example:*
-
-*Number of test cases: ...*
-
-*Code coverage: ...*
-
-*Types of tests created: ...*
-
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
 
 ## Implemented Features
 
