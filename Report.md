@@ -138,15 +138,15 @@ Heavily involved with most aspects of the project. Including overall code design
 1. A neutral third party will be agreed upon by both parties to mediate the conflict. Given that each member is responsible for different sections of the app, a mediator should be found within the group itself, however, if this is not an option, the parties can agree to have a mediator outside the group. 
 2. Each party will work together with the mediator to define the conflict in their own words, constructing a single definition of the conflict. 
 3. A list of positives and negatives outlining the key points of issue causing the conflict will be created. These should be considered relative to the specifications of the assignment as well as practical concerns regarding the usability and our workload. 
-4. The problem will be resolved. The goal of the mediation is for consensus to be achieved through compromise.If consensus cannot be reached, a decision will be made by a majority vote by the entire group.
+4. The problem will be resolved. The goal of the mediation is for consensus to be achieved through compromise. If consensus cannot be reached, a decision will be made by a majority vote by the entire group.
 
 ## Application Description
 
-Fitomatic is a social media application encouraging users to socialise in a group or one-on-one fitness activity. Users are able to view, follow, like and search from thousands of different posts on the home feed. These posts include the activity participants will do, when and where it will occur along with additional information. Posts are broken down into three distinct categories an individual post (one-on-one fitness activity), a small group post and a large group post targeted for big events and fundraisers.
+Fitomatic is a social media application encouraging users to socialise in a group or one-on-one fitness activity. Users are able to view, follow, like, and search from thousands of different posts on the home feed. These posts include the activity participants will do, when, and where it will occur along with additional information. Posts are broken down into three distinct categories: an individual post (one-on-one fitness activity), a small group post, and a large group post targeted for big events and fundraisers.
 
-Users first create a profile by completing their login credentials then select various active interests. Finally completing their profile with identifiable information such as name, gender, age and a description. The application involves four main fragments, the home feed, a peer to peer messaging service, create a post and profile view. From there, users can follow posts, message individuals, create their own events and view their list of following posts on their profile page. 
+Users first create a profile by completing their login credentials then select various active interests. Finally, completing their profile with identifiable information such as name, gender, age and a description. The application involves four main fragments, the home feed, a peer to peer messaging service, create a post, and profile view. From there, users can follow posts, message individuals, create their own events, and view their list of following posts on their profile page. 
 
-On the home feed, users are able to view, follow, like and search from thousands of different posts. On the peer-to-peer messaging fragment users are able to individually message other users as well as being able to block others which will remove them from the messaging view. On the post fragment, users can view their own created posts as well as create new posts. When a user creates a new post, a fragment is displayed where individual, small group or large group posts can be selected. Each post type has differences between them and with the use of a factory method, post creation is standardised. Finally, on the profile fragment, users can view their profile picture and name towards the top of the screen and view their following posts below.
+On the home feed, users are able to view, follow, like, and search from thousands of different posts. On the peer-to-peer messaging fragment users are able to individually message other users as well as being able to block others which will remove them from the messaging view. On the post fragment, users can view their own created posts as well as create new posts. When a user creates a new post, a fragment is displayed where individual, small group, or large group posts can be selected. Each post type has differences between them and with the use of a factory method, post creation is standardised. Finally, on the profile fragment, users can view their profile picture and name towards the top of the screen and view their following posts below.
 
 
 Fitomatic is a gateway to socialise with others while in an active environment promoting a healthy lifestyle. 
@@ -220,9 +220,9 @@ We used the following data structures in my project:
 **Design Patterns**
 We have used three design patterns namely, the factory, singleton and iterator design patterns. 
 
-The **factory** design pattern is made up of classes PostFactory, SingleActivity, SmallGroupActivity, and EventActivity. It is used in the classes IndividualPostFragment, LargePostFragment, ProfileFragment, and SmallPostFragment to create a certain type of post depending on what is given to the factory method. This design pattern was chosen because it allowed deferred instantiation of a subclass, giving the ability to delegate to the relevant helper subclass. This is important when creating and retrieving posts from Firebase as PostFactory can be used to figure out what kind of post we want to store/display. 
+The **factory** design pattern is made up of classes PostFactory, SingleActivity, SmallGroupActivity, and EventActivity. It is used in the classes IndividualPostFragment, LargePostFragment, ProfileFragment, and SmallPostFragment to create a certain type of post depending on what is given to the factory method. This design pattern was chosen because it allowed deferred instantiation of a subclass, giving the ability to delegate to the relevant helper subclass. This is important when creating and retrieving posts from Firebase as PostFactory can be used for the logic behind the kind of post to store/display. 
 
-The **singleton** design pattern was used in DBQuery which takes in an expression object generated by the parser and outputs a Firestore Query object to be passed into the database reference. This class essentially acts like an input handler with only one “black-box” function, which has no immediate side-effects. Hence, since its functionality does not change based on any instantiation, it made sense that we would only ever need one instance of DBQuery. So, it was implemented as a Singleton, thus saving unnecessary memory usage and increasing efficiency.
+The **singleton** design pattern was used in DBQuery which takes in an expression object generated by the parser and outputs a Firestore Query object to be passed into the database reference. This class essentially acts like an input handler with only one “black-box” function which has no immediate side-effects. Since its functionality does not change based on any instantiation, it made sense that we would only ever need one instance of DBQuery. So, it was implemented as a Singleton, thus saving unnecessary memory usage and increasing efficiency.
 
 An **iterator** design pattern was used within the tokeniser to simplify the logic when parsing. This included a method to get the current token, go to the next token, and check if another token exists. These functions abstracted the iterative logic for checking if the input string conforms to the grammar to the tokeniser, making parsing simpler and more concise. The simplifications that this design approach provided is outlined in detail in the code smells portion. In sum, the code is much more “natural” in that it can be clearly mapped to the logic outlined in the grammar without unnecessary intermediate steps.
 <br><br>
@@ -275,7 +275,7 @@ Four **Existing** Code Smells:
 
 **2500 Valid data instances**
 
-Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. Hopefully this is able to simulate an app feed for the user! You will be able to see posts, ordered by likes which have already been added, profiles made, and be able to message other users. You will also be able to test how the app handles large data (such as loading posts in the tree) and objects from the database. 
+Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. New users will be able to see posts, ordered by likes which have already been added, profiles made, and be able to message other users. They will also be able to test how the app handles large data (such as loading posts in the tree) and objects from the database. 
 
 ## Summary of Known Errors and Bugs
 
@@ -348,18 +348,18 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 
 **White-Box Testing - UI**
 
-We further took a systematic approach to testing each UI component. We were able to use some of the same principles we learned in lectures and apply them to the UI control flow.
+A systematic approach was teken to testing each UI component. Priciples taught in lecture were applied to the UI control flow.
 
-For instance, when registering a user, in the first pane we have 3 input fields. For testing, we tried having every permutation of valid/invalid inputs to test if they would create the correct toast. Similarly, when selecting activities, uploading profile photos and entering the name/age/bio, we could vary each of these inputs as valid inputs or invalid/non-existent. Hence, in doing so, we were able to replicate a sort of “branch coverage” when testing the UI control flow for the registration process.
+For instance, when registering a user, in the first pane three input fields were used. For testing, the goal of testing was for every permutation of valid/invalid inputs to be inputted to create the correct toast. Similarly, when selecting activities, uploading profile photos, and entering the name/age/bio, the goal of testing was to vary inputs to be valid and invalid. Hence, in doing so, we were able to replicate a sort of “branch coverage” when testing the UI control flow for the registration process.
 
-A similar approach was taken when testing the create post classes. For each type of post, we tried creating activities with invalid/valid field combinations to make sure no bogus post was stored in the database. Contrasting to the registration however, this testing was more aligned to make sure our database code was functioning. 
+A similar approach was taken when testing the create post classes. For each post type, activities with combinations of valid/invalid field combinations were created to ensure that no invalid posts are stored in the firebase database. In contrast with the registration testing, a greater emphasis was placed on testing the database code. 
 
-We further tested the searching mechanism by creating multiple posts with different field names by different users. We then tested searching by user, activities, multi-word titles etc. and then made sure that the relevant posts that we made showed up. This was again testing out firebase code (mainly DBQuery.java) to make sure that our interactions with the database was correct.
+We further tested the searching mechanism by creating multiple posts with different field names by different users. These were then tested searching by user, activities, multi-word titles etc. and ensuring that the relevant posts were displayed.
 
-Hence, using these techniques, we were able to demonstrate our ability to take the content we learned in lectures and extend it to aspects of our application that could not be covered by JUnit in an efficient manner. It also allowed us to fix countless bugs and firebase mechanisms.
+These techniques demonstrate the ability to apply content learnt in lectures and extend it to aspects of the application that could not be covered by JUnit in an efficient manner.
 
 **Testing Conclusion:**  
-Counting both our JUnit tests and our systematic testing of the app’s firebase functionality, we were able to achieve a test coverage of over 70% excluding UI. We were importantly able to maintain confidence that our app worked as intended (excluding the bugs we found through testing) and achieve the goals we set out to do. Hence, testing was a highly helpful and enjoyable section.
+Counting both JUnit tests and the systematic testing of the app’s firebase functionality, a test coverage of over 70% excluding UI was achieved. Importantly, confidence of the correctness of the code was ensured as intended (excluding the bugs we found through testing) and achieve the goals we set out to do. Hence, testing was a highly helpful and enjoyable section.
 
 
 ## Implemented Features
