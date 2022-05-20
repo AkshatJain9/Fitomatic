@@ -380,29 +380,43 @@ UI Design:
 Greater Data Usage, Handling and Sophistication:
 2. Feature 2: User profile activity containing a media file (image, animation, video). (easy)
    * When a user is creating their profile, they have the option to add a profile picture indicated by the add icon in the top left-hand corner. This image is then stored on a Firebase Storage database and is linked to their respective user ID. On the user profile activity fragment, users are able to see their profile picture from a Firebase image retrieval query. From the images below we can see the user has added a soccer ball as their profile picture.  
-Image
+Image: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/addProfilePic.png" width="700" height="202">
+</div>
 
 User Interactivity:
 1. Feature 3: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event). (easy)
    * Users are able to like and follow posts as well as message other users and block users from messaging them. If a user likes a post, it updates the count of likes within the specific post which is then used to order the post within the feed.
-Image
+Image: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/examplePost.png">
+</div>
 
 3. Feature 4: The ability to ‘follow’ users, events, movements, hashtags, topics. There must be a section specifically dedicated to 'things' followed. (medium)
    * Users can follow posts they are interested in from the main page by clicking the ‘Follow’ button. Followed posts are visible from the user's profile page. The Profile Image below shows an example of the user ‘Joanna Brick’ who has followed a post with the title ‘BowlingTrip’ and is visible on their profile page.
-Image 
+Image: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/userProfile.png">
+</div>
 
 Privacy:
 5. Feature 5: Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages containing abusive language, etc) shall not be visible to the user who blocked that activity. (medium)
    * Within the message tab, each user is coupled with a block button. Upon clicking the block button, the email of the user they want to block is added to the “blocked” field in the user class, which is stored on the firestore database. When the list of users is queried, users with emails in this array are filtered out. Hence, the user no longer sees the blocked user on their feed, nor do they see their messages in any form. Again, using the email as the blocking metric as it is the most efficient way to identify a user who has been blocked, as it is the “primary-key”
-Image
+Image: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/blockingUser.png">
+</div>
 
 Creating Processes:
 2. Feature 6: Process visualisation. Your app may implement a graphical element to visualise the progress of a process/event. (easy)
    * Our app implements a graphical element to visualise the progress of creating a new user. The process involves three stages, setting up basic authentication information, email, and password. Then choosing activities/interestes while finally adding more data to your profile such as a profile picture, name, gender, age, and a description about yourself. This process of creating a user is visualised by a circle filling up in the top right-hand corner. The circle indicates the progress the user has made in completing their profile. (shown below)
+Image: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/progressBar.png">
+</div>
 
 Peer to Peer Messaging:
 1. Feature 7: Provide users with the ability to message each other or an institution directly (e.g., a user can message an event/movement that is managed by another user). (hard)
    * On the messages tab, a user has the option to message any other user (which they have not blocked). The users are displayed in accordance with their first and last names. When a user-name is clicked, a new activity (DirectMessage.java) is opened with the recipient’s email in the intent. Previous messages are loaded and displayed accordingly. When a user types and sends a message using the input field, the string is first created into a Message object which additionally has the sender’s email. It is then stored in the database as a part of the “messages” field in the user classes where the recipient is treated as a “key” to the conversation. The conversation itself is stored as an arraylist of messages. The message is also added to the recipient’s user object as well. This design allows for precise querying when loading messages as we can use the previously designed email keys for direct access. The use of arraylist was also seen as the most efficient data structure to store the messages as we are reading and writing at similar frequencies. 
+Images: <div align="center">
+<img src="/images/ReportImgAssets/featureImages/messages.png" width="700" height="202">
+</div>
 
 Firebase Integration:
 1. Feature 8: Use Firebase to implement user Authentication/Authorisation. (easy)
