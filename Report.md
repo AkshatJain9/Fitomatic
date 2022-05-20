@@ -28,7 +28,7 @@ After spending over two years in lockdown under various restrictions it has made
 
 ## Summary of Individual Contributions
 
-*u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:*
+u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:
 * xml files:
   * fragment_individual_post.xml 
   * fragment_small_post.xml
@@ -54,7 +54,7 @@ After spending over two years in lockdown under various restrictions it has made
   * Tokenizer and Parser
   * Design Patterns
 
-*u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:*
+u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:
 * All xml files with the following exceptions (only small alterations made to layout and bugfix): 
   * fragment_individual_post.xml 
   * fragment_large_post.xml
@@ -75,8 +75,8 @@ After spending over two years in lockdown under various restrictions it has made
   * Creation of Icons
 * Created and will present the Minute Madness presentation
 
-*u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
-Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.*
+u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
+Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.
 * Code Implementation: Created the factory design pattern for standardising post creation between three concrete post classes.
   * Post.java
   * SingleActivity.java
@@ -104,7 +104,7 @@ Heavily involved with most aspects of the project. Including overall code design
 * Miscellaneuos:
   * Created and maintained the group discord server for project management and team communications.
 
-*u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:*
+u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:
 * Set up and configured Firestore Database, Image Storage Database and User Authentication Database for use.
 * Created all of the Peer-to-Peer Messaging mechanism from the back-end, including reading from input fields, updating the firebase, and retrieving the messages previously sent. This also included filtering blocked users. I then later worked with Leon to transfer all of this logic to Recycle Feeds so that it would fit the UI theme. The following was written by myself;
   * DirectMessage.java (excl. populateMessages)
@@ -128,18 +128,6 @@ Heavily involved with most aspects of the project. Including overall code design
 * Created the AVL tree which stores the posts queried in the database in a sequential matter (from most likes to least) in an efficient manner. Also made this data structure usable with the UI (working with Leon)
   * AVLPosts.java
   * HomeFragment.java (120-125)
-* Created a mechanism to send direct notifications to a user's device using the Firebase Messaging service. This was ultimately removed as it did not contribute to our overall app design
-
-
-*[Code Design. What design patterns, data structures, did the involved member propose?]*
-
-*[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
-
-*[Report Writing. Which part of the report did the involved member write?]*
-
-*[Slide preparation. Were you responsible for the slides?]*
-
-*[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
 
 ## Conflict Resolution Protocol
 
@@ -160,31 +148,24 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 
 **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+Fitomatic is targeted toward people of all ages. Individual users looking for a partner in their exercising routines or small group sporting activities as well as catering for large events directed towards fundraisers. On a social level, we want to promote physical activity for all ages. Especially for younger people, who seem to have health problems earlier on, we would love for them to use this app and start their fitness journey.
 
-*Here is a pet training application example*
+Timmy wants a buddy to go on afternoon runs with
+* Timmy makes an individual post stating he wants a running partner who is available for afternoon runs.
+* Other users can follow/like the post to get in contact with Timmy.
+* After choosing a running partner Timmy can send over more details such as the location and equipment required through the peer to peer messaging service.
+* After the activity concludes Timmy can keep in touch with the peer to peer messaging service or accept other users.
 
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
+Steve wants to play a game of soccer with others
+* Steve creates a small group post outlining where and when he would like to play soccer.
+* Other users can follow/like the post to save it if they want to participate.
+* Steve can now enjoy his game of soccer with the other users.
+* Participants of the soccer match can keep in touch with the peer to peer messaging service to organise future plans.
 
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
-
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+Fun Run ACT wants to create a fundraising running marathon
+* Fun Run ACT can create an account with appropriate verifiable credentials
+* Fun Run ACT can create a large group post stating all necessary information: when, where, cost of entry for the fundraising event.
+* After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
 
 ## Application UML
 
@@ -192,26 +173,22 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
 ## Application Design and Decisions
+I used the following data structures in my project:
+1. ArrayList
 
-*Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
-
-*I used the following data structures in my project:*
-
-1. *LinkedList*
-
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-     * *We don't need to access the item by index for this feature*
-
-2. ...
-
-3. ...
+   * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
+   * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
+   * Reasons:
+     * Easily resizable if a user wants to like/follow a post or block a user.
+     * Similarly useful for what we want out of our Posts, constantly changing values and sizes.
+2. HashMap
+  * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
+   * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
+   * Reasons:
+     * Easily resizable if a user wants to like/follow a post or block a user.
+     * Similar
+3. List
+4. AVL Tree
 
 **Data Structures**
 
@@ -246,19 +223,15 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 
 ## Summary of Known Errors and Bugs
 
-*[Where are the known errors and bugs? What consequences might they lead to?]*
+1. *Loading Profile Picture*
+* There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
+2. *Following deleted posts*
+* If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
+3. *Rapidly switching between the fragments in the navigation*
+* If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
+4. *Creating a new user and not finishing the process*
+* If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
 
-*Here is an example:*
-
-1. *Bug 1:*
-
-- *A space bar (' ') in the sign in email will crash the application.*
-- ...
-
-2. *Bug 2:*
-3. ...
-
-*List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
 ## Testing Summary
 
