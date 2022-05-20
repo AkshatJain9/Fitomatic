@@ -246,19 +246,14 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 
 ## Summary of Known Errors and Bugs
 
-*[Where are the known errors and bugs? What consequences might they lead to?]*
-
-*Here is an example:*
-
-1. *Bug 1:*
-
-- *A space bar (' ') in the sign in email will crash the application.*
-- ...
-
-2. *Bug 2:*
-3. ...
-
-*List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
+1. *Loading Profile Picture*
+ * There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
+2. *Following deleted posts*
+ * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
+3. *Rapidly switching between the fragments in the navigation*
+ * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
+4. *Creating a new user and not finishing the process*
+ * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
 
 ## Testing Summary
 
