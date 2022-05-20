@@ -227,7 +227,7 @@ The **singleton** design pattern was used in DBQuery which takes in an expressio
 An **iterator** design pattern was used within the tokeniser to simplify the logic when parsing. This included a method to get the current token, go to the next token, and check if another token exists. These functions abstracted the iterative logic for checking if the input string conforms to the grammar to the tokeniser, making parsing simpler and more concise. The simplifications that this design approach provided is outlined in detail in the code smells portion. In sum, the code is much more “natural” in that it can be clearly mapped to the logic outlined in the grammar without unnecessary intermediate steps.
 <br><br>
 
-**Grammar(s)**
+**Grammar**
 
 Production Rules
 <br> \<Statement> => userExp(user, \<Activity>) | \<Activity>
