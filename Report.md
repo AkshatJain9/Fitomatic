@@ -179,8 +179,6 @@ Fun Run ACT wants to create a fundraising running marathon
 **Back End UML Diagram:**  
 ![Back End UML](/images/ReportImgAssets/backEndUML.png)
 
-![ClassDiagramExample](./images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
 ## Application Design and Decisions
 **Data Structures**
@@ -329,7 +327,7 @@ ParserTest.java
   * Number of test cases: 13
   * Code coverage: Used IntelliJ Run with Coverage
   * Image:  
-  <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="46"><br>
+  <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="128"><br>
   * Types of tests created:
     * Testing simple title, time, user, activity
     * A mid case and two complex cases with multiple activities and a user, time and also using .toString
@@ -338,7 +336,7 @@ MessageTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
   * Image:  
-  <img src="/images/ReportImgAssets/TestImages/messageTest.png" width="700" height="52"><br>
+  <img src="/images/ReportImgAssets/TestImages/messageTest.png" width="700" height="46"><br>
   * Types of tests created:
     * .getMessage and .getSender
 
