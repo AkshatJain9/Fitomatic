@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/purple"
+    tools:context=".Posts.typesOfPosts.SmallPostFragment">
+
+    <SeekBar
+        android:id="@+id/maxPartBarSmall"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="100"
+        android:progress="0"
+        android:thumbTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/maxPartSmall"
+        app:layout_constraintEnd_toEndOf="@+id/createDescriptionSmall"
+        app:layout_constraintStart_toEndOf="@+id/maxPartSmall"
+        app:layout_constraintTop_toTopOf="@+id/maxPartSmall" />
+
+    <TextView
+        android:id="@+id/maxPartSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="@string/max_participants_0"
+        app:layout_constraintBottom_toTopOf="@+id/createPostSmall"
+        app:layout_constraintStart_toStartOf="@+id/createDescriptionSmall" />
+
+    <Spinner
+        android:id="@+id/spinnerActivitySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/purple"
+        android:contentDescription="@string/smallspinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createDateSmall"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/createTitleSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/title_of_post"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/createDateSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/date"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toStartOf="@+id/createLocationSmall"
+        app:layout_constraintStart_toStartOf="@+id/createTitleSmall"
+        app:layout_constraintTop_toBottomOf="@+id/createTitleSmall"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/createLocationSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/location"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="@+id/createTitleSmall"
+        app:layout_constraintTop_toTopOf="@+id/createDateSmall"
+        tools:ignore="TextContrastCheck"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/createDescriptionSmall"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/description_of_post"
+        android:inputType="text|textMultiLine"
+        android:minHeight="200dp"
+        android:padding="15dp"
+        android:singleLine="false"
+        android:textColor="@color/purple"
+        app:layout_constraintBottom_toTopOf="@+id/maxPartBarSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerActivitySmall"
+        tools:ignore="RtlCompat,TextContrastCheck"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/createPostSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/action_button"
+        android:text="@string/create_post"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

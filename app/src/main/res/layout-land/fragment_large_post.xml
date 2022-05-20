@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Posts.typesOfPosts.LargePostFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <SeekBar
+        android:id="@+id/priceBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:max="100"
+        android:progress="0"
+        android:thumbTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/maxPartBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/price" />
+
+    <SeekBar
+        android:id="@+id/maxPartBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:max="100"
+        android:progress="0"
+        android:thumbTint="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/createPostEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/maxPart" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_0"
+        app:layout_constraintBottom_toTopOf="@+id/maxPart"
+        app:layout_constraintStart_toStartOf="@+id/createDescriptionEvent" />
+
+    <TextView
+        android:id="@+id/maxPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="@string/max_participants_0"
+        app:layout_constraintBottom_toTopOf="@+id/createPostEvent"
+        app:layout_constraintStart_toStartOf="@+id/createDescriptionEvent" />
+
+    <Button
+        android:id="@+id/createPostEvent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/action_button"
+        android:text="@string/create_post"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/createDescriptionEvent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/description_of_post"
+        android:inputType="text|textMultiLine"
+        android:minHeight="200dp"
+        android:padding="15dp"
+        android:singleLine="false"
+        android:textColor="@color/purple"
+        app:layout_constraintBottom_toTopOf="@+id/priceBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/date"
+        app:layout_constraintTop_toBottomOf="@+id/createTitleEvent"
+        tools:ignore="RtlCompat"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/createTitleEvent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/title_of_post"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/multiActivityDropdown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/textfield"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/activities"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/createDescriptionEvent"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/date"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/multiActivityDropdown"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/locationEvent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/textfield"
+        android:ems="10"
+        android:hint="@string/location"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:paddingLeft="15dp"
+        android:textColor="@color/purple"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        android:importantForAutofill="no" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

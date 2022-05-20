@@ -17,9 +17,74 @@ collaboration:
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external code)
 code:
-  - comment:
-    url:
-    licence:
+  - comment: used to change the colour of the thumb
+    url: https://stackoverflow.com/questions/16470475/how-to-change-colour-of-the-thumb-in-seekbar
+    licence: CC-BY-SA
+
+  - comment: used to create the circular images in the profile/creation pages
+    url: https://www.youtube.com/watch?v=nRPoW0X16QU
+
+  - comment: used to create the bottom navigation menu
+    url: https://www.youtube.com/watch?v=Chso6xrJ6aU
+
+  - comment: used to help convert some activities to fragments
+    url: https://stackoverflow.com/questions/15478105/start-an-activity-from-a-fragment
+    licence: CC-BY-SA
+
+  - comment: used to help convert some activities to fragments
+    url: https://stackoverflow.com/questions/6495898/findviewbyid-in-fragment
+    licence: CC-BY-SA
+
+  - comment: used to help convert some activities to fragments
+    url: https://www.geeksforgeeks.org/difference-between-a-fragment-and-an-activity-in-android/
+    licence: CC-BY
+
+  - comment: used to help create the background xml drawable for the login
+    url: https://stackoverflow.com/questions/12153890/angle-attribute-in-android-gradient
+    licence: CC-BY-SA
+
+  - comment: used to change the colour of the navBar in the theme
+    url: https://stackoverflow.com/questions/27839105/android-lollipop-change-navigation-bar-color
+    licence: CC-BY-SA
+
+  - comment: used to help create the feed adapter
+    url: https://www.geeksforgeeks.org/how-to-create-recyclerview-with-multiple-viewtype-in-android/
+    licence: CC-BY
+
+  - comment: used to change the way the messages are displayed to the latest message is in view
+    url: https://stackoverflow.com/questions/29474876/make-recycler-view-show-rows-from-bottom
+    licence: CC-BY-SA
+
+  - comment: used to add the activity chips to the feed on event posts
+    url: https://stackoverflow.com/questions/61847481/dynamically-add-chips-to-chipgroup
+    licence: CC-BY-SA
+
+  - comment: used to create the chips in the select interests section
+    url: https://www.youtube.com/watch?v=9PyXldztAEI
+
+  - comment: used to change the colour of the radio buttons
+    url: https://stackoverflow.com/questions/17120199/change-the-circle-color-of-radio-button
+    licence: CC-BY-SA
+
+  - comment: used to change location of hint in textboxes/inputs
+    url: https://stackoverflow.com/questions/65693123/set-hint-on-top-of-textinputedittext-in-textinputlayout
+    licence: CC-BY-SA
+
+  - comment: used to help create the background shapes
+    url: https://stackoverflow.com/questions/27787624/android-how-do-i-put-a-solid-color-rectangle-in-a-layout
+    licence: CC-BY-SA
+
+  - comment: used to put padding in textboxes
+    url: https://stackoverflow.com/questions/10194187/padding-for-hint-text-inside-edittext
+    licence: CC-BY-SA
+
+  - comment: used to teach how to use drawables as backgrounds for UI elements
+    url: https://www.youtube.com/watch?v=nlPtfncjOWA
+
+  - comment: Used to construct queries
+    url: https://firebase.google.com/docs/firestore/query-data/queries
+
+
 
 
 # add as many "url+licence+comment" entries as necessary
@@ -33,11 +98,11 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
+  - name: Shaazaan Majeed
+    uid: u7283219
+  - name: Deni Lanc
+    uid: u7284728
+  - name: Akshat Jain
+    uid: u7284072
+  - name: Leon Zolati
+    uid: u7285188
