@@ -343,7 +343,8 @@ MessageTest.java
   * Types of tests created:
     * .getMessage and .getSender
 
-**White-Box Testing - UI** 
+**White-Box Testing - UI**
+
 We further took a systematic approach to testing each UI component. We were able to use some of the same principles we learned in lectures and apply them to the UI control flow.
 
 For instance, when registering a user, in the first pane we have 3 input fields. For testing, we tried having every permutation of valid/invalid inputs to test if they would create the correct toast. Similarly, when selecting activities, uploading profile photos and entering the name/age/bio, we could vary each of these inputs as valid inputs or invalid/non-existent. Hence, in doing so, we were able to replicate a sort of “branch coverage” when testing the UI control flow for the registration process.
@@ -423,7 +424,8 @@ Firebase Integration:
    * Firebase Authentication was implemented using the FirebaseAuth object. In the registration page, the email and password (which was checked for validity beforehand) was passed into the “createUserWithEmailAndPassword” function. This was tied to the creation of the user object in the firestore database which similarly used the inbuilt functions. To make use of the document-oriented database, we first chose the sign-up email as the “primary-key” for accessing and indexing user data. To stop creating multiple accounts with the same email, we could simply check the firestore database to see if a document with the specified email exists and handle that case appropriately. For authorisation, we again used Firebase Authentication with the function “signInWithEmailAndPassword” to verify users. Entry upon the app was conditional on this function executing correctly.
 
 2. Feature 9: Use Firebase to persist all data used in your app (this item replaces the requirement to retrieve data from a local file) (medium)
-   * We used Firebase for our data storage purposes for things such as storing users and posts. Each user stored in Firebase has many attributes, some can be seen in the User Info Images. 
+   * We used Firebase for our data storage purposes for things such as storing users and posts. Each user stored in Firebase has many attributes, some can be seen in the User Info Images. Every post also has many relevant fields related to that post such as how many likes it has and the activities associated with it. Posts are stored with their primary key formatted as (User that created the post, Number of posts this user has made). Users primary key is their email address as they are unique to each user. 
+
 
 
 ## Team Meetings
