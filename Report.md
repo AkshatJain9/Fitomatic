@@ -375,6 +375,7 @@ UI Design
    * All UI XML files were created with relative constraint layouts. This allowed for versatility for all screen sizes and layout variants. Not hard coding the UI design for a single screen variant allowed for a range of different screen sizes as well as different orientations. Some pages have a landscape variant due to auto rotation providing a poor outcome. This was verified by running our app on various different emulators as well as physical devices with different screen layouts.
 
 Greater Data Usage, Handling and Sophistication
+
 2. Feature 2: User profile activity containing a media file (image, animation, video). (easy)
    * When a user is creating their profile, they have the option to add a profile picture indicated by the add icon in the top left-hand corner. This image is then stored on a Firebase Storage database and is linked to their respective user ID. On the user profile activity fragment, users are able to see their profile picture from a Firebase image retrieval query. From the images below we can see the user has added a soccer ball as their profile picture.  
 Image
@@ -382,11 +383,11 @@ Image
 User Interactivity
 
 1. Feature 3: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event). (easy)
-  * Users are able to like and follow posts as well as message other users and block users from messaging them. If a user likes a post, it updates the count of likes within the specific post which is then used to order the post within the feed.
+   * Users are able to like and follow posts as well as message other users and block users from messaging them. If a user likes a post, it updates the count of likes within the specific post which is then used to order the post within the feed.
 Image
 
 3.  Feature 4: The ability to ‘follow’ users, events, movements, hashtags, topics. There must be a section specifically dedicated to 'things' followed. (medium)
-  * Users can follow posts they are interested in from the main page by clicking the ‘Follow’ button. Followed posts are visible from the user's profile page. The Profile Image below shows an example of the user ‘Joanna Brick’ who has followed a post with the title ‘BowlingTrip’ and is visible on their profile page.
+   * Users can follow posts they are interested in from the main page by clicking the ‘Follow’ button. Followed posts are visible from the user's profile page. The Profile Image below shows an example of the user ‘Joanna Brick’ who has followed a post with the title ‘BowlingTrip’ and is visible on their profile page.
 Image 
 
 Privacy
