@@ -28,7 +28,7 @@ Spending over two years in lockdown under various restrictions has made it very 
 
 ## Summary of Individual Contributions
 
-u7284728, Deni Lanc, I contributed 25% of the code. Here are my contributions:
+**u7284728, Deni Lanc**, I contributed 25% of the code. Here are my contributions:
 * xml files:
   * fragment_individual_post.xml 
   * fragment_small_post.xml
@@ -54,7 +54,8 @@ u7284728, Deni Lanc, I contributed 25% of the code. Here are my contributions:
   * Tokenizer and Parser
   * Design Patterns
 
-u7285188, Leon Zolati, I contribute 25% of the code. Here are my contributions:
+
+**u7285188, Leon Zolati**, I contribute 25% of the code. Here are my contributions:
 * All xml files with the following exceptions (only small alterations made to layout and bugfix): 
   * fragment_individual_post.xml 
   * fragment_large_post.xml
@@ -75,7 +76,8 @@ u7285188, Leon Zolati, I contribute 25% of the code. Here are my contributions:
   * Creation of Icons
 * Created and will present the Minute Madness presentation
 
-u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
+
+**u7283219, Shaazaan Majeed**, I contributed approximately 25% to the project. The following are my contributions:
 Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.
 * Code Implementation: Created the factory design pattern for standardising post creation between three concrete post classes.
   * Post.java
@@ -104,7 +106,8 @@ Heavily involved with most aspects of the project. Including overall code design
 * Miscellaneuos:
   * Created and maintained the group discord server for project management and team communications.
 
-u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:
+
+**u728072, Akshat Jain**, I contributed approximately 25% of the code. The following are my contributions:
 * Set up and configured Firestore Database, Image Storage Database and User Authentication Database for use.
 * Created all of the Peer-to-Peer Messaging mechanism from the back-end, including reading from input fields, updating the firebase, and retrieving the messages previously sent. This also included filtering blocked users. I then later worked with Leon to transfer all of this logic to Recycle Feeds so that it would fit the UI theme. The following was written by myself;
   * DirectMessage.java (excl. populateMessages)
@@ -154,26 +157,27 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 <img src="/images/ReportImgAssets/threePostTypes.png" width="700" height="480">
 </div>
 
-**Application Use Cases and or Examples**
+
+**Application Use Cases**
 
 Fitomatic is targeted toward people of all ages. Individual users looking for a partner in their exercising routines or small group sporting activities as well as catering for large events directed towards fundraisers. On a social level, we want to promote physical activity for all ages. Especially for younger people, who seem to have health problems earlier on.
 
 Timmy wants a buddy to go on afternoon runs with
-* Timmy makes an individual post stating he wants a running partner who is available for afternoon runs.
-* Other users can follow/like the post to get in contact with Timmy.
-* After choosing a running partner Timmy can send over more details such as the location and equipment required through the peer to peer messaging service.
-* After the activity concludes Timmy can keep in touch with the peer to peer messaging service or accept other users.
+   * Timmy makes an individual post stating he wants a running partner who is available for afternoon runs.
+   * Other users can follow/like the post to get in contact with Timmy.
+   * After choosing a running partner Timmy can send over more details such as the location and equipment required through the peer to peer messaging service.
+   * After the activity concludes Timmy can keep in touch with the peer to peer messaging service or accept other users.
 
 Steve wants to play a game of soccer with others
-* Steve creates a small group post outlining where and when he would like to play soccer.
-* Other users can follow/like the post to save it if they want to participate.
-* Steve can now enjoy his game of soccer with the other users.
-* Participants of the soccer match can keep in touch with the peer to peer messaging service to organise future plans.
+   * Steve creates a small group post outlining where and when he would like to play soccer.
+  * Other users can follow/like the post to save it if they want to participate.
+  * Steve can now enjoy his game of soccer with the other users.
+  * Participants of the soccer match can keep in touch with the peer to peer messaging service to organise future plans.
 
 Fun Run ACT wants to create a fundraising running marathon
-* Fun Run ACT can create an account with appropriate verifiable credentials
-* Fun Run ACT can create a large group post stating all necessary information: when, where, cost of entry for the fundraising event.
-* After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
+   * Fun Run ACT can create an account with appropriate verifiable credentials
+  * Fun Run ACT can create a large group post stating all necessary information: when, where, cost of entry for the fundraising event.
+   * After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
 
 ## Application UML
 **Front End UML Diagram:**  
