@@ -28,7 +28,7 @@ Spending over two years in lockdown under various restrictions has made it very 
 
 ## Summary of Individual Contributions
 
-*u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:*
+u7284728 , Deni Lanc, I contributed 25% of the code. Here are my contributions:
 * xml files:
   * fragment_individual_post.xml 
   * fragment_small_post.xml
@@ -54,7 +54,7 @@ Spending over two years in lockdown under various restrictions has made it very 
   * Tokenizer and Parser
   * Design Patterns
 
-*u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:*
+u7285188 , Leon Zolati, I contribute 25% of the code. Here are my contributions:
 * All xml files with the following exceptions (only small alterations made to layout and bugfix): 
   * fragment_individual_post.xml 
   * fragment_large_post.xml
@@ -75,8 +75,8 @@ Spending over two years in lockdown under various restrictions has made it very 
   * Creation of Icons
 * Created and will present the Minute Madness presentation
 
-*u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
-Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.*
+u7283219, Shaazaan Majeed, I contributed approximately 25% to the project. The following are my contributions:
+Heavily involved with most aspects of the project. Including overall code design and implementation, report writing, software testing, proposing various design patterns and implementing a factory method.
 * Code Implementation: Created the factory design pattern for standardising post creation between three concrete post classes.
   * Post.java
   * SingleActivity.java
@@ -104,7 +104,7 @@ Heavily involved with most aspects of the project. Including overall code design
 * Miscellaneuos:
   * Created and maintained the group discord server for project management and team communications.
 
-*u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:*
+u728072, Akshat Jain, I contributed approximately 25% of the code. The following are my contributions:
 * Set up and configured Firestore Database, Image Storage Database and User Authentication Database for use.
 * Created all of the Peer-to-Peer Messaging mechanism from the back-end, including reading from input fields, updating the firebase, and retrieving the messages previously sent. This also included filtering blocked users. I then later worked with Leon to transfer all of this logic to Recycle Feeds so that it would fit the UI theme. The following was written by myself;
   * DirectMessage.java (excl. populateMessages)
@@ -130,20 +130,9 @@ Heavily involved with most aspects of the project. Including overall code design
   * HomeFragment.java (120-125)
 * Created a mechanism to send direct notifications to a user's device using the Firebase Messaging service. This was ultimately removed as it did not contribute to our overall app design
 
-
-*[Code Design. What design patterns, data structures, did the involved member propose?]*
-
-*[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
-
-*[Report Writing. Which part of the report did the involved member write?]*
-
-*[Slide preparation. Were you responsible for the slides?]*
-
-*[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
-
 ## Conflict Resolution Protocol
 
-A neutral third party will be agreed upon by both parties to mediate the conflict. Given that each member is responsible for different sections of the app, a mediator should be found within the group itself, however, if this is not an option, the parties can agree to have a mediator outside the group. Each party will work together with the mediator to define the conflict in their own words, constructing a single definition of the conflict. A list of positives and negatives outlining the key points of issue causing the conflict will be created. These should be considered relative to the specifications of the assignment as well as practical concerns regarding the usability and our workload. The goal of the mediation is for consensus to be achieved through compromise. If the conflict still persists, a decision will be made by a majority vote by the entire group.
+Find a neutral member for the given issue to delegate a discussion between the disagreeing parties. Given that we were all in charge of different sections of the app, we always had someone who could be neutral given they had no involvement in at least some area of the app. Construct a positives and negatives list outlining the key aspects of the conflict. These should be considered relative to the specifications of the assignment as well as practical concerns regarding the usability and our workload. Where possible, the first option should always be to combine ideas where there is room to do so. However, if the conflict still continues hear all sides of the argument in full and hold a final group vote where a solution will be made based on assignment specifications and mutual compromise.
 
 ## Application Description
 
@@ -187,9 +176,9 @@ Fun Run ACT wants to create a fundraising running marathon
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
 ## Application Design and Decisions
-I used the following data structures in my project:
+**Data Structures**
+We used the following data structures in my project:
 1. ArrayList
-
    * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
    * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
    * Reasons:
@@ -202,16 +191,26 @@ I used the following data structures in my project:
      * Easily resizable if a user wants to like/follow a post or block a user.
      * Similar
 3. List
+  * Objective: It is used for displaying text messages through our P2P messaging system.
+  * Locations: DirectMessageRecyclerAdapter.java
+  * Reasons: 
+    * Used to sequentially display messages so we can easily iterate over elements in the List and display them.
 4. AVL Tree
-
-**Data Structures**
-
-*[What data structures did your team utilise? Where and why?]*
-
+  * Objective: It is used to sort the feed on the main page of the app by the number of likes a post has.
+  * Locations: AVLPosts.java
+  * Reasons:
+    * Using a standard linear iterable type such as an array leads to O(n) time complexity for post insertion if we want the posts to be ordered from most liked to least liked. If there are n posts, this leads to a worst case scenario of O(n^2).
+    * Using a tree lowers insertion time to O(log n) giving a worst case of O(n log n) which is significantly better. 
+    * Hence AVL trees are a valuable addition to the application as it allows us to display posts much faster.
 
 **Design Patterns**
+We have used three design patterns namely, the factory, singleton and iterator design patterns. 
 
-*[What design patterns did your team utilise? Where and why?]*
+The factory design pattern is made up of classes PostFactory, SingleActivity, SmallGroupActivity and EventActivity. It is used in the classes IndividualPostFragment, LargePostFragment, ProfileFragment, and SmallPostFragment to create a certain type of post depending on what is given to the factory method. We chose to use this design pattern because it allowed us to defer the instantiation to a subclass, this gives us the knowledge as to which helper subclass is the delegate. This is important when creating and retrieving posts from Firebase as we can simply use the PostFactory to figure out what kind of post we want to store/display. 
+
+The singleton design pattern was used in DBQuery which takes in an expression object generated by the parser and outputs a Firestore Query object to be passed into the database reference. This class essentially acts like an input handler with only one “black-box” function, which has no immediate side-effects. Hence, since its functionality does not change based on any instantiation, it made sense that we would only ever need one instance of DBQuery. So, it was implemented as a Singleton, thus saving unnecessary memory usage and increasing efficiency.
+
+An iterator design pattern was used within the tokeniser to simplify the logic when parsing. This included a method to get the current token, go to the next token and check if another token exists. So, these functions abstracted the iterative logic for checking if the input string conforms to the grammar to the tokeniser, making parsing much simpler and more concise. The simplifications that this design approach provided is outlined in detail in the code smells portion, but in short, the code is much more “natural” in that it can be clearly mapped to the logic outlined in the grammar without unnecessary intermediate steps.
 
 **Grammar(s)**
 
