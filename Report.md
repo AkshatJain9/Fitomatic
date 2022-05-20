@@ -173,9 +173,11 @@ Fun Run ACT wants to create a fundraising running marathon
 * After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
 
 ## Application UML
-**Front End UML Diagram:**
+**Front End UML Diagram:**  
+![Front End UML](/images/ReportImgAssets/frontEndUML.png)
 
-**Back End UML Diagram:**
+**Back End UML Diagram:**  
+![Back End UML](/images/ReportImgAssets/backEndUML.png)
 
 ![ClassDiagramExample](./images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
