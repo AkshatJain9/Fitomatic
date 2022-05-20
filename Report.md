@@ -136,11 +136,12 @@ Find a neutral member for the given issue to delegate a discussion between the d
 
 ## Application Description
 
-Fitomatic is a social media application encouraging users to socialise in a group or one-on-one fitness activity. Users are able to view, follow, like and search from thousands of different posts on the home feed. These posts include the activity participants will do, when and where it will occur along with additional information. Posts are broken down into three distinct categories an individual post (one-on-one fitness activity), a small group post and a large group post targeted for big events and fundraisers. 
+Fitomatic is a social media application encouraging users to socialise in a group or one-on-one fitness activity. Users are able to view, follow, like and search from thousands of different posts on the home feed. These posts include the activity participants will do, when and where it will occur along with additional information. Posts are broken down into three distinct categories an individual post (one-on-one fitness activity), a small group post and a large group post targeted for big events and fundraisers.
 
-Users first create a profile by completing their login credentials via an email and password then select various active interests. Finally completing their profile with identifiable information such as name, gender, age and a description. After completing a profile users are able to fully utilise the application. The application involves four main fragments, the home feed, a peer to peer messaging service, create a post and profile view. From there users can follow posts, message individuals, create their own events and view their list of following posts on their profile page. 
+Users first create a profile by completing their login credentials then select various active interests. Finally completing their profile with identifiable information such as name, gender, age and a description. The application involves four main fragments, the home feed, a peer to peer messaging service, create a post and profile view. From there, users can follow posts, message individuals, create their own events and view their list of following posts on their profile page. 
 
-On the home feed users are able to view, follow, like and search from thousands of different posts. On the peer-to-peer messaging fragment users are able to individually message other users as well as being able to block others which will remove them from the messaging view. On the post fragment, users can view their own created posts as well as create new posts. When a user creates a new post, a subfragment view is displayed where individual, small group or large group posts can be selected. Each post type has differences between them and with the use of a factory method post creation is standardised. Finally, on the profile fragment users can view their profile picture and name towards the top of the screen and view their following posts below.
+On the home feed, users are able to view, follow, like and search from thousands of different posts. On the peer-to-peer messaging fragment users are able to individually message other users as well as being able to block others which will remove them from the messaging view. On the post fragment, users can view their own created posts as well as create new posts. When a user creates a new post, a fragment is displayed where individual, small group or large group posts can be selected. Each post type has differences between them and with the use of a factory method, post creation is standardised. Finally, on the profile fragment, users can view their profile picture and name towards the top of the screen and view their following posts below.
+
 
 Fitomatic is a gateway to socialise with others while in an active environment promoting a healthy lifestyle. 
 
@@ -152,7 +153,7 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 
 **Application Use Cases and or Examples**
 
-Fitomatic is targeted toward people of all ages. Individual users looking for a partner in their exercising routines or small group sporting activities as well as catering for large events directed towards fundraisers. On a social level, we want to promote physical activity for all ages. Especially for younger people, who seem to have health problems earlier on, we would love for them to use this app and start their fitness journey.
+Fitomatic is targeted toward people of all ages. Individual users looking for a partner in their exercising routines or small group sporting activities as well as catering for large events directed towards fundraisers. On a social level, we want to promote physical activity for all ages. Especially for younger people, who seem to have health problems earlier on.
 
 Timmy wants a buddy to go on afternoon runs with
 * Timmy makes an individual post stating he wants a running partner who is available for afternoon runs.
@@ -186,11 +187,13 @@ We used the following data structures in my project:
      * Easily resizable if a user wants to like/follow a post or block a user.
      * Similarly useful for what we want out of our Posts, constantly changing values and sizes.
 2. HashMap
-  * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
-   * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
+  * Objective: It is used for our peer to peer messaging service. 
+   * Locations: User.java
    * Reasons:
-     * Easily resizable if a user wants to like/follow a post or block a user.
-     * Similar
+    * We decided to store messages as a component of the user object.
+    * Hence for a given conversation with user X, we would have an arraylist of messages, Y
+    * Hence, there is a natural mapping between the user email string and the messages between them. Hence, it felt natural to use a HashMap
+    * It is also efficient when querying and storing message objects as user emails provide a direct and efficient indexing key to access firestore objects, and it doubles as the key of the hashmap.
 3. List
   * Objective: It is used for displaying text messages through our P2P messaging system.
   * Locations: DirectMessageRecyclerAdapter.java
@@ -207,18 +210,19 @@ We used the following data structures in my project:
 **Design Patterns**
 We have used three design patterns namely, the factory, singleton and iterator design patterns. 
 
-The factory design pattern is made up of classes PostFactory, SingleActivity, SmallGroupActivity and EventActivity. It is used in the classes IndividualPostFragment, LargePostFragment, ProfileFragment, and SmallPostFragment to create a certain type of post depending on what is given to the factory method. We chose to use this design pattern because it allowed us to defer the instantiation to a subclass, this gives us the knowledge as to which helper subclass is the delegate. This is important when creating and retrieving posts from Firebase as we can simply use the PostFactory to figure out what kind of post we want to store/display. 
+The factory design pattern is made up of classes PostFactory, SingleActivity, SmallGroupActivity, and EventActivity. It is used in the classes IndividualPostFragment, LargePostFragment, ProfileFragment, and SmallPostFragment to create a certain type of post depending on what is given to the factory method. This design pattern was chosen because it allowed deferred instantiation of a subclass, giving the ability to delegate to the relevant helper subclass. This is important when creating and retrieving posts from Firebase as PostFactory can be used to figure out what kind of post we want to store/display. 
 
 The singleton design pattern was used in DBQuery which takes in an expression object generated by the parser and outputs a Firestore Query object to be passed into the database reference. This class essentially acts like an input handler with only one “black-box” function, which has no immediate side-effects. Hence, since its functionality does not change based on any instantiation, it made sense that we would only ever need one instance of DBQuery. So, it was implemented as a Singleton, thus saving unnecessary memory usage and increasing efficiency.
 
-An iterator design pattern was used within the tokeniser to simplify the logic when parsing. This included a method to get the current token, go to the next token and check if another token exists. So, these functions abstracted the iterative logic for checking if the input string conforms to the grammar to the tokeniser, making parsing much simpler and more concise. The simplifications that this design approach provided is outlined in detail in the code smells portion, but in short, the code is much more “natural” in that it can be clearly mapped to the logic outlined in the grammar without unnecessary intermediate steps.
+An iterator design pattern was used within the tokeniser to simplify the logic when parsing. This included a method to get the current token, go to the next token, and check if another token exists. These functions abstracted the iterative logic for checking if the input string conforms to the grammar to the tokeniser, making parsing simpler and more concise. The simplifications that this design approach provided is outlined in detail in the code smells portion. In sum, the code is much more “natural” in that it can be clearly mapped to the logic outlined in the grammar without unnecessary intermediate steps.
 
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
-<br>
-\<Non-Terminal> ::= \<some output>
+<Statement> => userExp(user, <Activity>) | <Activity>
+<Activity> => ActivityQueryExp(activity, <Activity>) | <Fields>
+<Field> => PostQueryExp(title, <Fields>) | <Time>
+<Time> => TimeExp(date, EmptyExp) | EmptyExp
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
