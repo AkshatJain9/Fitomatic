@@ -132,7 +132,7 @@ u728072, Akshat Jain, I contributed approximately 25% of the code. The following
 
 ## Conflict Resolution Protocol
 
-Find a neutral member for the given issue to delegate a discussion between the disagreeing parties. Given that we were all in charge of different sections of the app, we always had someone who could be neutral given they had no involvement in at least some area of the app. Construct a positives and negatives list outlining the key aspects of the conflict. These should be considered relative to the specifications of the assignment as well as practical concerns regarding the usability and our workload. Where possible, the first option should always be to combine ideas where there is room to do so. However, if the conflict still continues hear all sides of the argument in full and hold a final group vote where a solution will be made based on assignment specifications and mutual compromise.
+A neutral third party will be agreed upon by both parties to mediate the conflict. Given that each member is responsible for different sections of the app, a mediator should be found within the group itself, however, if this is not an option, the parties can agree to have a mediator outside the group. Each party will work together with the mediator to define the conflict in their own words, constructing a single definition of the conflict. A list of positives and negatives outlining the key points of issue causing the conflict will be created. These should be considered relative to the specifications of the assignment as well as practical concerns regarding the usability and our workload. The goal of the mediation is for consensus to be achieved through compromise. If the conflict still persists, a decision will be made by a majority vote by the entire group.
 
 ## Application Description
 
@@ -247,13 +247,13 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 ## Summary of Known Errors and Bugs
 
 1. *Loading Profile Picture*
- * There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
+   * There is a small delay when you start the “ProfileFragment.java” activity and the user profile picture displaying. This does not cause application issues just a minor inconvenience.
 2. *Following deleted posts*
- * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
+   * If a user follows a post and it is then deleted the user will not be able to view their profile page without the app crashing. (Note we haven’t actually implement the ability to delete posts this is just an issue if it were to be implemented)
 3. *Rapidly switching between the fragments in the navigation*
- * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
+   * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
 4. *Creating a new user and not finishing the process*
- * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
+   * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
 
 ## Testing Summary
 
