@@ -261,7 +261,7 @@ AVLPostTest.java
   * Number of test cases: 9
   * Code coverage: Used IntelliJ Run with Coverage
   * Image:  
-  <img src="/images/ReportImgAssets/TestImages/avlTest.png" width="700" height="52">
+  <img src="/images/ReportImgAssets/TestImages/avlTest.png" width="700" height="52"><br>
   * Types of tests created:
     * Null 
     * Height 
@@ -270,8 +270,8 @@ AVLPostTest.java
 TokenTest.java
   * Number of test cases: 18
   * Code coverage: Used IntelliJ Run with Coverage
-  * Image:  
-  <img src="/images/ReportImgAssets/TestImages/tokenTest.png" width="700" height="52">
+  * Image:   
+  <img src="/images/ReportImgAssets/TestImages/tokenTest.png" width="700" height="52"><br>
   * Types of tests created:
     * .getToken
     * .getType
@@ -280,31 +280,31 @@ TokenTest.java
 TokenizerTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
-  * Image:
-  <img src="/images/ReportImgAssets/TestImages/searchTokTest.png" width="700" height="52">
+  * Image:  
+  <img src="/images/ReportImgAssets/TestImages/searchTokTest.png" width="700" height="52"><br>
   * Types of tests created:
     * Correct title, time, user, activity and combined
 PostFactory.java
   * Number of test cases: 12
   * Code coverage: Used IntelliJ Run with Coverage
-  * Image:
-  <img src="/images/ReportImgAssets/TestImages/factoryTest.png" width="700" height="52">
+  * Image:  
+  <img src="/images/ReportImgAssets/TestImages/factoryTest.png" width="700" height="52"><br>
     * Note: Only tested relevant fields as there are elements related to Firebase which cannot be tested.
   * Types of tests created:
     * Single, small, event and event edge cases test.
 ParserTest.java
   * Number of test cases: 13
   * Code coverage: Used IntelliJ Run with Coverage
-  * Image:
-  <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="128">
+  * Image:  
+  <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="46"><br>
   * Types of tests created:
     * Testing simple title, time, user, activity
     * A mid case and two complex cases with multiple activities and a user, time and also using .toString
 MessageTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
-  * Image:
-  <img src="/images/ReportImgAssets/TestImages/messageTest.png" width="700" height="52">
+  * Image:  
+  <img src="/images/ReportImgAssets/TestImages/messageTest.png" width="700" height="52"><br>
   * Types of tests created:
     * .getMessage and .getSender
 
