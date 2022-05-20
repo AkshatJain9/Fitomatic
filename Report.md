@@ -406,7 +406,7 @@ We have implemented a total of **nine** different application features broken do
 **Peer to Peer Messaging:**<br>
 (1) Feature 7: Provide users with the ability to message each other or an institution directly (e.g., a user can message an event/movement that is managed by another user). **(hard)**
    * On the messages tab, a user has the option to message any other user (which they have not blocked). The users are displayed in accordance with their first and last names. When a user-name is clicked, a new activity (DirectMessage.java) is opened with the recipient’s email in the intent. Previous messages are loaded and displayed accordingly. When a user types and sends a message using the input field, the string is first created into a Message object which additionally has the sender’s email. It is then stored in the database as a part of the “messages” field in the user classes where the recipient is treated as a “key” to the conversation. The conversation itself is stored as an arraylist of messages. The message is also added to the recipient’s user object as well. This design allows for precise querying when loading messages as we can use the previously designed email keys for direct access. The use of arraylist was also seen as the most efficient data structure to store the messages as we are reading and writing at similar frequencies. 
-<br><img src="/images/ReportImgAssets/featureImages/messages.png" height="450" width="191"><br>
+<br><img src="/images/ReportImgAssets/featureImages/messages.png" width="450" height="191"><br>
 
 **Firebase Integration:**<br>
 (1) Feature 8: Use Firebase to implement user Authentication/Authorisation. **(easy)**
@@ -414,7 +414,7 @@ We have implemented a total of **nine** different application features broken do
 
 (2) Feature 9: Use Firebase to persist all data used in your app (this item replaces the requirement to retrieve data from a local file) **(medium)**
    * We used Firebase for our data storage purposes for things such as storing users and posts. Each user stored in Firebase has many attributes, some can be seen in the User Info Images. Every post also has many relevant fields related to that post such as how many likes it has and the activities associated with it. Posts are stored with their primary key formatted as (User that created the post, Number of posts this user has made). Users primary key is their email address as they are unique to each user. 
-<br><img src="/images/ReportImgAssets/featureImages/persistData.png" height="700" width="410"><br>
+<br><img src="/images/ReportImgAssets/featureImages/persistData.png" width="700" height="410"><br>
 
 
 ## Team Meetings
