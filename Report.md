@@ -173,6 +173,9 @@ Fun Run ACT wants to create a fundraising running marathon
 * After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
 
 ## Application UML
+**Front End UML Diagram:**
+
+**Back End UML Diagram:**
 
 ![ClassDiagramExample](./images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
@@ -266,7 +269,7 @@ Explanations:
 
 **2500 Valid data instances**
 
-Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. Hopefully this is able to 
+Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. Hopefully this is able to simulate an app feed for the user! You will be able to see posts, ordered by likes which have already been added, profiles made, and be able to message other users. You will also be able to test how the app handles large data (such as loading posts in the tree) and objects from the database. 
 
 ## Summary of Known Errors and Bugs
 
@@ -290,7 +293,8 @@ AVLPostTest.java
     * Null 
     * Height 
     * Insert 
-    * Complex insert  
+    * Complex insert
+
 TokenTest.java
   * Number of test cases: 18
   * Code coverage: Used IntelliJ Run with Coverage
@@ -300,14 +304,16 @@ TokenTest.java
     * .getToken
     * .getType
     * Equality tests
-    * toString  
+    * toString
+
 TokenizerTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
   * Image:  
   <img src="/images/ReportImgAssets/TestImages/searchTokTest.png" width="700" height="52"><br>
   * Types of tests created:
-    * Correct title, time, user, activity and combined  
+    * Correct title, time, user, activity and combined
+
 PostFactory.java
   * Number of test cases: 12
   * Code coverage: Used IntelliJ Run with Coverage
@@ -315,7 +321,8 @@ PostFactory.java
   <img src="/images/ReportImgAssets/TestImages/factoryTest.png" width="700" height="52"><br>
     * Note: Only tested relevant fields as there are elements related to Firebase which cannot be tested.
   * Types of tests created:
-    * Single, small, event and event edge cases test.  
+    * Single, small, event and event edge cases test.
+
 ParserTest.java
   * Number of test cases: 13
   * Code coverage: Used IntelliJ Run with Coverage
@@ -323,7 +330,8 @@ ParserTest.java
   <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="46"><br>
   * Types of tests created:
     * Testing simple title, time, user, activity
-    * A mid case and two complex cases with multiple activities and a user, time and also using .toString  
+    * A mid case and two complex cases with multiple activities and a user, time and also using .toString
+
 MessageTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
@@ -337,20 +345,56 @@ MessageTest.java
 
 ## Implemented Features
 
-*[What features have you implemented?]*
+Base Feautures:
+   * Users are able to login and sign up using Firebase authentication, more details explained below
+   * Users are able to load and upload data to Firebase through Posts, peer to peer messaging and can be visualised through the four main fragments.
+   * Users are able to search for specific Posts on the home feed through a Tokenizer and Parser via the formal grammar explained above.
+   * Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. 
+   * Underlying Implementation
+   * Fully implemented AVL tree used to sort the feed on the main page of the app by the number of likes a post has.
+   * Used three design patterns, Singleton, Factory, Iterator as stated above.
+   * The use of a local file was overwritten by persisting all data on FireBase
 
-*Here is an example:*
+We have implemented a total of nine different application features broken down into one ‘hard’, three ‘medium’ and five ‘easy’ features. Listed below as follows:
 
-*Privacy*
-1. *Featue 1: Users may ... . (easy)*
-2. *Feature 2: A user must ... . (easy)*
-3. *Feature 3: A user can only ... . (medium)*
+UI Design
+1. Feature 1: UI must have portrait and landscape layout variants as well as support for different screen sizes. (easy)  
+All UI XML files were created with relative constraint layouts. This allowed for versatility for all screen sizes and layout variants. Not hard coding the UI design for a single screen variant allowed for a range of different screen sizes as well as different orientations. Some pages have a landscape variant due to auto rotation providing a poor outcome. This was verified by running our app on various different emulators as well as physical devices with different screen layouts.
 
-*Firebase Integration*
-1. *Feature 1: Use Firebase to implement ... . (easy)*
-2. *Feature 2: Use Firebase to persist ... .(medium)*
+Greater Data Usage, Handling and Sophistication
+2. Feature 2: User profile activity containing a media file (image, animation, video). (easy)  
+When a user is creating their profile, they have the option to add a profile picture indicated by the add icon in the top left-hand corner. This image is then stored on a Firebase Storage database and is linked to their respective user ID. On the user profile activity fragment, users are able to see their profile picture from a Firebase image retrieval query. From the images below we can see the user has added a soccer ball as their profile picture.  
+Image
 
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
+User Interactivity
+1. Feature 3: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event). (easy)  
+Users are able to like and follow posts as well as message other users and block users from messaging them. If a user likes a post, it updates the count of likes within the specific post which is then used to order the post within the feed.
+Image
+
+3.  Feature 4: The ability to ‘follow’ users, events, movements, hashtags, topics. There must be a section specifically dedicated to 'things' followed. (medium)  
+Users can follow posts they are interested in from the main page by clicking the ‘Follow’ button. Followed posts are visible from the user's profile page. The Profile Image below shows an example of the user ‘Joanna Brick’ who has followed a post with the title ‘BowlingTrip’ and is visible on their profile page.
+Image 
+
+Privacy 
+5. Feature 5: Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages containing abusive language, etc) shall not be visible to the user who blocked that activity. (medium)  
+Within the message tab, each user is coupled with a block button. Upon clicking the block button, the email of the user they want to block is added to the “blocked” field in the user class, which is stored on the firestore database. When the list of users is queried, users with emails in this array are filtered out. Hence, the user no longer sees the blocked user on their feed, nor do they see their messages in any form. Again, using the email as the blocking metric as it is the most efficient way to identify a user who has been blocked, as it is the “primary-key”
+Image
+
+Creating Processes
+2. Feature 6: Process visualisation. Your app may implement a graphical element to visualise the progress of a process/event. (easy)  
+Our app implements a graphical element to visualise the progress of creating a new user. The process involves three stages, setting up basic authentication information, email, and password. Then choosing activities/interestes while finally adding more data to your profile such as a profile picture, name, gender, age, and a description about yourself. This process of creating a user is visualised by a circle filling up in the top right-hand corner. The circle indicates the progress the user has made in completing their profile. (shown below)
+
+Peer to Peer Messaging
+1. Feature 7: Provide users with the ability to message each other or an institution directly (e.g., a user can message an event/movement that is managed by another user). (hard)  
+On the messages tab, a user has the option to message any other user (which they have not blocked). The users are displayed in accordance with their first and last names. When a user-name is clicked, a new activity (DirectMessage.java) is opened with the recipient’s email in the intent. Previous messages are loaded and displayed accordingly. When a user types and sends a message using the input field, the string is first created into a Message object which additionally has the sender’s email. It is then stored in the database as a part of the “messages” field in the user classes where the recipient is treated as a “key” to the conversation. The conversation itself is stored as an arraylist of messages. The message is also added to the recipient’s user object as well. This design allows for precise querying when loading messages as we can use the previously designed email keys for direct access. The use of arraylist was also seen as the most efficient data structure to store the messages as we are reading and writing at similar frequencies. 
+
+Firebase Integration:
+1. Feature 8: Use Firebase to implement user Authentication/Authorisation.  
+Firebase Authentication was implemented using the FirebaseAuth object. In the registration page, the email and password (which was checked for validity beforehand) was passed into the “createUserWithEmailAndPassword” function. This was tied to the creation of the user object in the firestore database which similarly used the inbuilt functions. To make use of the document-oriented database, we first chose the sign-up email as the “primary-key” for accessing and indexing user data. To stop creating multiple accounts with the same email, we could simply check the firestore database to see if a document with the specified email exists and handle that case appropriately. For authorisation, we again used Firebase Authentication with the function “signInWithEmailAndPassword” to verify users. Entry upon the app was conditional on this function executing correctly.
+
+2. Feature 9: Use Firebase to persist all data used in your app (this item replaces the requirement to retrieve data from a local file) (medium)  
+We used Firebase for our data storage purposes for things such as storing users and posts. Each user stored in Firebase has many attributes, some can be seen in the User Info Images. 
+
 
 ## Team Meetings
 
