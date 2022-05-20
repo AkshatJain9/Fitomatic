@@ -1,4 +1,4 @@
-# Team ACE Report - AJSMDLLZ
+# Team Fitomatic Report - AJSMDLLZ
 
 **Problem Statement:**  
 Spending over two years in lockdown under various restrictions has made it very difficult to socialise and exercise. Our app helps promote social good by facilitating an environment that encourages an active and healthy lifestyle. Fitomatic is a social exercising app, where users are able to interact with others in an active environment. 
