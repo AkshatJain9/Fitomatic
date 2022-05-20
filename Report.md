@@ -156,7 +156,8 @@ On the home feed users are able to view, follow, like and search from thousands 
 Fitomatic is a gateway to socialise with others while in an active environment promoting a healthy lifestyle. 
 
 ![User Profile Creation Process](/images/ReportImgAssets/profileCreationProcess.png)
-
+![Four Main Fragments](/images/ReportImgAssets/fourMainFragments.png)
+![Three Types of Posts](/images/ReportImgAssets/threePostTypes.png)
 
 **Application Use Cases and or Examples**
 
