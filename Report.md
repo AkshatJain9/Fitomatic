@@ -128,6 +128,7 @@ Heavily involved with most aspects of the project. Including overall code design
 * Created the AVL tree which stores the posts queried in the database in a sequential matter (from most likes to least) in an efficient manner. Also made this data structure usable with the UI (working with Leon)
   * AVLPosts.java
   * HomeFragment.java (120-125)
+* Created a mechanism to send direct notifications to a user's device using the Firebase Messaging service. This was ultimately removed as it did not contribute to our overall app design
 
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
