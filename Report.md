@@ -162,21 +162,21 @@ Fitomatic is a gateway to socialise with others while in an active environment p
 
 Fitomatic is targeted toward people of all ages. Individual users looking for a partner in their exercising routines or small group sporting activities as well as catering for large events directed towards fundraisers. On a social level, we want to promote physical activity for all ages. Especially for younger people, who seem to have health problems earlier on.
 
-Timmy wants a buddy to go on afternoon runs with
+Timmy wants a buddy to go on afternoon runs with:
    * Timmy makes an individual post stating he wants a running partner who is available for afternoon runs.
    * Other users can follow/like the post to get in contact with Timmy.
    * After choosing a running partner Timmy can send over more details such as the location and equipment required through the peer to peer messaging service.
    * After the activity concludes Timmy can keep in touch with the peer to peer messaging service or accept other users.
 
-Steve wants to play a game of soccer with others
+Steve wants to play a game of soccer with others:
    * Steve creates a small group post outlining where and when he would like to play soccer.
-  * Other users can follow/like the post to save it if they want to participate.
-  * Steve can now enjoy his game of soccer with the other users.
-  * Participants of the soccer match can keep in touch with the peer to peer messaging service to organise future plans.
+   * Other users can follow/like the post to save it if they want to participate.
+   * Steve can now enjoy his game of soccer with the other users.
+   * Participants of the soccer match can keep in touch with the peer to peer messaging service to organise future plans.
 
-Fun Run ACT wants to create a fundraising running marathon
+Fun Run ACT wants to create a fundraising running marathon:
    * Fun Run ACT can create an account with appropriate verifiable credentials
-  * Fun Run ACT can create a large group post stating all necessary information: when, where, cost of entry for the fundraising event.
+   * Fun Run ACT can create a large group post stating all necessary information: when, where, cost of entry for the fundraising event.
    * After the fundraising marathon Fun Run ACT can contact event winners and other users who want to interact with the organisation can through the peer to peer messaging service.
 
 ## Application UML
