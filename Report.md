@@ -219,16 +219,17 @@ An iterator design pattern was used within the tokeniser to simplify the logic w
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<Statement> => userExp(user, \<Activity>) | \<Activity>
-\<Activity> => ActivityQueryExp(activity, \<Activity>) | \<Fields>
-\<Field> => PostQueryExp(title, <Fields>) | <Time>
-\<Time> => TimeExp(date, EmptyExp) | EmptyExp
+<br> \<Statement> => userExp(user, \<Activity>) | \<Activity> <br>
+<br> \<Activity> => ActivityQueryExp(activity, \<Activity>) | \<Fields> <br>
+<br> \<Field> => PostQueryExp(title, <Fields>) | <Time> <br>
+<br> \<Time> => TimeExp(date, EmptyExp) | EmptyExp <br>
 
 The following is the search grammar which the parsed expression must conform to. WIt is ordered by what users would naturally search for. Importantly, the users should be able to search for multiple activities and multi-worded titles. Hence, the grammar is self recursive in these two fields. If a user wants to search for a user, it seems natural that this would be the first thing they search for. Finally, the time allows users to narrow down searches further (or search for themselves in entirety) so it was placed last. The modular design of the Grammar is also easily extensible to add for more fields later if needed. This is mainly due to the fact that it is a purely linear grammar opposed to a circular one. The design is also extremely helpful when constructing the Query object as its nested structure allows queries to be built upon. Overall, the design suits the use case and is easy to use.
 
 A downside is that due to some of the limitations of Firebase (e.g. not being able to search with OR logic instead of AND, not being able to use whereIn() for multiple fields), the design is slightly specialized towards Firebase. This reduces the modularity of our overall project. Hence, this could be fixed, however, we would need more information on the other types of systems we wish to use.
 
 **Tokenizer and Parsers**
+
 The tokenizer and parser is utilised when a user wants to search for a post on the main page of the app. A user is able to search for specific titles, activities, users, and time on the search bar at the top of the page. This first starts with the user entering a search string which is partitioned by word within the tokeniser. Then, for each word, a token containing the string is created by searching for specific characters (e.g. @ for users), specific words (activity names), and other attributes to get an iterable token collection. Note that this is stored in an iterator pattern as this eases the logic for constructing a grammar. These tokens are then parsed by the parser which generates an expression object which specifies how a search query should be structured. The grammar by which the parser does this is explained below. Finally, a specialised singleton class, DBQuery, is used to interpret this expression to a Firestore Query object which can simply be called.
 
 Key advantages of our approach mainly include the separation of concerns in different stages of the search mechanism. As a result, we could try different methods of parsing, tokenizing, and query processing to optimise the process. It also increases efficiency and readability as each class in the process has a specialised role. The generalised nature of the parser further helps in querying the most relevant posts as we make use of Firestore Query’s in-built functions to iteratively build up a query from the expression.
@@ -239,7 +240,9 @@ Key advantages of our approach mainly include the separation of concerns in diff
 
 **Other**
 
-*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
+**2500 Valid data instances**
+
+Within the firestore database, we have added a total of 2500 data instances. This includes users, posts, messages, blocks, follows, user deletions and more. Hopefully this is able to 
 
 ## Summary of Known Errors and Bugs
 
