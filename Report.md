@@ -234,8 +234,32 @@ The tokenizer and parser is utilised when a user wants to search for a post on t
 
 Key advantages of our approach mainly include the separation of concerns in different stages of the search mechanism. As a result, we could try different methods of parsing, tokenizing, and query processing to optimise the process. It also increases efficiency and readability as each class in the process has a specialised role. The generalised nature of the parser further helps in querying the most relevant posts as we make use of Firestore Query’s in-built functions to iteratively build up a query from the expression.
 
-**Surpise Item**
+**Surpise Item**  
 **Code Smells**
+Four Existing Code Smells:
+1. Encapsulation Smell: Querying Posts to Factory
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/f85177669e02edae305b7018eff8f84ebb96c508/app/src/main/java/com/ajsmdllz/fitomatic/ui/home/HomeFragment.java#L87-130
+2. Modularisation Smell: Iterating over Tokens split into 2 classes
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/f85177669e02edae305b7018eff8f84ebb96c508/app/src/main/java/com/ajsmdllz/fitomatic/Search/SearchTokenizer.java
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/f85177669e02edae305b7018eff8f84ebb96c508/app/src/main/java/com/ajsmdllz/fitomatic/Search/SearchParser.java
+3. Abstraction Smell: Directly accessing user firebase object in line of code, could be abstracted to another class to act as interface to database.
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/f85177669e02edae305b7018eff8f84ebb96c508/app/src/main/java/com/ajsmdllz/fitomatic/Registration/ProfileCreation.java#L98-105
+4. Modularisation Smell: DBQuery is static so can’t extend or implement additional features
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/f85177669e02edae305b7018eff8f84ebb96c508/app/src/main/java/com/ajsmdllz/fitomatic/Search/DBQuery.java
+
+Corrections:
+1. Fixed Encapsulation: Abstracted Query Logic to Factory Class
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/commit/1c7626624e58d739b9bf83511fa3605e61c0b6cb 
+2. Fixed Modularisation: Moved iterator logic for parser into tokeniser class
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/commit/3df0dc26727d59bcf15266c315c7d88e1f01f643 
+3. Fixed Modularisation: Made DBQuery a singleton so it can be extended in the future:
+   * https://gitlab.cecs.anu.edu.au/u7284072/comp2100-group-assignment-ajsmdllz/-/blob/master/app/src/main/java/com/ajsmdllz/fitomatic/Search/DBQuery.java
+
+Explanations:
+1. Our first smell was an encapsulation smell regarding the mechanism we use to query posts for display on our main feed. The following link shows that when obtaining the posts from the database, the firebase object mapping is manually loaded and converted within the home fragment class. However, this piece of logic has nothing to do with the HomeFragment’s mechanism and is closer to the functionality of the post factory class. Considering this <u>exact</u> portion of code will need to be repeated to display the followed posts on the profile fragment, this section should be encapsulated to the PostFactory class.
+2. The following two files show the mechanism for tokenizing and parsing. We importantly see that the **Parser** is responsible for iterating over the **Tokenised** strings which is another class. This miss-match of delegation of iterative logic is a smell as it reduced modularity of the two classes since they are now independent. Hence, some mechanism should be added within the SearchTokeniser to encapsulate the iterator logic within itself. This was done by adding an iterator design pattern to the tokeniser class.
+3. The third smell is an abstraction smell where the user object that is stored in the firebase is directly updated within the ProfileCreation class which is instead responsible for the UI logic when creating the user. This could be abstracted into its own class which is responsible for updating the user fields in the database. However, given that this interaction was only done once with these specific fields, we found that this abstraction was somewhat unnecessary. If we were to scale our application to more features however, this would be an appropriate candidate for refactoring.
+4. The fourth and final smell involves the DBQuery class being static, meaning it cannot extend or implement non-static features, reducing its modularity. Given that DBQuery is responsible for constructing a query object, we would perhaps like it to be extendable in the future if we want to implement a more complicated search mechanism in the future or add any additional features regarding query optimisations etc. Hence, to fix this, we implemented the class as a singleton so it can be easily extended, without compromising its functionality.
 
 
 **Other**
@@ -266,7 +290,7 @@ AVLPostTest.java
     * Null 
     * Height 
     * Insert 
-    * Complex insert
+    * Complex insert  
 TokenTest.java
   * Number of test cases: 18
   * Code coverage: Used IntelliJ Run with Coverage
@@ -276,14 +300,14 @@ TokenTest.java
     * .getToken
     * .getType
     * Equality tests
-    * toString
+    * toString  
 TokenizerTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
   * Image:  
   <img src="/images/ReportImgAssets/TestImages/searchTokTest.png" width="700" height="52"><br>
   * Types of tests created:
-    * Correct title, time, user, activity and combined
+    * Correct title, time, user, activity and combined  
 PostFactory.java
   * Number of test cases: 12
   * Code coverage: Used IntelliJ Run with Coverage
@@ -291,7 +315,7 @@ PostFactory.java
   <img src="/images/ReportImgAssets/TestImages/factoryTest.png" width="700" height="52"><br>
     * Note: Only tested relevant fields as there are elements related to Firebase which cannot be tested.
   * Types of tests created:
-    * Single, small, event and event edge cases test.
+    * Single, small, event and event edge cases test.  
 ParserTest.java
   * Number of test cases: 13
   * Code coverage: Used IntelliJ Run with Coverage
@@ -299,7 +323,7 @@ ParserTest.java
   <img src="/images/ReportImgAssets/TestImages/searchTest.png" width="700" height="46"><br>
   * Types of tests created:
     * Testing simple title, time, user, activity
-    * A mid case and two complex cases with multiple activities and a user, time and also using .toString
+    * A mid case and two complex cases with multiple activities and a user, time and also using .toString  
 MessageTest.java
   * Number of test cases: 6
   * Code coverage: Used IntelliJ Run with Coverage
