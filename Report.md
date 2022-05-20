@@ -181,31 +181,31 @@ Fun Run ACT wants to create a fundraising running marathon
 **Data Structures**
 We used the following data structures in my project:
 1. ArrayList
-  * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
-  * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
-  * Reasons:
-    * Easily resizable if a user wants to like/follow a post or block a user.
-    * Similarly useful for what we want out of our Posts, constantly changing values and sizes.
+   * Objective: It is used for storing interest, posts, blocked users and following posts for our Users. It is also used for storing liked posts, followers and activities for our Posts and messages in DirectMessage.java.
+   * Locations: User.java, Post.java, EventActivity.java, SmallGroupActivity.java, DirectMessage.java, PostFragment.java, ProfileFragment.java
+   * Reasons:
+     * Easily resizable if a user wants to like/follow a post or block a user.
+     * Similarly useful for what we want out of our Posts, constantly changing values and sizes.
 2. HashMap
-  * Objective: It is used for our peer to peer messaging service. 
-  * Locations: User.java
-  * Reasons:
-    * We decided to store messages as a component of the user object.
-    * Hence for a given conversation with user X, we would have an arraylist of messages, Y
-    * Hence, there is a natural mapping between the user email string and the messages between them. Hence, it felt natural to use a HashMap
-    * It is also efficient when querying and storing message objects as user emails provide a direct and efficient indexing key to access firestore objects, and it doubles as the key of the hashmap.
+   * Objective: It is used for our peer to peer messaging service. 
+   * Locations: User.java
+   * Reasons:
+     * We decided to store messages as a component of the user object.
+     * Hence for a given conversation with user X, we would have an arraylist of messages, Y
+     * Hence, there is a natural mapping between the user email string and the messages between them. Hence, it felt natural to use a HashMap
+     * It is also efficient when querying and storing message objects as user emails provide a direct and efficient indexing key to access firestore objects, and it doubles as the key of the hashmap.
 3. List
-  * Objective: It is used for displaying text messages through our P2P messaging system.
-  * Locations: DirectMessageRecyclerAdapter.java
-  * Reasons: 
-    * Used to sequentially display messages so we can easily iterate over elements in the List and display them.
+   * Objective: It is used for displaying text messages through our P2P messaging system.
+   * Locations: DirectMessageRecyclerAdapter.java
+   * Reasons: 
+     * Used to sequentially display messages so we can easily iterate over elements in the List and display them.
 4. AVL Tree
-  * Objective: It is used to sort the feed on the main page of the app by the number of likes a post has.
-  * Locations: AVLPosts.java
-  * Reasons:
-    * Using a standard linear iterable type such as an array leads to O(n) time complexity for post insertion if we want the posts to be ordered from most liked to least liked. If there are n posts, this leads to a worst case scenario of O(n^2).
-    * Using a tree lowers insertion time to O(log n) giving a worst case of O(n log n) which is significantly better. 
-    * Hence AVL trees are a valuable addition to the application as it allows us to display posts much faster.
+   * Objective: It is used to sort the feed on the main page of the app by the number of likes a post has.
+   * Locations: AVLPosts.java
+   * Reasons:
+     * Using a standard linear iterable type such as an array leads to O(n) time complexity for post insertion if we want the posts to be ordered from most liked to least liked. If there are n posts, this leads to a worst case scenario of O(n^2).
+     * Using a tree lowers insertion time to O(log n) giving a worst case of O(n log n) which is significantly better. 
+     * Hence AVL trees are a valuable addition to the application as it allows us to display posts much faster.
 
 **Design Patterns**
 We have used three design patterns namely, the factory, singleton and iterator design patterns. 
