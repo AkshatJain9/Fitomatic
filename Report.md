@@ -235,8 +235,8 @@ The tokenizer and parser is utilised when a user wants to search for a post on t
 Key advantages of our approach mainly include the separation of concerns in different stages of the search mechanism. As a result, we could try different methods of parsing, tokenizing, and query processing to optimise the process. It also increases efficiency and readability as each class in the process has a specialised role. The generalised nature of the parser further helps in querying the most relevant posts as we make use of Firestore Query’s in-built functions to iteratively build up a query from the expression.
 
 **Surpise Item**
+**Code Smells**
 
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
 **Other**
 
@@ -253,7 +253,7 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 3. Rapidly switching between the fragments in the navigation
    * If a user rapidly switches between the fragments in the bottom navigation bar, the app crashes. Is not replicated on the post creation navigation bar and so is likely an issue with firebase e.g. too many requests to handle.
 4. Creating a new user and not finishing the process
-   * If a user creates a new email and password but don’t fill out the rest of the registration and back out, the user will not be able to access their profile without the app crashing.
+   * If a user creates a new email and password but doesn’t fill out the rest of the registration and back out, the user will not be able to access their profile and other without the app crashing. This may also have consequences for other users without deleting the erroneous user.
 
 ## Testing Summary
 
