@@ -348,7 +348,7 @@ Within the firestore database, we have added a total of 2500 data instances. Thi
 
 **White-Box Testing - UI**
 
-A systematic approach was teken to testing each UI component. Priciples taught in lecture were applied to the UI control flow.
+A systematic approach was taken to testing each UI component. Priciples taught in lecture were applied to the UI control flow.
 
 For instance, when registering a user, in the first pane three input fields were used. For testing, the goal of testing was for every permutation of valid/invalid inputs to be inputted to create the correct toast. Similarly, when selecting activities, uploading profile photos, and entering the name/age/bio, the goal of testing was to vary inputs to be valid and invalid. Hence, in doing so, we were able to replicate a sort of “branch coverage” when testing the UI control flow for the registration process.
 
