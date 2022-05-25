@@ -1,10 +1,12 @@
 ### Firebase Tutor Accounts
 
-Username: tutor1@gmail.com, Password: testing1
-Username: tutor2@gmail.com, Password: testing2
-Username: tutorone@gmail.com, Password: password
+Username: tutor1@gmail.com, Password: testing1 <br>
+Username: tutor2@gmail.com, Password: testing2 <br>
+Username: tutorone@gmail.com, Password: password <br>
 
 Note: although we provided some user accounts as requested, fully functioning account creation is included which can be used to create new user accounts.
+
+We simulated peer to peer messaging between the first two tutor accounts.
 
 ### Firebase Data Instances 
 
